@@ -2737,39 +2737,58 @@
       });
 
       const canvas = document.getElementById(`canvas-${tabId}`);
-      if (!canvas) return;
+      if (canvas) {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          canvas.width = rect.width * window.devicePixelRatio;
+          canvas.height = rect.height * window.devicePixelRatio;
+          const ctx = canvas.getContext('2d');
+          ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 
-      const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
-      const ctx = canvas.getContext('2d');
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          const width = rect.width;
+          const height = rect.height;
 
-      const width = rect.width;
-      const height = rect.height;
+          if (tabId === 'about') {
+            canvasAnimationControllers['about'] = runWaveletCanvas(canvas, ctx, width, height);
+          } else if (tabId === 'research') {
+            canvasAnimationControllers['research'] = runFrameLatticeCanvas(canvas, ctx, width, height);
+          } else if (tabId === 'publications') {
+            canvasAnimationControllers['publications'] = runSpectralCanvas(canvas, ctx, width, height);
+          } else if (tabId === 'blog') {
+            canvasAnimationControllers['blog'] = runUncertaintyCanvas(canvas, ctx, width, height);
+          } else if (tabId === 'teaching') {
+            canvasAnimationControllers['teaching'] = runVectorFieldCanvas(canvas, ctx, width, height);
+          } else if (tabId === 'contact') {
+            canvasAnimationControllers['contact'] = runTopologySphereCanvas(canvas, ctx, width, height);
+          }
+        }
+      }
 
-      if (tabId === 'about') {
-        canvasAnimationControllers['about'] = runWaveletCanvas(canvas, ctx, width, height);
-      } else if (tabId === 'research') {
-        canvasAnimationControllers['research'] = runFrameLatticeCanvas(canvas, ctx, width, height);
-      } else if (tabId === 'publications') {
-        canvasAnimationControllers['publications'] = runSpectralCanvas(canvas, ctx, width, height);
-      } else if (tabId === 'blog') {
-        canvasAnimationControllers['blog'] = runUncertaintyCanvas(canvas, ctx, width, height);
-        // Also initialize the inline post canvas if present
-        const postCanvas = document.getElementById("canvas-post-uncertainty");
+      // If in blog tab, ALSO initialize all inline post canvas figures!
+      if (tabId === 'blog') {
+        const breakCanvas = document.getElementById('canvas-post-besov-break');
+        if (breakCanvas) {
+          const bRect = breakCanvas.parentElement.getBoundingClientRect();
+          const bWidth = bRect.width > 0 ? bRect.width : (breakCanvas.parentElement.clientWidth || 700);
+          const bHeight = bRect.height > 0 ? bRect.height : 250;
+          breakCanvas.width = bWidth * window.devicePixelRatio;
+          breakCanvas.height = bHeight * window.devicePixelRatio;
+          const bCtx = breakCanvas.getContext('2d');
+          bCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['post_besov'] = runBesovBreakCanvas(breakCanvas, bCtx, bWidth, bHeight);
+        }
+
+        const postCanvas = document.getElementById('canvas-post-uncertainty');
         if (postCanvas) {
           const pRect = postCanvas.parentElement.getBoundingClientRect();
-          postCanvas.width = pRect.width * window.devicePixelRatio;
-          postCanvas.height = pRect.height * window.devicePixelRatio;
+          const pWidth = pRect.width > 0 ? pRect.width : (postCanvas.parentElement.clientWidth || 700);
+          const pHeight = pRect.height > 0 ? pRect.height : 220;
+          postCanvas.width = pWidth * window.devicePixelRatio;
+          postCanvas.height = pHeight * window.devicePixelRatio;
           const pCtx = postCanvas.getContext('2d');
           pCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
-          runInlinePostCanvas(postCanvas, pCtx, pRect.width, pRect.height);
+          canvasAnimationControllers['post_uncertainty'] = runInlinePostCanvas(postCanvas, pCtx, pWidth, pHeight);
         }
-      } else if (tabId === 'teaching') {
-        canvasAnimationControllers['teaching'] = runVectorFieldCanvas(canvas, ctx, width, height);
-      } else if (tabId === 'contact') {
-        canvasAnimationControllers['contact'] = runTopologySphereCanvas(canvas, ctx, width, height);
       }
     }
 
