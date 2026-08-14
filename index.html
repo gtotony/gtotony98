@@ -999,6 +999,38 @@
       height: 220px;
       position: relative;
     }
+    
+    .interactive-ctrl-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 0.6rem;
+      background: rgba(0,0,0,0.03);
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+    .interactive-ctrl-bar button {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .interactive-ctrl-bar button:hover {
+      background: var(--primary-light);
+      color: #ffffff;
+    }
+    .interactive-ctrl-bar button.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
     .blog-canvas-caption {
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -1582,6 +1614,82 @@
       </div>
 
       <div class="blog-container" id="blogContainer">
+
+        <!-- BLOG POST 1 (NEWEST FEATURED): Explicit Wavelet Approximation on Weighted Besov Spaces & Structural Breaks -->
+        <article class="blog-post-card">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Weighted Besov Spaces</span>
+            <span class="blog-tag">Biorthogonal Wavelets</span>
+            <span class="blog-tag">Structural Breaks</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 10 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blog2_title">
+            Explicit Wavelet Approximation in Weighted Besov Spaces: Resolving Structural Breaks in Piecewise Regular Series
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blog2_p1">
+              Constructive approximation theory often establishes asymptotic convergence orders without displaying explicit constants. In our recent paper published in <em>Mathematics</em> (2026, 14(15), 2794), we construct explicit direct (Jackson) and inverse (Bernstein) multiresolution approximation estimates in weighted Besov spaces $B^s_{p,q}(w)$ over Muckenhoupt $A_p$ weights, routing the entire weight dependence through the Hardy–Littlewood maximal operator norm $C_M(p, [w]_{A_p})$.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_direct_title">Theorem 1 (Direct Jackson Estimate) & Theorem 2 (Inverse Bernstein Estimate)</span>
+              </div>
+              <p>
+                Let $1 < p < \infty$, $1 \le q \le \infty$, $w \in A_p$, and $0 < s < \sigma = \min(M, \gamma)$. For the biorthogonal projection $P_J$ onto $V_J$:
+                $$\|f - P_J f\|_{L^p(w)} \le C(s,q) C_{\text{ch}} 2^{-Js} \|f\|_{B^s_{p,q}(w)}, \quad \forall f \in B^s_{p,q}(w)$$
+                $$\|f_J\|_{B^s_{p,q}(w)} \le C' 2^{Js} \|f_J\|_{L^p(w)}, \quad \forall f_J \in V_J$$
+                Every factor is in closed form or bounded by $C_M(p, [w]_{A_p}) \le c_p [w]_{A_p}^{1/(p-1)}$.
+              </p>
+            </div>
+
+            <p data-i18n="blog2_p2">
+              For piecewise regular series $f = g + h \in \mathcal{P}^s_K(w)$ carrying a Besov-smooth trend $g$ and isolated structural break jumps $h = \sum_{i=1}^K c_i \mathbf{1}_{\{x \ge x_i^0\}}$ with $\sum c_i = 0$, the projection error splits analytically:
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-code-branch"></i>
+                <span data-i18n="thm_piecewise_title">Theorem 3 (Piecewise Regular Decomposition & Effective Rate)</span>
+              </div>
+              <p>
+                $$\|f - P_J f\|_{L^p(w)} \le C_{A1} 2^{-Js} \|g\|_{B^s_{p,q}(w)} + C_\phi \sum_{i=1}^K |c_i| w(I_J(x_i^0))^{1/p}$$
+                where $I_J(x_i^0) = [x_i^0 - 2A 2^{-J}, x_i^0 + 2A 2^{-J}]$. When $w$ is locally comparable to Lebesgue measure, the effective convergence rate is exactly:
+                $$\text{Effective Decay Rate} = \min\left(s, \frac{1}{p}\right)$$
+              </p>
+            </div>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);" data-i18n="ctrl_res_level">Select Resolution Level J:</span>
+                <button onclick="setBreakCanvasJ(2, this)">J = 2</button>
+                <button onclick="setBreakCanvasJ(4, this)">J = 4</button>
+                <button onclick="setBreakCanvasJ(6, this)" class="active">J = 6</button>
+                <button onclick="setBreakCanvasJ(8, this)">J = 8</button>
+                <button onclick="setBreakCanvasJ(10, this)">J = 10</button>
+              </div>
+              <div class="blog-canvas-wrapper">
+                <canvas id="canvas-post-besov-break" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blog2_canvas_caption">
+                <i class="fa-solid fa-chart-line"></i> Interactive Simulation: Synthetic profile $f = g + h$ ($s=0.80$, jumps at $x=0.40$ and $x=0.60$) and its biorthogonal multiresolution projection $P_J f$. Notice how the smooth part is captured at rate $2^{-Js}$ while the residual concentrates sharply in shrinking intervals around the jumps.
+              </div>
+            </div>
+
+            <p data-i18n="blog2_p3">
+              This framework provides an analytical foundation for distinguishing smooth economic trends from policy-induced breaks without ad-hoc parameterization. The full open-access article is available in <em>Mathematics</em>:
+              <a href="https://doi.org/10.3390/math14152794" target="_blank" class="pub-btn pub-btn-doi" style="margin-left: 0.5rem;" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-lines"></i> DOI: 10.3390/math14152794
+              </a>
+            </p>
+          </div>
+        </article>
+
         <!-- Pre-written In-Depth Research Blog Post -->
         <article class="blog-post-card">
           <div class="blog-meta-row">
@@ -2906,6 +3014,117 @@
           canvas.removeEventListener('mousemove', onMouseMove);
         }
       };
+    }
+
+    
+    // --- Interactive Canvas: Multiresolution Structural Break Projection ---
+    let currentBreakJ = 6;
+
+    function setBreakCanvasJ(jVal, btn) {
+      currentBreakJ = jVal;
+      document.querySelectorAll('.interactive-ctrl-bar button').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function runBesovBreakCanvas(canvas, ctx, width, height) {
+      let animTime = 0;
+
+      function evalProfile(x) {
+        let g = 0;
+        for (let k = 0; k <= 7; k++) {
+          g += Math.pow(2, -k * 0.8) * Math.cos(2 * Math.PI * Math.pow(2, k) * x);
+        }
+        let h = 0;
+        if (x >= 0.40 && x < 0.60) {
+          h = 1.0;
+        }
+        return { total: g + h, g: g, h: h };
+      }
+
+      function evalProjection(x, J) {
+        let gProj = 0;
+        for (let k = 0; k <= Math.min(J, 7); k++) {
+          gProj += Math.pow(2, -k * 0.8) * Math.cos(2 * Math.PI * Math.pow(2, k) * x);
+        }
+
+        const delta = 5.0 / Math.pow(2, J);
+        const sig1 = 1 / (1 + Math.exp(-(x - 0.40) / (delta * 0.25)));
+        const sig2 = 1 / (1 + Math.exp(-(x - 0.60) / (delta * 0.25)));
+        const hProj = sig1 - sig2;
+
+        return gProj + hProj;
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        animTime += 0.02;
+
+        const margin = 45;
+        const plotW = width - 2 * margin;
+        const plotH = height - 2 * margin;
+        const baseline = height / 2 + 10;
+
+        // Draw Axes
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(margin, baseline);
+        ctx.lineTo(width - margin, baseline);
+        ctx.stroke();
+
+        ctx.font = '10px JetBrains Mono, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('x = 0.0', margin, baseline + 18);
+        ctx.fillText('x = 0.40 (Jump +1)', margin + plotW * 0.4 - 35, baseline + 18);
+        ctx.fillText('x = 0.60 (Jump -1)', margin + plotW * 0.6 - 35, baseline + 18);
+        ctx.fillText('x = 1.0', width - margin - 25, baseline + 18);
+
+        // Highlight dyadic jump interval I_J(x_0)
+        const intRadius = Math.max(8, (4 * 5.0 / Math.pow(2, currentBreakJ)) * (plotW * 0.5));
+        ctx.fillStyle = 'rgba(220, 38, 38, 0.08)';
+        ctx.fillRect(margin + plotW * 0.4 - intRadius, margin, 2 * intRadius, plotH);
+        ctx.fillRect(margin + plotW * 0.6 - intRadius, margin, 2 * intRadius, plotH);
+
+        // Plot Original Function f = g + h
+        ctx.beginPath();
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([4, 3]);
+
+        for (let px = 0; px <= plotW; px += 2) {
+          const x = px / plotW;
+          const val = evalProfile(x).total;
+          const py = baseline - val * 35;
+          if (px === 0) ctx.moveTo(margin + px, py);
+          else ctx.lineTo(margin + px, py);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Plot Biorthogonal Projection P_J f
+        ctx.beginPath();
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2.4;
+
+        for (let px = 0; px <= plotW; px += 2) {
+          const x = px / plotW;
+          const val = evalProjection(x, currentBreakJ);
+          const py = baseline - val * 35;
+          if (px === 0) ctx.moveTo(margin + px, py);
+          else ctx.lineTo(margin + px, py);
+        }
+        ctx.stroke();
+
+        // Legend
+        ctx.font = '11px Inter, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`-- Original Signal f = g + h`, margin + 10, margin - 15);
+        ctx.fillStyle = '#2563eb';
+        ctx.fillText(`— Biorthogonal Projection P_J f (Scale J = ${currentBreakJ})`, margin + 190, margin - 15);
+
+        requestAnimationFrame(draw);
+      }
+      draw();
     }
 
     function runInlinePostCanvas(canvas, ctx, width, height) {
