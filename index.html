@@ -1615,6 +1615,109 @@
 
       <div class="blog-container" id="blogContainer">
 
+        <!-- BLOG POST (NEWEST FEATURED): Explicit Approximation Rates for Shallow Networks on Additive Besov Classes -->
+        <article class="blog-post-card">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Additive Besov Classes</span>
+            <span class="blog-tag">Shallow Neural Networks</span>
+            <span class="blog-tag">Curse of Dimensionality</span>
+            <span class="blog-tag">Effective Dimension</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 12 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blog3_title">
+            Explicit Approximation Rates for Shallow Neural Networks on Additive Besov Classes: Breaking the Curse of Dimensionality
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blog3_p1">
+              In mathematical machine learning and constructive approximation theory, a central challenge is overcoming the <em>curse of dimensionality</em>. When approximating functions on bounded Lipschitz domains $\Omega \subset \mathbb{R}^d$ using single-hidden-layer neural networks, classical Jackson estimates on the Besov scale $B^s_{p,q}(\Omega)$ yield error decay rates of order $N^{-s/d}$ with network width $N$. As ambient dimension $d$ grows, this convergence rate rapidly degrades. In our recent work published in <em>Mathematics</em> (2026, 14(14), 2491), we establish explicit, non-asymptotic approximation error bounds for localized shallow networks, prove a univariate inverse Bernstein converse on nonlinear free-knot Besov spaces, and demonstrate that on <strong>coordinate-subset additive Besov classes</strong> $\mathcal{S}^s_{d_0}(\Omega)$, the approximation rate is governed solely by the <strong>effective dimension</strong> $d_0$, with the ambient dimension $d$ entering only through the explicit prefactor constant.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_shallow_direct_title">Theorem 5 (Direct Jackson-Type Estimate for Localized Shallow Networks)</span>
+              </div>
+              <p data-i18n="thm_shallow_direct_body">
+                Let $\Omega \subset \mathbb{R}^d$ be a bounded Lipschitz domain. Let $\sigma$ satisfy standing regularity hypotheses (A1)–(A3) and admit an exact spline generator $\Lambda \in \mathcal{N}_{\nu_0}(\sigma; 1)$ of order $W \ge r_\sigma + 1$ reproducing polynomials of degree $\le r_\sigma$. For $1 \le p \le \infty$, $0 < q \le \infty$, and $0 < s < s_\sigma = r_\sigma + 1$:
+                $$E_N^\flat(f)_{L_p(\Omega)} \le C_J N^{-s/d} |f|_{B^s_{p,q}(\Omega)}, \quad \forall N \ge N_0$$
+                where $C_J = C_J(\sigma, s, p, q, d, \Omega) > 0$ is explicitly tracked through the activation parameters $(K_\sigma, m_\sigma, r_\sigma, \nu_0, W)$ and the Lipschitz extension constant $C_W(\Omega)$ via the homogeneous $K$-functional $K(f, t^r; L_p, \dot{W}^r_p) \asymp \omega_r(f, t)_{L_p}$.
+              </p>
+            </div>
+
+            <p data-i18n="blog3_p2">
+              In one dimension ($d=1$), we establish the corresponding converse theorem on the nonlinear diagonal Besov scale, characterizing the approximation space of localized neural networks:
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                <span data-i18n="thm_shallow_inverse_title">Corollary 1 (Univariate Converse / Inverse Bernstein Estimate on $B^\alpha_{\tau,\tau}$)</span>
+              </div>
+              <p data-i18n="thm_shallow_inverse_body">
+                Let $d=1, \Omega=(0,1)$ and $\sigma = \text{ReLU}^k$ ($s_\sigma = k+1$). If $f \in L_p(\Omega)$ ($1 \le p < \infty$) satisfies the dyadic $\ell_\tau$-summability condition for $0 < \alpha < s_\sigma$ and $\frac{1}{\tau} = \alpha + \frac{1}{p}$:
+                $$|f|_{\mathcal{A}} := \left[ \sum_{j \ge 0} \left( 2^{j\alpha} E_{2^j}^\flat(f)_{L_p(\Omega)} \right)^\tau \right]^{1/\tau} \le A < \infty$$
+                then $f \in B^\alpha_{\tau,\tau}(\Omega)$ on the nonlinear free-knot Besov scale, and $\|f\|_{B^\alpha_{\tau,\tau}(\Omega)} \le C' (\|f\|_{L_p(\Omega)} + A)$ with explicit $C' = C'(k, \alpha, p)$.
+              </p>
+            </div>
+
+            <p data-i18n="blog3_p3">
+              The principal breakthrough of this work is the <strong>effective-dimension refinement</strong>. On a bounded product domain $\Omega = \prod_{i=1}^d \Omega_i$, functions in the coordinate-subset additive Besov class $\mathcal{S}^s_{d_0}(\Omega) = \{f(x) = \sum_{|T|=d_0} g_T(x_T) : g_T \in B^s_{p,q}(\Omega_T)\}$ carry $d_0$-variate coordinate interactions ($1 \le d_0 \le d$):
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-cube"></i>
+                <span data-i18n="thm_shallow_additive_title">Theorem 6 (Effective-Dimension Refinement on Additive Besov Classes)</span>
+              </div>
+              <p data-i18n="thm_shallow_additive_body">
+                For every $f \in \mathcal{S}^s_{d_0}(\Omega)$ and $N \ge N_0''$:
+                $$E_N^\flat(f)_{L_p(\Omega)} \le C'' N^{-s/d_0} |f|_{\mathcal{S}^s_{d_0}(\Omega)}$$
+                The decay exponent $-s/d_0$ depends strictly on the effective dimension $d_0$. The ambient dimension $d$ enters only through the explicit prefactor constant $C'' = \Lambda C_1 (2\kappa)^{s/d_0} \binom{d}{d_0}^{s/d_0}$, where $\kappa = \frac{\nu' + d\nu''}{\nu' + d_0\nu''}$ is the localized coordinate embedding factor and $\Lambda$ is the geometric fiber measure bound.
+              </p>
+            </div>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <button class="active" onclick="setShallowSimMode('decay', this)" data-i18n="ctrl_mode_decay">Log-Log Decay Slopes ($s/d_0$ vs $s/d$)</button>
+                <button onclick="setShallowSimMode('surface', this)" data-i18n="ctrl_mode_surface">3D Additive Surface $f(x_1,x_2)$</button>
+                <button onclick="setShallowSimMode('education', this)" data-i18n="ctrl_mode_edu">UCI Educational Data ($d_0=1$)</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.4rem;" data-i18n="ctrl_width_label">Width N:</span>
+                <button onclick="setShallowSimN(24, this)">24</button>
+                <button onclick="setShallowSimN(96, this)">96</button>
+                <button class="active" onclick="setShallowSimN(192, this)">192</button>
+              </div>
+              <div class="blog-canvas-wrapper">
+                <canvas id="canvas-post-shallow-additive" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blog3_canvas_caption">
+                <i class="fa-solid fa-chart-line"></i> Interactive Simulation: Comparing the deterministic decay rate of the Additive Construction ($d_0=1$, fitted exponent $\hat{r}_A = 2.106 \approx s/d_0 = 2$) against the Full Tensor Construction ($d_0=3$, fitted exponent $\hat{r}_B = 0.700 \approx s/d = 0.667$) at ambient dimension $d=3$.
+              </div>
+            </div>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-i18n="key_insight_shallow_title">Key Takeaway & Interpretability in Applied Learning</span>
+              </div>
+              <p data-i18n="key_insight_shallow_desc">
+                By distributing the width budget across coordinate-subset faces via deterministic least-squares projections, we achieve dimensional rate decoupling without iterative optimization variance. On educational tabular datasets (UCI Student Performance), held-out $L_2$ diagnostics confirm that target prediction is governed by effective dimension $d_0 = 1$, validating that feature-parsimonious, explainable additive architectures prevent overfitting to spurious high-order coordinate noise.
+              </p>
+            </div>
+
+            <p data-i18n="blog3_p4">
+              The complete proofs, explicit constant derivations, and empirical validation scripts are published open-access in <em>Mathematics</em>:
+              <a href="https://doi.org/10.3390/math14142491" target="_blank" class="pub-btn pub-btn-doi" style="margin-left: 0.5rem;" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-lines"></i> DOI: 10.3390/math14142491
+              </a>
+            </p>
+          </div>
+        </article>
+
+
         <!-- BLOG POST 1 (NEWEST FEATURED): Explicit Wavelet Approximation on Weighted Besov Spaces & Structural Breaks -->
         <article class="blog-post-card">
           <div class="blog-meta-row">
@@ -2130,6 +2233,36 @@
         key_takeaway_desc: "For anisotropic wavelet frames generated by expansive matrices $A \\in \\text{GL}(d, \\mathbb{R})$, the geometric obstruction is characterized by the spectral distribution of the generator matrix and the geometry of the cone singularities in the frequency domain. This connects directly with the weighted Besov decay conditions and sharp Jackson-type estimates.",
         blog1_p3: "Detailed proofs, matrix dilation geometry, and full operator estimates can be accessed in our recent preprint:",
 
+        // Blog Post 3: Shallow Neural Networks on Additive Besov Classes
+        blog3_title: "Explicit Approximation Rates for Shallow Neural Networks on Additive Besov Classes: Breaking the Curse of Dimensionality",
+        blog3_p1: "In mathematical machine learning and constructive approximation theory, a central challenge is overcoming the <em>curse of dimensionality</em>. When approximating functions on bounded Lipschitz domains $\\Omega \\subset \\mathbb{R}^d$ using single-hidden-layer neural networks, classical Jackson estimates on the Besov scale $B^s_{p,q}(\\Omega)$ yield error decay rates of order $N^{-s/d}$ with network width $N$. As ambient dimension $d$ grows, this convergence rate rapidly degrades. In our recent work published in <em>Mathematics</em> (2026, 14(14), 2491), we establish explicit, non-asymptotic approximation error bounds for localized shallow networks, prove a univariate inverse Bernstein converse on nonlinear free-knot Besov spaces, and demonstrate that on <strong>coordinate-subset additive Besov classes</strong> $\\mathcal{S}^s_{d_0}(\\Omega)$, the approximation rate is governed solely by the <strong>effective dimension</strong> $d_0$, with the ambient dimension $d$ entering only through the explicit prefactor constant.",
+        thm_shallow_direct_title: "Theorem 5 (Direct Jackson-Type Estimate for Localized Shallow Networks)",
+        thm_shallow_direct_body: "Let $\\Omega \\subset \\mathbb{R}^d$ be a bounded Lipschitz domain. Let $\\sigma$ satisfy standing regularity hypotheses (A1)–(A3) and admit an exact spline generator $\\Lambda \\in \\mathcal{N}_{\\nu_0}(\\sigma; 1)$ of order $W \\ge r_\\sigma + 1$ reproducing polynomials of degree $\\le r_\\sigma$. For $1 \\le p \\le \\infty$, $0 < q \\le \\infty$, and $0 < s < s_\\sigma = r_\\sigma + 1$:<br>$$E_N^\\flat(f)_{L_p(\\Omega)} \\le C_J N^{-s/d} |f|_{B^s_{p,q}(\\Omega)}, \\quad \\forall N \\ge N_0$$<br>where $C_J = C_J(\\sigma, s, p, q, d, \\Omega) > 0$ is explicitly tracked through the activation parameters $(K_\\sigma, m_\\sigma, r_\\sigma, \\nu_0, W)$ and the Lipschitz extension constant $C_W(\\Omega)$ via the homogeneous $K$-functional $K(f, t^r; L_p, \\dot{W}^r_p) \\asymp \\omega_r(f, t)_{L_p}$.",
+        blog3_p2: "In one dimension ($d=1$), we establish the corresponding converse theorem on the nonlinear diagonal Besov scale, characterizing the approximation space of localized neural networks:",
+        thm_shallow_inverse_title: "Corollary 1 (Univariate Converse / Inverse Bernstein Estimate on $B^\\alpha_{\\tau,\\tau}$)",
+        thm_shallow_inverse_body: "Let $d=1, \\Omega=(0,1)$ and $\\sigma = \\text{ReLU}^k$ ($s_\\sigma = k+1$). If $f \\in L_p(\\Omega)$ ($1 \\le p < \\infty$) satisfies the dyadic $\\ell_\\tau$-summability condition for $0 < \\alpha < s_\\sigma$ and $\\frac{1}{\\tau} = \\alpha + \\frac{1}{p}$:<br>$$|f|_{\\mathcal{A}} := \\left[ \\sum_{j \\ge 0} \\left( 2^{j\\alpha} E_{2^j}^\\flat(f)_{L_p(\\Omega)} \\right)^\\tau \\right]^{1/\\tau} \\le A < \\infty$$<br>then $f \\in B^\\alpha_{\\tau,\\tau}(\\Omega)$ on the nonlinear free-knot Besov scale, and $\\|f\\|_{B^\\alpha_{\\tau,\\tau}(\\Omega)} \\le C' (\\|f\\|_{L_p(\\Omega)} + A)$ with explicit $C' = C'(k, \\alpha, p)$.",
+        blog3_p3: "The principal breakthrough of this work is the <strong>effective-dimension refinement</strong>. On a bounded product domain $\\Omega = \\prod_{i=1}^d \\Omega_i$, functions in the coordinate-subset additive Besov class $\\mathcal{S}^s_{d_0}(\\Omega) = \\{f(x) = \\sum_{|T|=d_0} g_T(x_T) : g_T \\in B^s_{p,q}(\\Omega_T)\\}$ carry $d_0$-variate coordinate interactions ($1 \\le d_0 \\le d$):",
+        thm_shallow_additive_title: "Theorem 6 (Effective-Dimension Refinement on Additive Besov Classes)",
+        thm_shallow_additive_body: "For every $f \\in \\mathcal{S}^s_{d_0}(\\Omega)$ and $N \\ge N_0''$:<br>$$E_N^\\flat(f)_{L_p(\\Omega)} \\le C'' N^{-s/d_0} |f|_{\\mathcal{S}^s_{d_0}(\\Omega)}$$<br>The decay exponent $-s/d_0$ depends strictly on the effective dimension $d_0$. The ambient dimension $d$ enters only through the explicit prefactor constant $C'' = \\Lambda C_1 (2\\kappa)^{s/d_0} \\binom{d}{d_0}^{s/d_0}$, where $\\kappa = \\frac{\\nu' + d\\nu''}{\\nu' + d_0\\nu''}$ is the localized coordinate embedding factor and $\\Lambda$ is the geometric fiber measure bound.",
+        ctrl_mode_decay: "Log-Log Decay Slopes ($s/d_0$ vs $s/d$)",
+        ctrl_mode_surface: "3D Additive Surface $f(x_1,x_2)$",
+        ctrl_mode_edu: "UCI Educational Data ($d_0=1$)",
+        ctrl_width_label: "Width N:",
+        blog3_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> Interactive Simulation: Comparing the deterministic decay rate of the Additive Construction ($d_0=1$, fitted exponent $\\hat{r}_A = 2.106 \\approx s/d_0 = 2$) against the Full Tensor Construction ($d_0=3$, fitted exponent $\\hat{r}_B = 0.700 \\approx s/d = 0.667$) at ambient dimension $d=3$.",
+        key_insight_shallow_title: "Key Takeaway & Interpretability in Applied Learning",
+        key_insight_shallow_desc: "By distributing the width budget across coordinate-subset faces via deterministic least-squares projections, we achieve dimensional rate decoupling without iterative optimization variance. On educational tabular datasets (UCI Student Performance), held-out $L_2$ diagnostics confirm that target prediction is governed by effective dimension $d_0 = 1$, validating that feature-parsimonious, explainable additive architectures prevent overfitting to spurious high-order coordinate noise.",
+        blog3_p4: "The complete proofs, explicit constant derivations, and empirical validation scripts are published open-access in <em>Mathematics</em>:",
+
+        // Blog Post 2: Weighted Besov Spaces & Structural Breaks
+        blog2_title: "Explicit Wavelet Approximation in Weighted Besov Spaces: Resolving Structural Breaks in Piecewise Regular Series",
+        blog2_p1: "Constructive approximation theory often establishes asymptotic convergence orders without displaying explicit constants. In our recent paper published in <em>Mathematics</em> (2026, 14(15), 2794), we construct explicit direct (Jackson) and inverse (Bernstein) multiresolution approximation estimates in weighted Besov spaces $B^s_{p,q}(w)$ over Muckenhoupt $A_p$ weights, routing the entire weight dependence through the Hardy–Littlewood maximal operator norm $C_M(p, [w]_{A_p})$.",
+        thm_direct_title: "Theorem 1 (Direct Jackson Estimate) & Theorem 2 (Inverse Bernstein Estimate)",
+        blog2_p2: "For piecewise regular series $f = g + h \\in \\mathcal{P}^s_K(w)$ carrying a Besov-smooth trend $g$ and isolated structural break jumps $h = \\sum_{i=1}^K c_i \\mathbf{1}_{\\{x \\ge x_i^0\\}}$ with $\\sum c_i = 0$, the projection error splits analytically:",
+        thm_piecewise_title: "Theorem 3 (Piecewise Regular Decomposition & Effective Rate)",
+        ctrl_res_level: "Select Resolution Level J:",
+        blog2_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> Interactive Simulation: Synthetic profile $f = g + h$ ($s=0.80$, jumps at $x=0.40$ and $x=0.60$) and its biorthogonal multiresolution projection $P_J f$. Notice how the smooth part is captured at rate $2^{-Js}$ while the residual concentrates sharply in shrinking intervals around the jumps.",
+        blog2_p3: "This framework provides an analytical foundation for distinguishing smooth economic trends from policy-induced breaks without ad-hoc parameterization. The full open-access article is available in <em>Mathematics</em>:",
+
         hero_tag_teach: "Vector Calculus & Flow",
         hero_title_teach: "Vector Field Streamline Simulator",
         hero_desc_teach: "Interactive visualization of curl, divergence, and path integrals in vector calculus for higher mathematics courses.",
@@ -2234,6 +2367,36 @@
         key_takeaway_desc: "對於由擴張矩陣 $A \\in \\text{GL}(d, \\mathbb{R})$ 生成的各向異性小波框架，其幾何阻礙直接取決於生成矩陣的譜分佈與頻域錐奇異點幾何結構，這與加權 Besov 空間的衰減條件及 sharp Jackson 逼近界限有著緊密聯繫。",
         blog1_p3: "完整的矩陣擴張幾何分析與算子估計可參閱近期預印本：",
 
+        // Blog Post 3: Shallow Neural Networks on Additive Besov Classes
+        blog3_title: "《淺層神經網路在可加 Besov 空間上的顯式逼近階：克服維度災難與有效維度分析》",
+        blog3_p1: "在機器學習數學理論與構造性逼近論中，一項核心挑戰是如何克服<strong>維度災難（Curse of Dimensionality）</strong>。當利用單隱藏層神經網絡逼近有界 Lipschitz 區域 $\\Omega \\subset \\mathbb{R}^d$ 上的函數時，經典 Besov 空間 $B^s_{p,q}(\\Omega)$ 上的 Jackson 估計給出之誤差衰減階為 $N^{-s/d}$（$N$ 為網絡寬度）。隨著維度 $d$ 增加，收斂速率急劇惡化。在我們近期發表於 <em>Mathematics</em> (2026, 14(14), 2491) 的研究中，我們為局域化淺層網絡建立了顯式非漸近逼近界限，證明了一維非線性 free-knot Besov 空間上的逆向 Bernstein 定理，並揭示在<strong>坐標子集可加 Besov 函數類</strong> $\\mathcal{S}^s_{d_0}(\\Omega)$ 上，逼近階完全由<strong>有效維度（Effective Dimension）</strong> $d_0$ 決定，維度 $d$ 僅以顯式常數係數形式進入估計。",
+        thm_shallow_direct_title: "定理 5（局域化淺層神經網絡之直接 Jackson 型估計）",
+        thm_shallow_direct_body: "設 $\\Omega \\subset \\mathbb{R}^d$ 為有界 Lipschitz 區域。設激勵函數 $\\sigma$ 滿足常規正則性假設 (A1)–(A3)，並具備階數 $W \\ge r_\\sigma + 1$ 的精確樣條生成元 $\\Lambda \\in \\mathcal{N}_{\\nu_0}(\\sigma; 1)$（可精確重構最高 $r_\\sigma$ 次多項式）。對 $1 \\le p \\le \\infty$, $0 < q \\le \\infty$ 及 $0 < s < s_\\sigma = r_\\sigma + 1$：<br>$$E_N^\\flat(f)_{L_p(\\Omega)} \\le C_J N^{-s/d} |f|_{B^s_{p,q}(\\Omega)}, \\quad \\forall N \\ge N_0$$<br>其中常數 $C_J = C_J(\\sigma, s, p, q, d, \\Omega) > 0$ 透過齊次 $K$-泛函 $K(f, t^r; L_p, \\dot{W}^r_p) \\asymp \\omega_r(f, t)_{L_p}$ 嚴格追蹤激勵函數參數 $(K_\\sigma, m_\\sigma, r_\\sigma, \\nu_0, W)$ 與區域之 Lipschitz 延拓常數 $C_W(\\Omega)$，完全避免引入低階附帶項。",
+        blog3_p2: "在一維空間（$d=1$）中，我們建立了非線性對角 Besov 空間上的逆向逼近定理，刻畫了局域化神經網絡的逼近空間特徵：",
+        thm_shallow_inverse_title: "推論 1（一維逆向 Bernstein 估計與非線性 Besov 空間 $B^\\alpha_{\\tau,\\tau}$）",
+        thm_shallow_inverse_body: "設 $d=1, \\Omega=(0,1)$ 且 $\\sigma = \\text{ReLU}^k$（$s_\\sigma = k+1$）。若 $f \\in L_p(\\Omega)$（$1 \\le p < \\infty$）滿足二進誤差 $\\ell_\\tau$ 可和性條件（$0 < \\alpha < s_\\sigma$, $\\frac{1}{\\tau} = \\alpha + \\frac{1}{p}$）：<br>$$|f|_{\\mathcal{A}} := \\left[ \\sum_{j \\ge 0} \\left( 2^{j\\alpha} E_{2^j}^\\flat(f)_{L_p(\\Omega)} \\right)^\\tau \\right]^{1/\\tau} \\le A < \\infty$$<br>則 $f \\in B^\\alpha_{\\tau,\\tau}(\\Omega)$ 屬於非線性自由節點 Besov 空間，且 $\\|f\\|_{B^\\alpha_{\\tau,\\tau}(\\Omega)} \\le C' (\\|f\\|_{L_p(\\Omega)} + A)$，常數 $C' = C'(k, \\alpha, p)$ 為顯式且與 $f$ 無關。",
+        blog3_p3: "本研究的核心突破在於<strong>有效維度改進估計</strong>。在有界乘積區域 $\\Omega = \\prod_{i=1}^d \\Omega_i$ 上，屬於坐標子集可加 Besov 類 $\\mathcal{S}^s_{d_0}(\\Omega) = \\{f(x) = \\sum_{|T|=d_0} g_T(x_T) : g_T \\in B^s_{p,q}(\\Omega_T)\\}$ 的函數僅具有 $d_0$ 階坐標相互作用（$1 \\le d_0 \\le d$）：",
+        thm_shallow_additive_title: "定理 6（可加 Besov 類之有效維度逼近階改進）",
+        thm_shallow_additive_body: "對任意 $f \\in \\mathcal{S}^s_{d_0}(\\Omega)$ 及 $N \\ge N_0''$：<br>$$E_N^\\flat(f)_{L_p(\\Omega)} \\le C'' N^{-s/d_0} |f|_{\\mathcal{S}^s_{d_0}(\\Omega)}$$<br>衰減指數 $-s/d_0$ 嚴格由有效維度 $d_0$ 決定。環境維度 $d$ 僅以常數前因子 $C'' = \\Lambda C_1 (2\\kappa)^{s/d_0} \\binom{d}{d_0}^{s/d_0}$ 進入界限，其中 $\\kappa = \\frac{\\nu' + d\\nu''}{\\nu' + d_0\\nu''}$ 為局域化坐標嵌入膨脹因子，$\\Lambda$ 為幾何纖維測度界限。",
+        ctrl_mode_decay: "收斂衰減斜率對比 ($s/d_0$ vs $s/d$)",
+        ctrl_mode_surface: "3D 可加曲面重建 $f(x_1,x_2)$",
+        ctrl_mode_edu: "UCI 教育數據有效維度分析 ($d_0=1$)",
+        ctrl_width_label: "網絡寬度 N:",
+        blog3_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 動態數值模擬：在 $d=3$ 維空間下，對比可加構造（$d_0=1$，擬合衰減斜率 $\\hat{r}_A = 2.106 \\approx s/d_0 = 2$）與全張量積構造（$d_0=3$，擬合衰減斜率 $\\hat{r}_B = 0.700 \\approx s/d = 0.667$）之確定性最小二乘誤差衰減。",
+        key_insight_shallow_title: "核心啟示與可解釋機器學習之應用",
+        key_insight_shallow_desc: "透過將寬度預算確定性地分配至各坐標子集面上，我們實現了維度收斂階與環境維度的嚴格解耦，且無需承擔迭代優化之隨機方差。在 UCI 學生學業成績真實數據集上，held-out $L_2$ 誤差檢驗確認有效維度 $d_0 = 1$ 居於主導地位，證明特徵簡約的可加模型架構能有效避免對高階噪聲交互項的過擬合。",
+        blog3_p4: "完整的數學證明、常數推導與可重現數值實驗代碼已開源發表於 <em>Mathematics</em>：",
+
+        // Blog Post 2: Weighted Besov Spaces & Structural Breaks
+        blog2_title: "《加權 Besov 空間中小波顯式逼近：解析結構性突變時間序列之理論框架》",
+        blog2_p1: "構造性逼近理論往往專注於漸近收斂階，而較少顯式給出具體常數。在我們近期發表於 <em>Mathematics</em> (2026, 14(15), 2794) 的論文中，我們在帶有 Muckenhoupt $A_p$ 權重的加權 Besov 空間 $B^s_{p,q}(w)$ 中構建了顯式直接（Jackson）與逆向（Bernstein）多尺度逼近估計，將所有權重依賴精確歸結為 Hardy–Littlewood 極大算子範數 $C_M(p, [w]_{A_p})$。",
+        thm_direct_title: "定理 1（顯式 Jackson 直接估計）與 定理 2（顯式 Bernstein 逆向估計）",
+        blog2_p2: "針對具有 Besov 平滑趨勢 $g$ 與孤立結構性突變跳躍 $h = \\sum_{i=1}^K c_i \\mathbf{1}_{\\{x \\ge x_i^0\\}}$（$\sum c_i = 0$）之分段正則序列 $f = g + h \\in \\mathcal{P}^s_K(w)$，雙正交投影誤差呈現解析分解：",
+        thm_piecewise_title: "定理 3（分段正則分解與有效收斂階）",
+        ctrl_res_level: "選擇多尺度解析度層級 J:",
+        blog2_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 互動模擬：合成信號 $f = g + h$（$s=0.80$，跳躍點位於 $x=0.40$ 與 $x=0.60$）及其雙正交多解析度投影 $P_J f$。平滑趨勢以 $2^{-Js}$ 快速逼近，而殘差精確集中於跳躍點周圍之二進區間。",
+        blog2_p3: "本框架為經濟趨勢與政策突變之精準識別提供了堅實的分析基礎。完整論文可參閱 <em>Mathematics</em>：",
+
         hero_tag_teach: "高等數學與場論",
         hero_title_teach: "向量場流線與旋度散度動態模擬",
         hero_desc_teach: "動態展示格林公式、高斯散度定理與斯托克斯公式在向量微積分課程中的幾何直觀流場。",
@@ -2337,6 +2500,36 @@
         key_takeaway_title: "核心研究洞见",
         key_takeaway_desc: "对于由扩张矩阵 $A \\in \\text{GL}(d, \\mathbb{R})$ 生成的各向异性小波框架，其几何阻碍直接取决于生成矩阵的谱分布与频域锥奇点几何结构，这与加权 Besov 空间的衰减条件及 sharp Jackson 逼近界限有着紧密联系。",
         blog1_p3: "完整的矩阵扩张几何分析与算子估计可参阅近期预印本：",
+
+        // Blog Post 3: Shallow Neural Networks on Additive Besov Classes
+        blog3_title: "《浅层神经网络在可加 Besov 空间上的显式逼近阶：克服维度灾难与有效维度分析》",
+        blog3_p1: "在机器学习数学理论与构造性逼近论中，一项核心挑战是如何克服<strong>维度灾难（Curse of Dimensionality）</strong>。当利用单隐藏层神经网络逼近有界 Lipschitz 区域 $\\Omega \\subset \\mathbb{R}^d$ 上的函数时，经典 Besov 空间 $B^s_{p,q}(\\Omega)$ 上的 Jackson 估计给出之误差衰减阶为 $N^{-s/d}$（$N$ 为网络宽度）。随着维度 $d$ 增加，收敛速率急剧恶化。在我们近期发表于 <em>Mathematics</em> (2026, 14(14), 2491) 的研究中，我们为局域化浅层网络建立了显式非渐近逼近界限，证明了一维非线性 free-knot Besov 空间上的逆向 Bernstein 定理，并揭示在<strong>坐标子集可加 Besov 函数类</strong> $\\mathcal{S}^s_{d_0}(\\Omega)$ 上，逼近阶完全由<strong>有效维度（Effective Dimension）</strong> $d_0$ 决定，维度 $d$ 仅以显式常数系数形式进入估计。",
+        thm_shallow_direct_title: "定理 5（局域化浅层神经网络之直接 Jackson 型估计）",
+        thm_shallow_direct_body: "设 $\\Omega \\subset \\mathbb{R}^d$ 为有界 Lipschitz 区域。设激活函数 $\\sigma$ 满足常规正则性假设 (A1)–(A3)，并具备阶数 $W \\ge r_\\sigma + 1$ 的精确样条生成元 $\\Lambda \\in \\mathcal{N}_{\\nu_0}(\\sigma; 1)$（可精确重构最高 $r_\\sigma$ 次多项式）。对 $1 \\le p \\le \\infty$, $0 < q \\le \\infty$ 及 $0 < s < s_\\sigma = r_\\sigma + 1$：<br>$$E_N^\\flat(f)_{L_p(\\Omega)} \\le C_J N^{-s/d} |f|_{B^s_{p,q}(\\Omega)}, \\quad \\forall N \\ge N_0$$<br>其中常数 $C_J = C_J(\\sigma, s, p, q, d, \\Omega) > 0$ 透过齐次 $K$-泛函 $K(f, t^r; L_p, \\dot{W}^r_p) \\asymp \\omega_r(f, t)_{L_p}$ 严格追踪激活函数参数 $(K_\\sigma, m_\\sigma, r_\\sigma, \\nu_0, W)$ 与区域之 Lipschitz 延拓常数 $C_W(\\Omega)$，完全避免引入低阶附带项。",
+        blog3_p2: "在一维空间（$d=1$）中，我们建立了非线性对角 Besov 空间上的逆向逼近定理，刻画了局域化神经网络的逼近空间特征：",
+        thm_shallow_inverse_title: "推论 1（一维逆向 Bernstein 估计与非线性 Besov 空间 $B^\\alpha_{\\tau,\\tau}$）",
+        thm_shallow_inverse_body: "设 $d=1, \\Omega=(0,1)$ 且 $\\sigma = \\text{ReLU}^k$（$s_\\sigma = k+1$）。若 $f \\in L_p(\\Omega)$（$1 \\le p < \\infty$）满足二进制误差 $\\ell_\\tau$ 可和性条件（$0 < \\alpha < s_\\sigma$, $\\frac{1}{\\tau} = \\alpha + \\frac{1}{p}$）：<br>$$|f|_{\\mathcal{A}} := \\left[ \\sum_{j \\ge 0} \\left( 2^{j\\alpha} E_{2^j}^\\flat(f)_{L_p(\\Omega)} \\right)^\\tau \\right]^{1/\\tau} \\le A < \\infty$$<br>则 $f \\in B^\\alpha_{\\tau,\\tau}(\\Omega)$ 属于非线性自由节点 Besov 空间，且 $\\|f\\|_{B^\\alpha_{\\tau,\\tau}(\\Omega)} \\le C' (\\|f\\|_{L_p(\\Omega)} + A)$，常数 $C' = C'(k, \\alpha, p)$ 为显式且与 $f$ 无关。",
+        blog3_p3: "本研究的核心突破在于<strong>有效维度改进估计</strong>。在有界乘积区域 $\\Omega = \\prod_{i=1}^d \\Omega_i$ 上，属于坐标子集可加 Besov 类 $\\mathcal{S}^s_{d_0}(\\Omega) = \\{f(x) = \\sum_{|T|=d_0} g_T(x_T) : g_T \\in B^s_{p,q}(\\Omega_T)\\}$ 的函数仅具有 $d_0$ 阶坐标相互作用（$1 \\le d_0 \\le d$）：",
+        thm_shallow_additive_title: "定理 6（可加 Besov 类之有效维度逼近阶改进）",
+        thm_shallow_additive_body: "对任意 $f \\in \\mathcal{S}^s_{d_0}(\\Omega)$ 及 $N \\ge N_0''$：<br>$$E_N^\\flat(f)_{L_p(\\Omega)} \\le C'' N^{-s/d_0} |f|_{\\mathcal{S}^s_{d_0}(\\Omega)}$$<br>衰减指数 $-s/d_0$ 严格由有效维度 $d_0$ 决定。环境维度 $d$ 仅以常数前因子 $C'' = \\Lambda C_1 (2\\kappa)^{s/d_0} \\binom{d}{d_0}^{s/d_0}$ 进入界限，其中 $\\kappa = \\frac{\\nu' + d\\nu''}{\\nu' + d_0\\nu''}$ 为局域化坐标嵌入膨胀因子，$\\Lambda$ 为几何纤维测度界限。",
+        ctrl_mode_decay: "收敛衰减斜率对比 ($s/d_0$ vs $s/d$)",
+        ctrl_mode_surface: "3D 可加曲面重建 $f(x_1,x_2)$",
+        ctrl_mode_edu: "UCI 教育数据有效维度分析 ($d_0=1$)",
+        ctrl_width_label: "网络宽度 N:",
+        blog3_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 动态数值模拟：在 $d=3$ 维空间下，对比可加构造（$d_0=1$，拟合衰减斜率 $\\hat{r}_A = 2.106 \\approx s/d_0 = 2$）与全张量积构造（$d_0=3$，拟合衰减斜率 $\\hat{r}_B = 0.700 \\approx s/d = 0.667$）之确定性最小二乘误差衰减。",
+        key_insight_shallow_title: "核心启示与可解释机器学习之应用",
+        key_insight_shallow_desc: "通过将宽度预算确定性地分配至各坐标子集面上，我们实现了维度收敛阶与环境维度的严格解耦，且无需承担迭代优化之随机方差。在 UCI 学生学业成绩真实数据集上，held-out $L_2$ 误差检验确认有效维度 $d_0 = 1$ 居于主导地位，证明特征简约的可加模型架构能有效避免对高阶噪声交互项的过拟合。",
+        blog3_p4: "完整的数学证明、常数推导与可重现数值实验代码已开源发表于 <em>Mathematics</em>：",
+
+        // Blog Post 2: Weighted Besov Spaces & Structural Breaks
+        blog2_title: "《加权 Besov 空间中小波显式逼近：解析结构性突变时间序列之理论框架》",
+        blog2_p1: "构造性逼近理论往往专注于渐近收敛阶，而较少显式给出具体常数。在我们近期发表于 <em>Mathematics</em> (2026, 14(15), 2794) 的论文中，我们在带有 Muckenhoupt $A_p$ 权重的加权 Besov 空间 $B^s_{p,q}(w)$ 中构建了显式直接（Jackson）与逆向（Bernstein）多尺度逼近估计，将所有权重依赖精确归结为 Hardy–Littlewood 极大算子范数 $C_M(p, [w]_{A_p})$。",
+        thm_direct_title: "定理 1（显式 Jackson 直接估计）与 定理 2（显式 Bernstein 逆向估计）",
+        blog2_p2: "针对具有 Besov 平滑趋势 $g$ 与孤立结构性突变跳跃 $h = \\sum_{i=1}^K c_i \\mathbf{1}_{\\{x \\ge x_i^0\\}}$（$\sum c_i = 0$）之分段正则序列 $f = g + h \\in \\mathcal{P}^s_K(w)$，双正交投影误差呈现解析分解：",
+        thm_piecewise_title: "定理 3（分段正则分解与有效收敛阶）",
+        ctrl_res_level: "选择多尺度分辨率层级 J:",
+        blog2_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 互动模拟：合成信号 $f = g + h$（$s=0.80$，跳跃点位于 $x=0.40$ 与 $x=0.60$）及其双正交多分辨率投影 $P_J f$。平滑趋势以 $2^{-Js}$ 快速逼近，而残差精确集中于跳跃点周围之二进制区间。",
+        blog2_p3: "本框架为经济趋势与政策突变之精准识别提供了坚实的分析基础。完整论文可参阅 <em>Mathematics</em>：",
 
         hero_tag_teach: "高等数学与场论",
         hero_title_teach: "向量场流线与旋度散度动态模拟",
@@ -2755,6 +2948,18 @@
           } else if (tabId === 'publications') {
             canvasAnimationControllers['publications'] = runSpectralCanvas(canvas, ctx, width, height);
           } else if (tabId === 'blog') {
+        const shallowCanvas = document.getElementById('canvas-post-shallow-additive');
+        if (shallowCanvas) {
+          const sRect = shallowCanvas.parentElement.getBoundingClientRect();
+          const sWidth = sRect.width > 0 ? sRect.width : (shallowCanvas.parentElement.clientWidth || 700);
+          const sHeight = sRect.height > 0 ? sRect.height : 280;
+          shallowCanvas.width = sWidth * window.devicePixelRatio;
+          shallowCanvas.height = sHeight * window.devicePixelRatio;
+          const sCtx = shallowCanvas.getContext('2d');
+          sCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['post_shallow_additive'] = runShallowAdditiveCanvas(shallowCanvas, sCtx, sWidth, sHeight);
+        }
+
             canvasAnimationControllers['blog'] = runUncertaintyCanvas(canvas, ctx, width, height);
           } else if (tabId === 'teaching') {
             canvasAnimationControllers['teaching'] = runVectorFieldCanvas(canvas, ctx, width, height);
@@ -2766,6 +2971,18 @@
 
       // If in blog tab, ALSO initialize all inline post canvas figures!
       if (tabId === 'blog') {
+        const shallowCanvas = document.getElementById('canvas-post-shallow-additive');
+        if (shallowCanvas) {
+          const sRect = shallowCanvas.parentElement.getBoundingClientRect();
+          const sWidth = sRect.width > 0 ? sRect.width : (shallowCanvas.parentElement.clientWidth || 700);
+          const sHeight = sRect.height > 0 ? sRect.height : 280;
+          shallowCanvas.width = sWidth * window.devicePixelRatio;
+          shallowCanvas.height = sHeight * window.devicePixelRatio;
+          const sCtx = shallowCanvas.getContext('2d');
+          sCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['post_shallow_additive'] = runShallowAdditiveCanvas(shallowCanvas, sCtx, sWidth, sHeight);
+        }
+
         const breakCanvas = document.getElementById('canvas-post-besov-break');
         if (breakCanvas) {
           const bRect = breakCanvas.parentElement.getBoundingClientRect();
@@ -3043,6 +3260,549 @@
       currentBreakJ = jVal;
       document.querySelectorAll('.interactive-ctrl-bar button').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+    }
+
+    
+    let currentShallowMode = 'decay';
+    let currentShallowN = 192;
+
+    function setShallowSimMode(mode, btn) {
+      currentShallowMode = mode;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('button').forEach(b => {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('setShallowSimMode')) {
+            b.classList.remove('active');
+          }
+        });
+        btn.classList.add('active');
+      }
+    }
+
+    function setShallowSimN(n, btn) {
+      currentShallowN = parseInt(n, 10);
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('button').forEach(b => {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('setShallowSimN')) {
+            b.classList.remove('active');
+          }
+        });
+        btn.classList.add('active');
+      }
+    }
+
+
+    function runShallowAdditiveCanvas(canvas, ctx, width, height) {
+      let animTime = 0;
+      let mouseX = -1;
+      let mouseY = -1;
+      let isHovering = false;
+      let rotAngle = 0.45;
+      let isDragging = false;
+      let lastDragX = 0;
+      let stopped = false;
+      let animId = null;
+
+      function onMouseMove(e) {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+        isHovering = true;
+        if (isDragging) {
+          rotAngle += (mouseX - lastDragX) * 0.01;
+          lastDragX = mouseX;
+        }
+      }
+
+      function onMouseDown(e) {
+        isDragging = true;
+        const rect = canvas.getBoundingClientRect();
+        lastDragX = e.clientX - rect.left;
+      }
+
+      function onMouseUp() {
+        isDragging = false;
+      }
+
+      function onMouseLeave() {
+        isHovering = false;
+        isDragging = false;
+        mouseX = -1;
+        mouseY = -1;
+      }
+
+      canvas.addEventListener('mousemove', onMouseMove);
+      canvas.addEventListener('mousedown', onMouseDown);
+      window.addEventListener('mouseup', onMouseUp);
+      canvas.addEventListener('mouseleave', onMouseLeave);
+
+      // Data from Table 2 in paper (Mathematics 2026, 14, 2491)
+      const dataAdditive = [
+        { N: 6, err: 0.9815 },
+        { N: 12, err: 0.6330 },
+        { N: 24, err: 0.1107 },
+        { N: 48, err: 0.0192 },
+        { N: 96, err: 0.0043 },
+        { N: 192, err: 0.0010 }
+      ];
+
+      const dataFull = [
+        { N: 8, err: 0.3463 },
+        { N: 27, err: 0.2939 },
+        { N: 64, err: 0.1291 },
+        { N: 125, err: 0.0694 },
+        { N: 216, err: 0.0477 },
+        { N: 343, err: 0.0278 }
+      ];
+
+      const dataEdu = [
+        { m: 1, err: 2.871 },
+        { m: 2, err: 2.876 },
+        { m: 3, err: 2.882 },
+        { m: 4, err: 2.888 },
+        { m: 5, err: 2.893 },
+        { m: 6, err: 2.899 }
+      ];
+
+      function draw() {
+        if (stopped) return;
+        ctx.clearRect(0, 0, width, height);
+        animTime += 0.025;
+
+        if (currentShallowMode === 'decay') {
+          drawDecayView();
+        } else if (currentShallowMode === 'surface') {
+          drawSurfaceView();
+        } else if (currentShallowMode === 'education') {
+          drawEducationView();
+        }
+
+        animId = requestAnimationFrame(draw);
+      }
+
+      function drawDecayView() {
+        const marginL = 65;
+        const marginR = 30;
+        const marginT = 40;
+        const marginB = 45;
+        const plotW = width - marginL - marginR;
+        const plotH = height - marginT - marginB;
+
+        const logNMin = Math.log10(4);
+        const logNMax = Math.log10(500);
+        const logEMin = Math.log10(0.0005);
+        const logEMax = Math.log10(2.0);
+
+        function mapX(n) {
+          const logN = Math.log10(n);
+          return marginL + ((logN - logNMin) / (logNMax - logNMin)) * plotW;
+        }
+
+        function mapY(err) {
+          const logE = Math.log10(err);
+          return marginT + plotH - ((logE - logEMin) / (logEMax - logEMin)) * plotH;
+        }
+
+        // Background grid & axes
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 3]);
+
+        // Y Grid (powers of 10)
+        const yTicks = [0.001, 0.01, 0.1, 1.0];
+        ctx.font = '10px JetBrains Mono, monospace';
+        ctx.fillStyle = '#64748b';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+
+        yTicks.forEach(val => {
+          const y = mapY(val);
+          ctx.beginPath();
+          ctx.moveTo(marginL, y);
+          ctx.lineTo(width - marginR, y);
+          ctx.stroke();
+          ctx.fillText(`10^${Math.round(Math.log10(val))}`, marginL - 8, y);
+        });
+
+        // X Grid (powers of 10)
+        const xTicks = [10, 100];
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+
+        xTicks.forEach(val => {
+          const x = mapX(val);
+          ctx.beginPath();
+          ctx.moveTo(x, marginT);
+          ctx.lineTo(x, marginT + plotH);
+          ctx.stroke();
+          ctx.fillText(`10^${Math.round(Math.log10(val))}`, x, marginT + plotH + 8);
+        });
+        ctx.setLineDash([]);
+
+        // Main Axes
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.35)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(marginL, marginT);
+        ctx.lineTo(marginL, marginT + plotH);
+        ctx.lineTo(width - marginR, marginT + plotH);
+        ctx.stroke();
+
+        // Axis Titles
+        ctx.font = '11px Inter, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.textAlign = 'center';
+        ctx.fillText('System Width N (Basis Count)', marginL + plotW / 2, marginT + plotH + 26);
+
+        ctx.save();
+        ctx.translate(marginL - 42, marginT + plotH / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Approximation Error E_N (L2)', 0, 0);
+        ctx.restore();
+
+        // Reference Slope Lines (Theoretical)
+        // Additive ref slope: -s/d0 = -2.00 anchored at N=6
+        ctx.strokeStyle = 'rgba(37, 99, 235, 0.35)';
+        ctx.lineWidth = 1.6;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        const addRefStart = { N: 6, err: 0.9815 };
+        const addRefEndN = 220;
+        const addRefEndErr = addRefStart.err * Math.pow(addRefEndN / addRefStart.N, -2.0);
+        ctx.moveTo(mapX(addRefStart.N), mapY(addRefStart.err));
+        ctx.lineTo(mapX(addRefEndN), mapY(addRefEndErr));
+        ctx.stroke();
+
+        // Full ref slope: -s/d = -0.667 anchored at N=8
+        ctx.strokeStyle = 'rgba(217, 119, 6, 0.35)';
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        const fullRefStart = { N: 8, err: 0.3463 };
+        const fullRefEndN = 380;
+        const fullRefEndErr = fullRefStart.err * Math.pow(fullRefEndN / fullRefStart.N, -0.667);
+        ctx.moveTo(mapX(fullRefStart.N), mapY(fullRefStart.err));
+        ctx.lineTo(mapX(fullRefEndN), mapY(fullRefEndErr));
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Plot Full Tensor Curve (d0 = d = 3)
+        ctx.strokeStyle = '#ea580c';
+        ctx.lineWidth = 2.4;
+        ctx.beginPath();
+        dataFull.forEach((pt, i) => {
+          const x = mapX(pt.N);
+          const y = mapY(pt.err);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Plot Full Data Points
+        dataFull.forEach(pt => {
+          const x = mapX(pt.N);
+          const y = mapY(pt.err);
+          ctx.fillStyle = '#ea580c';
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        });
+
+        // Plot Additive Curve (d0 = 1)
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        dataAdditive.forEach((pt, i) => {
+          const x = mapX(pt.N);
+          const y = mapY(pt.err);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Plot Additive Data Points
+        dataAdditive.forEach(pt => {
+          const x = mapX(pt.N);
+          const y = mapY(pt.err);
+          const isSelected = (pt.N === currentShallowN);
+
+          if (isSelected) {
+            const pulse = 6 + Math.sin(animTime * 4) * 2;
+            ctx.fillStyle = 'rgba(37, 99, 235, 0.25)';
+            ctx.beginPath();
+            ctx.arc(x, y, pulse + 4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.fillStyle = '#2563eb';
+          ctx.beginPath();
+          ctx.arc(x, y, isSelected ? 5.5 : 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        });
+
+        // Legend & Slope Annotations
+        ctx.font = '11px Inter, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+
+        // Additive legend
+        ctx.fillStyle = '#2563eb';
+        ctx.fillRect(width - marginR - 220, marginT + 10, 14, 3);
+        ctx.beginPath();
+        ctx.arc(width - marginR - 213, marginT + 11.5, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#1e293b';
+        ctx.fillText('Additive (d0=1): slope r_A = 2.106 ≈ s/d0 = 2.00', width - marginR - 198, marginT + 12);
+
+        // Full legend
+        ctx.fillStyle = '#ea580c';
+        ctx.fillRect(width - marginR - 220, marginT + 28, 14, 3);
+        ctx.beginPath();
+        ctx.arc(width - marginR - 213, marginT + 29.5, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#1e293b';
+        ctx.fillText('Full Tensor (d0=3): slope r_B = 0.700 ≈ s/d = 0.667', width - marginR - 198, marginT + 30);
+
+        // Active N highlight badge
+        const activePt = dataAdditive.find(p => p.N === currentShallowN);
+        if (activePt) {
+          const ax = mapX(activePt.N);
+          const ay = mapY(activePt.err);
+
+          ctx.fillStyle = 'rgba(37, 99, 235, 0.9)';
+          ctx.font = '10px JetBrains Mono, monospace';
+          const label = `N=${activePt.N}, Err=${activePt.err.toFixed(4)}`;
+          const tw = ctx.measureText(label).width;
+          ctx.fillRect(ax - tw/2 - 6, ay - 24, tw + 12, 18);
+
+          ctx.fillStyle = '#ffffff';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(label, ax, ay - 15);
+        }
+      }
+
+      function drawSurfaceView() {
+        const cx = width / 2;
+        const cy = height / 2 + 10;
+        const scale = Math.min(width, height) * 0.38;
+
+        ctx.font = '12px Inter, sans-serif';
+        ctx.fillStyle = '#1e293b';
+        ctx.textAlign = 'center';
+        ctx.fillText('Coordinate-Subset Additive Surface: f_A(x1, x2) = sin(π x1) + 0.8 cos(2π x2)', cx, 24);
+
+        ctx.font = '10px JetBrains Mono, monospace';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`Width Budget N = ${currentShallowN} (No Cross-Coordinate Multiplicative Explosion)`, cx, 40);
+
+        const gridSize = 24;
+        const angle = rotAngle + animTime * 0.15;
+        const cosA = Math.cos(angle);
+        const sinA = Math.sin(angle);
+
+        function project3D(x, y, z) {
+          const rx = x * cosA - y * sinA;
+          const ry = (x * sinA + y * cosA) * 0.5 - z * 0.7;
+          return {
+            px: cx + rx * scale,
+            py: cy + ry * scale
+          };
+        }
+
+        // Draw coordinate grid base
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+        ctx.lineWidth = 1;
+
+        for (let i = 0; i <= gridSize; i++) {
+          const u = (i / gridSize) * 2 - 1;
+          const p1 = project3D(u, -1, -0.9);
+          const p2 = project3D(u, 1, -0.9);
+          ctx.beginPath();
+          ctx.moveTo(p1.px, p1.py);
+          ctx.lineTo(p2.px, p2.py);
+          ctx.stroke();
+
+          const q1 = project3D(-1, u, -0.9);
+          const q2 = project3D(1, u, -0.9);
+          ctx.beginPath();
+          ctx.moveTo(q1.px, q1.py);
+          ctx.lineTo(q2.px, q2.py);
+          ctx.stroke();
+        }
+
+        // Draw additive surface mesh
+        for (let i = 0; i < gridSize; i++) {
+          const u1 = (i / gridSize) * 2 - 1;
+          const u2 = ((i + 1) / gridSize) * 2 - 1;
+
+          for (let j = 0; j < gridSize; j++) {
+            const v1 = (j / gridSize) * 2 - 1;
+            const v2 = ((j + 1) / gridSize) * 2 - 1;
+
+            const z11 = 0.5 * Math.sin(Math.PI * (u1 + 1) * 0.5) + 0.4 * Math.cos(Math.PI * (v1 + 1));
+            const z12 = 0.5 * Math.sin(Math.PI * (u1 + 1) * 0.5) + 0.4 * Math.cos(Math.PI * (v2 + 1));
+            const z21 = 0.5 * Math.sin(Math.PI * (u2 + 1) * 0.5) + 0.4 * Math.cos(Math.PI * (v1 + 1));
+            const z22 = 0.5 * Math.sin(Math.PI * (u2 + 1) * 0.5) + 0.4 * Math.cos(Math.PI * (v2 + 1));
+
+            const pt11 = project3D(u1, v1, z11);
+            const pt12 = project3D(u1, v2, z12);
+            const pt22 = project3D(u2, v2, z22);
+            const pt21 = project3D(u2, v1, z21);
+
+            const avgZ = (z11 + z12 + z21 + z22) / 4;
+            const alpha = 0.25 + (avgZ + 0.9) * 0.35;
+            ctx.fillStyle = `rgba(37, 99, 235, ${alpha.toFixed(3)})`;
+            ctx.beginPath();
+            ctx.moveTo(pt11.px, pt11.py);
+            ctx.lineTo(pt12.px, pt12.py);
+            ctx.lineTo(pt22.px, pt22.py);
+            ctx.lineTo(pt21.px, pt21.py);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+
+        ctx.font = '10px Inter, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('Drag cursor horizontally to rotate 3D manifold', cx, height - 12);
+      }
+
+      function drawEducationView() {
+        const marginL = 70;
+        const marginR = 40;
+        const marginT = 45;
+        const marginB = 50;
+        const plotW = width - marginL - marginR;
+        const plotH = height - marginT - marginB;
+
+        ctx.font = '12px Inter, sans-serif';
+        ctx.fillStyle = '#1e293b';
+        ctx.textAlign = 'center';
+        ctx.fillText('UCI Student Performance: Held-Out L2 Error vs Interaction Order m', width / 2, 22);
+
+        const mMin = 0.5;
+        const mMax = 6.5;
+        const eMin = 2.868;
+        const eMax = 2.902;
+
+        function mapMX(m) {
+          return marginL + ((m - mMin) / (mMax - mMin)) * plotW;
+        }
+
+        function mapEY(err) {
+          return marginT + plotH - ((err - eMin) / (eMax - eMin)) * plotH;
+        }
+
+        // Horizontal Grid
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 3]);
+
+        const yVals = [2.870, 2.875, 2.880, 2.885, 2.890, 2.895, 2.900];
+        ctx.font = '10px JetBrains Mono, monospace';
+        ctx.fillStyle = '#64748b';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+
+        yVals.forEach(v => {
+          const y = mapEY(v);
+          ctx.beginPath();
+          ctx.moveTo(marginL, y);
+          ctx.lineTo(width - marginR, y);
+          ctx.stroke();
+          ctx.fillText(v.toFixed(3), marginL - 8, y);
+        });
+
+        // X Grid
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        for (let m = 1; m <= 6; m++) {
+          const x = mapMX(m);
+          ctx.beginPath();
+          ctx.moveTo(x, marginT);
+          ctx.lineTo(x, marginT + plotH);
+          ctx.stroke();
+          ctx.fillText(`m = ${m}`, x, marginT + plotH + 8);
+        }
+        ctx.setLineDash([]);
+
+        // Axes
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.35)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(marginL, marginT);
+        ctx.lineTo(marginL, marginT + plotH);
+        ctx.lineTo(width - marginR, marginT + plotH);
+        ctx.stroke();
+
+        // Connect data points
+        ctx.strokeStyle = '#059669';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        dataEdu.forEach((pt, i) => {
+          const x = mapMX(pt.m);
+          const y = mapEY(pt.err);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Plot points
+        dataEdu.forEach(pt => {
+          const x = mapMX(pt.m);
+          const y = mapEY(pt.err);
+          const isSelected = (pt.m === 1);
+
+          if (isSelected) {
+            const pulse = 5 + Math.sin(animTime * 4) * 2;
+            ctx.fillStyle = 'rgba(5, 150, 105, 0.2)';
+            ctx.beginPath();
+            ctx.arc(x, y, pulse + 6, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.fillStyle = isSelected ? '#059669' : '#10b981';
+          ctx.beginPath();
+          ctx.arc(x, y, isSelected ? 6 : 4.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        });
+
+        // Annotation on m=1
+        const x1 = mapMX(1);
+        const y1 = mapEY(2.871);
+        ctx.fillStyle = '#059669';
+        ctx.font = '11px Inter, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('★ Selected Effective Dimension d0 = 1 (Optimal Minimal L2 Error: 2.871)', x1 + 14, y1 - 10);
+        ctx.font = '10px Inter, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('Higher interaction orders m ≥ 2 suffer from combinatorial noise without accuracy gain', x1 + 14, y1 + 6);
+      }
+
+      draw();
+
+      return {
+        stop: () => {
+          stopped = true;
+          if (animId) cancelAnimationFrame(animId);
+          canvas.removeEventListener('mousemove', onMouseMove);
+          canvas.removeEventListener('mousedown', onMouseDown);
+          window.removeEventListener('mouseup', onMouseUp);
+          canvas.removeEventListener('mouseleave', onMouseLeave);
+        }
+      };
     }
 
     function runBesovBreakCanvas(canvas, ctx, width, height) {
