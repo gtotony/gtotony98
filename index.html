@@ -1,0 +1,3157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prof. Kai-Cheng Wang (王凱城) | Department of Mathematics and Applied Mathematics</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- MathJax Configuration -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+        displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-dark: #0f172a;
+      --primary-light: #2563eb;
+      --accent: #881337;
+      --accent-gold: #b45309;
+      --bg-main: #f8fafc;
+      --bg-card: rgba(255, 255, 255, 0.94);
+      --bg-card-hover: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: 'Noto Serif TC', 'Noto Serif SC', Georgia, serif;
+      --font-academic: 'Cinzel', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #93c5fd;
+      --primary-dark: #020617;
+      --primary-light: #60a5fa;
+      --accent: #fb7185;
+      --accent-gold: #fbbf24;
+      --bg-main: #0b1120;
+      --bg-card: rgba(15, 23, 42, 0.9);
+      --bg-card-hover: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.68;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      position: relative;
+    }
+
+    /* Ambient Background Watermark Layer */
+    .ambient-watermark-container {
+      position: fixed;
+      right: -4vw;
+      bottom: -4vh;
+      width: 52vw;
+      max-width: 640px;
+      height: 52vw;
+      max-height: 640px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.055;
+      transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-theme="dark"] .ambient-watermark-container {
+      opacity: 0.045;
+      filter: invert(0.9) drop-shadow(0 0 12px rgba(255,255,255,0.2));
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(248, 250, 252, 0.86);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    [data-theme="dark"] header {
+      background-color: rgba(11, 17, 32, 0.88);
+    }
+
+    .nav-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-main);
+      cursor: pointer;
+      max-width: 440px;
+      flex-shrink: 0;
+    }
+
+    .brand-seal {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      transition: transform 0.4s ease;
+    }
+    .brand:hover .brand-seal {
+      transform: rotate(10deg) scale(1.06);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      font-family: var(--font-academic);
+      letter-spacing: 0.4px;
+      line-height: 1.2;
+    }
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.35;
+      margin-top: 2px;
+      word-break: break-word;
+    }
+    .brand-link {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .brand-link:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 0.25rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-item button {
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-item button:hover {
+      color: var(--primary-light);
+      background-color: rgba(37, 99, 235, 0.08);
+    }
+
+    .nav-item.active button {
+      color: #ffffff;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+    }
+    [data-theme="dark"] .nav-item.active button {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: #ffffff;
+    }
+
+    /* Controls: Lang Switcher & Theme */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .lang-btn-group {
+      display: flex;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2px;
+    }
+    [data-theme="dark"] .lang-btn-group {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 0.32rem 0.6rem;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--bg-card-hover);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .theme-toggle-btn:hover {
+      color: var(--text-main);
+      background: rgba(0,0,0,0.04);
+    }
+
+    /* Mobile Navigation Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Tab Page Containers */
+    .tab-page {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .tab-page.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Dynamic Visual Hero Section */
+    .tab-hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 2.2rem;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      min-height: 290px;
+    }
+
+    .tab-hero-content {
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tab-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(37, 99, 235, 0.09);
+      color: var(--primary-light);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      width: fit-content;
+    }
+
+    .tab-hero-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+      font-family: var(--font-academic);
+    }
+
+    .tab-hero-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .tab-hero-canvas-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.03), rgba(136, 19, 55, 0.03));
+      border-left: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .tab-hero-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+
+    .canvas-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.75);
+      padding: 2px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+    }
+    [data-theme="dark"] .canvas-hint {
+      background: rgba(15, 23, 42, 0.78);
+    }
+
+    /* Section Subheaders */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-main);
+    }
+    .section-title i {
+      color: var(--primary-light);
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.4rem;
+    }
+
+    /* Profile / Bio Card */
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+      margin-bottom: 2.2rem;
+      transition: var(--transition);
+    }
+    .profile-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .profile-seal-display {
+      width: 145px;
+      height: 145px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .profile-seal-display svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile-card:hover .profile-seal-display svg {
+      transform: scale(1.06) rotate(3deg);
+    }
+
+    .profile-details h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .profile-subtitle {
+      font-size: 1.02rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    [data-theme="dark"] .profile-subtitle {
+      color: var(--accent-gold);
+    }
+    .profile-affil {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .profile-affil a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .profile-affil a:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    .id-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+    .badge-orcid {
+      background: rgba(166, 206, 57, 0.12);
+      color: #4d680d;
+      border-color: rgba(166, 206, 57, 0.35);
+    }
+    [data-theme="dark"] .badge-orcid {
+      background: rgba(166, 206, 57, 0.2);
+      color: #a6ce39;
+    }
+    .badge-wos {
+      background: rgba(94, 38, 236, 0.1);
+      color: #5e26ec;
+      border-color: rgba(94, 38, 236, 0.28);
+    }
+    [data-theme="dark"] .badge-wos {
+      background: rgba(147, 51, 234, 0.18);
+      color: #c084fc;
+    }
+    .badge-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-light);
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .card-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* =========================================================================
+       PUBLICATIONS SECTION
+       ========================================================================= */
+    .pub-toolbar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .pub-search-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .pub-search-box {
+      flex: 1;
+      position: relative;
+    }
+    .pub-search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    .pub-search-input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.4rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .pub-search-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .pub-filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .pub-filter-tag {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.35rem 0.8rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .pub-filter-tag:hover {
+      border-color: var(--primary-light);
+      color: var(--primary-light);
+    }
+    .pub-filter-tag.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .pub-metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .pub-metric-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.4rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .pub-metric-val {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--primary-light);
+      font-family: var(--font-academic);
+    }
+    .pub-metric-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .pub-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.5rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+    .pub-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateX(4px);
+      border-left-color: var(--accent-gold);
+    }
+    .pub-item.under-review {
+      border-left-color: var(--accent);
+    }
+
+    .pub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .pub-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+    .pub-badge-group {
+      display: flex;
+      gap: 0.4rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .pub-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.3px;
+    }
+    .pub-badge-sci {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-light);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    .pub-badge-review {
+      background: rgba(220, 38, 38, 0.1);
+      color: #dc2626;
+      border: 1px solid rgba(220, 38, 38, 0.25);
+    }
+    .pub-badge-arxiv {
+      background: rgba(180, 83, 9, 0.12);
+      color: #b45309;
+      border: 1px solid rgba(180, 83, 9, 0.3);
+    }
+    [data-theme="dark"] .pub-badge-arxiv {
+      background: rgba(251, 191, 36, 0.18);
+      color: #fbbf24;
+    }
+    .pub-badge-year {
+      background: rgba(0,0,0,0.06);
+      color: var(--text-muted);
+    }
+    [data-theme="dark"] .pub-badge-year {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .pub-author-me {
+      color: var(--primary-light);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .pub-journal {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+
+    .pub-actions {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .pub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-muted);
+    }
+    .pub-btn:hover {
+      color: var(--primary-light);
+      border-color: var(--primary-light);
+      background: rgba(37, 99, 235, 0.06);
+    }
+    .pub-btn-doi {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary-light);
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+    .pub-btn-arxiv {
+      background: rgba(180, 83, 9, 0.09);
+      color: #b45309;
+      border-color: rgba(180, 83, 9, 0.28);
+    }
+    [data-theme="dark"] .pub-btn-arxiv {
+      color: #fbbf24;
+    }
+
+    .pub-abstract-drawer {
+      margin-top: 0.8rem;
+      padding: 0.9rem 1.1rem;
+      background: rgba(0,0,0,0.025);
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: none;
+      border: 1px solid var(--border-color);
+      animation: fadeIn 0.3s ease;
+    }
+    [data-theme="dark"] .pub-abstract-drawer {
+      background: rgba(255,255,255,0.03);
+    }
+    .pub-abstract-drawer.open {
+      display: block;
+    }
+
+    /* Modal for BibTeX */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 620px;
+      padding: 1.8rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .modal-code {
+      width: 100%;
+      height: 220px;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      padding: 1rem;
+      background: var(--bg-main);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      resize: none;
+      outline: none;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    /* =========================================================================
+       MATH BLOG / RESEARCH NOTES STYLES
+       ========================================================================= */
+    .blog-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .blog-post-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+    .blog-post-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    .blog-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .blog-tag {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+    }
+    .blog-date {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .blog-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+      margin-bottom: 1.2rem;
+    }
+    .blog-body {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.78;
+    }
+    .blog-body p {
+      margin-bottom: 1.1rem;
+    }
+    
+    /* LaTeX Theorem & Definition Callouts */
+    .math-callout {
+      border-left: 4px solid var(--primary-light);
+      background: rgba(37, 99, 235, 0.04);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4rem 0;
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .math-callout.theorem {
+      border-left-color: var(--accent);
+      background: rgba(136, 19, 55, 0.04);
+    }
+    .math-callout-title {
+      font-weight: 700;
+      font-size: 0.96rem;
+      margin-bottom: 0.45rem;
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .math-callout.theorem .math-callout-title {
+      color: var(--accent);
+    }
+    [data-theme="dark"] .math-callout.theorem .math-callout-title {
+      color: var(--accent-gold);
+    }
+
+    .blog-canvas-container {
+      margin: 1.6rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-main);
+      text-align: center;
+      position: relative;
+    }
+    .blog-canvas-wrapper {
+      width: 100%;
+      height: 220px;
+      position: relative;
+    }
+    .blog-canvas-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0.6rem;
+      border-top: 1px solid var(--border-color);
+      background: rgba(0,0,0,0.02);
+    }
+
+    /* Research Pillars Grid */
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      border-top: 4px solid var(--primary-light);
+    }
+    .pillar-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .pillar-icon {
+      font-size: 1.6rem;
+      color: var(--primary-light);
+    }
+    .pillar-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .pillar-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.65;
+    }
+    .pillar-formula-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-size: 0.88rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+
+    /* Teaching Timeline / Course Cards */
+    .course-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .course-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .course-term {
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary-light);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* Contact Details List */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-val {
+      font-size: 1rem;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-top: 0.1rem;
+    }
+    .contact-val a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+    .contact-val a:hover {
+      text-decoration: underline;
+    }
+
+    /* Watermark Seal Preview Component in Footer & Tab Bar */
+    footer {
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-card);
+      padding: 2.5rem 1.5rem;
+      margin-top: 4rem;
+      position: relative;
+      z-index: 10;
+    }
+    .footer-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-seal-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .footer-seal-img {
+      width: 52px;
+      height: 52px;
+    }
+    .footer-meta p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .footer-meta a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .footer-meta a:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .brand {
+        max-width: 320px;
+      }
+      .brand-text h1 {
+        font-size: 1.05rem;
+      }
+      .brand-text p {
+        font-size: 0.7rem;
+      }
+      .nav-item button {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .tab-hero-card {
+        grid-template-columns: 1fr;
+      }
+      .tab-hero-canvas-wrapper {
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        min-height: 200px;
+      }
+      .pub-metrics-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .profile-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.2rem;
+      }
+      .id-badges {
+        justify-content: center;
+      }
+      .profile-affil {
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+      .brand {
+        max-width: none;
+      }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-card-hover);
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+        align-items: flex-start;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
+      .nav-item {
+        width: 100%;
+      }
+      .nav-item button {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- Background Adaptive SVG Watermark -->
+  <div class="ambient-watermark-container" id="ambientWatermark"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand" onclick="switchTab('about')">
+        <div class="brand-seal" id="headerBrandSeal"></div>
+        <div class="brand-text">
+          <h1 data-i18n="prof_name">Prof. Kai-Cheng Wang</h1>
+          <p>
+            <a href="https://xxgc.fjsmu.edu.cn/main.psp" target="_blank" class="brand-link" data-i18n="dept_header_link" rel="noopener noreferrer">Department of Mathematics and Applied Mathematics</a><br>
+            <a href="https://www.fjsmu.edu.cn/" target="_blank" class="brand-link" data-i18n="univ_header_link" rel="noopener noreferrer">Sanming University</a>
+          </p>
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item active" data-tab="about">
+          <button onclick="switchTab('about')">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span data-i18n="nav_about">About Me</span>
+          </button>
+        </li>
+        <li class="nav-item" data-tab="research">
+          <button onclick="switchTab('research')">
+            <i class="fa-solid fa-atom"></i>
+            <span data-i18n="nav_research">Research</span>
+          </button>
+        </li>
+        <li class="nav-item" data-tab="publications">
+          <button onclick="switchTab('publications')">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span data-i18n="nav_publications">Publications</span>
+          </button>
+        </li>
+        <li class="nav-item" data-tab="blog">
+          <button onclick="switchTab('blog')">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <span data-i18n="nav_blog">Math Notes & Blog</span>
+          </button>
+        </li>
+        <li class="nav-item" data-tab="teaching">
+          <button onclick="switchTab('teaching')">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span data-i18n="nav_teaching">Teaching</span>
+          </button>
+        </li>
+        <li class="nav-item" data-tab="contact">
+          <button onclick="switchTab('contact')">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <span data-i18n="nav_contact">Contact</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="nav-controls">
+        <div class="lang-btn-group">
+          <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" onclick="setLanguage('tc')">繁中</button>
+          <button class="lang-btn" onclick="setLanguage('sc')">简中</button>
+        </div>
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Areas -->
+  <main>
+
+    <!-- TAB 1: ABOUT ME -->
+    <div class="tab-page active" id="tab-about">
+      <div class="tab-hero-card">
+        <div class="tab-hero-content">
+          <span class="tab-hero-tag">
+            <i class="fa-solid fa-wave-square"></i>
+            <span data-i18n="hero_tag_about">Harmonic & Wavelet Analysis</span>
+          </span>
+          <h2 class="tab-hero-title" data-i18n="hero_title_about">Continuous Wavelet Decomposition</h2>
+          <p class="tab-hero-desc" data-i18n="hero_desc_about">
+            Interactive multi-scale wave packet simulation. Modulating frequency and localized energy across dual phase space.
+          </p>
+        </div>
+        <div class="tab-hero-canvas-wrapper">
+          <canvas id="canvas-about" class="tab-hero-canvas"></canvas>
+          <span class="canvas-hint"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="canvas_hint_wave">Hover / Drag to modulate frequency</span></span>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-seal-display" id="aboutProfileSeal"></div>
+        <div class="profile-details">
+          <h2 data-i18n="bio_name">Kai-Cheng Wang (王凱城)</h2>
+          <div class="profile-subtitle" data-i18n="bio_role">Professor in Pure & Applied Mathematics</div>
+          <div class="profile-affil">
+            <div>
+              <i class="fa-solid fa-building-columns"></i> 
+              <a href="https://xxgc.fjsmu.edu.cn/main.psp" target="_blank" rel="noopener noreferrer" data-i18n="bio_dept">Department of Mathematics and Applied Mathematics</a>
+            </div>
+            <div>
+              <i class="fa-solid fa-school"></i> 
+              <a href="https://www.fjsmu.edu.cn/" target="_blank" rel="noopener noreferrer" data-i18n="bio_univ">School of Information Engineering, Sanming University</a>
+            </div>
+          </div>
+          <p class="card-body" data-i18n="bio_summary">
+            Specializing in harmonic analysis, wavelet bi-frame decompositions, weighted Besov-Triebel-Lizorkin spaces, and nonlinear neural network approximation rates. Passionate about bridging abstract operator theory with multiscale signal processing.
+          </p>
+          <div class="id-badges">
+            <a href="https://orcid.org/0000-0001-7322-3625" target="_blank" class="badge-link badge-orcid" rel="noopener noreferrer">
+              <i class="fa-brands fa-orcid"></i> ORCID: 0000-0001-7322-3625
+            </a>
+            <a href="https://www.webofscience.com/wos/author/record/I-7086-2019" target="_blank" class="badge-link badge-wos" rel="noopener noreferrer">
+              <i class="fa-solid fa-award"></i> WoS ResearcherID: I-7086-2019
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3 class="section-title">
+          <i class="fa-solid fa-compass-drafting"></i>
+          <span data-i18n="sec_core_domains">Core Research Domains</span>
+        </h3>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-shapes"></i></div>
+          <h4 class="card-title" data-i18n="domain_1_title">Wavelet Bi-Frames & Inequalities</h4>
+          <p class="card-body" data-i18n="domain_1_desc">
+            Constructing Jackson-type and Bernstein-type inequalities associated with wavelet bi-frame decompositions in Banach spaces.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h4 class="card-title" data-i18n="domain_2_title">Neural Network Approximation</h4>
+          <p class="card-body" data-i18n="domain_2_desc">
+            Establishing explicit approximation rates for shallow and deep neural networks on additive Besov classes and structural break series.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-infinity"></i></div>
+          <h4 class="card-title" data-i18n="domain_3_title">Vector-Valued Fractional Operators</h4>
+          <p class="card-body" data-i18n="domain_3_desc">
+            Investigating quantitative Muckenhoupt weight dependences of multilinear fractional operators and anisotropic Balian-Low phenomena.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: RESEARCH -->
+    <div class="tab-page" id="tab-research">
+      <div class="tab-hero-card">
+        <div class="tab-hero-content">
+          <span class="tab-hero-tag">
+            <i class="fa-solid fa-project-diagram"></i>
+            <span data-i18n="hero_tag_research">Frame Theory & Lattice</span>
+          </span>
+          <h2 class="tab-hero-title" data-i18n="hero_title_research">Gabor & Wavelet Frame Geometry</h2>
+          <p class="tab-hero-desc" data-i18n="hero_desc_research">
+            Dynamic phase-space frame lattice simulation. Visualizing stability, redundancy bounds, and anisotropic geometric obstruction.
+          </p>
+        </div>
+        <div class="tab-hero-canvas-wrapper">
+          <canvas id="canvas-research" class="tab-hero-canvas"></canvas>
+          <span class="canvas-hint"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="canvas_hint_frame">Move mouse to attract frame nodes</span></span>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3 class="section-title">
+          <i class="fa-solid fa-microscope"></i>
+          <span data-i18n="sec_research_pillars">Theoretical Pillars & Focus Areas</span>
+        </h3>
+      </div>
+
+      <div class="grid-2">
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-header">
+              <i class="fa-solid fa-bezier-curve pillar-icon"></i>
+              <h4 class="pillar-title" data-i18n="pillar1_title">Wavelet Bases & Bi-Frame Decompositions</h4>
+            </div>
+            <p class="pillar-desc" data-i18n="pillar1_desc">
+              Investigation of pre-wavelet bases in Lebesgue spaces $L^p(\\mathbb{R}^n)$ and tight wavelet frames. Formulating sharp Jackson and Bernstein inequalities for non-orthogonal expansions.
+            </p>
+          </div>
+          <div class="pillar-formula-box">
+            $$\\|f - P_j f\\|_{L^p(w)} \\le C 2^{-j\\alpha} |f|_{B_{p,q}^{\\alpha}(w)}$$
+          </div>
+        </div>
+
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-header">
+              <i class="fa-solid fa-brain pillar-icon"></i>
+              <h4 class="pillar-title" data-i18n="pillar2_title">Deep Learning on Additive Besov Classes</h4>
+            </div>
+            <p class="pillar-desc" data-i18n="pillar2_desc">
+              Overcoming the curse of dimensionality via additive Besov representations. Providing non-asymptotic error bounds for shallow and multi-scale architectures.
+            </p>
+          </div>
+          <div class="pillar-formula-box">
+            $$\\inf_{f_N \\in \\mathcal{NN}_N} \\|f - f_N\\|_{L^2} \\le C N^{-\\frac{s}{d^*}} \\|f\\|_{B_{p,q}^s}$$
+          </div>
+        </div>
+
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-header">
+              <i class="fa-solid fa-cubes-stacked pillar-icon"></i>
+              <h4 class="pillar-title" data-i18n="pillar3_title">Quantitative Weighted Inequalities</h4>
+            </div>
+            <p class="pillar-desc" data-i18n="pillar3_desc">
+              Establishing precise operator norm bounds in terms of Muckenhoupt $[w]_{A_p}$ characteristics for vector-valued multilinear singular integrals and fractional commutators.
+            </p>
+          </div>
+          <div class="pillar-formula-box">
+            $$\\|T_{\\Omega,\\alpha}(\\vec{f})\\|_{L^q(v_{\\vec{w}})} \\le C \\prod_{i=1}^m [w_i]_{A_{p_i}}^{\\max(1, \\frac{p_i'}{q})} \\|f_i\\|_{L^{p_i}(w_i)}$$
+          </div>
+        </div>
+
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-header">
+              <i class="fa-solid fa-chart-line pillar-icon"></i>
+              <h4 class="pillar-title" data-i18n="pillar4_title">Wavelet-Hilbert Hybrid Forecasting</h4>
+            </div>
+            <p class="pillar-desc" data-i18n="pillar4_desc">
+              Pioneering WHiAR-Net: combining Empirical Mode Decomposition / Hilbert-Huang Transform and adaptive wavelets for piecewise regular time series under structural shifts.
+            </p>
+          </div>
+          <div class="pillar-formula-box">
+            $$x(t) = \\sum_{j=1}^K c_j(t) \\cos\\left(\\int_0^t \\omega_j(\\tau)d\\tau\\right) + r_K(t)$$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: PUBLICATIONS -->
+    <div class="tab-page" id="tab-publications">
+      <div class="tab-hero-card">
+        <div class="tab-hero-content">
+          <span class="tab-hero-tag">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span data-i18n="hero_tag_pub">Publications & Impact</span>
+          </span>
+          <h2 class="tab-hero-title" data-i18n="hero_title_pub">Scholarly Archive & Wavefront</h2>
+          <p class="tab-hero-desc" data-i18n="hero_desc_pub">
+            Interactive harmonic spectrogram of publication timeline. Real-time filtering by topics, peer-reviewed journals, and citation metadata.
+          </p>
+        </div>
+        <div class="tab-hero-canvas-wrapper">
+          <canvas id="canvas-publications" class="tab-hero-canvas"></canvas>
+          <span class="canvas-hint"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="canvas_hint_pub">Harmonic spectral energy pulses</span></span>
+        </div>
+      </div>
+
+      <div class="pub-metrics-bar">
+        <div class="pub-metric-box">
+          <div class="pub-metric-val" id="metric-total">10</div>
+          <div class="pub-metric-label" data-i18n="metric_total">Total Tracked Works</div>
+        </div>
+        <div class="pub-metric-box">
+          <div class="pub-metric-val">8</div>
+          <div class="pub-metric-label" data-i18n="metric_published">Published Papers</div>
+        </div>
+        <div class="pub-metric-box">
+          <div class="pub-metric-val">2</div>
+          <div class="pub-metric-label" data-i18n="metric_review">Under Review / In Submission</div>
+        </div>
+        <div class="pub-metric-box">
+          <div class="pub-metric-val">4+</div>
+          <div class="pub-metric-label" data-i18n="metric_journals">Top SCI Journals</div>
+        </div>
+      </div>
+
+      <div class="pub-toolbar">
+        <div class="pub-search-row">
+          <div class="pub-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="pubSearchInput" class="pub-search-input" placeholder="Search by title, keyword, journal, or co-author..." oninput="filterPublications()" />
+          </div>
+        </div>
+        <div class="pub-filter-tags">
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-right: 0.3rem;" data-i18n="filter_label">Filter:</span>
+          <button class="pub-filter-tag active" data-filter="all" onclick="setPubFilter('all', this)" data-i18n="filter_all">All Works</button>
+          <button class="pub-filter-tag" data-filter="wavelet" onclick="setPubFilter('wavelet', this)" data-i18n="filter_wavelet">Wavelet & Frame Theory</button>
+          <button class="pub-filter-tag" data-filter="approx" onclick="setPubFilter('approx', this)" data-i18n="filter_approx">Besov & Neural Approx</button>
+          <button class="pub-filter-tag" data-filter="operator" onclick="setPubFilter('operator', this)" data-i18n="filter_operator">Fractional Operators & Weights</button>
+          <button class="pub-filter-tag" data-filter="review" onclick="setPubFilter('review', this)" data-i18n="filter_review">Under Review (在審)</button>
+        </div>
+      </div>
+
+      <div class="pub-list" id="publicationList"></div>
+    </div>
+
+    <!-- TAB 4: MATHEMATICAL BLOG & RESEARCH NOTES -->
+    <div class="tab-page" id="tab-blog">
+      <div class="tab-hero-card">
+        <div class="tab-hero-content">
+          <span class="tab-hero-tag">
+            <i class="fa-solid fa-square-root-variable"></i>
+            <span data-i18n="hero_tag_blog">Mathematical Notes & Essays</span>
+          </span>
+          <h2 class="tab-hero-title" data-i18n="hero_title_blog">Phase-Space Uncertainty Simulator</h2>
+          <p class="tab-hero-desc" data-i18n="hero_desc_blog">
+            Interactive visualization of Heisenberg-Gabor-Wavelet phase-space localization and the geometric obstruction of the Balian-Low theorem.
+          </p>
+        </div>
+        <div class="tab-hero-canvas-wrapper">
+          <canvas id="canvas-blog" class="tab-hero-canvas"></canvas>
+          <span class="canvas-hint"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="canvas_hint_blog">Move cursor to deform uncertainty ellipse</span></span>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3 class="section-title">
+          <i class="fa-solid fa-pen-nib"></i>
+          <span data-i18n="sec_blog_title">Recent Research Notes & Mathematical Expositions</span>
+        </h3>
+      </div>
+
+      <div class="blog-container" id="blogContainer">
+        <!-- Pre-written In-Depth Research Blog Post -->
+        <article class="blog-post-card">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Harmonic Analysis & Frame Theory</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 8 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blog1_title">
+            On the Geometric Phase-Space Obstructions in Wavelet Frames: Understanding the Anisotropic Balian-Low Theorem
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blog1_p1">
+              In time-frequency analysis and multiscale representation theory, a fundamental tension exists between the smoothness of a generator window and its phase-space localization. In classical Gabor analysis (Weyl-Heisenberg systems), this limitation is famously codified by the <strong>Balian-Low Theorem (BLT)</strong>.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_blt_title">Classical Balian-Low Theorem (Gabor Case)</span>
+              </div>
+              <p>
+                Let $g \in L^2(\mathbb{R})$ and consider the Gabor system $\mathcal{G}(g, \alpha, \beta) = \{e^{2\pi i m \beta x} g(x - n \alpha)\}_{m,n \in \mathbb{Z}}$. If $\alpha \beta = 1$ and $\mathcal{G}(g, \alpha, \beta)$ forms a Riesz basis for $L^2(\mathbb{R})$, then:
+                $$\left(\int_{\mathbb{R}} |x g(x)|^2 dx\right) \left(\int_{\mathbb{R}} |\xi \hat{g}(\xi)|^2 d\xi\right) = +\infty$$
+              </p>
+            </div>
+
+            <p data-i18n="blog1_p2">
+              That is, a Riesz basis of Gabor atoms cannot have simultaneous second-order localization in both position and frequency. When moving from the lattice translations of Gabor systems to the <strong>affine scaling groups of Wavelet bi-frames</strong>, how does this obstruction transform, particularly in higher dimensions under anisotropic dilation matrices?
+            </p>
+
+            <!-- Inline Interactive Visual Simulation for this Post -->
+            <div class="blog-canvas-container">
+              <div class="blog-canvas-wrapper">
+                <canvas id="canvas-post-uncertainty" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blog_canvas_caption">
+                <i class="fa-solid fa-chart-area"></i> Interactive Figure: Phase-space Heisenberg uncertainty area $\Delta x \cdot \Delta \xi \ge 1/2$. The area of the ellipse is invariant under symplectic transforms, but geometric anisotropy induces directional obstruction.
+              </div>
+            </div>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-i18n="key_takeaway_title">Key Research Insight</span>
+              </div>
+              <p data-i18n="key_takeaway_desc">
+                For anisotropic wavelet frames generated by expansive matrices $A \in \text{GL}(d, \mathbb{R})$, the geometric obstruction is characterized by the spectral distribution of the generator matrix and the geometry of the cone singularities in the frequency domain. This connects directly with the weighted Besov decay conditions and sharp Jackson-type estimates.
+              </p>
+            </div>
+
+            <p data-i18n="blog1_p3">
+              Detailed proofs, matrix dilation geometry, and full operator estimates can be accessed in our recent preprint:
+              <a href="http://arxiv.org/abs/2601.01821" target="_blank" class="pub-btn pub-btn-arxiv" style="margin-left: 0.5rem;" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-pdf"></i> arXiv:2601.01821 [math.FA]
+              </a>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- TAB 5: TEACHING -->
+    <div class="tab-page" id="tab-teaching">
+      <div class="tab-hero-card">
+        <div class="tab-hero-content">
+          <span class="tab-hero-tag">
+            <i class="fa-solid fa-compass"></i>
+            <span data-i18n="hero_tag_teach">Vector Calculus & Flow</span>
+          </span>
+          <h2 class="tab-hero-title" data-i18n="hero_title_teach">Vector Field Streamline Simulator</h2>
+          <p class="tab-hero-desc" data-i18n="hero_desc_teach">
+            Interactive visualization of curl, divergence, and path integrals in vector calculus for higher mathematics courses.
+          </p>
+        </div>
+        <div class="tab-hero-canvas-wrapper">
+          <canvas id="canvas-teaching" class="tab-hero-canvas"></canvas>
+          <span class="canvas-hint"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="canvas_hint_teach">Click & drag to create vector vortex</span></span>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3 class="section-title">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span data-i18n="sec_courses">University Courses & Curriculum</span>
+        </h3>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">
+          <span data-i18n="course1_name">Higher Mathematics I & II (高等數學)</span>
+          <span class="course-term" data-i18n="course1_term">Undergraduate Core Course</span>
+        </div>
+        <p class="card-body" data-i18n="course1_desc">
+          Comprehensive curriculum covering single-variable and multivariable calculus, infinite series, ordinary differential equations, and 3D analytical geometry.
+        </p>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">
+          <span data-i18n="course2_name">Vector Calculus & Field Theory (向量微積分與場論)</span>
+          <span class="course-term" data-i18n="course2_term">Specialized Topic</span>
+        </div>
+        <p class="card-body" data-i18n="course2_desc">
+          Green's Theorem, Gauss Divergence Theorem, Stokes' Theorem, conservative fields, and their computational visual simulations using MATLAB scripts.
+        </p>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">
+          <span data-i18n="course3_name">Introduction to Wavelet Analysis & Applications (小波分析導論)</span>
+          <span class="course-term" data-i18n="course3_term">Elective / Research Seminar</span>
+        </div>
+        <p class="card-body" data-i18n="course3_desc">
+          Multiresolution analysis (MRA), Daubechies wavelets, continuous wavelet transforms, and their signal processing applications in time-frequency analysis.
+        </p>
+      </div>
+    </div>
+
+    <!-- TAB 6: CONTACT -->
+    <div class="tab-page" id="tab-contact">
+      <div class="tab-hero-card">
+        <div class="tab-hero-content">
+          <span class="tab-hero-tag">
+            <i class="fa-solid fa-globe"></i>
+            <span data-i18n="hero_tag_contact">Global Collaboration</span>
+          </span>
+          <h2 class="tab-hero-title" data-i18n="hero_title_contact">Academic Network & Topology</h2>
+          <p class="tab-hero-desc" data-i18n="hero_desc_contact">
+            Kinetic 3D spherical topology node network illustrating international mathematical research and communication links.
+          </p>
+        </div>
+        <div class="tab-hero-canvas-wrapper">
+          <canvas id="canvas-contact" class="tab-hero-canvas"></canvas>
+          <span class="canvas-hint"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="canvas_hint_contact">Drag to rotate topology sphere</span></span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-header" style="margin-bottom: 1.2rem;">
+            <h3 class="section-title">
+              <i class="fa-solid fa-address-card"></i>
+              <span data-i18n="sec_contact_info">Contact Information</span>
+            </h3>
+          </div>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="contact-label" data-i18n="contact_affil_label">Affiliation & Address</div>
+                <div class="contact-val">
+                  <a href="https://xxgc.fjsmu.edu.cn/main.psp" target="_blank" rel="noopener noreferrer" style="color: var(--primary-light);">Department of Mathematics and Applied Mathematics</a><br>
+                  <a href="https://www.fjsmu.edu.cn/" target="_blank" rel="noopener noreferrer">School of Information Engineering, Sanming University</a><br>
+                  <span data-i18n="contact_addr_city">Sanming, Fujian 365004, P.R. China</span>
+                </div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon"><i class="fa-brands fa-orcid"></i></div>
+              <div>
+                <div class="contact-label">ORCID Identifier</div>
+                <div class="contact-val">
+                  <a href="https://orcid.org/0000-0001-7322-3625" target="_blank" rel="noopener noreferrer">0000-0001-7322-3625</a>
+                </div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-id-badge"></i></div>
+              <div>
+                <div class="contact-label">Web of Science ResearcherID</div>
+                <div class="contact-val">
+                  <a href="https://www.webofscience.com/wos/author/record/I-7086-2019" target="_blank" rel="noopener noreferrer">I-7086-2019</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-header" style="margin-bottom: 1.2rem;">
+            <h3 class="section-title">
+              <i class="fa-solid fa-stamp"></i>
+              <span data-i18n="sec_emblem_design">Signature Emblem & Dynamic Watermark</span>
+            </h3>
+          </div>
+          <p class="card-body" data-i18n="emblem_explain">
+            The personalized crest combines the heritage of Sanming University, the open book of mathematical scholarship, and the foundational domain: Wavelet and Frame Theory. When navigating across tabs, the watermark dynamically morphs to reflect each academic domain.
+          </p>
+          <div style="display: flex; justify-content: center; align-items: center; padding: 1.5rem 0;" id="contactSealShowcase"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BibTeX Modal -->
+  <div class="modal-backdrop" id="bibtexModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h4 class="modal-title" data-i18n="modal_bibtex_title">BibTeX Citation</h4>
+        <button class="modal-close-btn" onclick="closeBibtexModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <textarea class="modal-code" id="bibtexContent" readonly></textarea>
+      <div class="modal-footer">
+        <button class="pub-btn" onclick="copyBibtex()"><i class="fa-solid fa-copy"></i> <span data-i18n="btn_copy">Copy to Clipboard</span></button>
+        <button class="pub-btn" onclick="closeBibtexModal()" data-i18n="btn_close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-seal-row">
+        <div class="footer-seal-img" id="footerBrandSeal"></div>
+        <div class="footer-meta">
+          <strong data-i18n="prof_name">Prof. Kai-Cheng Wang (王凱城)</strong>
+          <p>
+            <a href="https://xxgc.fjsmu.edu.cn/main.psp" target="_blank" rel="noopener noreferrer">Department of Mathematics and Applied Mathematics</a> | 
+            <a href="https://www.fjsmu.edu.cn/" target="_blank" rel="noopener noreferrer">Sanming University</a>
+          </p>
+          <p data-i18n="footer_rights" style="margin-top: 4px;">© 2026 Kai-Cheng Wang. All Rights Reserved. Hosted for Academic Research.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+        <span><i class="fa-solid fa-code"></i> MathJax 3.x</span>
+        <span><i class="fa-solid fa-feather"></i> Academic Minimalist</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const publications = [
+      {
+        id: "p1",
+        title: "Explicit approximation rates for shallow networks on additive Besov classes",
+        authors: ["Chen Z", "Wang K C"],
+        journal: "Mathematics",
+        year: 2026,
+        volume: "14(14)",
+        pages: "2491",
+        doi: "10.3390/math14142491",
+        url: "https://doi.org/10.3390/math14142491",
+        status: "published",
+        topic: "approx",
+        abstract: "This work investigates explicit non-asymptotic approximation error rates for shallow neural networks on additive Besov spaces, providing rigorous quantitative error bounds overcoming dimensional bottlenecks."
+      },
+      {
+        id: "p2",
+        title: "On the quantitative weight dependences of vector-valued multilinear fractional operators",
+        authors: ["Wang K C"],
+        journal: "Journal of Inequalities and Applications",
+        year: 2026,
+        doi: "10.1186/s13660-026-03511-x",
+        url: "https://doi.org/10.1186/s13660-026-03511-x",
+        status: "published",
+        topic: "operator",
+        abstract: "Establishes sharp quantitative A_p-A_infty bounds for vector-valued multilinear fractional operators, establishing precise weight dependence constants."
+      },
+      {
+        id: "p3",
+        title: "Explicit wavelet approximation in weighted Besov spaces with applications to piecewise regular series under structural breaks",
+        authors: ["Wang K C"],
+        journal: "Mathematics",
+        year: 2026,
+        volume: "14(15)",
+        pages: "2794",
+        doi: "10.3390/math14152794",
+        url: "https://doi.org/10.3390/math14152794",
+        status: "published",
+        topic: "wavelet",
+        abstract: "Constructs explicit wavelet approximation schemes in weighted Besov spaces with Muckenhoupt weights, with direct application to reconstructing piecewise regular series subjected to abrupt regime switches."
+      },
+      {
+        id: "p4",
+        title: "WHiAR-Net: an interpretable multi-scale forecasting framework via wavelet-Hilbert feature engineering",
+        authors: ["Wang K C"],
+        journal: "Scientific Reports",
+        year: 2026,
+        doi: "10.1038/s41598-026-54363-w",
+        url: "https://doi.org/10.1038/s41598-026-54363-w",
+        status: "published",
+        topic: "wavelet",
+        abstract: "Introduces WHiAR-Net, an interpretable multiscale deep learning network integrating wavelet transforms and Hilbert-Huang spectral feature decomposition for robust predictive modeling."
+      },
+      {
+        id: "p5",
+        title: "Explicit constants in Jackson-type inequalities for n-term wavelet approximation in weighted Besov spaces",
+        authors: ["Wang K C"],
+        journal: "Journal of Inequalities and Applications",
+        year: 2026,
+        status: "review",
+        topic: "approx",
+        abstract: "Derives explicit computable constants for Jackson-type non-linear n-term approximation inequalities in weighted Besov spaces."
+      },
+      {
+        id: "p6",
+        title: "An anisotropic Balian-Low phenomenon: geometric obstructions to wavelet frames",
+        authors: ["Wang K C"],
+        journal: "Constructive Approximation",
+        year: 2026,
+        status: "review",
+        arxiv: "2601.01821",
+        arxivUrl: "http://arxiv.org/abs/2601.01821",
+        topic: "wavelet",
+        abstract: "Unveils a novel anisotropic formulation of the Balian-Low theorem, characterizing geometric phase-space obstructions in the construction of smooth localized wavelet bi-frames."
+      },
+      {
+        id: "p7",
+        title: "A Jackson-type inequality associated with wavelet bases decomposition",
+        authors: ["Wang K C"],
+        journal: "Journal of Inequalities and Applications",
+        year: 2021,
+        volume: "2021",
+        pages: "150",
+        doi: "10.1186/s13660-021-02684-x",
+        url: "https://doi.org/10.1186/s13660-021-02684-x",
+        status: "published",
+        topic: "wavelet",
+        abstract: "Proves a sharp Jackson-type inequality utilizing wavelet bases decomposition in Besov spaces, establishing direct approximation characterizations."
+      },
+      {
+        id: "p8",
+        title: "A Bernstein type inequality associated with wavelet bi-frame decomposition",
+        authors: ["Wang K C", "Chang K F", "Yang C I", "et al."],
+        journal: "Journal of Inequalities and Applications",
+        year: 2016,
+        volume: "2016",
+        pages: "244",
+        doi: "10.1186/s13660-016-1189-7",
+        url: "https://doi.org/10.1186/s13660-016-1189-7",
+        status: "published",
+        topic: "wavelet",
+        abstract: "Establishes inverse Bernstein-type bounds for affine wavelet bi-frame decompositions, characterizing the smoothness of dual frame elements."
+      },
+      {
+        id: "p9",
+        title: "Pre-wavelet bases in Lebesgue spaces",
+        authors: ["Gun C Y", "Wang K C", "Yang C I", "et al."],
+        journal: "Journal of Inequalities and Applications",
+        year: 2015,
+        volume: "2015",
+        pages: "286",
+        doi: "10.1186/s13660-015-0811-4",
+        url: "https://doi.org/10.1186/s13660-015-0811-4",
+        status: "published",
+        topic: "wavelet",
+        abstract: "Investigates unconditional basis properties of pre-wavelet systems in general Lebesgue spaces L^p(R)."
+      },
+      {
+        id: "p10",
+        title: "Wavelet and Hilbert-Huang Transform Based on Predicting Stock Forecasting in Second-Order Autoregressive Mode",
+        authors: ["Ke H R", "Wang K C", "Yang C I", "Chang K F"],
+        journal: "International Journal of Applied Physics and Mathematics",
+        year: 2014,
+        volume: "4(1)",
+        pages: "9–14",
+        status: "published",
+        topic: "wavelet",
+        abstract: "Combines empirical mode decomposition and discrete wavelet transforms with second-order autoregressive modeling for non-stationary financial time series."
+      }
+    ];
+
+    const i18n = {
+      en: {
+        prof_name: "Prof. Kai-Cheng Wang",
+        dept_header_link: "Department of Mathematics and Applied Mathematics",
+        univ_header_link: "Sanming University",
+        nav_about: "About Me",
+        nav_research: "Research",
+        nav_publications: "Publications",
+        nav_blog: "Math Notes & Blog",
+        nav_teaching: "Teaching",
+        nav_contact: "Contact",
+
+        hero_tag_about: "Harmonic & Wavelet Analysis",
+        hero_title_about: "Continuous Wavelet Decomposition",
+        hero_desc_about: "Interactive multi-scale wave packet simulation. Modulating frequency and localized energy across dual phase space.",
+        canvas_hint_wave: "Hover / Drag to modulate frequency",
+
+        bio_name: "Kai-Cheng Wang (王凱城)",
+        bio_role: "Professor in Pure & Applied Mathematics",
+        bio_dept: "Department of Mathematics and Applied Mathematics",
+        bio_univ: "School of Information Engineering, Sanming University",
+        bio_summary: "Specializing in harmonic analysis, wavelet bi-frame decompositions, weighted Besov-Triebel-Lizorkin spaces, and nonlinear neural network approximation rates. Passionate about bridging abstract operator theory with multiscale signal processing.",
+
+        sec_core_domains: "Core Research Domains",
+        domain_1_title: "Wavelet Bi-Frames & Inequalities",
+        domain_1_desc: "Constructing Jackson-type and Bernstein-type inequalities associated with wavelet bi-frame decompositions in Banach spaces.",
+        domain_2_title: "Neural Network Approximation",
+        domain_2_desc: "Establishing explicit approximation rates for shallow and deep neural networks on additive Besov classes and structural break series.",
+        domain_3_title: "Vector-Valued Fractional Operators",
+        domain_3_desc: "Investigating quantitative Muckenhoupt weight dependences of multilinear fractional operators and anisotropic Balian-Low phenomena.",
+
+        hero_tag_research: "Frame Theory & Lattice",
+        hero_title_research: "Gabor & Wavelet Frame Geometry",
+        hero_desc_research: "Dynamic phase-space frame lattice simulation. Visualizing stability, redundancy bounds, and anisotropic geometric obstruction.",
+        canvas_hint_frame: "Move mouse to attract frame nodes",
+        sec_research_pillars: "Theoretical Pillars & Focus Areas",
+
+        pillar1_title: "Wavelet Bases & Bi-Frame Decompositions",
+        pillar1_desc: "Investigation of pre-wavelet bases in Lebesgue spaces $L^p(\\mathbb{R}^n)$ and tight wavelet frames. Formulating sharp Jackson and Bernstein inequalities for non-orthogonal expansions.",
+        pillar2_title: "Deep Learning on Additive Besov Classes",
+        pillar2_desc: "Overcoming the curse of dimensionality via additive Besov representations. Providing non-asymptotic error bounds for shallow and multi-scale architectures.",
+        pillar3_title: "Quantitative Weighted Inequalities",
+        pillar3_desc: "Establishing precise operator norm bounds in terms of Muckenhoupt $[w]_{A_p}$ characteristics for vector-valued multilinear singular integrals and fractional commutators.",
+        pillar4_title: "Wavelet-Hilbert Hybrid Forecasting",
+        pillar4_desc: "Pioneering WHiAR-Net: combining Empirical Mode Decomposition / Hilbert-Huang Transform and adaptive wavelets for piecewise regular time series under structural shifts.",
+
+        hero_tag_pub: "Publications & Impact",
+        hero_title_pub: "Scholarly Archive & Wavefront",
+        hero_desc_pub: "Interactive harmonic spectrogram of publication timeline. Real-time filtering by topics, peer-reviewed journals, and citation metadata.",
+        canvas_hint_pub: "Harmonic spectral energy pulses",
+        metric_total: "Total Tracked Works",
+        metric_published: "Published Papers",
+        metric_review: "Under Review / In Submission",
+        metric_journals: "Top SCI Journals",
+        filter_label: "Filter:",
+        filter_all: "All Works",
+        filter_wavelet: "Wavelet & Frame Theory",
+        filter_approx: "Besov & Neural Approx",
+        filter_operator: "Fractional Operators & Weights",
+        filter_review: "Under Review (在審)",
+
+        hero_tag_blog: "Mathematical Notes & Essays",
+        hero_title_blog: "Phase-Space Uncertainty Simulator",
+        hero_desc_blog: "Interactive visualization of Heisenberg-Gabor-Wavelet phase-space localization and the geometric obstruction of the Balian-Low theorem.",
+        canvas_hint_blog: "Move cursor to deform uncertainty ellipse",
+        sec_blog_title: "Recent Research Notes & Mathematical Expositions",
+        blog1_title: "On the Geometric Phase-Space Obstructions in Wavelet Frames: Understanding the Anisotropic Balian-Low Theorem",
+        blog1_p1: "In time-frequency analysis and multiscale representation theory, a fundamental tension exists between the smoothness of a generator window and its phase-space localization. In classical Gabor analysis (Weyl-Heisenberg systems), this limitation is famously codified by the Balian-Low Theorem (BLT).",
+        thm_blt_title: "Classical Balian-Low Theorem (Gabor Case)",
+        blog1_p2: "That is, a Riesz basis of Gabor atoms cannot have simultaneous second-order localization in both position and frequency. When moving from the lattice translations of Gabor systems to the affine scaling groups of Wavelet bi-frames, how does this obstruction transform, particularly in higher dimensions under anisotropic dilation matrices?",
+        blog_canvas_caption: "Interactive Figure: Phase-space Heisenberg uncertainty area $\\Delta x \\cdot \\Delta \\xi \\ge 1/2$. The area of the ellipse is invariant under symplectic transforms, but geometric anisotropy induces directional obstruction.",
+        key_takeaway_title: "Key Research Insight",
+        key_takeaway_desc: "For anisotropic wavelet frames generated by expansive matrices $A \\in \\text{GL}(d, \\mathbb{R})$, the geometric obstruction is characterized by the spectral distribution of the generator matrix and the geometry of the cone singularities in the frequency domain. This connects directly with the weighted Besov decay conditions and sharp Jackson-type estimates.",
+        blog1_p3: "Detailed proofs, matrix dilation geometry, and full operator estimates can be accessed in our recent preprint:",
+
+        hero_tag_teach: "Vector Calculus & Flow",
+        hero_title_teach: "Vector Field Streamline Simulator",
+        hero_desc_teach: "Interactive visualization of curl, divergence, and path integrals in vector calculus for higher mathematics courses.",
+        canvas_hint_teach: "Click & drag to create vector vortex",
+        sec_courses: "University Courses & Curriculum",
+        course1_name: "Higher Mathematics I & II (高等數學)",
+        course1_term: "Undergraduate Core Course",
+        course1_desc: "Comprehensive curriculum covering single-variable and multivariable calculus, infinite series, ordinary differential equations, and 3D analytical geometry.",
+        course2_name: "Vector Calculus & Field Theory (向量微積分與場論)",
+        course2_term: "Specialized Topic",
+        course2_desc: "Green's Theorem, Gauss Divergence Theorem, Stokes' Theorem, conservative fields, and their computational visual simulations using MATLAB scripts.",
+        course3_name: "Introduction to Wavelet Analysis & Applications (小波分析導論)",
+        course3_term: "Elective / Research Seminar",
+        course3_desc: "Multiresolution analysis (MRA), Daubechies wavelets, continuous wavelet transforms, and their signal processing applications in time-frequency analysis.",
+
+        hero_tag_contact: "Global Collaboration",
+        hero_title_contact: "Academic Network & Topology",
+        hero_desc_contact: "Kinetic 3D spherical topology node network illustrating international mathematical research and communication links.",
+        canvas_hint_contact: "Drag to rotate topology sphere",
+        sec_contact_info: "Contact Information",
+        contact_affil_label: "Affiliation & Address",
+        contact_addr_city: "Sanming, Fujian 365004, P.R. China",
+        sec_emblem_design: "Signature Emblem & Dynamic Watermark",
+        emblem_explain: "The personalized crest combines the heritage of Sanming University, the open book of mathematical scholarship, and the foundational domain: Wavelet and Frame Theory. When navigating across tabs, the watermark dynamically morphs to reflect each academic domain.",
+        modal_bibtex_title: "BibTeX Citation",
+        btn_copy: "Copy to Clipboard",
+        btn_close: "Close",
+        footer_rights: "© 2026 Kai-Cheng Wang. All Rights Reserved. Hosted for Academic Research."
+      },
+
+      tc: {
+        prof_name: "王凱城 教授",
+        dept_header_link: "數學與應用數學系",
+        univ_header_link: "三明學院",
+        nav_about: "個人簡介",
+        nav_research: "學術研究",
+        nav_publications: "著作發表",
+        nav_blog: "數學網誌與札記",
+        nav_teaching: "教學課程",
+        nav_contact: "聯絡資訊",
+
+        hero_tag_about: "調和分析與小波分析",
+        hero_title_about: "連續小波多尺度分解動態模擬",
+        hero_desc_about: "多尺度波包疊加與相空間能量分佈模擬。動態展現小波變換於時頻局域化之數學特性。",
+        canvas_hint_wave: "滑鼠滑過 / 拖曳以調製波形頻率",
+
+        bio_name: "王凱城 (Kai-Cheng Wang)",
+        bio_role: "純粹與應用數學 教授",
+        bio_dept: "數學與應用數學系",
+        bio_univ: "三明學院 信息工程學院",
+        bio_summary: "專長於調和分析、小波雙框架理論（Wavelet Bi-frames）、加權 Besov-Triebel-Lizorkin 空間及非線性神經網絡逼近階。致力於將抽象算子理論與多尺度信號處理技術相結合。",
+
+        sec_core_domains: "核心研究領域",
+        domain_1_title: "小波雙框架與不等式",
+        domain_1_desc: "建立 Banach 空間中小波雙框架分解之 sharp Jackson 型與 Bernstein 型逼近不等式。",
+        domain_2_title: "神經網絡函數逼近階",
+        domain_2_desc: "克服維度災難，推導淺層與多尺度神經網絡在可加 Besov 函數類上之顯式非漸近逼近階。",
+        domain_3_title: "向量值分數階算子與權重",
+        domain_3_desc: "深入研究多線性分數階奇異積分算子在 Muckenhoupt 權重下之定量依賴性與各向異性 Balian-Low 現象。",
+
+        hero_tag_research: "框架理論與相空間格點",
+        hero_title_research: "Gabor 與小波框架幾何結構",
+        hero_desc_research: "相空間框架網格動力學模擬。可視化冗餘度邊界、框架穩定性與各向異性幾何阻礙現象。",
+        canvas_hint_frame: "移動滑鼠吸引框架向量節點",
+        sec_research_pillars: "理論支柱與前沿方向",
+
+        pillar1_title: "小波基與雙框架分解",
+        pillar1_desc: "研究 Lebesgue 空間 $L^p(\\mathbb{R}^n)$ 中之 pre-wavelet 基底與緊小波框架，推導非正交分解體系之精確 Jackson/Bernstein 不等式。",
+        pillar2_title: "可加 Besov 空間上的深度學習逼近",
+        pillar2_desc: "基於可加 Besov 空間表徵，打破維度詛咒，為淺層與深層神經網絡提供顯式非漸近誤差界限。",
+        pillar3_title: "定量加權不等式與算子理論",
+        pillar3_desc: "精確刻畫多線性奇異積分與分數階交換子在 Muckenhoupt $[w]_{A_p}$ 特徵值下之算子範數依賴常數。",
+        pillar4_title: "小波-希爾伯特混合預測模型",
+        pillar4_desc: "開創 WHiAR-Net 架構：結合經驗模態分解 / 希爾伯特-黃變換與自適應小波，針對結構性突變時間序列進行特徵工程與可解釋預測。",
+
+        hero_tag_pub: "著作成果與學術波前",
+        hero_title_pub: "學術成果檔案與頻譜流動",
+        hero_desc_pub: "研究成果發表時間軸之動態諧波頻譜。支援即時主題分類、國際期刊過濾與引用格式導出。",
+        canvas_hint_pub: "諧波光譜能量脈衝",
+        metric_total: "總收錄論文",
+        metric_published: "已正式發表",
+        metric_review: "審稿中論文 (在審)",
+        metric_journals: "國際頂尖 SCI 期刊",
+        filter_label: "篩選維度:",
+        filter_all: "全部論文",
+        filter_wavelet: "小波與框架理論",
+        filter_approx: "Besov 與神經逼近",
+        filter_operator: "分數階算子與權重",
+        filter_review: "審稿中 (在審)",
+
+        hero_tag_blog: "數學研討與學術札記",
+        hero_title_blog: "相空間測不準原理與幾何橢圓模擬",
+        hero_desc_blog: "視覺化呈現 Heisenberg-Gabor-Wavelet 相空間時頻局域化界限與 Balian-Low 幾何阻礙之數學本質。",
+        canvas_hint_blog: "移動游標可動態旋轉並形變測不準度橢圓",
+        sec_blog_title: "最新數學研討札記與理論專題",
+        blog1_title: "《淺談小波雙框架之相空間幾何阻礙：從經典 Balian-Low 定理到各向異性推廣》",
+        blog1_p1: "在時頻分析與多尺度表示理論中，產生函數（Generator）的平滑度與其在相空間（Phase Space）的局域化能力之間，始終存在著深刻的對偶制約。在經典的 Gabor 分析中，這一本質局限被著名的 Balian-Low 定理（BLT）所嚴格刻畫。",
+        thm_blt_title: "經典 Balian-Low 定理（Gabor 系統）",
+        blog1_p2: "這意味著：Gabor 體系下的 Riesz 基不可能同時在時域與頻域具備二階矩局域化。當我們從小波的仿射伸縮群與雙框架體系出發，特別是在高維空間及各向異性擴張矩陣下，此一幾何阻礙將如何演化？",
+        blog_canvas_caption: "動態圖示：相空間海森堡不確定度面積 $\\Delta x \\cdot \\Delta \\xi \\ge 1/2$。橢圓面積在辛變換下保持不變，但各向異性伸展會誘導出方向性幾何阻礙。",
+        key_takeaway_title: "核心研究洞見",
+        key_takeaway_desc: "對於由擴張矩陣 $A \\in \\text{GL}(d, \\mathbb{R})$ 生成的各向異性小波框架，其幾何阻礙直接取決於生成矩陣的譜分佈與頻域錐奇異點幾何結構，這與加權 Besov 空間的衰減條件及 sharp Jackson 逼近界限有著緊密聯繫。",
+        blog1_p3: "完整的矩陣擴張幾何分析與算子估計可參閱近期預印本：",
+
+        hero_tag_teach: "高等數學與場論",
+        hero_title_teach: "向量場流線與旋度散度動態模擬",
+        hero_desc_teach: "動態展示格林公式、高斯散度定理與斯托克斯公式在向量微積分課程中的幾何直觀流場。",
+        canvas_hint_teach: "點擊並拖曳可生成向量渦流",
+        sec_courses: "主講課程與學術講授",
+        course1_name: "高等數學 (I & II)",
+        course1_term: "大學部核心必修",
+        course1_desc: "涵蓋單變數與多變數微積分、無窮級數、常微分方程及空間解析幾何，注重嚴謹數學分析與幾何直觀。",
+        course2_name: "向量微積分與場論",
+        course2_term: "專業專題課程",
+        course2_desc: "格林定理、高斯散度定理、斯托克斯定理、保守場理論，以及利用 MATLAB 進行 3D 向量場可視化教學。",
+        course3_name: "小波分析導論及其應用",
+        course3_term: "選修 / 研究生專題",
+        course3_desc: "多分辨率分析 (MRA)、Daubechies 小波基、連續小波變換及其在時頻信號處理中的應用。",
+
+        hero_tag_contact: "國際合作與學術網絡",
+        hero_title_contact: "全球學術拓撲與共振網絡",
+        hero_desc_contact: "3D 拓撲旋轉球體節點網絡，象徵跨機構與國際數學領域的合作網絡。",
+        canvas_hint_contact: "拖曳可自由旋轉拓撲球體",
+        sec_contact_info: "聯絡資訊與學術檔案",
+        contact_affil_label: "機構與通訊地址",
+        contact_addr_city: "福建省三明市荊東路25號（郵遞區號：365004）",
+        sec_emblem_design: "個人專屬浮水印徽章與動態演繹",
+        emblem_explain: "專屬徽章完美融合三明學院學術傳承、象徵數學鑽研的開啟書卷，以及核心研究主旨：Wavelet and Frame（小波與框架理論）。切換分頁時，浮水印將同步動態切換其專業主題標誌。",
+        modal_bibtex_title: "BibTeX 引用代碼",
+        btn_copy: "複製到剪貼簿",
+        btn_close: "關閉",
+        footer_rights: "© 2026 王凱城 (Kai-Cheng Wang). 版權所有。學術研究專用首頁。"
+      },
+
+      sc: {
+        prof_name: "王凯城 教授",
+        dept_header_link: "数学与应用数学系",
+        univ_header_link: "三明学院",
+        nav_about: "个人简介",
+        nav_research: "学术研究",
+        nav_publications: "著作发表",
+        nav_blog: "数学网志与札记",
+        nav_teaching: "教学课程",
+        nav_contact: "联系方式",
+
+        hero_tag_about: "调和分析与小波分析",
+        hero_title_about: "连续小波多尺度分解动态模拟",
+        hero_desc_about: "多尺度波包叠加与相空间能量分布模拟。动态展现小波变换于时频局域化之数学特性。",
+        canvas_hint_wave: "鼠标滑过 / 拖拽以调制波形频率",
+
+        bio_name: "王凯城 (Kai-Cheng Wang)",
+        bio_role: "纯粹与应用数学 教授",
+        bio_dept: "数学与应用数学系",
+        bio_univ: "三明学院 信息工程学院",
+        bio_summary: "专长于调和分析、小波双框架理论（Wavelet Bi-frames）、加权 Besov-Triebel-Lizorkin 空间及非线性神经网络逼近阶。致力于将抽象算子理论与多尺度信号处理技术相结合。",
+
+        sec_core_domains: "核心研究领域",
+        domain_1_title: "小波双框架与不等式",
+        domain_1_desc: "建立 Banach 空间中小波双框架分解之 sharp Jackson 型与 Bernstein 型逼近不等式。",
+        domain_2_title: "神经网络函数逼近阶",
+        domain_2_desc: "克服维度灾难，推导浅层与多尺度神经网络在可加 Besov 函数类上之显式非渐近逼近阶。",
+        domain_3_title: "向量值分数阶算子与权重",
+        domain_3_desc: "深入研究多线性分数阶奇异积分算子在 Muckenhoupt 权重下之定量依赖性与各向异性 Balian-Low 现象。",
+
+        hero_tag_research: "框架理论与相空间格点",
+        hero_title_research: "Gabor 与小波框架几何结构",
+        hero_desc_research: "相空间框架网格动力学模拟。可视化冗余度边界、框架稳定性与各向异性几何阻碍现象。",
+        canvas_hint_frame: "移动鼠标吸引框架向量节点",
+        sec_research_pillars: "理论支柱与前沿方向",
+
+        pillar1_title: "小波基与双框架分解",
+        pillar1_desc: "研究 Lebesgue 空间 $L^p(\\mathbb{R}^n)$ 中之 pre-wavelet 基底与紧小波框架，推导非正交分解体系之精确 Jackson/Bernstein 不等式。",
+        pillar2_title: "可加 Besov 空间上的深度学习逼近",
+        pillar2_desc: "基于可加 Besov 空间表征，打破维度诅咒，为浅层与深层神经网络提供显式非渐近误差界限。",
+        pillar3_title: "定量加权不等式与算子理论",
+        pillar3_desc: "精确刻画多线性奇异积分与分数阶交换子在 Muckenhoupt $[w]_{A_p}$ 特征值下之算子范数依赖常数。",
+        pillar4_title: "小波-希尔伯特混合预测模型",
+        pillar4_desc: "开创 WHiAR-Net 架构：结合经验模态分解 / 希尔伯特-黄变换与自适应小波，针对结构性突变时间序列进行特征工程与可解释预测。",
+
+        hero_tag_pub: "著作成果与学术波前",
+        hero_title_pub: "学术成果档案与频谱流动",
+        hero_desc_pub: "研究成果发表时间轴之动态谐波频谱。支持即时主题分类、国际期刊过滤与引用格式导出。",
+        canvas_hint_pub: "谐波光谱能量脉冲",
+        metric_total: "总收录论文",
+        metric_published: "已正式发表",
+        metric_review: "审稿中论文 (在审)",
+        metric_journals: "国际顶尖 SCI 期刊",
+        filter_label: "筛选维度:",
+        filter_all: "全部论文",
+        filter_wavelet: "小波与框架理论",
+        filter_approx: "Besov 与神经逼近",
+        filter_operator: "分数阶算子与权重",
+        filter_review: "审稿中 (在审)",
+
+        hero_tag_blog: "数学研讨与学术札记",
+        hero_title_blog: "相空间测不准原理与几何椭圆模拟",
+        hero_desc_blog: "可视化呈现 Heisenberg-Gabor-Wavelet 相空间时频局域化界限与 Balian-Low 几何阻碍之数学本质。",
+        canvas_hint_blog: "移动光标可动态旋转并形变测不准度椭圆",
+        sec_blog_title: "最新数学研讨札记与理论专题",
+        blog1_title: "《浅谈小波双框架之相空间几何阻碍：从经典 Balian-Low 定理到各向异性推广》",
+        blog1_p1: "在时频分析与多尺度表示理论中，生成函数（Generator）的平滑度与其在相空间（Phase Space）的局域化能力之间，始终存在着深刻的对偶制约。在经典的 Gabor 分析中，这一本质局限被著名的 Balian-Low 定理（BLT）所严格刻画。",
+        thm_blt_title: "经典 Balian-Low 定理（Gabor 系统）",
+        blog1_p2: "这意味着：Gabor 体系下的 Riesz 基不可能同时在时域与频域具备二阶矩局域化。当我们从小波的仿射伸缩群与双框架体系出发，特别是在高维空间及各向异性扩张矩阵下，此一几何阻碍将如何演化？",
+        blog_canvas_caption: "动态图示：相空间海森堡不确定度面积 $\\Delta x \\cdot \\Delta \\xi \\ge 1/2$。椭圆面积在辛变换下保持不变，但各向异性伸展会诱导出方向性几何阻碍。",
+        key_takeaway_title: "核心研究洞见",
+        key_takeaway_desc: "对于由扩张矩阵 $A \\in \\text{GL}(d, \\mathbb{R})$ 生成的各向异性小波框架，其几何阻碍直接取决于生成矩阵的谱分布与频域锥奇点几何结构，这与加权 Besov 空间的衰减条件及 sharp Jackson 逼近界限有着紧密联系。",
+        blog1_p3: "完整的矩阵扩张几何分析与算子估计可参阅近期预印本：",
+
+        hero_tag_teach: "高等数学与场论",
+        hero_title_teach: "向量场流线与旋度散度动态模拟",
+        hero_desc_teach: "动态展示格林公式、高斯散度定理与斯托克斯公式在向量微积分课程中的几何直观流场。",
+        canvas_hint_teach: "点击并拖拽可生成向量涡流",
+        sec_courses: "主讲课程与学术讲授",
+        course1_name: "高等数学 (I & II)",
+        course1_term: "本科核心必修",
+        course1_desc: "涵盖单变量与多变量微积分、无穷级数、常微分方程及空间解析几何，注重严谨数学分析与几何直观。",
+        course2_name: "向量微积分与场论",
+        course2_term: "专业专题课程",
+        course2_desc: "格林定理、高斯散度定理、斯托克斯定理、保守场理论，以及利用 MATLAB 进行 3D 向量场可视化教学。",
+        course3_name: "小波分析导论及其应用",
+        course3_term: "选修 / 研究生专题",
+        course3_desc: "多分辨率分析 (MRA)、Daubechies 小波基、连续小波变换及其在时频信号处理中的应用。",
+
+        hero_tag_contact: "国际合作与学术网络",
+        hero_title_contact: "全球学术拓扑与共振网络",
+        hero_desc_contact: "3D 拓扑旋转球体节点网络，象征跨机构与国际数学领域的合作网络。",
+        canvas_hint_contact: "拖拽可自由旋转拓扑球体",
+        sec_contact_info: "联系方式与学术档案",
+        contact_affil_label: "机构与通讯地址",
+        contact_addr_city: "福建省三明市荆东路25号（邮编：365004）",
+        sec_emblem_design: "个人专属水印徽章与动态演绎",
+        emblem_explain: "专属徽章完美融合三明学院学术传承、象征数学钻研的开启书卷，以及核心研究主旨：Wavelet and Frame（小波与框架理论）。切换分页时，水印将同步动态切换其专业主题标志。",
+        modal_bibtex_title: "BibTeX 引用代码",
+        btn_copy: "复制到剪贴板",
+        btn_close: "关闭",
+        footer_rights: "© 2026 王凯城 (Kai-Cheng Wang). 版权所有。学术研究专用首页。"
+      }
+    };
+
+    let currentLang = 'en';
+    let currentFilter = 'all';
+
+    const watermarkThemes = {
+      about: {
+        topText: "SANMING UNIVERSITY",
+        bottomText: "Wavelet and Frame",
+        centerSub: "• WKC •",
+        iconType: "book"
+      },
+      research: {
+        topText: "MATHEMATICAL RESEARCH",
+        bottomText: "Frame Theory & Approximation",
+        centerSub: "• WKC •",
+        iconType: "lattice"
+      },
+      publications: {
+        topText: "SCHOLARLY PUBLICATIONS",
+        bottomText: "Journal & Preprints Archive",
+        centerSub: "• WKC •",
+        iconType: "quill"
+      },
+      blog: {
+        topText: "MATHEMATICAL EXPOSITION",
+        bottomText: "Research Notes & Blog",
+        centerSub: "• WKC •",
+        iconType: "formula"
+      },
+      teaching: {
+        topText: "MATHEMATICS EDUCATION",
+        bottomText: "Higher Mathematics & Calculus",
+        centerSub: "• WKC •",
+        iconType: "integral"
+      },
+      contact: {
+        topText: "SANMING UNIVERSITY",
+        bottomText: "Department of Mathematics",
+        centerSub: "• WKC •",
+        iconType: "globe"
+      }
+    };
+
+    function generateWatermarkSVG(tabKey, size = 400, isBrand = false) {
+      const theme = watermarkThemes[tabKey] || watermarkThemes.about;
+      const uid = "wm_" + tabKey + "_" + Math.random().toString(36).substr(2, 5);
+
+      let centerGraphic = "";
+      if (theme.iconType === "lattice") {
+        centerGraphic = `
+          <g stroke="#78350f" stroke-width="3" fill="none">
+            <circle cx="200" cy="180" r="7" fill="#78350f" />
+            <circle cx="160" cy="195" r="5" fill="#78350f" />
+            <circle cx="240" cy="195" r="5" fill="#78350f" />
+            <circle cx="175" cy="160" r="5" fill="#78350f" />
+            <circle cx="225" cy="160" r="5" fill="#78350f" />
+            <line x1="200" y1="180" x2="160" y2="195" />
+            <line x1="200" y1="180" x2="240" y2="195" />
+            <line x1="200" y1="180" x2="175" y2="160" />
+            <line x1="200" y1="180" x2="225" y2="160" />
+            <line x1="175" y1="160" x2="225" y2="160" />
+          </g>
+        `;
+      } else if (theme.iconType === "quill") {
+        centerGraphic = `
+          <g fill="#78350f">
+            <path d="M 180 205 L 180 165 C 180 155 195 150 200 160 C 205 150 220 155 220 165 L 220 205 Z" fill="none" stroke="#78350f" stroke-width="3" />
+            <line x1="190" y1="175" x2="210" y2="175" stroke="#78350f" stroke-width="2" />
+            <line x1="190" y1="185" x2="210" y2="185" stroke="#78350f" stroke-width="2" />
+            <line x1="190" y1="195" x2="210" y2="195" stroke="#78350f" stroke-width="2" />
+          </g>
+        `;
+      } else if (theme.iconType === "formula") {
+        centerGraphic = `
+          <g stroke="#78350f" stroke-width="3.5" fill="none" stroke-linecap="round">
+            <!-- Nabla Psi Icon -->
+            <polygon points="180,158 220,158 200,188" stroke-width="3" fill="none" />
+            <path d="M 200 170 L 200 204" stroke-width="3.5" />
+            <path d="M 188 182 C 188 194 212 194 212 182" stroke-width="3" />
+          </g>
+        `;
+      } else if (theme.iconType === "integral") {
+        centerGraphic = `
+          <g stroke="#78350f" stroke-width="4" fill="none" stroke-linecap="round">
+            <path d="M 210 152 C 190 152 190 168 200 182 C 210 196 210 212 190 212" />
+            <line x1="170" y1="182" x2="230" y2="182" stroke-width="2" stroke-dasharray="4,4" />
+          </g>
+        `;
+      } else if (theme.iconType === "globe") {
+        centerGraphic = `
+          <g stroke="#78350f" stroke-width="3" fill="none">
+            <circle cx="200" cy="182" r="26" />
+            <ellipse cx="200" cy="182" rx="13" ry="26" />
+            <line x1="174" y1="182" x2="226" y2="182" />
+          </g>
+        `;
+      } else {
+        centerGraphic = `
+          <g stroke="#78350f" stroke-width="3.5" fill="none" stroke-linejoin="round">
+            <line x1="200" y1="165" x2="200" y2="205" stroke-width="4" />
+            <path d="M 200 165 C 180 155 160 160 150 165 L 150 205 C 160 200 180 195 200 205" fill="rgba(255,255,255,0.7)" />
+            <path d="M 155 170 L 155 205" />
+            <path d="M 200 165 C 220 155 240 160 250 165 L 250 205 C 240 200 220 195 200 205" fill="rgba(255,255,255,0.7)" />
+            <path d="M 245 170 L 245 205" />
+          </g>
+        `;
+      }
+
+      return `
+      <svg viewBox="0 0 400 400" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="topArc_${uid}" d="M 45,210 A 165,165 0 0,1 355,210" fill="none" />
+          <path id="botArc_${uid}" d="M 50,225 A 165,165 0 0,0 350,225" fill="none" />
+        </defs>
+
+        <text font-family="'Cinzel', 'Inter', serif" font-size="23" font-weight="800" fill="#0c2364" letter-spacing="3.5">
+          <textPath href="#topArc_${uid}" startOffset="50%" text-anchor="middle">
+            ${theme.topText}
+          </textPath>
+        </text>
+
+        <g>
+          <polygon points="200,105 285,150 285,255 200,300 115,255 115,150" 
+                   fill="#ffffff" stroke="#78350f" stroke-width="8" stroke-linejoin="round" />
+          <polygon points="200,118 273,157 273,248 200,287 127,248 127,157" 
+                   fill="none" stroke="#78350f" stroke-width="3" stroke-linejoin="round" />
+          
+          ${centerGraphic}
+
+          <g>
+            <path d="M 95,215 L 115,215 L 115,205 L 285,205 L 285,215 L 305,215 L 290,235 L 305,255 L 285,255 L 285,245 L 115,245 L 115,255 L 95,255 L 110,235 Z" 
+                  fill="#ffffff" stroke="#78350f" stroke-width="5" stroke-linejoin="round" />
+            <text x="200" y="240" font-family="'Cinzel', 'Inter', sans-serif" font-size="28" font-weight="900" fill="#0c2364" text-anchor="middle" letter-spacing="4">
+              ${theme.centerSub}
+            </text>
+          </g>
+        </g>
+
+        <text font-family="'Cinzel', 'Inter', serif" font-size="21" font-weight="700" fill="#0c2364" letter-spacing="2.8">
+          <textPath href="#botArc_${uid}" startOffset="50%" text-anchor="middle">
+            ${theme.bottomText}
+          </textPath>
+        </text>
+      </svg>
+      `;
+    }
+
+    function updateAllWatermarks(tabKey) {
+      const ambient = document.getElementById("ambientWatermark");
+      const headerBrand = document.getElementById("headerBrandSeal");
+      const aboutSeal = document.getElementById("aboutProfileSeal");
+      const contactShowcase = document.getElementById("contactSealShowcase");
+      const footerSeal = document.getElementById("footerBrandSeal");
+
+      const svgFull = generateWatermarkSVG(tabKey, 480);
+      const svgMini = generateWatermarkSVG(tabKey, 46, true);
+      const svgProfile = generateWatermarkSVG(tabKey, 145);
+      const svgShowcase = generateWatermarkSVG(tabKey, 210);
+
+      if (ambient) ambient.innerHTML = svgFull;
+      if (headerBrand) headerBrand.innerHTML = svgMini;
+      if (aboutSeal) aboutSeal.innerHTML = svgProfile;
+      if (contactShowcase) contactShowcase.innerHTML = svgShowcase;
+      if (footerSeal) footerSeal.innerHTML = svgMini;
+    }
+
+    let currentTab = 'about';
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+
+      document.querySelectorAll(".nav-item").forEach(item => {
+        if (item.getAttribute("data-tab") === tabId) {
+          item.classList.add("active");
+        } else {
+          item.classList.remove("active");
+        }
+      });
+
+      document.querySelectorAll(".tab-page").forEach(page => {
+        if (page.id === `tab-${tabId}`) {
+          page.classList.add("active");
+        } else {
+          page.classList.remove("active");
+        }
+      });
+
+      document.getElementById("navMenu").classList.remove("open");
+      updateAllWatermarks(tabId);
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+
+      initCanvasForTab(tabId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        if (btn.innerText.toLowerCase().includes(lang === 'en' ? 'en' : (lang === 'tc' ? '繁' : '简'))) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+
+      const dict = i18n[lang] || i18n.en;
+      document.querySelectorAll("[data-i18n]").forEach(elem => {
+        const key = elem.getAttribute("data-i18n");
+        if (dict[key]) {
+          elem.innerHTML = dict[key];
+        }
+      });
+
+      renderPublications();
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    }
+
+    function renderPublications() {
+      const container = document.getElementById("publicationList");
+      if (!container) return;
+
+      const searchTerm = (document.getElementById("pubSearchInput") ? document.getElementById("pubSearchInput").value.toLowerCase() : "");
+
+      const filtered = publications.filter(pub => {
+        if (currentFilter === 'review') {
+          if (pub.status !== 'review') return false;
+        } else if (currentFilter !== 'all') {
+          if (pub.topic !== currentFilter) return false;
+        }
+
+        if (searchTerm) {
+          const matchTitle = pub.title.toLowerCase().includes(searchTerm);
+          const matchJournal = (pub.journal || "").toLowerCase().includes(searchTerm);
+          const matchAuthors = pub.authors.join(" ").toLowerCase().includes(searchTerm);
+          const matchYear = String(pub.year).includes(searchTerm);
+          if (!matchTitle && !matchJournal && !matchAuthors && !matchYear) return false;
+        }
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted); background: var(--bg-card); border-radius: var(--radius); border: 1px dashed var(--border-color);">
+            <i class="fa-solid fa-file-circle-xmark" style="font-size: 2rem; margin-bottom: 0.8rem;"></i>
+            <p>${currentLang === 'en' ? 'No publication matches the current filter or search query.' : (currentLang === 'tc' ? '沒有找到符合篩選條件的著作論文。' : '未找到符合筛选条件的著作论文。')}</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((pub) => {
+        const isReview = pub.status === 'review';
+        const formattedAuthors = pub.authors.map(a => {
+          if (a.includes("Wang K C") || a.includes("Wang, K. C.") || a === "Wang K C") {
+            return `<span class="pub-author-me">Wang K.C.</span>`;
+          }
+          return a;
+        }).join(", ");
+
+        const doiLink = pub.doi ? `https://doi.org/${pub.doi}` : (pub.url || "#");
+        const arxivLink = pub.arxivUrl || (pub.arxiv ? `https://arxiv.org/abs/${pub.arxiv}` : null);
+
+        return `
+          <div class="pub-item ${isReview ? 'under-review' : ''}">
+            <div class="pub-header">
+              <div class="pub-title">${pub.title}</div>
+              <div class="pub-badge-group">
+                <span class="pub-badge pub-badge-year">${pub.year}</span>
+                ${isReview ? `<span class="pub-badge pub-badge-review">${currentLang === 'en' ? 'Under Review' : (currentLang === 'tc' ? '在審中' : '在审中')}</span>` : `<span class="pub-badge pub-badge-sci">SCI Indexed</span>`}
+                ${pub.arxiv ? `<a href="${arxivLink}" target="_blank" class="pub-badge pub-badge-arxiv" style="text-decoration:none;" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> arXiv:${pub.arxiv}</a>` : ''}
+              </div>
+            </div>
+            <div class="pub-authors">${formattedAuthors}</div>
+            <div class="pub-journal">
+              ${pub.journal}${pub.volume ? `, ${pub.year}, ${pub.volume}: ${pub.pages}` : (isReview ? ` (${currentLang === 'en' ? 'Under Peer Review' : '期刊在審'})` : `, ${pub.year}`)}
+            </div>
+            
+            <div class="pub-actions">
+              ${pub.doi ? `
+                <a href="${doiLink}" target="_blank" class="pub-btn pub-btn-doi" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> DOI: ${pub.doi}
+                </a>
+              ` : ''}
+
+              ${arxivLink ? `
+                <a href="${arxivLink}" target="_blank" class="pub-btn pub-btn-arxiv" rel="noopener noreferrer">
+                  <i class="fa-solid fa-scroll"></i> arXiv:${pub.arxiv}
+                </a>
+              ` : ''}
+              
+              <button class="pub-btn" onclick="toggleAbstract('${pub.id}')">
+                <i class="fa-solid fa-align-left"></i> ${currentLang === 'en' ? 'Abstract' : (currentLang === 'tc' ? '摘要概要' : '摘要概要')}
+              </button>
+
+              <button class="pub-btn" onclick="showBibtex('${pub.id}')">
+                <i class="fa-solid fa-quote-right"></i> BibTeX
+              </button>
+            </div>
+
+            <div class="pub-abstract-drawer" id="abstract-${pub.id}">
+              <strong>${currentLang === 'en' ? 'Abstract & Highlights:' : (currentLang === 'tc' ? '論文亮點與數學摘要：' : '论文亮点与数学摘要：')}</strong><br>
+              ${pub.abstract}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function setPubFilter(filterType, btnElem) {
+      currentFilter = filterType;
+      document.querySelectorAll(".pub-filter-tag").forEach(btn => btn.classList.remove("active"));
+      if (btnElem) btnElem.classList.add("active");
+      renderPublications();
+    }
+
+    function filterPublications() {
+      renderPublications();
+    }
+
+    function toggleAbstract(pubId) {
+      const el = document.getElementById(`abstract-${pubId}`);
+      if (el) el.classList.toggle("open");
+    }
+
+    function showBibtex(pubId) {
+      const pub = publications.find(p => p.id === pubId);
+      if (!pub) return;
+
+      const key = `wang${pub.year}_${pub.id}`;
+      const bibtex = `@article{${key},
+  author    = {${pub.authors.join(" and ")}},
+  title     = {${pub.title}},
+  journal   = {${pub.journal}},
+  year      = {${pub.year}}${pub.volume ? `,\n  volume    = {${pub.volume}}` : ''}${pub.pages ? `,\n  pages     = {${pub.pages}}` : ''}${pub.doi ? `,\n  doi       = {${pub.doi}}` : ''}${pub.arxiv ? `,\n  eprint    = {${pub.arxiv}},\n  archivePrefix = {arXiv}` : ''}
+}`;
+
+      document.getElementById("bibtexContent").value = bibtex;
+      document.getElementById("bibtexModal").classList.add("open");
+    }
+
+    function closeBibtexModal() {
+      document.getElementById("bibtexModal").classList.remove("open");
+    }
+
+    function copyBibtex() {
+      const area = document.getElementById("bibtexContent");
+      area.select();
+      navigator.clipboard.writeText(area.value);
+      alert(currentLang === 'en' ? 'BibTeX citation copied to clipboard!' : (currentLang === 'tc' ? 'BibTeX 引用代碼已成功複製！' : 'BibTeX 引用代码已成功复制！'));
+    }
+
+    const canvasAnimationControllers = {};
+
+    function initCanvasForTab(tabId) {
+      Object.keys(canvasAnimationControllers).forEach(key => {
+        if (canvasAnimationControllers[key] && canvasAnimationControllers[key].stop) {
+          canvasAnimationControllers[key].stop();
+        }
+      });
+
+      const canvas = document.getElementById(`canvas-${tabId}`);
+      if (!canvas) return;
+
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+      const width = rect.width;
+      const height = rect.height;
+
+      if (tabId === 'about') {
+        canvasAnimationControllers['about'] = runWaveletCanvas(canvas, ctx, width, height);
+      } else if (tabId === 'research') {
+        canvasAnimationControllers['research'] = runFrameLatticeCanvas(canvas, ctx, width, height);
+      } else if (tabId === 'publications') {
+        canvasAnimationControllers['publications'] = runSpectralCanvas(canvas, ctx, width, height);
+      } else if (tabId === 'blog') {
+        canvasAnimationControllers['blog'] = runUncertaintyCanvas(canvas, ctx, width, height);
+        // Also initialize the inline post canvas if present
+        const postCanvas = document.getElementById("canvas-post-uncertainty");
+        if (postCanvas) {
+          const pRect = postCanvas.parentElement.getBoundingClientRect();
+          postCanvas.width = pRect.width * window.devicePixelRatio;
+          postCanvas.height = pRect.height * window.devicePixelRatio;
+          const pCtx = postCanvas.getContext('2d');
+          pCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          runInlinePostCanvas(postCanvas, pCtx, pRect.width, pRect.height);
+        }
+      } else if (tabId === 'teaching') {
+        canvasAnimationControllers['teaching'] = runVectorFieldCanvas(canvas, ctx, width, height);
+      } else if (tabId === 'contact') {
+        canvasAnimationControllers['contact'] = runTopologySphereCanvas(canvas, ctx, width, height);
+      }
+    }
+
+    function runWaveletCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let time = 0;
+      let mouseX = width / 2;
+      let mouseY = height / 2;
+
+      function onMouseMove(e) {
+        const r = canvas.getBoundingClientRect();
+        mouseX = e.clientX - r.left;
+        mouseY = e.clientY - r.top;
+      }
+      canvas.addEventListener('mousemove', onMouseMove);
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+
+        time += 0.025;
+        const freqMod = 0.5 + (mouseX / width) * 2.5;
+        const ampMod = 20 + (mouseY / height) * 45;
+
+        const scales = [1.0, 2.0, 4.0, 8.0];
+        const colors = [
+          'rgba(37, 99, 235, 0.8)',
+          'rgba(197, 155, 39, 0.75)',
+          'rgba(155, 44, 44, 0.65)',
+          'rgba(94, 38, 236, 0.6)'
+        ];
+
+        scales.forEach((scale, idx) => {
+          ctx.beginPath();
+          ctx.strokeStyle = colors[idx];
+          ctx.lineWidth = 2.2 / (idx * 0.3 + 1);
+
+          for (let x = 0; x < width; x += 3) {
+            const normX = (x - width / 2) / (width * 0.28);
+            const gaussian = Math.exp(-normX * normX * scale * 0.8);
+            const wave = Math.sin(x * 0.03 * freqMod * scale - time * (idx + 1.2));
+            const y = height / 2 + wave * gaussian * ampMod * (1.2 / scale);
+
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        });
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop: () => {
+          isRunning = false;
+          canvas.removeEventListener('mousemove', onMouseMove);
+        }
+      };
+    }
+
+    function runFrameLatticeCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let mouseX = width / 2;
+      let mouseY = height / 2;
+
+      const nodes = [];
+      const numNodes = 36;
+      for (let i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2,
+          radius: 3 + Math.random() * 3,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+
+      function onMouseMove(e) {
+        const r = canvas.getBoundingClientRect();
+        mouseX = e.clientX - r.left;
+        mouseY = e.clientY - r.top;
+      }
+      canvas.addEventListener('mousemove', onMouseMove);
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < numNodes; i++) {
+          const n1 = nodes[i];
+          n1.x += n1.vx;
+          n1.y += n1.vy;
+          n1.phase += 0.03;
+
+          if (n1.x < 0 || n1.x > width) n1.vx *= -1;
+          if (n1.y < 0 || n1.y > height) n1.vy *= -1;
+
+          const dx = mouseX - n1.x;
+          const dy = mouseY - n1.y;
+          const distMouse = Math.sqrt(dx * dx + dy * dy);
+          if (distMouse < 160) {
+            n1.x += (dx / distMouse) * 0.8;
+            n1.y += (dy / distMouse) * 0.8;
+          }
+
+          for (let j = i + 1; j < numNodes; j++) {
+            const n2 = nodes[j];
+            const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(37, 99, 235, ${0.45 * (1 - dist / 110)})`;
+              ctx.lineWidth = 1.2;
+              ctx.moveTo(n1.x, n1.y);
+              ctx.lineTo(n2.x, n2.y);
+              ctx.stroke();
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(n1.x, n1.y, n1.radius + Math.sin(n1.phase) * 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = i % 2 === 0 ? '#2563eb' : '#c59b27';
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop: () => {
+          isRunning = false;
+          canvas.removeEventListener('mousemove', onMouseMove);
+        }
+      };
+    }
+
+    function runSpectralCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let t = 0;
+      const numBars = 32;
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+
+        t += 0.035;
+        const barWidth = width / numBars;
+
+        for (let i = 0; i < numBars; i++) {
+          const h1 = Math.sin(t * 1.5 + i * 0.28) * 0.5 + 0.5;
+          const h2 = Math.cos(t * 0.8 + i * 0.15) * 0.5 + 0.5;
+          const barHeight = (h1 * 0.6 + h2 * 0.4) * (height * 0.75);
+
+          const grad = ctx.createLinearGradient(0, height, 0, height - barHeight);
+          grad.addColorStop(0, 'rgba(37, 99, 235, 0.2)');
+          grad.addColorStop(0.6, 'rgba(197, 155, 39, 0.7)');
+          grad.addColorStop(1, 'rgba(155, 44, 44, 0.9)');
+
+          ctx.fillStyle = grad;
+          ctx.fillRect(i * barWidth + 2, height - barHeight, barWidth - 4, barHeight);
+
+          ctx.fillStyle = '#9b2c2c';
+          ctx.beginPath();
+          ctx.arc(i * barWidth + barWidth / 2, height - barHeight - 4, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      return { stop: () => { isRunning = false; } };
+    }
+
+    // --- Tab 4: Phase-Space Heisenberg-Balian-Low Uncertainty Canvas ---
+    function runUncertaintyCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let angle = 0;
+      let mouseX = width / 2;
+      let mouseY = height / 2;
+
+      function onMouseMove(e) {
+        const r = canvas.getBoundingClientRect();
+        mouseX = e.clientX - r.left;
+        mouseY = e.clientY - r.top;
+      }
+      canvas.addEventListener('mousemove', onMouseMove);
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+
+        angle += 0.02;
+        const cx = width / 2;
+        const cy = height / 2;
+
+        const stretch = 1 + ((mouseX - cx) / width) * 1.5;
+        const tilt = angle + ((mouseY - cy) / height) * 2;
+
+        // Draw Phase-Space Grid
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.15)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < width; x += 40) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+        }
+        for (let y = 0; y < height; y += 40) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+        }
+
+        // Draw Multiple Anisotropic Phase-Space Uncertainty Ellipses
+        const numEllipses = 6;
+        for (let i = 0; i < numEllipses; i++) {
+          const shiftAngle = angle + (i * Math.PI * 2) / numEllipses;
+          const orbitR = 60 + Math.sin(angle * 1.5 + i) * 20;
+          const ex = cx + Math.cos(shiftAngle) * orbitR;
+          const ey = cy + Math.sin(shiftAngle) * orbitR;
+
+          ctx.save();
+          ctx.translate(ex, ey);
+          ctx.rotate(tilt + i * 0.4);
+
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 35 * Math.abs(stretch), 35 / Math.abs(stretch), 0, 0, Math.PI * 2);
+          ctx.fillStyle = i % 2 === 0 ? 'rgba(37, 99, 235, 0.2)' : 'rgba(180, 83, 9, 0.2)';
+          ctx.fill();
+          ctx.strokeStyle = i % 2 === 0 ? '#2563eb' : '#b45309';
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
+
+          ctx.restore();
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop: () => {
+          isRunning = false;
+          canvas.removeEventListener('mousemove', onMouseMove);
+        }
+      };
+    }
+
+    function runInlinePostCanvas(canvas, ctx, width, height) {
+      let angle = 0;
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        angle += 0.02;
+
+        const cx = width / 2;
+        const cy = height / 2;
+
+        // Draw Axes
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(width, cy); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, height); ctx.stroke();
+
+        ctx.font = '11px JetBrains Mono, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('Time Domain x', width - 95, cy - 8);
+        ctx.fillText('Frequency ξ', cx + 8, 18);
+
+        // Draw animated uncertainty box & ellipse
+        const a = 65 + Math.sin(angle) * 25;
+        const b = (65 * 30) / a; // Constant symplectic area
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(Math.sin(angle * 0.8) * 0.3);
+
+        ctx.beginPath();
+        ctx.ellipse(0, 0, a, b, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(37, 99, 235, 0.18)';
+        ctx.fill();
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Bounding Rectangle
+        ctx.strokeStyle = 'rgba(180, 83, 9, 0.6)';
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(-a, -b, 2 * a, 2 * b);
+        ctx.setLineDash([]);
+
+        ctx.restore();
+
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    function runVectorFieldCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let vortexX = width / 2;
+      let vortexY = height / 2;
+
+      const particles = [];
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          age: Math.random() * 100
+        });
+      }
+
+      function onMouseMove(e) {
+        const r = canvas.getBoundingClientRect();
+        vortexX = e.clientX - r.left;
+        vortexY = e.clientY - r.top;
+      }
+      canvas.addEventListener('mousemove', onMouseMove);
+
+      function draw() {
+        if (!isRunning) return;
+        
+        ctx.fillStyle = 'rgba(248, 250, 252, 0.2)';
+        if (document.body.getAttribute('data-theme') === 'dark') {
+          ctx.fillStyle = 'rgba(11, 17, 32, 0.22)';
+        }
+        ctx.fillRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          const dx = p.x - vortexX;
+          const dy = p.y - vortexY;
+          const r = Math.sqrt(dx * dx + dy * dy) + 10;
+
+          const vx = (-dy / r) * 2.8 + (dx / (r * r)) * 50;
+          const vy = (dx / r) * 2.8 + (dy / (r * r)) * 50;
+
+          ctx.beginPath();
+          ctx.strokeStyle = '#2563eb';
+          ctx.lineWidth = 1.6;
+          ctx.moveTo(p.x, p.y);
+          p.x += vx;
+          p.y += vy;
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+
+          p.age++;
+          if (p.age > 120 || p.x < 0 || p.x > width || p.y < 0 || p.y > height) {
+            p.x = Math.random() * width;
+            p.y = Math.random() * height;
+            p.age = 0;
+          }
+        });
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop: () => {
+          isRunning = false;
+          canvas.removeEventListener('mousemove', onMouseMove);
+        }
+      };
+    }
+
+    function runTopologySphereCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let rotX = 0;
+      let rotY = 0;
+      let isDragging = false;
+      let lastX, lastY;
+
+      const sphereNodes = [];
+      const numSphereNodes = 60;
+      const radius = Math.min(width, height) * 0.38;
+
+      for (let i = 0; i < numSphereNodes; i++) {
+        const phi = Math.acos(-1 + (2 * i) / numSphereNodes);
+        const theta = Math.sqrt(numSphereNodes * Math.PI) * phi;
+        sphereNodes.push({
+          x: radius * Math.cos(theta) * Math.sin(phi),
+          y: radius * Math.sin(theta) * Math.sin(phi),
+          z: radius * Math.cos(phi)
+        });
+      }
+
+      function onMouseDown(e) { isDragging = true; lastX = e.clientX; lastY = e.clientY; }
+      function onMouseMove(e) {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        rotY += dx * 0.008;
+        rotX -= dy * 0.008;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      }
+      function onMouseUp() { isDragging = false; }
+
+      canvas.addEventListener('mousedown', onMouseDown);
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+
+        if (!isDragging) {
+          rotY += 0.006;
+          rotX += 0.003;
+        }
+
+        const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+        const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+
+        const projected = sphereNodes.map(pt => {
+          let x1 = pt.x * cosY + pt.z * sinY;
+          let z1 = -pt.x * sinY + pt.z * cosY;
+          let y2 = pt.y * cosX - z1 * sinX;
+          let z2 = pt.y * sinX + z1 * cosX;
+
+          const scale = (z2 + radius * 2) / (radius * 2.5);
+          return {
+            x: width / 2 + x1 * scale * 0.9,
+            y: height / 2 + y2 * scale * 0.9,
+            z: z2,
+            scale: scale
+          };
+        });
+
+        for (let i = 0; i < projected.length; i++) {
+          for (let j = i + 1; j < projected.length; j++) {
+            const p1 = projected[i];
+            const p2 = projected[j];
+            const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+            if (d < 65) {
+              const alpha = Math.max(0, (1 - d / 65) * 0.4 * ((p1.scale + p2.scale) / 2));
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
+              ctx.lineWidth = 1;
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        projected.forEach(p => {
+          const r = Math.max(1.5, 3.5 * p.scale);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = p.z > 0 ? '#c59b27' : 'rgba(37, 99, 235, 0.6)';
+          ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop: () => {
+          isRunning = false;
+          canvas.removeEventListener('mousedown', onMouseDown);
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+        }
+      };
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const navMenu = document.getElementById("navMenu");
+      if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("open");
+        });
+      }
+
+      const themeToggleBtn = document.getElementById("themeToggleBtn");
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+          const currentTheme = document.body.getAttribute("data-theme");
+          const nextTheme = currentTheme === "dark" ? "light" : "dark";
+          document.body.setAttribute("data-theme", nextTheme);
+          themeToggleBtn.innerHTML = nextTheme === "dark" ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+          updateAllWatermarks(currentTab);
+        });
+      }
+
+      renderPublications();
+      updateAllWatermarks('about');
+      initCanvasForTab('about');
+      setLanguage('en');
+    });
+  </script>
+</body>
+</html>
