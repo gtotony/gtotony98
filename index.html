@@ -105,6 +105,28 @@
       filter: invert(0.9) drop-shadow(0 0 12px rgba(255,255,255,0.2));
     }
 
+    /* Seal variant cycling: click any visible seal to morph its central device */
+    .seal-clickable {
+      cursor: pointer;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+    }
+    .seal-clickable:hover {
+      transform: scale(1.045);
+    }
+    .seal-clickable.seal-morphing {
+      opacity: 0;
+      transform: scale(0.9) rotate(-7deg);
+    }
+    .seal-variant-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      opacity: 0.75;
+    }
+
     /* Header & Navigation */
     header {
       position: sticky;
@@ -953,7 +975,148 @@
     .blog-body p {
       margin-bottom: 1.1rem;
     }
-    
+
+    /* ---- Blog Category Chips, Filter Bar & Collapsible Bodies ---- */
+    .blog-toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 1.8rem;
+      padding: 1.1rem 1.3rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+    .blog-filter-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .blog-filter-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 0.3rem;
+    }
+    .blog-chip {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.79rem;
+      font-weight: 600;
+      padding: 0.28rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .blog-chip:hover {
+      border-color: var(--primary-light);
+      color: var(--primary-light);
+    }
+    .blog-chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .blog-chip .chip-count {
+      opacity: 0.65;
+      font-weight: 500;
+      margin-left: 0.3rem;
+    }
+    .blog-search-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .blog-search-row input {
+      flex: 1;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      transition: var(--transition);
+    }
+    .blog-search-row input:focus {
+      border-color: var(--primary-light);
+    }
+    .blog-result-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Category colour coding */
+    .blog-cat {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.7rem;
+      border-radius: 5px;
+      border: 1px solid transparent;
+    }
+    .blog-cat.cat-paper     { background: rgba(136, 19, 55, 0.10);  color: #9f1239; border-color: rgba(136, 19, 55, 0.28); }
+    .blog-cat.cat-expo      { background: rgba(37, 99, 235, 0.10);  color: #1d4ed8; border-color: rgba(37, 99, 235, 0.28); }
+    .blog-cat.cat-proof     { background: rgba(15, 118, 110, 0.10); color: #0f766e; border-color: rgba(15, 118, 110, 0.28); }
+    .blog-cat.cat-reading   { background: rgba(120, 53, 15, 0.10);  color: #78350f; border-color: rgba(120, 53, 15, 0.28); }
+    .blog-cat.cat-demo      { background: rgba(109, 40, 217, 0.10); color: #6d28d9; border-color: rgba(109, 40, 217, 0.28); }
+    [data-theme="dark"] .blog-cat.cat-paper   { color: #fda4af; }
+    [data-theme="dark"] .blog-cat.cat-expo    { color: #93c5fd; }
+    [data-theme="dark"] .blog-cat.cat-proof   { color: #5eead4; }
+    [data-theme="dark"] .blog-cat.cat-reading { color: #fcd34d; }
+    [data-theme="dark"] .blog-cat.cat-demo    { color: #c4b5fd; }
+
+    /* Collapsible body */
+    .blog-body.is-collapsed {
+      max-height: 190px;
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    }
+    .blog-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1rem;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--primary-light);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.42rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .blog-toggle:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .blog-toggle i { transition: transform 0.25s ease; }
+    .blog-toggle.is-open i { transform: rotate(180deg); }
+    .blog-post-card.is-hidden { display: none; }
+    .blog-empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px dashed var(--border-color);
+    }
+
     /* LaTeX Theorem & Definition Callouts */
     .math-callout {
       border-left: 4px solid var(--primary-light);
@@ -1613,10 +1776,119 @@
         </h3>
       </div>
 
+      <!-- ==== Category / Tag Filter Toolbar (progressively enhanced by JS) ==== -->
+      <div class="blog-toolbar" id="blogToolbar">
+        <div class="blog-filter-row">
+          <span class="blog-filter-label" data-i18n="blog_filter_cat">Category</span>
+          <div class="blog-filter-row" id="blogCatChips" style="padding:0;"></div>
+        </div>
+        <div class="blog-filter-row">
+          <span class="blog-filter-label" data-i18n="blog_filter_topic">Topic</span>
+          <div class="blog-filter-row" id="blogTagChips" style="padding:0;"></div>
+        </div>
+        <div class="blog-search-row">
+          <input type="text" id="blogSearchInput" data-i18n-ph="blog_search_ph" placeholder="Search titles, theorems, keywords…" />
+          <span class="blog-result-count" id="blogResultCount"></span>
+        </div>
+      </div>
+
       <div class="blog-container" id="blogContainer">
 
+        <!-- BLOG POST 4 (NEWEST FEATURED): Quantitative Weight Dependences of Vector-Valued Multilinear Fractional Operators -->
+        <article class="blog-post-card" data-cat="paper" data-featured="true"
+                 data-tags="Multilinear Fractional Integrals|Muckenhoupt Weights|Sparse Domination|Off-Diagonal Extrapolation|Vector-Valued Inequalities">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Multilinear Fractional Integrals</span>
+            <span class="blog-tag">Muckenhoupt $A_{\vec{P},p}$</span>
+            <span class="blog-tag">Sparse Domination</span>
+            <span class="blog-tag">Off-Diagonal Extrapolation</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> June 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 14 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blog4_title">
+            On the Quantitative Weight Dependences of Vector-Valued Multilinear Fractional Operators
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blog4_p1">
+              The multilinear fractional integral operator $\mathcal{I}_\alpha$, introduced by Kenig and Stein, maps $m$-tuples of locally integrable functions into a target Lebesgue space governed by the multilinear Sobolev homogeneity relation $\frac{1}{p} = \sum_{i=1}^{m} \frac{1}{p_i} - \frac{\alpha}{n}$. Within the one-weight Muckenhoupt paradigm, the class $A_{\vec{P},p}$ of Moen supplies the weight condition adapted to this off-diagonal scaling. A structural gap has nevertheless persisted: the multi-indexed, off-diagonal vector-valued norm inequalities for $\mathcal{I}_\alpha$ had remained conceptually unquantified, since the available formulations relied on qualitative limiting techniques that cede control over the growth rate of the operator norm in the weight characteristic. In this work, published in <em>Journal of Inequalities and Applications</em> (2026), we close this gap by tracking that growth explicitly.
+            </p>
+
+            <p data-i18n="blog4_p2">
+              The mechanism proceeds in two separated stages. We first discretize the continuous multi-indexed potential kernel onto dyadic annuli, which circumscribes $\mathcal{I}_\alpha$ by localized dyadic averages over a sparse family. This reduction is deterministic: every geometric constant generated by the passage from the continuum to the dyadic grid is carried forward in closed form.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_mf_sparse_title">Theorem 5 (Pointwise Sparse Domination for Multilinear Fractional Integrals)</span>
+              </div>
+              <p data-i18n="thm_mf_sparse_body">
+                Let $0 < \alpha < mn$ and let $\mathcal{I}_\alpha$ act on $\vec{f} = (f_1,\dots,f_m)$. For every vector of functions with bounded support there exists a sparse family $\mathcal{S}$ such that, for almost every $x \in \mathbb{R}^n$,
+                $$|\mathcal{I}_\alpha(\vec{f})(x)| \le C_{n,m,\alpha} \sum_{Q \in \mathcal{S}} |Q|^{\frac{\alpha}{n}} \Big( \prod_{i=1}^{m} \langle |f_i| \rangle_{Q,1} \Big) \chi_Q(x),$$
+                where the constant is resolved explicitly as $C_{n,m,\alpha} = \big(2^{mn-\alpha} 6^{mn}\big)\big(2^{m} C_{\text{weak}}^{m} 6^{mn}\big)\big(1-2^{-\alpha}\big)^{-1} 6^{mn}$, and the resulting family is $\eta$-sparse with $\eta = 2^{-(n+1)} 36^{-n}$. The dependence on the fractional exponent $\alpha$ is thereby tracked rather than absorbed.
+              </p>
+            </div>
+
+            <p data-i18n="blog4_p3">
+              The second stage lifts this scalar localization to multi-indexed sequence spaces. A direct analysis of vector-valued sparse operators under sequence dualization meets topological obstructions — non-convexity in the lower sequence regimes and instability at the $L^1$ endpoint. We bypass these by a decoupling scheme: an explicit scalar weighted bound for the sparse operator within the LMS-range $\max_i p_i' \le p(1-\alpha/n)$, followed by the off-diagonal extrapolation mechanism of Cao, Olivo and Yabuta, specialized to the exact multilinear Sobolev parameters. The weight-characteristic function transfers to the $\ell^r/\ell^{r_i}$ setting without modification.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-cube"></i>
+                <span data-i18n="thm_mf_main_title">Theorem 9 (Quantitative Vector-Valued Multilinear Inequalities)</span>
+              </div>
+              <p data-i18n="thm_mf_main_body">
+                Fix $0 < \alpha < mn$ and exponents $1 < p_1,\dots,p_m < \infty$ satisfying the multilinear Sobolev homogeneity relation with $p \ge 1$. Impose the structural condition $\max_i p_i' \le p(1-\alpha/n)$, let $\vec{w} \in A_{\vec{P},p}$, and fix an inner aggregation tuple $\vec{r} \in \mathcal{R}_\alpha$. Then
+                $$\Big\| \Big( \sum_k |\mathcal{I}_\alpha(f_{1,k},\dots,f_{m,k})|^r \Big)^{1/r} \Big\|_{L^p_{\nu_{\vec{w}}}} \le C\, [\vec{w}]_{A_{\vec{P},p}}^{\tilde{\kappa}} \prod_{i=1}^{m} \Big\| \Big( \sum_k |f_{i,k}|^{r_i} \Big)^{1/r_i} \Big\|_{L^{p_i}_{w_i}},$$
+                with explicit exponent $\tilde{\kappa} = p\left(1 - \frac{\alpha}{n}\right)$, where $\frac{1}{r} = \sum_{i=1}^{m} \frac{1}{r_i}$ and $C = C_{n,m,\vec{P},\alpha,\vec{r}}$ is deterministic in $\vec{w}$.
+              </p>
+            </div>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <button class="active" onclick="setSparseSimMode('sparse', this)" data-i18n="ctrl_mf_sparse">Sparse Family $\mathcal{S}$ &amp; Stopping-Time</button>
+                <button onclick="setSparseSimMode('kernel', this)" data-i18n="ctrl_mf_kernel">Dyadic Annuli Kernel Localization</button>
+                <button onclick="setSparseSimMode('exponent', this)" data-i18n="ctrl_mf_exponent">Weight Exponent $\tilde{\kappa} = p(1-\alpha/n)$</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.4rem;" data-i18n="ctrl_mf_alpha">Fractional order $\alpha/n$:</span>
+                <button onclick="setSparseSimAlpha(0.15, this)">0.15</button>
+                <button class="active" onclick="setSparseSimAlpha(0.35, this)">0.35</button>
+                <button onclick="setSparseSimAlpha(0.60, this)">0.60</button>
+              </div>
+              <div class="blog-canvas-wrapper" style="height: 300px;">
+                <canvas id="canvas-post-multilinear-fractional" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blog4_canvas_caption">
+                <i class="fa-solid fa-hand-pointer"></i> Interactive figure — <strong>drag</strong> to pan the dyadic grid, <strong>scroll</strong> to zoom the stopping-time recursion, <strong>click a cube</strong> to inspect its localized average. The sparse selection threshold $a = 2^{m} C_{\text{weak}}^{m} 6^{mn}$ guarantees $|E_P| \ge \frac{1}{2}|P|$; the exponent panel traces $\tilde{\kappa} = p(1-\alpha/n)$ across the admissible range delimited by the structural condition.
+              </div>
+            </div>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-i18n="key_insight_mf_title">Key Takeaway: Quantitative rather than Qualitative</span>
+              </div>
+              <p data-i18n="key_insight_mf_desc">
+                The entire weight-dependence of the estimate is concentrated in the single factor $[\vec{w}]_{A_{\vec{P},p}}^{\tilde{\kappa}}$; the residual constant is deterministic in $\vec{w}$. The estimate therefore exhibits in closed form the analytic rate at which the operator norm degrades as the weight characteristic grows, in contrast to an exponent accessible only as the unquantified output of an abstract limiting procedure. A single inequality governs the scalar and vector-valued regimes at once: restricting the sequence to one non-zero tuple collapses the inner aggregations and returns the scalar weighted bound, so the vector-valued extension is obtained at no cost in the weight exponent. Within the range delimited by the structural condition and the fractional positivity condition, $\tilde{\kappa}$ is on par with the scalar benchmark of Lacey, Moen, Pérez and Torres after conversion between the un-renormalized and renormalized weight conventions.
+              </p>
+            </div>
+
+            <p data-i18n="blog4_p4">
+              The borderline regime $p \to 1$ and weak-type endpoint estimates lie outside the present range and are not addressed by this method. The analysis is moreover carried out for the standard multilinear fractional kernel; an extension to rough fractional kernels would proceed by replacing the discretization step with a sparse domination adapted to the weaker kernel hypotheses, after which the extrapolation mechanism transfers without modification. The complete proofs and explicit constant derivations are published open-access in <em>Journal of Inequalities and Applications</em>:
+              <a href="https://doi.org/10.1186/s13660-026-03511-x" target="_blank" class="pub-btn pub-btn-doi" style="margin-left: 0.5rem;" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-lines"></i> DOI: 10.1186/s13660-026-03511-x
+              </a>
+            </p>
+          </div>
+        </article>
+
+
         <!-- BLOG POST (NEWEST FEATURED): Explicit Approximation Rates for Shallow Networks on Additive Besov Classes -->
-        <article class="blog-post-card">
+        <article class="blog-post-card" data-cat="paper"
+                 data-tags="Additive Besov Classes|Shallow Neural Networks|Curse of Dimensionality|Effective Dimension|Approximation Theory">
           <div class="blog-meta-row">
             <span class="blog-tag">Additive Besov Classes</span>
             <span class="blog-tag">Shallow Neural Networks</span>
@@ -1719,7 +1991,8 @@
 
 
         <!-- BLOG POST 1 (NEWEST FEATURED): Explicit Wavelet Approximation on Weighted Besov Spaces & Structural Breaks -->
-        <article class="blog-post-card">
+        <article class="blog-post-card" data-cat="paper"
+                 data-tags="Weighted Besov Spaces|Wavelet Approximation|Muckenhoupt Weights|Structural Breaks|Time Series">
           <div class="blog-meta-row">
             <span class="blog-tag">Weighted Besov Spaces</span>
             <span class="blog-tag">Biorthogonal Wavelets</span>
@@ -1794,7 +2067,8 @@
         </article>
 
         <!-- Pre-written In-Depth Research Blog Post -->
-        <article class="blog-post-card">
+        <article class="blog-post-card" data-cat="expo"
+                 data-tags="Balian-Low Theorem|Wavelet Frames|Time-Frequency Analysis|Anisotropic Dilation|Phase Space">
           <div class="blog-meta-row">
             <span class="blog-tag">Harmonic Analysis & Frame Theory</span>
             <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 2026</span>
@@ -2040,7 +2314,7 @@
         url: "https://doi.org/10.3390/math14142491",
         status: "published",
         topic: "approx",
-        abstract: "This work investigates explicit non-asymptotic approximation error rates for shallow neural networks on additive Besov spaces, providing rigorous quantitative error bounds overcoming dimensional bottlenecks."
+        abstract: "This work investigates explicit non-asymptotic approximation error rates for shallow neural networks on additive Besov spaces, providing explicit non-asymptotic error bounds whose decay exponent is governed by the effective dimension."
       },
       {
         id: "p2",
@@ -2052,7 +2326,7 @@
         url: "https://doi.org/10.1186/s13660-026-03511-x",
         status: "published",
         topic: "operator",
-        abstract: "Establishes sharp quantitative A_p-A_infty bounds for vector-valued multilinear fractional operators, establishing precise weight dependence constants."
+        abstract: "Establishes quantitative vector-valued multi-indexed inequalities for multilinear fractional integral operators over the full range of the multilinear Muckenhoupt class A_{P,p}. An explicit discretization of the multi-indexed potential kernel yields pointwise sparse domination, which is combined with off-diagonal extrapolation to obtain norm inequalities with explicitly tracked dependence on the weight characteristic, with exponent kappa = p(1 - alpha/n)."
       },
       {
         id: "p3",
@@ -2224,6 +2498,39 @@
         hero_desc_blog: "Interactive visualization of Heisenberg-Gabor-Wavelet phase-space localization and the geometric obstruction of the Balian-Low theorem.",
         canvas_hint_blog: "Move cursor to deform uncertainty ellipse",
         sec_blog_title: "Recent Research Notes & Mathematical Expositions",
+        blog_filter_cat: "Category",
+        blog_filter_topic: "Topic",
+        blog_search_ph: "Search titles, theorems, keywords…",
+        blog_all: "All",
+        blog_tags_more: "More topics",
+        blog_tags_less: "Fewer topics",
+        blog_cat_paper: "Paper Companion",
+        blog_cat_expo: "Exposition",
+        blog_cat_proof: "Proof Note",
+        blog_cat_reading: "Reading Note",
+        blog_cat_demo: "Interactive Demo",
+        blog_read_more: "Read the full note",
+        blog_read_less: "Collapse",
+        blog_count_one: "note shown",
+        blog_count_many: "notes shown",
+        blog_no_match: "No research note matches the current filter or search query.",
+        seal_variant_hint: "Click the seal to cycle its central device",
+        blog4_title: "On the Quantitative Weight Dependences of Vector-Valued Multilinear Fractional Operators",
+        blog4_p1: "The multilinear fractional integral operator $\\mathcal{I}_\\alpha$, introduced by Kenig and Stein, maps $m$-tuples of locally integrable functions into a target Lebesgue space governed by the multilinear Sobolev homogeneity relation $\\frac{1}{p} = \\sum_{i=1}^{m} \\frac{1}{p_i} - \\frac{\\alpha}{n}$. Within the one-weight Muckenhoupt paradigm, the class $A_{\\vec{P},p}$ of Moen supplies the weight condition adapted to this off-diagonal scaling. A structural gap has nevertheless persisted: the multi-indexed, off-diagonal vector-valued norm inequalities for $\\mathcal{I}_\\alpha$ had remained conceptually unquantified, since the available formulations relied on qualitative limiting techniques that cede control over the growth rate of the operator norm in the weight characteristic. In this work, published in <em>Journal of Inequalities and Applications</em> (2026), we close this gap by tracking that growth explicitly.",
+        blog4_p2: "The mechanism proceeds in two separated stages. We first discretize the continuous multi-indexed potential kernel onto dyadic annuli, which circumscribes $\\mathcal{I}_\\alpha$ by localized dyadic averages over a sparse family. This reduction is deterministic: every geometric constant generated by the passage from the continuum to the dyadic grid is carried forward in closed form.",
+        thm_mf_sparse_title: "Theorem 5 (Pointwise Sparse Domination for Multilinear Fractional Integrals)",
+        thm_mf_sparse_body: "Let $0 < \\alpha < mn$ and let $\\mathcal{I}_\\alpha$ act on $\\vec{f} = (f_1,\\dots,f_m)$. For every vector of functions with bounded support there exists a sparse family $\\mathcal{S}$ such that, for almost every $x \\in \\mathbb{R}^n$,<br>$$|\\mathcal{I}_\\alpha(\\vec{f})(x)| \\le C_{n,m,\\alpha} \\sum_{Q \\in \\mathcal{S}} |Q|^{\\frac{\\alpha}{n}} \\Big( \\prod_{i=1}^{m} \\langle |f_i| \\rangle_{Q,1} \\Big) \\chi_Q(x),$$<br>where the constant is resolved explicitly as $C_{n,m,\\alpha} = \\big(2^{mn-\\alpha} 6^{mn}\\big)\\big(2^{m} C_{\\text{weak}}^{m} 6^{mn}\\big)\\big(1-2^{-\\alpha}\\big)^{-1} 6^{mn}$, and the resulting family is $\\eta$-sparse with $\\eta = 2^{-(n+1)} 36^{-n}$. The dependence on the fractional exponent $\\alpha$ is thereby tracked rather than absorbed.",
+        blog4_p3: "The second stage lifts this scalar localization to multi-indexed sequence spaces. A direct analysis of vector-valued sparse operators under sequence dualization meets topological obstructions — non-convexity in the lower sequence regimes and instability at the $L^1$ endpoint. We bypass these by a decoupling scheme: an explicit scalar weighted bound for the sparse operator within the LMS-range $\\max_i p_i' \\le p(1-\\alpha/n)$, followed by the off-diagonal extrapolation mechanism of Cao, Olivo and Yabuta, specialized to the exact multilinear Sobolev parameters. The weight-characteristic function transfers to the $\\ell^r/\\ell^{r_i}$ setting without modification.",
+        thm_mf_main_title: "Theorem 9 (Quantitative Vector-Valued Multilinear Inequalities)",
+        thm_mf_main_body: "Fix $0 < \\alpha < mn$ and exponents $1 < p_1,\\dots,p_m < \\infty$ satisfying the multilinear Sobolev homogeneity relation with $p \\ge 1$. Impose the structural condition $\\max_i p_i' \\le p(1-\\alpha/n)$, let $\\vec{w} \\in A_{\\vec{P},p}$, and fix an inner aggregation tuple $\\vec{r} \\in \\mathcal{R}_\\alpha$. Then<br>$$\\Big\\| \\Big( \\sum_k |\\mathcal{I}_\\alpha(f_{1,k},\\dots,f_{m,k})|^r \\Big)^{1/r} \\Big\\|_{L^p_{\\nu_{\\vec{w}}}} \\le C\\, [\\vec{w}]_{A_{\\vec{P},p}}^{\\tilde{\\kappa}} \\prod_{i=1}^{m} \\Big\\| \\Big( \\sum_k |f_{i,k}|^{r_i} \\Big)^{1/r_i} \\Big\\|_{L^{p_i}_{w_i}},$$<br>with explicit exponent $\\tilde{\\kappa} = p\\left(1 - \\frac{\\alpha}{n}\\right)$, where $\\frac{1}{r} = \\sum_{i=1}^{m} \\frac{1}{r_i}$ and $C = C_{n,m,\\vec{P},\\alpha,\\vec{r}}$ is deterministic in $\\vec{w}$.",
+        ctrl_mf_sparse: "Sparse Family $\\mathcal{S}$ &amp; Stopping-Time",
+        ctrl_mf_kernel: "Dyadic Annuli Kernel Localization",
+        ctrl_mf_exponent: "Weight Exponent $\\tilde{\\kappa} = p(1-\\alpha/n)$",
+        ctrl_mf_alpha: "Fractional order $\\alpha/n$:",
+        blog4_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> Interactive figure — <strong>drag</strong> to pan the dyadic grid, <strong>scroll</strong> to zoom the stopping-time recursion, <strong>click a cube</strong> to inspect its localized average. The sparse selection threshold $a = 2^{m} C_{\\text{weak}}^{m} 6^{mn}$ guarantees $|E_P| \\ge \\frac{1}{2}|P|$; the exponent panel traces $\\tilde{\\kappa} = p(1-\\alpha/n)$ across the admissible range delimited by the structural condition.",
+        key_insight_mf_title: "Key Takeaway: Quantitative rather than Qualitative",
+        key_insight_mf_desc: "The entire weight-dependence of the estimate is concentrated in the single factor $[\\vec{w}]_{A_{\\vec{P},p}}^{\\tilde{\\kappa}}$; the residual constant is deterministic in $\\vec{w}$. The estimate therefore exhibits in closed form the analytic rate at which the operator norm degrades as the weight characteristic grows, in contrast to an exponent accessible only as the unquantified output of an abstract limiting procedure. A single inequality governs the scalar and vector-valued regimes at once: restricting the sequence to one non-zero tuple collapses the inner aggregations and returns the scalar weighted bound, so the vector-valued extension is obtained at no cost in the weight exponent. Within the range delimited by the structural condition and the fractional positivity condition, $\\tilde{\\kappa}$ is on par with the scalar benchmark of Lacey, Moen, Pérez and Torres after conversion between the un-renormalized and renormalized weight conventions.",
+        blog4_p4: "The borderline regime $p \\to 1$ and weak-type endpoint estimates lie outside the present range and are not addressed by this method. The analysis is moreover carried out for the standard multilinear fractional kernel; an extension to rough fractional kernels would proceed by replacing the discretization step with a sparse domination adapted to the weaker kernel hypotheses, after which the extrapolation mechanism transfers without modification. The complete proofs and explicit constant derivations are published open-access in <em>Journal of Inequalities and Applications</em>: <a href='https://doi.org/10.1186/s13660-026-03511-x' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.1186/s13660-026-03511-x</a>",
         blog1_title: "On the Geometric Phase-Space Obstructions in Wavelet Frames: Understanding the Anisotropic Balian-Low Theorem",
         blog1_p1: "In time-frequency analysis and multiscale representation theory, a fundamental tension exists between the smoothness of a generator window and its phase-space localization. In classical Gabor analysis (Weyl-Heisenberg systems), this limitation is famously codified by the Balian-Low Theorem (BLT).",
         thm_blt_title: "Classical Balian-Low Theorem (Gabor Case)",
@@ -2251,7 +2558,7 @@
         blog3_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> Interactive Simulation: Comparing the deterministic decay rate of the Additive Construction ($d_0=1$, fitted exponent $\\hat{r}_A = 2.106 \\approx s/d_0 = 2$) against the Full Tensor Construction ($d_0=3$, fitted exponent $\\hat{r}_B = 0.700 \\approx s/d = 0.667$) at ambient dimension $d=3$.",
         key_insight_shallow_title: "Key Takeaway & Interpretability in Applied Learning",
         key_insight_shallow_desc: "By distributing the width budget across coordinate-subset faces via deterministic least-squares projections, we achieve dimensional rate decoupling without iterative optimization variance. On educational tabular datasets (UCI Student Performance), held-out $L_2$ diagnostics confirm that target prediction is governed by effective dimension $d_0 = 1$, validating that feature-parsimonious, explainable additive architectures prevent overfitting to spurious high-order coordinate noise.",
-        blog3_p4: "The complete proofs, explicit constant derivations, and empirical validation scripts are published open-access in <em>Mathematics</em>:",
+        blog3_p4: "The complete proofs, explicit constant derivations, and empirical validation scripts are published open-access in <em>Mathematics</em>: <a href='https://doi.org/10.3390/math14142491' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.3390/math14142491</a>",
 
         // Blog Post 2: Weighted Besov Spaces & Structural Breaks
         blog2_title: "Explicit Wavelet Approximation in Weighted Besov Spaces: Resolving Structural Breaks in Piecewise Regular Series",
@@ -2261,7 +2568,7 @@
         thm_piecewise_title: "Theorem 3 (Piecewise Regular Decomposition & Effective Rate)",
         ctrl_res_level: "Select Resolution Level J:",
         blog2_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> Interactive Simulation: Synthetic profile $f = g + h$ ($s=0.80$, jumps at $x=0.40$ and $x=0.60$) and its biorthogonal multiresolution projection $P_J f$. Notice how the smooth part is captured at rate $2^{-Js}$ while the residual concentrates sharply in shrinking intervals around the jumps.",
-        blog2_p3: "This framework provides an analytical foundation for distinguishing smooth economic trends from policy-induced breaks without ad-hoc parameterization. The full open-access article is available in <em>Mathematics</em>:",
+        blog2_p3: "This framework provides an analytical foundation for distinguishing smooth economic trends from policy-induced breaks without ad-hoc parameterization. The full open-access article is available in <em>Mathematics</em>: <a href='https://doi.org/10.3390/math14152794' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.3390/math14152794</a>",
 
         hero_tag_teach: "Vector Calculus & Flow",
         hero_title_teach: "Vector Field Streamline Simulator",
@@ -2358,6 +2665,39 @@
         hero_desc_blog: "視覺化呈現 Heisenberg-Gabor-Wavelet 相空間時頻局域化界限與 Balian-Low 幾何阻礙之數學本質。",
         canvas_hint_blog: "移動游標可動態旋轉並形變測不準度橢圓",
         sec_blog_title: "最新數學研討札記與理論專題",
+        blog_filter_cat: "文章類別",
+        blog_filter_topic: "研究主題",
+        blog_search_ph: "搜尋標題、定理、關鍵詞……",
+        blog_all: "全部",
+        blog_tags_more: "更多主題",
+        blog_tags_less: "收合主題",
+        blog_cat_paper: "論文導讀",
+        blog_cat_expo: "理論專題",
+        blog_cat_proof: "證明札記",
+        blog_cat_reading: "讀論文筆記",
+        blog_cat_demo: "互動演示",
+        blog_read_more: "展開全文",
+        blog_read_less: "收合",
+        blog_count_one: "篇札記",
+        blog_count_many: "篇札記",
+        blog_no_match: "沒有找到符合篩選條件的研討札記。",
+        seal_variant_hint: "點擊徽章可切換中央圖徽",
+        blog4_title: "《向量值多線性分數次算子之權重定量依賴性：稀疏控制與離對角外推》",
+        blog4_p1: "多線性分數次積分算子 $\\mathcal{I}_\\alpha$ 最早由 Kenig 與 Stein 引入，其將 $m$ 元局部可積函數組映至由多線性 Sobolev 齊次關係 $\\frac{1}{p} = \\sum_{i=1}^{m} \\frac{1}{p_i} - \\frac{\\alpha}{n}$ 所支配的目標 Lebesgue 空間。在單權重 Muckenhoupt 框架下，Moen 所建立的 $A_{\\vec{P},p}$ 類提供了與此離對角尺度相適配的權重條件。然而一項結構性的空缺始終存在：$\\mathcal{I}_\\alpha$ 的多重指標離對角向量值範數不等式在概念上仍未被定量化，既有的表述多依賴定性極限技巧，因而讓渡了對算子範數在權重特徵量上增長速率的控制。在本篇發表於 <em>Journal of Inequalities and Applications</em>（2026）的工作中，我們透過顯式追蹤該增長率填補了此一空缺。",
+        blog4_p2: "論證機制分為兩個彼此分離的階段。我們首先將連續的多重指標位勢核離散化至二進環域之上，從而以稀疏族上的局部化二進平均對 $\\mathcal{I}_\\alpha$ 進行結構性框定。此一化約是確定性的：由連續體過渡至二進網格所產生的每一個幾何常數，皆以閉形式被承續下來。",
+        thm_mf_sparse_title: "定理 5（多線性分數次積分之逐點稀疏控制）",
+        thm_mf_sparse_body: "設 $0 < \\alpha < mn$，且 $\\mathcal{I}_\\alpha$ 作用於 $\\vec{f} = (f_1,\\dots,f_m)$。對任意具有界支撐的函數組，存在稀疏族 $\\mathcal{S}$ 使得對幾乎所有 $x \\in \\mathbb{R}^n$ 成立<br>$$|\\mathcal{I}_\\alpha(\\vec{f})(x)| \\le C_{n,m,\\alpha} \\sum_{Q \\in \\mathcal{S}} |Q|^{\\frac{\\alpha}{n}} \\Big( \\prod_{i=1}^{m} \\langle |f_i| \\rangle_{Q,1} \\Big) \\chi_Q(x),$$<br>其中常數被顯式解出為 $C_{n,m,\\alpha} = \\big(2^{mn-\\alpha} 6^{mn}\\big)\\big(2^{m} C_{\\text{weak}}^{m} 6^{mn}\\big)\\big(1-2^{-\\alpha}\\big)^{-1} 6^{mn}$，且所得之族為 $\\eta$-稀疏，$\\eta = 2^{-(n+1)} 36^{-n}$。對分數次指標 $\\alpha$ 的依賴性因而被追蹤，而非被吸收。",
+        blog4_p3: "第二階段將此純量局部化提升至多重指標序列空間。在序列對偶化框架下直接分析向量值稀疏算子會遭遇拓撲阻礙——低階序列區域的非凸性，以及 $L^1$ 端點處的不穩定性。我們以一套解耦方案繞開這些障礙：先在 LMS 範圍 $\\max_i p_i' \\le p(1-\\alpha/n)$ 內建立稀疏算子的顯式純量加權界，再援引 Cao、Olivo 與 Yabuta 的離對角外推機制，並特殊化至我們的多線性 Sobolev 參數。權重特徵函數得以原樣轉移至 $\\ell^r/\\ell^{r_i}$ 設定，無需任何修改。",
+        thm_mf_main_title: "定理 9（定量向量值多線性不等式）",
+        thm_mf_main_body: "固定 $0 < \\alpha < mn$ 與指標 $1 < p_1,\\dots,p_m < \\infty$，滿足多線性 Sobolev 齊次關係且 $p \\ge 1$。施加結構性條件 $\\max_i p_i' \\le p(1-\\alpha/n)$，設 $\\vec{w} \\in A_{\\vec{P},p}$，並固定內部聚合元組 $\\vec{r} \\in \\mathcal{R}_\\alpha$。則<br>$$\\Big\\| \\Big( \\sum_k |\\mathcal{I}_\\alpha(f_{1,k},\\dots,f_{m,k})|^r \\Big)^{1/r} \\Big\\|_{L^p_{\\nu_{\\vec{w}}}} \\le C\\, [\\vec{w}]_{A_{\\vec{P},p}}^{\\tilde{\\kappa}} \\prod_{i=1}^{m} \\Big\\| \\Big( \\sum_k |f_{i,k}|^{r_i} \\Big)^{1/r_i} \\Big\\|_{L^{p_i}_{w_i}},$$<br>其中顯式指標 $\\tilde{\\kappa} = p\\left(1 - \\frac{\\alpha}{n}\\right)$，$\\frac{1}{r} = \\sum_{i=1}^{m} \\frac{1}{r_i}$，而常數 $C = C_{n,m,\\vec{P},\\alpha,\\vec{r}}$ 在 $\\vec{w}$ 上是確定性的。",
+        ctrl_mf_sparse: "稀疏族 $\\mathcal{S}$ 與停時遞迴",
+        ctrl_mf_kernel: "二進環域核局部化",
+        ctrl_mf_exponent: "權重指標 $\\tilde{\\kappa} = p(1-\\alpha/n)$",
+        ctrl_mf_alpha: "分數次階 $\\alpha/n$：",
+        blog4_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互動圖示——<strong>拖曳</strong>可平移二進網格，<strong>滾輪</strong>可縮放停時遞迴層級，<strong>點擊立方體</strong>可檢視其局部化平均。稀疏選取閾值 $a = 2^{m} C_{\\text{weak}}^{m} 6^{mn}$ 保證 $|E_P| \\ge \\frac{1}{2}|P|$；指標面板則描繪 $\\tilde{\\kappa} = p(1-\\alpha/n)$ 在結構性條件所界定之容許範圍內的走勢。",
+        key_insight_mf_title: "核心要點：由定性轉為定量",
+        key_insight_mf_desc: "本估計的全部權重依賴性集中於單一因子 $[\\vec{w}]_{A_{\\vec{P},p}}^{\\tilde{\\kappa}}$ 之中，殘餘常數在 $\\vec{w}$ 上是確定性的。因此該估計以閉形式呈現了算子範數隨權重特徵量增長而退化的解析速率，與僅能作為抽象極限程序之未定量產物而取得的指標形成對照。單一不等式同時支配純量與向量值兩種情形：將序列限制為單一非零元組時，內部聚合隨之坍縮並回收純量加權界，故向量值推廣在權重指標上不付出任何代價。在結構性條件與分數次正性條件所界定的範圍內，經由未重整化與重整化權重約定之間的轉換後，$\\tilde{\\kappa}$ 與 Lacey、Moen、Pérez 及 Torres 的純量基準相當。",
+        blog4_p4: "臨界情形 $p \\to 1$ 與弱型端點估計不在本文範圍之內，本方法未予處理。此外，本文分析係針對標準多線性分數次核進行；若欲推廣至粗糙分數次核，僅需將離散化步驟替換為適配於較弱核假設的稀疏控制，其後外推機制即可原樣轉移。完整證明與顯式常數推導已開源發表於 <em>Journal of Inequalities and Applications</em>： <a href='https://doi.org/10.1186/s13660-026-03511-x' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.1186/s13660-026-03511-x</a>",
         blog1_title: "《淺談小波雙框架之相空間幾何阻礙：從經典 Balian-Low 定理到各向異性推廣》",
         blog1_p1: "在時頻分析與多尺度表示理論中，產生函數（Generator）的平滑度與其在相空間（Phase Space）的局域化能力之間，始終存在著深刻的對偶制約。在經典的 Gabor 分析中，這一本質局限被著名的 Balian-Low 定理（BLT）所嚴格刻畫。",
         thm_blt_title: "經典 Balian-Low 定理（Gabor 系統）",
@@ -2385,7 +2725,7 @@
         blog3_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 動態數值模擬：在 $d=3$ 維空間下，對比可加構造（$d_0=1$，擬合衰減斜率 $\\hat{r}_A = 2.106 \\approx s/d_0 = 2$）與全張量積構造（$d_0=3$，擬合衰減斜率 $\\hat{r}_B = 0.700 \\approx s/d = 0.667$）之確定性最小二乘誤差衰減。",
         key_insight_shallow_title: "核心啟示與可解釋機器學習之應用",
         key_insight_shallow_desc: "透過將寬度預算確定性地分配至各坐標子集面上，我們實現了維度收斂階與環境維度的嚴格解耦，且無需承擔迭代優化之隨機方差。在 UCI 學生學業成績真實數據集上，held-out $L_2$ 誤差檢驗確認有效維度 $d_0 = 1$ 居於主導地位，證明特徵簡約的可加模型架構能有效避免對高階噪聲交互項的過擬合。",
-        blog3_p4: "完整的數學證明、常數推導與可重現數值實驗代碼已開源發表於 <em>Mathematics</em>：",
+        blog3_p4: "完整的數學證明、常數推導與可重現數值實驗代碼已開源發表於 <em>Mathematics</em>： <a href='https://doi.org/10.3390/math14142491' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.3390/math14142491</a>",
 
         // Blog Post 2: Weighted Besov Spaces & Structural Breaks
         blog2_title: "《加權 Besov 空間中小波顯式逼近：解析結構性突變時間序列之理論框架》",
@@ -2395,7 +2735,7 @@
         thm_piecewise_title: "定理 3（分段正則分解與有效收斂階）",
         ctrl_res_level: "選擇多尺度解析度層級 J:",
         blog2_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 互動模擬：合成信號 $f = g + h$（$s=0.80$，跳躍點位於 $x=0.40$ 與 $x=0.60$）及其雙正交多解析度投影 $P_J f$。平滑趨勢以 $2^{-Js}$ 快速逼近，而殘差精確集中於跳躍點周圍之二進區間。",
-        blog2_p3: "本框架為經濟趨勢與政策突變之精準識別提供了堅實的分析基礎。完整論文可參閱 <em>Mathematics</em>：",
+        blog2_p3: "本框架為經濟趨勢與政策突變之精準識別提供了堅實的分析基礎。完整論文可參閱 <em>Mathematics</em>： <a href='https://doi.org/10.3390/math14152794' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.3390/math14152794</a>",
 
         hero_tag_teach: "高等數學與場論",
         hero_title_teach: "向量場流線與旋度散度動態模擬",
@@ -2492,6 +2832,39 @@
         hero_desc_blog: "可视化呈现 Heisenberg-Gabor-Wavelet 相空间时频局域化界限与 Balian-Low 几何阻碍之数学本质。",
         canvas_hint_blog: "移动光标可动态旋转并形变测不准度椭圆",
         sec_blog_title: "最新数学研讨札记与理论专题",
+        blog_filter_cat: "文章类别",
+        blog_filter_topic: "研究主题",
+        blog_search_ph: "搜索标题、定理、关键词……",
+        blog_all: "全部",
+        blog_tags_more: "更多主题",
+        blog_tags_less: "收合主题",
+        blog_cat_paper: "论文导读",
+        blog_cat_expo: "理论专题",
+        blog_cat_proof: "证明札记",
+        blog_cat_reading: "读论文笔记",
+        blog_cat_demo: "交互演示",
+        blog_read_more: "展开全文",
+        blog_read_less: "收合",
+        blog_count_one: "篇札记",
+        blog_count_many: "篇札记",
+        blog_no_match: "没有找到符合筛选条件的研讨札记。",
+        seal_variant_hint: "点击徽章可切换中央图徽",
+        blog4_title: "《矢量值多线性分数次算子之权重定量依赖性：稀疏控制与离对角外推》",
+        blog4_p1: "多线性分数次积分算子 $\\mathcal{I}_\\alpha$ 最早由 Kenig 与 Stein 引入，其将 $m$ 元局部可积函数组映至由多线性 Sobolev 齐次关系 $\\frac{1}{p} = \\sum_{i=1}^{m} \\frac{1}{p_i} - \\frac{\\alpha}{n}$ 所支配的目标 Lebesgue 空间。在单权重 Muckenhoupt 框架下，Moen 所创建的 $A_{\\vec{P},p}$ 类提供了与此离对角尺度相适配的权重条件。然而一项结构性的空缺始终存在：$\\mathcal{I}_\\alpha$ 的多重指针离对角矢量值范数不等式在概念上仍未被定量化，既有的表述多依赖定性极限技巧，因而让渡了对算子范数在权重特征量上增长速率的控制。在本篇发表于 <em>Journal of Inequalities and Applications</em>（2026）的工作中，我们通过显式追踪该增长率填补了此一空缺。",
+        blog4_p2: "论证机制分为两个彼此分离的阶段。我们首先将连续的多重指针位势核离散化至二进环域之上，从而以稀疏族上的局部化二进平均对 $\\mathcal{I}_\\alpha$ 进行结构性框定。此一化约是确定性的：由连续体过渡至二进网格所产生的每一个几何常数，皆以闭形式被承续下来。",
+        thm_mf_sparse_title: "定理 5（多线性分数次积分之逐点稀疏控制）",
+        thm_mf_sparse_body: "设 $0 < \\alpha < mn$，且 $\\mathcal{I}_\\alpha$ 作用于 $\\vec{f} = (f_1,\\dots,f_m)$。对任意具有界支撑的函数组，存在稀疏族 $\\mathcal{S}$ 使得对几乎所有 $x \\in \\mathbb{R}^n$ 成立<br>$$|\\mathcal{I}_\\alpha(\\vec{f})(x)| \\le C_{n,m,\\alpha} \\sum_{Q \\in \\mathcal{S}} |Q|^{\\frac{\\alpha}{n}} \\Big( \\prod_{i=1}^{m} \\langle |f_i| \\rangle_{Q,1} \\Big) \\chi_Q(x),$$<br>其中常数被显式解出为 $C_{n,m,\\alpha} = \\big(2^{mn-\\alpha} 6^{mn}\\big)\\big(2^{m} C_{\\text{weak}}^{m} 6^{mn}\\big)\\big(1-2^{-\\alpha}\\big)^{-1} 6^{mn}$，且所得之族为 $\\eta$-稀疏，$\\eta = 2^{-(n+1)} 36^{-n}$。对分数次指针 $\\alpha$ 的依赖性因而被追踪，而非被吸收。",
+        blog4_p3: "第二阶段将此纯量局部化提升至多重指针串行空间。在串行对偶化框架下直接分析矢量值稀疏算子会遭遇拓扑阻碍——低级串行区域的非凸性，以及 $L^1$ 端点处的不稳定性。我们以一套解耦方案绕开这些障碍：先在 LMS 范围 $\\max_i p_i' \\le p(1-\\alpha/n)$ 内置立稀疏算子的显式纯量加权界，再援引 Cao、Olivo 与 Yabuta 的离对角外推机制，并特殊化至我们的多线性 Sobolev 参数。权重特征函数得以原样转移至 $\\ell^r/\\ell^{r_i}$ 设置，无需任何修改。",
+        thm_mf_main_title: "定理 9（定量矢量值多线性不等式）",
+        thm_mf_main_body: "固定 $0 < \\alpha < mn$ 与指针 $1 < p_1,\\dots,p_m < \\infty$，满足多线性 Sobolev 齐次关系且 $p \\ge 1$。施加结构性条件 $\\max_i p_i' \\le p(1-\\alpha/n)$，设 $\\vec{w} \\in A_{\\vec{P},p}$，并固定内部聚合元组 $\\vec{r} \\in \\mathcal{R}_\\alpha$。则<br>$$\\Big\\| \\Big( \\sum_k |\\mathcal{I}_\\alpha(f_{1,k},\\dots,f_{m,k})|^r \\Big)^{1/r} \\Big\\|_{L^p_{\\nu_{\\vec{w}}}} \\le C\\, [\\vec{w}]_{A_{\\vec{P},p}}^{\\tilde{\\kappa}} \\prod_{i=1}^{m} \\Big\\| \\Big( \\sum_k |f_{i,k}|^{r_i} \\Big)^{1/r_i} \\Big\\|_{L^{p_i}_{w_i}},$$<br>其中显式指针 $\\tilde{\\kappa} = p\\left(1 - \\frac{\\alpha}{n}\\right)$，$\\frac{1}{r} = \\sum_{i=1}^{m} \\frac{1}{r_i}$，而常数 $C = C_{n,m,\\vec{P},\\alpha,\\vec{r}}$ 在 $\\vec{w}$ 上是确定性的。",
+        ctrl_mf_sparse: "稀疏族 $\\mathcal{S}$ 与停时递归",
+        ctrl_mf_kernel: "二进环域核局部化",
+        ctrl_mf_exponent: "权重指针 $\\tilde{\\kappa} = p(1-\\alpha/n)$",
+        ctrl_mf_alpha: "分数次阶 $\\alpha/n$：",
+        blog4_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 交互图标——<strong>拖曳</strong>可平移二进网格，<strong>滚轮</strong>可缩放停时递归层级，<strong>点击立方体</strong>可查看其局部化平均。稀疏选取阈值 $a = 2^{m} C_{\\text{weak}}^{m} 6^{mn}$ 保证 $|E_P| \\ge \\frac{1}{2}|P|$；指针面板则描绘 $\\tilde{\\kappa} = p(1-\\alpha/n)$ 在结构性条件所界定之容许范围内的走势。",
+        key_insight_mf_title: "内核要点：由定性转为定量",
+        key_insight_mf_desc: "本估计的全部权重依赖性集中於单一因子 $[\\vec{w}]_{A_{\\vec{P},p}}^{\\tilde{\\kappa}}$ 之中，残余常数在 $\\vec{w}$ 上是确定性的。因此该估计以闭形式呈现了算子范数随权重特征量增长而退化的解析速率，与仅能作为抽象极限进程之未定量产物而取得的指针形成对照。单一不等式同时支配纯量与矢量值两种情形：将串行限制为单一非零元组时，内部聚合随之坍缩并回收纯量加权界，故矢量值推广在权重指针上不付出任何代价。在结构性条件与分数次正性条件所界定的范围内，经由未重整化与重整化权重约定之间的转换后，$\\tilde{\\kappa}$ 与 Lacey、Moen、Pérez 及 Torres 的纯量基准相当。",
+        blog4_p4: "临界情形 $p \\to 1$ 与弱型端点估计不在本文范围之内，本方法未予处理。此外，本文分析系针对标准多线性分数次核进行；若欲推广至粗糙分数次核，仅需将离散化步骤替换为适配于较弱核假设的稀疏控制，其后外推机制即可原样转移。完整证明与显式常数推导已开源发表于 <em>Journal of Inequalities and Applications</em>： <a href='https://doi.org/10.1186/s13660-026-03511-x' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.1186/s13660-026-03511-x</a>",
         blog1_title: "《浅谈小波双框架之相空间几何阻碍：从经典 Balian-Low 定理到各向异性推广》",
         blog1_p1: "在时频分析与多尺度表示理论中，生成函数（Generator）的平滑度与其在相空间（Phase Space）的局域化能力之间，始终存在着深刻的对偶制约。在经典的 Gabor 分析中，这一本质局限被著名的 Balian-Low 定理（BLT）所严格刻画。",
         thm_blt_title: "经典 Balian-Low 定理（Gabor 系统）",
@@ -2519,7 +2892,7 @@
         blog3_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 动态数值模拟：在 $d=3$ 维空间下，对比可加构造（$d_0=1$，拟合衰减斜率 $\\hat{r}_A = 2.106 \\approx s/d_0 = 2$）与全张量积构造（$d_0=3$，拟合衰减斜率 $\\hat{r}_B = 0.700 \\approx s/d = 0.667$）之确定性最小二乘误差衰减。",
         key_insight_shallow_title: "核心启示与可解释机器学习之应用",
         key_insight_shallow_desc: "通过将宽度预算确定性地分配至各坐标子集面上，我们实现了维度收敛阶与环境维度的严格解耦，且无需承担迭代优化之随机方差。在 UCI 学生学业成绩真实数据集上，held-out $L_2$ 误差检验确认有效维度 $d_0 = 1$ 居于主导地位，证明特征简约的可加模型架构能有效避免对高阶噪声交互项的过拟合。",
-        blog3_p4: "完整的数学证明、常数推导与可重现数值实验代码已开源发表于 <em>Mathematics</em>：",
+        blog3_p4: "完整的数学证明、常数推导与可重现数值实验代码已开源发表于 <em>Mathematics</em>： <a href='https://doi.org/10.3390/math14142491' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.3390/math14142491</a>",
 
         // Blog Post 2: Weighted Besov Spaces & Structural Breaks
         blog2_title: "《加权 Besov 空间中小波显式逼近：解析结构性突变时间序列之理论框架》",
@@ -2529,7 +2902,7 @@
         thm_piecewise_title: "定理 3（分段正则分解与有效收敛阶）",
         ctrl_res_level: "选择多尺度分辨率层级 J:",
         blog2_canvas_caption: "<i class=\"fa-solid fa-chart-line\"></i> 互动模拟：合成信号 $f = g + h$（$s=0.80$，跳跃点位于 $x=0.40$ 与 $x=0.60$）及其双正交多分辨率投影 $P_J f$。平滑趋势以 $2^{-Js}$ 快速逼近，而残差精确集中于跳跃点周围之二进制区间。",
-        blog2_p3: "本框架为经济趋势与政策突变之精准识别提供了坚实的分析基础。完整论文可参阅 <em>Mathematics</em>：",
+        blog2_p3: "本框架为经济趋势与政策突变之精准识别提供了坚实的分析基础。完整论文可参阅 <em>Mathematics</em>： <a href='https://doi.org/10.3390/math14152794' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.3390/math14152794</a>",
 
         hero_tag_teach: "高等数学与场论",
         hero_title_teach: "向量场流线与旋度散度动态模拟",
@@ -2565,52 +2938,72 @@
     let currentLang = 'en';
     let currentFilter = 'all';
 
+    /* =========================================================================
+       SIGNATURE SEAL ENGINE
+       The invariant skeleton — hexagonal shield, double stroke, ribbon, the
+       "• WKC •" cartouche and the two lettered arcs — is fixed. Only the
+       central device and the lower arc legend vary. Each tab carries a list
+       of variants; clicking any visible seal advances to the next one.
+       ========================================================================= */
     const watermarkThemes = {
-      about: {
-        topText: "SANMING UNIVERSITY",
-        bottomText: "Wavelet and Frame",
-        centerSub: "• WKC •",
-        iconType: "book"
-      },
-      research: {
-        topText: "MATHEMATICAL RESEARCH",
-        bottomText: "Frame Theory & Approximation",
-        centerSub: "• WKC •",
-        iconType: "lattice"
-      },
-      publications: {
-        topText: "SCHOLARLY PUBLICATIONS",
-        bottomText: "Journal & Preprints Archive",
-        centerSub: "• WKC •",
-        iconType: "quill"
-      },
-      blog: {
-        topText: "MATHEMATICAL EXPOSITION",
-        bottomText: "Research Notes & Blog",
-        centerSub: "• WKC •",
-        iconType: "formula"
-      },
-      teaching: {
-        topText: "MATHEMATICS EDUCATION",
-        bottomText: "Higher Mathematics & Calculus",
-        centerSub: "• WKC •",
-        iconType: "integral"
-      },
-      contact: {
-        topText: "SANMING UNIVERSITY",
-        bottomText: "Department of Mathematics",
-        centerSub: "• WKC •",
-        iconType: "globe"
-      }
+      about: [
+        { topText: "SANMING UNIVERSITY",     bottomText: "Wavelet and Frame",            centerSub: "• WKC •", iconType: "book" },
+        { topText: "SANMING UNIVERSITY",     bottomText: "Multiresolution Analysis",     centerSub: "• WKC •", iconType: "wavelet" },
+        { topText: "SANMING UNIVERSITY",     bottomText: "Harmonic Analysis",            centerSub: "• WKC •", iconType: "lattice" }
+      ],
+      research: [
+        { topText: "MATHEMATICAL RESEARCH",  bottomText: "Frame Theory & Approximation", centerSub: "• WKC •", iconType: "lattice" },
+        { topText: "MATHEMATICAL RESEARCH",  bottomText: "Sparse Domination",            centerSub: "• WKC •", iconType: "dyadic" },
+        { topText: "MATHEMATICAL RESEARCH",  bottomText: "Besov Scale & K-Functional",   centerSub: "• WKC •", iconType: "formula" }
+      ],
+      publications: [
+        { topText: "SCHOLARLY PUBLICATIONS", bottomText: "Journal & Preprints Archive",  centerSub: "• WKC •", iconType: "quill" },
+        { topText: "SCHOLARLY PUBLICATIONS", bottomText: "Weighted Norm Inequalities",   centerSub: "• WKC •", iconType: "scales" },
+        { topText: "SCHOLARLY PUBLICATIONS", bottomText: "Open Access Record",           centerSub: "• WKC •", iconType: "book" }
+      ],
+      blog: [
+        { topText: "MATHEMATICAL EXPOSITION",bottomText: "Research Notes & Blog",        centerSub: "• WKC •", iconType: "formula" },
+        { topText: "MATHEMATICAL EXPOSITION",bottomText: "Dyadic Decomposition",         centerSub: "• WKC •", iconType: "dyadic" },
+        { topText: "MATHEMATICAL EXPOSITION",bottomText: "Wavelet Atoms",                centerSub: "• WKC •", iconType: "wavelet" }
+      ],
+      teaching: [
+        { topText: "MATHEMATICS EDUCATION",  bottomText: "Higher Mathematics & Calculus",centerSub: "• WKC •", iconType: "integral" },
+        { topText: "MATHEMATICS EDUCATION",  bottomText: "Real & Functional Analysis",   centerSub: "• WKC •", iconType: "formula" },
+        { topText: "MATHEMATICS EDUCATION",  bottomText: "Seminar & Lecture Notes",      centerSub: "• WKC •", iconType: "book" }
+      ],
+      contact: [
+        { topText: "SANMING UNIVERSITY",     bottomText: "Department of Mathematics",    centerSub: "• WKC •", iconType: "globe" },
+        { topText: "SANMING UNIVERSITY",     bottomText: "Fujian, China",                centerSub: "• WKC •", iconType: "book" },
+        { topText: "SANMING UNIVERSITY",     bottomText: "Academic Correspondence",      centerSub: "• WKC •", iconType: "quill" }
+      ]
     };
 
-    function generateWatermarkSVG(tabKey, size = 400, isBrand = false) {
-      const theme = watermarkThemes[tabKey] || watermarkThemes.about;
-      const uid = "wm_" + tabKey + "_" + Math.random().toString(36).substr(2, 5);
+    /* Which variant each tab is currently showing. Restored from the previous
+       visit when available, so the seal a reader chose persists. */
+    const sealVariantIndex = {};
+    (function restoreSealVariants() {
+      let saved = null;
+      try { saved = JSON.parse(localStorage.getItem('wkcSealVariants') || 'null'); } catch (e) { saved = null; }
+      Object.keys(watermarkThemes).forEach(k => {
+        const n = watermarkThemes[k].length;
+        const v = saved && typeof saved[k] === 'number' ? saved[k] : 0;
+        sealVariantIndex[k] = ((v % n) + n) % n;
+      });
+    })();
 
-      let centerGraphic = "";
-      if (theme.iconType === "lattice") {
-        centerGraphic = `
+    function persistSealVariants() {
+      try { localStorage.setItem('wkcSealVariants', JSON.stringify(sealVariantIndex)); } catch (e) { /* storage unavailable */ }
+    }
+
+    function getSealTheme(tabKey) {
+      const list = watermarkThemes[tabKey] || watermarkThemes.about;
+      const idx = sealVariantIndex[tabKey] || 0;
+      return list[idx % list.length];
+    }
+
+    function sealCentralDevice(iconType) {
+      if (iconType === "lattice") {
+        return `
           <g stroke="#78350f" stroke-width="3" fill="none">
             <circle cx="200" cy="180" r="7" fill="#78350f" />
             <circle cx="160" cy="195" r="5" fill="#78350f" />
@@ -2624,8 +3017,9 @@
             <line x1="175" y1="160" x2="225" y2="160" />
           </g>
         `;
-      } else if (theme.iconType === "quill") {
-        centerGraphic = `
+      }
+      if (iconType === "quill") {
+        return `
           <g fill="#78350f">
             <path d="M 180 205 L 180 165 C 180 155 195 150 200 160 C 205 150 220 155 220 165 L 220 205 Z" fill="none" stroke="#78350f" stroke-width="3" />
             <line x1="190" y1="175" x2="210" y2="175" stroke="#78350f" stroke-width="2" />
@@ -2633,39 +3027,117 @@
             <line x1="190" y1="195" x2="210" y2="195" stroke="#78350f" stroke-width="2" />
           </g>
         `;
-      } else if (theme.iconType === "formula") {
-        centerGraphic = `
+      }
+      if (iconType === "formula") {
+        return `
           <g stroke="#78350f" stroke-width="3.5" fill="none" stroke-linecap="round">
-            <!-- Nabla Psi Icon -->
             <polygon points="180,158 220,158 200,188" stroke-width="3" fill="none" />
             <path d="M 200 170 L 200 204" stroke-width="3.5" />
             <path d="M 188 182 C 188 194 212 194 212 182" stroke-width="3" />
           </g>
         `;
-      } else if (theme.iconType === "integral") {
-        centerGraphic = `
+      }
+      if (iconType === "integral") {
+        return `
           <g stroke="#78350f" stroke-width="4" fill="none" stroke-linecap="round">
             <path d="M 210 152 C 190 152 190 168 200 182 C 210 196 210 212 190 212" />
             <line x1="170" y1="182" x2="230" y2="182" stroke-width="2" stroke-dasharray="4,4" />
           </g>
         `;
-      } else if (theme.iconType === "globe") {
-        centerGraphic = `
+      }
+      if (iconType === "globe") {
+        return `
           <g stroke="#78350f" stroke-width="3" fill="none">
             <circle cx="200" cy="182" r="26" />
             <ellipse cx="200" cy="182" rx="13" ry="26" />
             <line x1="174" y1="182" x2="226" y2="182" />
           </g>
         `;
-      } else {
-        centerGraphic = `
-          <g stroke="#78350f" stroke-width="3.5" fill="none" stroke-linejoin="round">
-            <line x1="200" y1="165" x2="200" y2="205" stroke-width="4" />
-            <path d="M 200 165 C 180 155 160 160 150 165 L 150 205 C 160 200 180 195 200 205" fill="rgba(255,255,255,0.7)" />
-            <path d="M 155 170 L 155 205" />
-            <path d="M 200 165 C 220 155 240 160 250 165 L 250 205 C 240 200 220 195 200 205" fill="rgba(255,255,255,0.7)" />
-            <path d="M 245 170 L 245 205" />
+      }
+      if (iconType === "wavelet") {
+        /* A compactly supported oscillating atom with its dilation envelope. */
+        return `
+          <g stroke="#78350f" fill="none" stroke-linecap="round">
+            <path d="M 162 182 C 172 182 176 150 186 150 C 196 150 198 214 206 214 C 214 214 216 168 224 168 C 230 168 234 182 240 182"
+                  stroke-width="3.6" />
+            <path d="M 162 182 C 176 168 186 162 200 162 C 214 162 224 168 240 182"
+                  stroke-width="1.6" stroke-dasharray="3,3" opacity="0.75" />
+            <line x1="158" y1="182" x2="244" y2="182" stroke-width="1.4" opacity="0.55" />
           </g>
+        `;
+      }
+      if (iconType === "dyadic") {
+        /* Nested dyadic cubes: the sparse-family motif. */
+        return `
+          <g stroke="#78350f" fill="none" stroke-linejoin="round">
+            <rect x="164" y="150" width="72" height="66" stroke-width="3.4" />
+            <rect x="164" y="150" width="36" height="33" stroke-width="2.2" />
+            <rect x="164" y="150" width="18" height="16.5" stroke-width="1.6" fill="#78350f" fill-opacity="0.22" />
+            <rect x="200" y="183" width="36" height="33" stroke-width="2.2" />
+            <rect x="218" y="199.5" width="18" height="16.5" stroke-width="1.6" fill="#78350f" fill-opacity="0.22" />
+          </g>
+        `;
+      }
+      if (iconType === "scales") {
+        /* A balance: the two sides of a weighted norm inequality. */
+        return `
+          <g stroke="#78350f" fill="none" stroke-linecap="round" stroke-width="3">
+            <line x1="200" y1="152" x2="200" y2="210" />
+            <line x1="166" y1="164" x2="234" y2="164" />
+            <path d="M 154 164 L 166 190 L 178 164" stroke-width="2.4" />
+            <path d="M 222 164 L 234 190 L 246 164" stroke-width="2.4" />
+            <line x1="182" y1="210" x2="218" y2="210" stroke-width="3.4" />
+          </g>
+        `;
+      }
+      /* Default: the open book of the original crest. */
+      return `
+        <g stroke="#78350f" stroke-width="3.5" fill="none" stroke-linejoin="round">
+          <line x1="200" y1="165" x2="200" y2="205" stroke-width="4" />
+          <path d="M 200 165 C 180 155 160 160 150 165 L 150 205 C 160 200 180 195 200 205" fill="rgba(255,255,255,0.7)" />
+          <path d="M 155 170 L 155 205" />
+          <path d="M 200 165 C 220 155 240 160 250 165 L 250 205 C 240 200 220 195 200 205" fill="rgba(255,255,255,0.7)" />
+          <path d="M 245 170 L 245 205" />
+        </g>
+      `;
+    }
+
+    let sealUidCounter = 0;
+
+    /* isBrand renders the reduced mark used at small sizes. The lettered arcs
+       are dropped and the shield is enlarged to fill the viewBox, so the badge
+       stays legible at 46px instead of collapsing into an illegible smear. */
+    function generateWatermarkSVG(tabKey, size = 400, isBrand = false) {
+      const theme = getSealTheme(tabKey);
+      const uid = "wm_" + tabKey + "_" + (++sealUidCounter);
+      const centerGraphic = sealCentralDevice(theme.iconType);
+
+      const shield = `
+        <g>
+          <polygon points="200,105 285,150 285,255 200,300 115,255 115,150"
+                   fill="#ffffff" stroke="#78350f" stroke-width="8" stroke-linejoin="round" />
+          <polygon points="200,118 273,157 273,248 200,287 127,248 127,157"
+                   fill="none" stroke="#78350f" stroke-width="3" stroke-linejoin="round" />
+
+          ${centerGraphic}
+
+          <g>
+            <path d="M 95,215 L 115,215 L 115,205 L 285,205 L 285,215 L 305,215 L 290,235 L 305,255 L 285,255 L 285,245 L 115,245 L 115,255 L 95,255 L 110,235 Z"
+                  fill="#ffffff" stroke="#78350f" stroke-width="5" stroke-linejoin="round" />
+            <text x="200" y="240" font-family="'Cinzel', 'Inter', sans-serif" font-size="28" font-weight="900" fill="#0c2364" text-anchor="middle" letter-spacing="4">
+              ${theme.centerSub}
+            </text>
+          </g>
+        </g>
+      `;
+
+      if (isBrand) {
+        /* Crop to the shield's bounding box (95..305 x 105..300) and pad
+           lightly, so the same geometry reads cleanly as a small icon. */
+        return `
+        <svg viewBox="88 98 224 209" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+          ${shield}
+        </svg>
         `;
       }
 
@@ -2682,22 +3154,7 @@
           </textPath>
         </text>
 
-        <g>
-          <polygon points="200,105 285,150 285,255 200,300 115,255 115,150" 
-                   fill="#ffffff" stroke="#78350f" stroke-width="8" stroke-linejoin="round" />
-          <polygon points="200,118 273,157 273,248 200,287 127,248 127,157" 
-                   fill="none" stroke="#78350f" stroke-width="3" stroke-linejoin="round" />
-          
-          ${centerGraphic}
-
-          <g>
-            <path d="M 95,215 L 115,215 L 115,205 L 285,205 L 285,215 L 305,215 L 290,235 L 305,255 L 285,255 L 285,245 L 115,245 L 115,255 L 95,255 L 110,235 Z" 
-                  fill="#ffffff" stroke="#78350f" stroke-width="5" stroke-linejoin="round" />
-            <text x="200" y="240" font-family="'Cinzel', 'Inter', sans-serif" font-size="28" font-weight="900" fill="#0c2364" text-anchor="middle" letter-spacing="4">
-              ${theme.centerSub}
-            </text>
-          </g>
-        </g>
+        ${shield}
 
         <text font-family="'Cinzel', 'Inter', serif" font-size="21" font-weight="700" fill="#0c2364" letter-spacing="2.8">
           <textPath href="#botArc_${uid}" startOffset="50%" text-anchor="middle">
@@ -2706,6 +3163,22 @@
         </text>
       </svg>
       `;
+    }
+
+    /* Advance the current tab's seal to its next variant, with a short fade so
+       the substitution reads as a morph rather than a flicker. */
+    function cycleSealVariant(evt) {
+      if (evt) { evt.preventDefault(); evt.stopPropagation(); }
+      const list = watermarkThemes[currentTab] || watermarkThemes.about;
+      sealVariantIndex[currentTab] = ((sealVariantIndex[currentTab] || 0) + 1) % list.length;
+      persistSealVariants();
+
+      const targets = document.querySelectorAll('.seal-clickable');
+      targets.forEach(t => t.classList.add('seal-morphing'));
+      window.setTimeout(() => {
+        updateAllWatermarks(currentTab);
+        document.querySelectorAll('.seal-clickable').forEach(t => t.classList.remove('seal-morphing'));
+      }, 240);
     }
 
     function updateAllWatermarks(tabKey) {
@@ -2725,6 +3198,25 @@
       if (aboutSeal) aboutSeal.innerHTML = svgProfile;
       if (contactShowcase) contactShowcase.innerHTML = svgShowcase;
       if (footerSeal) footerSeal.innerHTML = svgMini;
+
+      /* The ambient layer is pointer-events:none by design, so only the
+         foreground seals are made interactive. */
+      [headerBrand, aboutSeal, contactShowcase, footerSeal].forEach(el => {
+        if (!el) return;
+        el.classList.add('seal-clickable');
+        if (!el.dataset.sealBound) {
+          el.dataset.sealBound = '1';
+          el.addEventListener('click', cycleSealVariant);
+          el.setAttribute('role', 'button');
+          el.setAttribute('tabindex', '0');
+          el.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') cycleSealVariant(e);
+          });
+        }
+        const list = watermarkThemes[tabKey] || watermarkThemes.about;
+        const idx = (sealVariantIndex[tabKey] || 0) % list.length;
+        el.setAttribute('title', list[idx].bottomText + '  \u2014  ' + (idx + 1) + '/' + list.length);
+      });
     }
 
     let currentTab = 'about';
@@ -2778,10 +3270,201 @@
         }
       });
 
+      document.querySelectorAll("[data-i18n-ph]").forEach(elem => {
+        const key = elem.getAttribute("data-i18n-ph");
+        if (dict[key]) elem.setAttribute("placeholder", dict[key]);
+      });
+
       renderPublications();
+      renderBlogControls();
 
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise();
+      }
+    }
+
+    /* =========================================================================
+       BLOG: CATEGORY / TAG FILTERING AND COLLAPSIBLE BODIES
+       The articles stay in the markup so the existing data-i18n dictionaries
+       keep working unchanged; this layer only annotates and filters them.
+       ========================================================================= */
+    const BLOG_CATEGORIES = [
+      { key: 'paper',   cls: 'cat-paper',   i18n: 'blog_cat_paper'   },
+      { key: 'expo',    cls: 'cat-expo',    i18n: 'blog_cat_expo'    },
+      { key: 'proof',   cls: 'cat-proof',   i18n: 'blog_cat_proof'   },
+      { key: 'reading', cls: 'cat-reading', i18n: 'blog_cat_reading' },
+      { key: 'demo',    cls: 'cat-demo',    i18n: 'blog_cat_demo'    }
+    ];
+    let blogCatFilter = 'all';
+    let blogTagFilter = 'all';
+    let blogTagsExpanded = false;
+
+    function blogT(key, fallback) {
+      const dict = i18n[currentLang] || i18n.en;
+      return dict[key] || (i18n.en[key] || fallback || key);
+    }
+
+    function blogPostCards() {
+      return Array.from(document.querySelectorAll('#blogContainer .blog-post-card'));
+    }
+
+    /* Inject the category badge and the expand/collapse control once. Every
+       article except the featured one starts collapsed. */
+    function decorateBlogCards() {
+      blogPostCards().forEach((card, i) => {
+        const catKey = card.getAttribute('data-cat') || 'expo';
+        const meta = BLOG_CATEGORIES.find(c => c.key === catKey) || BLOG_CATEGORIES[1];
+
+        let badge = card.querySelector('.blog-cat');
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'blog-cat ' + meta.cls;
+          const row = card.querySelector('.blog-meta-row');
+          if (row) row.insertBefore(badge, row.firstChild);
+        }
+        badge.textContent = blogT(meta.i18n, catKey);
+
+        const body = card.querySelector('.blog-body');
+        if (!body) return;
+
+        let toggle = card.querySelector('.blog-toggle');
+        if (!toggle) {
+          const featured = card.getAttribute('data-featured') === 'true' || i === 0;
+          if (!featured) body.classList.add('is-collapsed');
+
+          toggle = document.createElement('button');
+          toggle.className = 'blog-toggle' + (featured ? ' is-open' : '');
+          toggle.innerHTML = '<i class="fa-solid fa-chevron-down"></i><span class="blog-toggle-label"></span>';
+          toggle.addEventListener('click', () => {
+            const collapsed = body.classList.toggle('is-collapsed');
+            toggle.classList.toggle('is-open', !collapsed);
+            labelToggle(toggle, collapsed);
+            if (!collapsed) {
+              if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([body]);
+              initCanvasForTab('blog');
+            } else {
+              card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
+          body.parentNode.insertBefore(toggle, body.nextSibling);
+        }
+        labelToggle(toggle, body.classList.contains('is-collapsed'));
+      });
+    }
+
+    function labelToggle(toggle, collapsed) {
+      const label = toggle.querySelector('.blog-toggle-label');
+      if (label) label.textContent = collapsed ? blogT('blog_read_more', 'Read the full note')
+                                               : blogT('blog_read_less', 'Collapse');
+    }
+
+    /* Build the chip rows from whatever categories and tags the articles
+       actually declare, so a new article needs no change here. */
+    function renderBlogControls() {
+      const catBox = document.getElementById('blogCatChips');
+      const tagBox = document.getElementById('blogTagChips');
+      if (!catBox || !tagBox) return;
+
+      decorateBlogCards();
+
+      const cards = blogPostCards();
+      const catCounts = {};
+      const tagCounts = {};
+      cards.forEach(c => {
+        const k = c.getAttribute('data-cat') || 'expo';
+        catCounts[k] = (catCounts[k] || 0) + 1;
+        (c.getAttribute('data-tags') || '').split('|').map(t => t.trim()).filter(Boolean)
+          .forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
+      });
+
+      const chip = (label, value, active, count) =>
+        '<button type="button" class="blog-chip' + (active ? ' active' : '') + '" data-value="' +
+        value.replace(/"/g, '&quot;') + '">' + label +
+        (count ? '<span class="chip-count">' + count + '</span>' : '') + '</button>';
+
+      let catHtml = chip(blogT('blog_all', 'All'), 'all', blogCatFilter === 'all', cards.length);
+      BLOG_CATEGORIES.forEach(c => {
+        if (!catCounts[c.key]) return;
+        catHtml += chip(blogT(c.i18n, c.key), c.key, blogCatFilter === c.key, catCounts[c.key]);
+      });
+      catBox.innerHTML = catHtml;
+
+      /* Tags accumulate as notes are added, so the row is capped by default
+         and ordered by frequency; the remainder is revealed on request. */
+      const TAG_CAP = 12;
+      const sortedTags = Object.keys(tagCounts).sort((a, b) => (tagCounts[b] - tagCounts[a]) || a.localeCompare(b));
+      const visibleTags = blogTagsExpanded ? sortedTags : sortedTags.slice(0, TAG_CAP);
+
+      let tagHtml = chip(blogT('blog_all', 'All'), 'all', blogTagFilter === 'all', 0);
+      visibleTags.forEach(t => { tagHtml += chip(t, t, blogTagFilter === t, tagCounts[t]); });
+      if (blogTagFilter !== 'all' && visibleTags.indexOf(blogTagFilter) === -1) {
+        tagHtml += chip(blogTagFilter, blogTagFilter, true, tagCounts[blogTagFilter]);
+      }
+      if (sortedTags.length > TAG_CAP) {
+        tagHtml += '<button type="button" class="blog-chip" data-more="1">' +
+          (blogTagsExpanded ? blogT('blog_tags_less', 'Fewer topics')
+                            : blogT('blog_tags_more', 'More topics') + ' (' + (sortedTags.length - TAG_CAP) + ')') +
+          '</button>';
+      }
+      tagBox.innerHTML = tagHtml;
+
+      catBox.querySelectorAll('.blog-chip').forEach(b => b.addEventListener('click', () => {
+        blogCatFilter = b.getAttribute('data-value');
+        renderBlogControls();
+      }));
+      tagBox.querySelectorAll('.blog-chip').forEach(b => b.addEventListener('click', () => {
+        if (b.hasAttribute('data-more')) {
+          blogTagsExpanded = !blogTagsExpanded;
+        } else {
+          blogTagFilter = b.getAttribute('data-value');
+        }
+        renderBlogControls();
+      }));
+
+      applyBlogFilter();
+    }
+
+    function applyBlogFilter() {
+      const input = document.getElementById('blogSearchInput');
+      const term = input ? input.value.trim().toLowerCase() : '';
+      const cards = blogPostCards();
+      let shown = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-cat') || 'expo';
+        const tags = (card.getAttribute('data-tags') || '');
+        let ok = true;
+        if (blogCatFilter !== 'all' && cat !== blogCatFilter) ok = false;
+        if (ok && blogTagFilter !== 'all' && tags.split('|').indexOf(blogTagFilter) === -1) ok = false;
+        if (ok && term) {
+          const hay = (card.textContent + ' ' + tags).toLowerCase();
+          if (hay.indexOf(term) === -1) ok = false;
+        }
+        card.classList.toggle('is-hidden', !ok);
+        if (ok) shown++;
+      });
+
+      const counter = document.getElementById('blogResultCount');
+      if (counter) {
+        counter.textContent = shown + ' ' + blogT(shown === 1 ? 'blog_count_one' : 'blog_count_many', 'notes shown');
+      }
+
+      let empty = document.getElementById('blogEmptyState');
+      const container = document.getElementById('blogContainer');
+      if (shown === 0) {
+        if (!empty && container) {
+          empty = document.createElement('div');
+          empty.id = 'blogEmptyState';
+          empty.className = 'blog-empty';
+          container.appendChild(empty);
+        }
+        if (empty) {
+          empty.innerHTML = '<i class="fa-solid fa-file-circle-xmark" style="font-size:2rem;margin-bottom:0.8rem;"></i>' +
+                            '<p>' + blogT('blog_no_match', 'No research note matches the current filter or search query.') + '</p>';
+          empty.style.display = '';
+        }
+      } else if (empty) {
+        empty.style.display = 'none';
       }
     }
 
@@ -2993,6 +3676,18 @@
           const bCtx = breakCanvas.getContext('2d');
           bCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
           canvasAnimationControllers['post_besov'] = runBesovBreakCanvas(breakCanvas, bCtx, bWidth, bHeight);
+        }
+
+        const mfCanvas = document.getElementById('canvas-post-multilinear-fractional');
+        if (mfCanvas) {
+          const mRect = mfCanvas.parentElement.getBoundingClientRect();
+          const mWidth = mRect.width > 0 ? mRect.width : (mfCanvas.parentElement.clientWidth || 700);
+          const mHeight = mRect.height > 0 ? mRect.height : 300;
+          mfCanvas.width = mWidth * window.devicePixelRatio;
+          mfCanvas.height = mHeight * window.devicePixelRatio;
+          const mCtx = mfCanvas.getContext('2d');
+          mCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['post_multilinear_fractional'] = runMultilinearFractionalCanvas(mfCanvas, mCtx, mWidth, mHeight);
         }
 
         const postCanvas = document.getElementById('canvas-post-uncertainty');
@@ -3265,6 +3960,402 @@
     
     let currentShallowMode = 'decay';
     let currentShallowN = 192;
+
+    /* =========================================================================
+       INTERACTIVE FIGURE — MULTILINEAR FRACTIONAL OPERATORS
+       Three panels sharing one drag/zoom/pick camera:
+         sparse    : the stopping-time recursion generating the sparse family S
+         kernel    : dyadic annuli localizing the potential kernel
+         exponent  : the weight exponent kappa = p(1 - alpha/n)
+       ========================================================================= */
+    let currentSparseMode = 'sparse';
+    let currentSparseAlpha = 0.35;
+
+    function setSparseSimMode(mode, btn) {
+      currentSparseMode = mode;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('button').forEach(b => {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('setSparseSimMode')) {
+            b.classList.remove('active');
+          }
+        });
+        btn.classList.add('active');
+      }
+    }
+
+    function setSparseSimAlpha(a, btn) {
+      currentSparseAlpha = parseFloat(a);
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('button').forEach(b => {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('setSparseSimAlpha')) {
+            b.classList.remove('active');
+          }
+        });
+        btn.classList.add('active');
+      }
+    }
+
+    function runMultilinearFractionalCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let animId = null;
+      let time = 0;
+
+      /* Camera: drag to pan, wheel to zoom. */
+      let panX = 0, panY = 0, zoom = 1;
+      let dragging = false, lastX = 0, lastY = 0;
+      let hover = null, picked = null;
+      let mouseX = -1, mouseY = -1;
+
+      const ACCENT = '#881337';
+      const BLUE   = '#2563eb';
+      const BROWN  = '#78350f';
+
+      function isDark() {
+        return document.body.getAttribute('data-theme') === 'dark';
+      }
+      function ink(a) {
+        return isDark() ? 'rgba(226,232,240,' + a + ')' : 'rgba(30,41,59,' + a + ')';
+      }
+
+      /* Build the sparse family by the stopping-time rule of Theorem 5: a
+         child is selected when its multilinear average exceeds a times the
+         parent's, and the retained set E_P keeps at least half of |P|. */
+      function buildSparseFamily() {
+        const root = { x: 0, y: 0, s: 1, depth: 0, avg: 1, selected: true };
+        const all = [root];
+        const queue = [root];
+        while (queue.length) {
+          const P = queue.shift();
+          if (P.depth >= 4) continue;
+          const h = P.s / 2;
+          for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 2; j++) {
+              /* A deterministic pseudo-mass, so the picture is stable across
+                 frames and reproducible between reloads. */
+              const seed = Math.sin((P.x + i * h) * 91.7 + (P.y + j * h) * 47.3 + P.depth * 12.9);
+              const mass = 0.5 + 0.5 * Math.abs(seed);
+              const child = {
+                x: P.x + i * h, y: P.y + j * h, s: h,
+                depth: P.depth + 1,
+                parent: P,
+                avg: P.avg * mass * Math.pow(2, currentSparseAlpha),
+                selected: mass > 0.78
+              };
+              all.push(child);
+              if (child.selected) queue.push(child);
+            }
+          }
+        }
+        return all;
+      }
+
+      let family = buildSparseFamily();
+      let familyAlpha = currentSparseAlpha;
+
+      function onDown(e) {
+        dragging = true;
+        const r = canvas.getBoundingClientRect();
+        lastX = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+        lastY = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
+      }
+      function onUp() { dragging = false; }
+      function onMove(e) {
+        const r = canvas.getBoundingClientRect();
+        const cx = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+        const cy = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
+        mouseX = cx; mouseY = cy;
+        if (dragging) {
+          panX += cx - lastX;
+          panY += cy - lastY;
+          lastX = cx; lastY = cy;
+        }
+      }
+      function onWheel(e) {
+        e.preventDefault();
+        const k = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+        zoom = Math.max(0.55, Math.min(4.2, zoom * k));
+      }
+      function onClick() {
+        picked = hover ? hover : null;
+      }
+      function onLeave() { mouseX = -1; mouseY = -1; dragging = false; }
+
+      canvas.addEventListener('mousedown', onDown);
+      window.addEventListener('mouseup', onUp);
+      canvas.addEventListener('mousemove', onMove);
+      canvas.addEventListener('mouseleave', onLeave);
+      canvas.addEventListener('wheel', onWheel, { passive: false });
+      canvas.addEventListener('click', onClick);
+      canvas.addEventListener('touchstart', onDown, { passive: true });
+      canvas.addEventListener('touchmove', onMove, { passive: true });
+      canvas.addEventListener('touchend', onUp);
+
+      function drawSparse() {
+        const pad = 26;
+        const base = Math.min(width - 2 * pad, height - 2 * pad) * 0.92;
+        const L = base * zoom;
+        const ox = (width - L) / 2 + panX;
+        const oy = (height - L) / 2 + panY;
+
+        hover = null;
+
+        /* Ambient grid of the finest dyadic scale. */
+        ctx.strokeStyle = ink(0.08);
+        ctx.lineWidth = 1;
+        for (let k = 0; k <= 16; k++) {
+          const t = ox + (k / 16) * L;
+          ctx.beginPath(); ctx.moveTo(t, oy); ctx.lineTo(t, oy + L); ctx.stroke();
+          const u = oy + (k / 16) * L;
+          ctx.beginPath(); ctx.moveTo(ox, u); ctx.lineTo(ox + L, u); ctx.stroke();
+        }
+
+        const sel = family.filter(c => c.selected);
+        sel.forEach(c => {
+          const x = ox + c.x * L, y = oy + c.y * L, w = c.s * L;
+          if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + w) {
+            if (!hover || c.depth > hover.depth) hover = c;
+          }
+        });
+
+        sel.forEach(c => {
+          const x = ox + c.x * L, y = oy + c.y * L, w = c.s * L;
+          if (x + w < -40 || x > width + 40 || y + w < -40 || y > height + 40) return;
+
+          /* |Q|^{alpha/n} weighting drives the fill intensity. */
+          const meas = Math.pow(c.s * c.s, currentSparseAlpha / 2);
+          const pulse = 0.5 + 0.5 * Math.sin(time * 0.9 - c.depth * 0.8);
+          const a = 0.06 + 0.30 * meas * (0.65 + 0.35 * pulse);
+
+          ctx.fillStyle = 'rgba(136, 19, 55, ' + a.toFixed(3) + ')';
+          ctx.fillRect(x, y, w, w);
+
+          /* The retained set E_P occupying at least half of the cube. */
+          ctx.fillStyle = 'rgba(37, 99, 235, 0.16)';
+          ctx.fillRect(x + w * 0.06, y + w * 0.06, w * 0.62, w * 0.62);
+
+          ctx.strokeStyle = (c === hover || c === picked) ? BLUE : 'rgba(136, 19, 55, 0.55)';
+          ctx.lineWidth = (c === hover || c === picked) ? 2.4 : 1.1;
+          ctx.strokeRect(x, y, w, w);
+
+          if (w > 46) {
+            ctx.fillStyle = ink(0.62);
+            ctx.font = '600 10px ui-monospace, monospace';
+            ctx.fillText('Q' + c.depth, x + 5, y + 13);
+          }
+        });
+
+        legend([
+          ['rgba(136, 19, 55, 0.45)', 'Q ∈ S   fill ∝ |Q|^{α/n}'],
+          ['rgba(37, 99, 235, 0.45)', 'E_P ,  |E_P| ≥ ½|P|']
+        ]);
+
+        const target = picked || hover;
+        if (target) {
+          readout([
+            'depth j = ' + target.depth,
+            'ℓ(Q) = 2^-' + target.depth,
+            '|Q|^{α/n} = ' + Math.pow(target.s * target.s, currentSparseAlpha / 2).toFixed(4),
+            'Π ⟨|f_i|⟩_{Q,1} = ' + target.avg.toFixed(3)
+          ]);
+        }
+      }
+
+      function drawKernel() {
+        const cx = width / 2 + panX;
+        const cy = height / 2 + panY;
+        const R = Math.min(width, height) * 0.42 * zoom;
+
+        /* Dyadic annuli 2^{k-1} < r <= 2^k on which the kernel is constant up
+           to the tracked factor 2^{mn-alpha}. */
+        for (let k = 6; k >= 0; k--) {
+          const r = R * Math.pow(2, -k * 0.42);
+          const decay = Math.pow(2, k * currentSparseAlpha * 1.5);
+          const a = Math.min(0.42, 0.05 + 0.055 * decay);
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(136, 19, 55, ' + a.toFixed(3) + ')';
+          ctx.fill();
+          ctx.strokeStyle = ink(0.22);
+          ctx.setLineDash([3, 3]);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.setLineDash([]);
+          if (r > 26) {
+            ctx.fillStyle = ink(0.55);
+            ctx.font = '600 10px ui-monospace, monospace';
+            ctx.fillText('2^' + (-k), cx + r * 0.70, cy - r * 0.70);
+          }
+        }
+
+        /* The m integration variables y_i orbiting x, with |x - y_i| <= 2^k. */
+        const m = 3;
+        for (let i = 0; i < m; i++) {
+          const ang = time * 0.5 + (i * 2 * Math.PI) / m;
+          const rad = R * (0.30 + 0.16 * Math.sin(time * 0.8 + i * 1.7));
+          const px = cx + Math.cos(ang) * rad;
+          const py = cy + Math.sin(ang) * rad;
+          ctx.strokeStyle = 'rgba(37, 99, 235, 0.5)';
+          ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+          ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2);
+          ctx.fillStyle = BLUE; ctx.fill();
+          ctx.fillStyle = ink(0.7);
+          ctx.font = '600 10px ui-monospace, monospace';
+          ctx.fillText('y' + (i + 1), px + 8, py - 6);
+        }
+
+        ctx.beginPath(); ctx.arc(cx, cy, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = ACCENT; ctx.fill();
+        ctx.fillStyle = ink(0.8);
+        ctx.font = '700 11px ui-monospace, monospace';
+        ctx.fillText('x', cx + 9, cy - 8);
+
+        readout([
+          'kernel  (Σ|x-y_i|)^{-(mn-α)}',
+          'bounded by  2^{mn-α} ℓ(Q)^α / |Q|^m',
+          'α/n = ' + currentSparseAlpha.toFixed(2) + ',   m = 3'
+        ]);
+      }
+
+      function drawExponent() {
+        const padL = 58, padR = 22, padT = 26, padB = 40;
+        const w = width - padL - padR;
+        const h = height - padT - padB;
+
+        ctx.strokeStyle = ink(0.35);
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + h); ctx.lineTo(padL + w, padT + h);
+        ctx.stroke();
+
+        ctx.fillStyle = ink(0.6);
+        ctx.font = '600 10px ui-monospace, monospace';
+        ctx.fillText('κ̃', 16, padT + 10);
+        ctx.fillText('p', padL + w - 8, padT + h + 24);
+
+        const pMin = 1, pMax = 6;
+        const kMax = pMax;
+
+        ctx.strokeStyle = ink(0.25);
+        ctx.lineWidth = 1;
+        for (let pv = pMin; pv <= pMax; pv++) {
+          const X = padL + (pv - pMin) / (pMax - pMin) * w;
+          ctx.beginPath(); ctx.moveTo(X, padT + h); ctx.lineTo(X, padT + h + 4); ctx.stroke();
+          ctx.fillStyle = ink(0.5);
+          ctx.fillText(String(pv), X - 3, padT + h + 16);
+        }
+        for (let kv = 0; kv <= kMax; kv += 2) {
+          const Y = padT + h - (kv / kMax) * h;
+          ctx.beginPath(); ctx.moveTo(padL - 4, Y); ctx.lineTo(padL, Y); ctx.stroke();
+          ctx.fillStyle = ink(0.5);
+          ctx.fillText(String(kv), padL - 20, Y + 3.5);
+        }
+
+        /* kappa = p(1 - alpha/n) across the admissible p-range, drawn for the
+           selected alpha and, faintly, for the two neighbouring settings. */
+        [[0.15, 0.18], [0.35, 0.18], [0.60, 0.18]].forEach(pair => {
+          const a = pair[0];
+          const isCurrent = Math.abs(a - currentSparseAlpha) < 1e-6;
+          ctx.beginPath();
+          for (let i = 0; i <= 120; i++) {
+            const pv = pMin + (pMax - pMin) * (i / 120);
+            const kv = pv * (1 - a);
+            const X = padL + (pv - pMin) / (pMax - pMin) * w;
+            const Y = padT + h - (kv / kMax) * h;
+            if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+          }
+          ctx.strokeStyle = isCurrent ? ACCENT : ink(0.16);
+          ctx.lineWidth = isCurrent ? 2.6 : 1.2;
+          ctx.stroke();
+
+          if (!isCurrent) return;
+          /* A marker sweeping the curve to indicate the live exponent. */
+          const pv = pMin + (pMax - pMin) * (0.5 + 0.5 * Math.sin(time * 0.55));
+          const kv = pv * (1 - a);
+          const X = padL + (pv - pMin) / (pMax - pMin) * w;
+          const Y = padT + h - (kv / kMax) * h;
+          ctx.beginPath(); ctx.arc(X, Y, 5.5, 0, Math.PI * 2);
+          ctx.fillStyle = ACCENT; ctx.fill();
+          ctx.fillStyle = ink(0.8);
+          ctx.font = '700 11px ui-monospace, monospace';
+          ctx.fillText('p = ' + pv.toFixed(2) + ',  κ̃ = ' + kv.toFixed(2), X + 10, Y - 10);
+        });
+
+        /* The diagonal reference kappa = p, attained as alpha -> 0. */
+        ctx.beginPath();
+        ctx.moveTo(padL, padT + h - (pMin / kMax) * h);
+        ctx.lineTo(padL + w, padT + h - (pMax / kMax) * h);
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = 'rgba(37, 99, 235, 0.55)';
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        legend([
+          [ACCENT, 'κ̃ = p(1 - α/n),  α/n = ' + currentSparseAlpha.toFixed(2)],
+          ['rgba(37, 99, 235, 0.7)', 'κ̃ = p   (singular-integral diagonal)']
+        ]);
+      }
+
+      function legend(rows) {
+        const x = 14, y0 = height - 12 - (rows.length - 1) * 16;
+        ctx.font = '600 10.5px ui-monospace, monospace';
+        rows.forEach((r, i) => {
+          const y = y0 + i * 16;
+          ctx.fillStyle = r[0];
+          ctx.fillRect(x, y - 8, 10, 10);
+          ctx.fillStyle = ink(0.68);
+          ctx.fillText(r[1], x + 16, y);
+        });
+      }
+
+      function readout(lines) {
+        const wBox = 232, hBox = 12 + lines.length * 15;
+        const x = width - wBox - 12, y = 12;
+        ctx.fillStyle = isDark() ? 'rgba(15,23,42,0.82)' : 'rgba(255,255,255,0.86)';
+        ctx.strokeStyle = ink(0.18);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.rect(x, y, wBox, hBox);
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = ink(0.75);
+        ctx.font = '600 10.5px ui-monospace, monospace';
+        lines.forEach((L, i) => ctx.fillText(L, x + 10, y + 18 + i * 15));
+      }
+
+      function draw() {
+        if (!isRunning) return;
+        time += 0.016;
+
+        if (familyAlpha !== currentSparseAlpha) {
+          family = buildSparseFamily();
+          familyAlpha = currentSparseAlpha;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        canvas.style.cursor = dragging ? 'grabbing' : (hover ? 'pointer' : 'grab');
+
+        if (currentSparseMode === 'kernel') drawKernel();
+        else if (currentSparseMode === 'exponent') drawExponent();
+        else drawSparse();
+
+        animId = requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop() {
+          isRunning = false;
+          if (animId) cancelAnimationFrame(animId);
+          canvas.removeEventListener('mousedown', onDown);
+          window.removeEventListener('mouseup', onUp);
+          canvas.removeEventListener('mousemove', onMove);
+          canvas.removeEventListener('mouseleave', onLeave);
+          canvas.removeEventListener('wheel', onWheel);
+          canvas.removeEventListener('click', onClick);
+        }
+      };
+    }
 
     function setShallowSimMode(mode, btn) {
       currentShallowMode = mode;
@@ -4145,7 +5236,11 @@
         });
       }
 
+      const blogSearch = document.getElementById("blogSearchInput");
+      if (blogSearch) blogSearch.addEventListener("input", applyBlogFilter);
+
       renderPublications();
+      renderBlogControls();
       updateAllWatermarks('about');
       initCanvasForTab('about');
       setLanguage('en');
