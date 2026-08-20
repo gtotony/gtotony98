@@ -1794,8 +1794,141 @@
 
       <div class="blog-container" id="blogContainer">
 
-        <!-- BLOG POST 4 (NEWEST FEATURED): Quantitative Weight Dependences of Vector-Valued Multilinear Fractional Operators -->
+        <!-- BLOG POST 5 (NEWEST FEATURED): WHiAR-Net, Wavelet-Hilbert Feature Engineering -->
         <article class="blog-post-card" data-cat="paper" data-featured="true"
+                 data-tags="Wavelet-Hilbert Analysis|Multiresolution Analysis|Bedrosian Identity|Interpretable Machine Learning|Time Series Forecasting|Daubechies Wavelets">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Wavelet-Hilbert Analysis</span>
+            <span class="blog-tag">Bedrosian Identity</span>
+            <span class="blog-tag">Interpretable Machine Learning</span>
+            <span class="blog-tag">Time Series Forecasting</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 15 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blog5_title">
+            WHiAR-Net: Structural Embedding of Operator Error Bounds in a Multi-Scale Forecasting Architecture
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blog5_p1">
+              Forecasting non-stationary time series is ordinarily approached by increasing model capacity. Transformer-based architectures approximate global dependencies through attention, and they attain competitive empirical accuracy, but the mapping they realize carries no functional-analytic reading: the intermediate representations are not constrained to any identifiable manifold, and no error decomposition attaches to them. In work published in <em>Scientific Reports</em> (2026, 16, 23751), I propose the opposite arrangement. Rather than treating the wavelet transform as a static preprocessing step feeding a learnable black box, WHiAR-Net embeds multiresolution analysis and Hilbert spectral analysis <em>inside</em> the architecture, so that every component of the prediction error is bounded by a quantity available in closed form. The design is a study in mathematical parsimony rather than massive parameterization: the transform is fixed, the operator norms are tracked, and only a task-specific fusion node is learned.
+            </p>
+
+            <p data-i18n="blog5_p2">
+              The signal is segregated into two deterministically bounded channels. A regularity-dominated trend is carried by the scaling coefficients $a_J \in V_J$ and predicted by an autoregressive model on those coefficients; a transient volatility component is carried by the detail coefficients $d_j \in W_j$ and processed through the Hilbert transform. The first channel is governed by a classical Jackson-type estimate on the Hölder scale.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_whiar_daub_title">Theorem 2 (Approximation Rate of the Daubechies Basis)</span>
+              </div>
+              <p data-i18n="thm_whiar_daub_body">
+                Let the underlying trend $f$ belong to the Hölder space $C^\alpha(\mathbb{R})$ with $\alpha \le N$, and let the wavelet $\psi$ possess $N$ vanishing moments. Then the $J$-th level projection $P_{V_J}$ satisfies
+                $$\|f - P_{V_J} f\|_{L^2} \le C_\psi\, 2^{-J\alpha} \|f\|_{C^\alpha}.$$
+                The estimate follows by expanding $f - P_{V_J}f$ in the detail spaces, applying Parseval's identity, and controlling a single coefficient through the vanishing-moment property: Taylor expansion on the support $I_{j,k}$ of $\psi_{j,k}$ annihilates the polynomial part, leaving $|d_{j,k}| \le C_1 2^{-j(\alpha + 1/2)}$. Summing the $\asymp 2^j$ non-zero coefficients at scale $j$ gives $\sum_k |d_{j,k}|^2 \asymp C_1^2 2^{-2j\alpha}$, and the geometric series over $j \ge J$ contributes the factor $(1 - 2^{-2\alpha})^{-1}$.
+              </p>
+            </div>
+
+            <p data-i18n="blog5_p3">
+              The decomposition depth is not a tuning choice but a constrained minimization. Writing $H(c_J)$ for the Shannon entropy of the normalized coefficients, the admissible set is delimited by the growth of the equivalent filter support, $L_j = 1 + (L-1)(2^j - 1)$, and the requirement $L_J \le N$.
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-layer-group"></i>
+                <span data-i18n="thm_whiar_level_title">Lemma 1 (Decomposition Level Selection)</span>
+              </div>
+              <p data-i18n="thm_whiar_level_body">
+                For a discrete signal $x \in \mathbb{R}^N$ processed by a wavelet filter of length $L$, the decomposition level is selected by
+                $$J^\ast = \arg\min_J \{ H(c_J) + \lambda J \}, \qquad \text{subject to } J < \log_2\!\left(\frac{N}{L-1} + 1\right).$$
+                Since $0 \le H(c_J) \le \log N$ on the compact simplex and the admissible set $\mathcal{D} = \{1,\dots,J_{\max}\}$ is finite and non-empty, a global minimizer exists. The constraint is not cosmetic: over-decomposition inflates boundary artifacts and spectral leakage, while under-decomposition fails to sparsify the signal.
+              </p>
+            </div>
+
+            <p data-i18n="blog5_p4">
+              The volatility channel rests on a spectral separation property. The Hilbert-Huang transform is widely used for instantaneous frequency analysis, but its empirical mode decomposition offers no analytic control over leakage between modes. The Bedrosian condition supplies exactly that control, and it is verified here rather than assumed.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-wave-square"></i>
+                <span data-i18n="thm_whiar_bedrosian_title">Theorem 3 (Energy Conservation and the Bedrosian Identity)</span>
+              </div>
+              <p data-i18n="thm_whiar_bedrosian_body">
+                Let $x \in L^2(\mathbb{R})$ be real-valued and let $z = x + i\mathscr{H}x = A e^{i\phi}$ be the associated analytic signal. Then $\|A\|_{L^2}^2 = 2\|x\|_{L^2}^2$. The Hilbert transform is the Fourier multiplier $m(\omega) = -i\,\mathrm{sgn}(\omega)$, whose modulus is unity for $\omega \neq 0$, so $\mathscr{H}$ acts as a linear isometry on $L^2$ and the conservation law follows from Plancherel. If moreover $x(t) = a(t)\cos\phi(t)$ with $\operatorname{supp}(\hat{a}) \subseteq [-B,B]$ and $\operatorname{supp}(\widehat{\cos\phi}) \subseteq \mathbb{R}\setminus[-B,B]$, the disjointness of the supports lets the signum factor pass through the convolution unchanged, yielding $\mathscr{H}\{a(t)\cos\phi(t)\} = a(t)\sin\phi(t)$ and hence the exact envelope $A(t) = |a(t)|$.
+              </p>
+            </div>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <button class="active" onclick="setWhiarMode('decomp', this)" data-i18n="ctrl_wh_decomp">Dual-Channel Decomposition $V_J \oplus W_j$</button>
+                <button onclick="setWhiarMode('level', this)" data-i18n="ctrl_wh_level">Level Selection $H(c_J) + \lambda J$</button>
+                <button onclick="setWhiarMode('bedrosian', this)" data-i18n="ctrl_wh_bedrosian">Bedrosian Separation &amp; Envelope</button>
+                <button onclick="setWhiarMode('budget', this)" data-i18n="ctrl_wh_budget">Error Budget (Proposition 4)</button>
+              </div>
+              <div class="interactive-ctrl-bar">
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);" data-i18n="ctrl_wh_alpha">Hölder $\alpha$:</span>
+                <button onclick="setWhiarAlpha(0.5, this)">0.5</button>
+                <button class="active" onclick="setWhiarAlpha(1.0, this)">1.0</button>
+                <button onclick="setWhiarAlpha(2.0, this)">2.0</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.6rem;" data-i18n="ctrl_wh_level_n">Level $J$:</span>
+                <button onclick="setWhiarLevel(3, this)">3</button>
+                <button class="active" onclick="setWhiarLevel(5, this)">5</button>
+                <button onclick="setWhiarLevel(7, this)">7</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.6rem;" data-i18n="ctrl_wh_band">Bandwidth $B$:</span>
+                <button onclick="setWhiarBand(0.35, this)">narrow</button>
+                <button class="active" onclick="setWhiarBand(0.60, this)">separated</button>
+                <button onclick="setWhiarBand(0.90, this)">overlapping</button>
+              </div>
+              <div class="blog-canvas-wrapper" style="height: 320px;">
+                <canvas id="canvas-post-whiar" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blog5_canvas_caption">
+                <i class="fa-solid fa-hand-pointer"></i> Interactive figure — <strong>drag</strong> to pan the time axis, <strong>scroll</strong> to zoom, <strong>click</strong> a scale band, a decomposition level or a budget term to read its value. The bandwidth control moves the pair $(\hat{a}, \widehat{\cos\phi})$ between disjoint and overlapping spectral supports, so the Bedrosian residual $\|r_{\text{Bedrosian}}\|_{L^2}$ can be watched inflating the envelope error as the separation hypothesis is relaxed.
+              </div>
+            </div>
+
+            <p data-i18n="blog5_p5">
+              These two channels combine into a single reliability statement. The estimate is deterministic rather than distributional: it does not assert that the error is small with high probability, but bounds it by three named quantities, each traceable to one structural assumption.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span data-i18n="thm_whiar_budget_title">Proposition 4 (Error Bound Decomposition)</span>
+              </div>
+              <p data-i18n="thm_whiar_budget_body">
+                Assume the input consists of a regularity-dominated trend and a volatility component. The total prediction error admits the bound
+                $$\mathcal{E}_{\text{total}} \;\le\; \underbrace{C_1 2^{-J\alpha}}_{\text{wavelet approximation}} \;+\; \underbrace{C_2 \|r_{\text{Bedrosian}}\|_{L^2}}_{\text{spectral leakage}} \;+\; \underbrace{C_3 \frac{\sigma_\epsilon^2}{1 - \|\Phi\|_1}}_{\text{AR stability}},$$
+                where $r_{\text{Bedrosian}}$ measures the violation of the spectral separation condition and $\|\Phi\|_1$ is the $\ell^1$ norm of the autoregressive coefficients, constrained by $\sum_{i=1}^{p} |\phi_i| < 1$ so that the characteristic roots lie inside the unit circle. Each term is attached to one hypothesis, so a degradation in accuracy can be assigned to a named structural cause.
+              </p>
+            </div>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-chart-column"></i>
+                <span data-i18n="key_insight_whiar_title">Empirical Behaviour and the Ablation Hierarchy</span>
+              </div>
+              <p data-i18n="key_insight_whiar_desc">
+                On the ETTh1 electricity transformer benchmark the architecture attains RMSE $0.1513$ at horizon $h=24$ and $0.3613$ at $h=96$, on par with the PatchTST baseline ($0.3778$ at $h=96$) and ahead of Informer, LSTM and ARIMA across the horizons $h \in \{24,48,96,192\}$, while retaining $O(N)$ computational complexity against the $O(L^2)$ or $O(L\log L)$ scaling of attention-based models. A detailed ablation reproduces the hierarchy predicted by Proposition 4: removing the autoregressive modelling of the scaling coefficients degrades RMSE by $+33.29\%$, disabling the discrete wavelet decomposition by $+20.43\%$, and omitting the Hilbert channel by $+12.54\%$. The ordering matches the energetic weight of the corresponding term in the bound, which is the behaviour one would want from an error decomposition that is meant to be read rather than merely reported. Cross-domain runs on Beijing PM2.5 and Jena Climate — one highly non-stationary, one strongly seasonal — retain competitive accuracy without dataset-specific reparameterization.
+              </p>
+            </div>
+
+            <p data-i18n="blog5_p6">
+              The scope of the guarantees should be stated plainly. What is established are error <em>bounds</em>, not exact recovery; the spectral separation condition is rarely satisfied in real-world series, and when the spectra of the trend and volatility components overlap, the residual $\|r_{\text{Bedrosian}}\|_{L^2}$ inflates the approximation error in a manner the bound records but does not remove. Relaxing that constraint through adaptive basis pursuit, and extending the scalar construction to high-dimensional vector-valued series through Clifford analysis, are the directions this leaves open. The complete proofs, the architecture specification and the experimental configuration are published open-access in <em>Scientific Reports</em>:
+              <a href="https://doi.org/10.1038/s41598-026-54363-w" target="_blank" class="pub-btn pub-btn-doi" style="margin-left: 0.5rem;" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-lines"></i> DOI: 10.1038/s41598-026-54363-w
+              </a>
+            </p>
+          </div>
+        </article>
+
+
+        <!-- BLOG POST 4: Quantitative Weight Dependences of Vector-Valued Multilinear Fractional Operators -->
+        <article class="blog-post-card" data-cat="paper"
                  data-tags="Multilinear Fractional Integrals|Muckenhoupt Weights|Sparse Domination|Off-Diagonal Extrapolation|Vector-Valued Inequalities">
           <div class="blog-meta-row">
             <span class="blog-tag">Multilinear Fractional Integrals</span>
@@ -2348,11 +2481,13 @@
         authors: ["Wang K C"],
         journal: "Scientific Reports",
         year: 2026,
+        volume: "16",
+        pages: "23751",
         doi: "10.1038/s41598-026-54363-w",
         url: "https://doi.org/10.1038/s41598-026-54363-w",
         status: "published",
         topic: "wavelet",
-        abstract: "Introduces WHiAR-Net, an interpretable multiscale deep learning network integrating wavelet transforms and Hilbert-Huang spectral feature decomposition for robust predictive modeling."
+        abstract: "Introduces WHiAR-Net, a forecasting framework that embeds multiresolution analysis and Hilbert spectral analysis inside the architecture rather than using them as preprocessing. A Jackson-type estimate on the Hoelder scale bounds the trend channel by C 2^{-J alpha}; the Bedrosian spectral separation condition is verified rather than assumed, giving exact envelope recovery on the volatility channel; and a deterministic error decomposition attributes the total prediction error to wavelet approximation, spectral leakage and AR stability. Accuracy on ETTh1, PM2.5 and Jena Climate is on par with Transformer baselines at O(N) complexity."
       },
       {
         id: "p5",
@@ -2498,6 +2633,31 @@
         hero_desc_blog: "Interactive visualization of Heisenberg-Gabor-Wavelet phase-space localization and the geometric obstruction of the Balian-Low theorem.",
         canvas_hint_blog: "Move cursor to deform uncertainty ellipse",
         sec_blog_title: "Recent Research Notes & Mathematical Expositions",
+        blog5_title: "WHiAR-Net: Structural Embedding of Operator Error Bounds in a Multi-Scale Forecasting Architecture",
+        blog5_p1: "Forecasting non-stationary time series is ordinarily approached by increasing model capacity. Transformer-based architectures approximate global dependencies through attention, and they attain competitive empirical accuracy, but the mapping they realize carries no functional-analytic reading: the intermediate representations are not constrained to any identifiable manifold, and no error decomposition attaches to them. In work published in <em>Scientific Reports</em> (2026, 16, 23751), I propose the opposite arrangement. Rather than treating the wavelet transform as a static preprocessing step feeding a learnable black box, WHiAR-Net embeds multiresolution analysis and Hilbert spectral analysis <em>inside</em> the architecture, so that every component of the prediction error is bounded by a quantity available in closed form. The design is a study in mathematical parsimony rather than massive parameterization: the transform is fixed, the operator norms are tracked, and only a task-specific fusion node is learned.",
+        blog5_p2: "The signal is segregated into two deterministically bounded channels. A regularity-dominated trend is carried by the scaling coefficients $a_J \\in V_J$ and predicted by an autoregressive model on those coefficients; a transient volatility component is carried by the detail coefficients $d_j \\in W_j$ and processed through the Hilbert transform. The first channel is governed by a classical Jackson-type estimate on the Hölder scale.",
+        thm_whiar_daub_title: "Theorem 2 (Approximation Rate of the Daubechies Basis)",
+        thm_whiar_daub_body: "Let the underlying trend $f$ belong to the Hölder space $C^\\alpha(\\mathbb{R})$ with $\\alpha \\le N$, and let the wavelet $\\psi$ possess $N$ vanishing moments. Then the $J$-th level projection $P_{V_J}$ satisfies<br>$$\\|f - P_{V_J} f\\|_{L^2} \\le C_\\psi\\, 2^{-J\\alpha} \\|f\\|_{C^\\alpha}.$$<br>The estimate follows by expanding $f - P_{V_J}f$ in the detail spaces, applying Parseval's identity, and controlling a single coefficient through the vanishing-moment property: Taylor expansion on the support $I_{j,k}$ of $\\psi_{j,k}$ annihilates the polynomial part, leaving $|d_{j,k}| \\le C_1 2^{-j(\\alpha + 1/2)}$. Summing the $\\asymp 2^j$ non-zero coefficients at scale $j$ gives $\\sum_k |d_{j,k}|^2 \\asymp C_1^2 2^{-2j\\alpha}$, and the geometric series over $j \\ge J$ contributes the factor $(1 - 2^{-2\\alpha})^{-1}$.",
+        blog5_p3: "The decomposition depth is not a tuning choice but a constrained minimization. Writing $H(c_J)$ for the Shannon entropy of the normalized coefficients, the admissible set is delimited by the growth of the equivalent filter support, $L_j = 1 + (L-1)(2^j - 1)$, and the requirement $L_J \\le N$.",
+        thm_whiar_level_title: "Lemma 1 (Decomposition Level Selection)",
+        thm_whiar_level_body: "For a discrete signal $x \\in \\mathbb{R}^N$ processed by a wavelet filter of length $L$, the decomposition level is selected by<br>$$J^\\ast = \\arg\\min_J \\{ H(c_J) + \\lambda J \\}, \\qquad \\text{subject to } J < \\log_2\\!\\left(\\frac{N}{L-1} + 1\\right).$$<br>Since $0 \\le H(c_J) \\le \\log N$ on the compact simplex and the admissible set $\\mathcal{D} = \\{1,\\dots,J_{\\max}\\}$ is finite and non-empty, a global minimizer exists. The constraint is not cosmetic: over-decomposition inflates boundary artifacts and spectral leakage, while under-decomposition fails to sparsify the signal.",
+        blog5_p4: "The volatility channel rests on a spectral separation property. The Hilbert-Huang transform is widely used for instantaneous frequency analysis, but its empirical mode decomposition offers no analytic control over leakage between modes. The Bedrosian condition supplies exactly that control, and it is verified here rather than assumed.",
+        thm_whiar_bedrosian_title: "Theorem 3 (Energy Conservation and the Bedrosian Identity)",
+        thm_whiar_bedrosian_body: "Let $x \\in L^2(\\mathbb{R})$ be real-valued and let $z = x + i\\mathscr{H}x = A e^{i\\phi}$ be the associated analytic signal. Then $\\|A\\|_{L^2}^2 = 2\\|x\\|_{L^2}^2$. The Hilbert transform is the Fourier multiplier $m(\\omega) = -i\\,\\mathrm{sgn}(\\omega)$, whose modulus is unity for $\\omega \\neq 0$, so $\\mathscr{H}$ acts as a linear isometry on $L^2$ and the conservation law follows from Plancherel. If moreover $x(t) = a(t)\\cos\\phi(t)$ with $\\operatorname{supp}(\\hat{a}) \\subseteq [-B,B]$ and $\\operatorname{supp}(\\widehat{\\cos\\phi}) \\subseteq \\mathbb{R}\\setminus[-B,B]$, the disjointness of the supports lets the signum factor pass through the convolution unchanged, yielding $\\mathscr{H}\\{a(t)\\cos\\phi(t)\\} = a(t)\\sin\\phi(t)$ and hence the exact envelope $A(t) = |a(t)|$.",
+        ctrl_wh_decomp: "Dual-Channel Decomposition $V_J \\oplus W_j$",
+        ctrl_wh_level: "Level Selection $H(c_J) + \\lambda J$",
+        ctrl_wh_bedrosian: "Bedrosian Separation &amp; Envelope",
+        ctrl_wh_budget: "Error Budget (Proposition 4)",
+        ctrl_wh_alpha: "Hölder $\\alpha$:",
+        ctrl_wh_level_n: "Level $J$:",
+        ctrl_wh_band: "Bandwidth $B$:",
+        blog5_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> Interactive figure — <strong>drag</strong> to pan the time axis, <strong>scroll</strong> to zoom, <strong>click</strong> a scale band, a decomposition level or a budget term to read its value. The bandwidth control moves the pair $(\\hat{a}, \\widehat{\\cos\\phi})$ between disjoint and overlapping spectral supports, so the Bedrosian residual $\\|r_{\\text{Bedrosian}}\\|_{L^2}$ can be watched inflating the envelope error as the separation hypothesis is relaxed.",
+        blog5_p5: "These two channels combine into a single reliability statement. The estimate is deterministic rather than distributional: it does not assert that the error is small with high probability, but bounds it by three named quantities, each traceable to one structural assumption.",
+        thm_whiar_budget_title: "Proposition 4 (Error Bound Decomposition)",
+        thm_whiar_budget_body: "Assume the input consists of a regularity-dominated trend and a volatility component. The total prediction error admits the bound<br>$$\\mathcal{E}_{\\text{total}} \\;\\le\\; \\underbrace{C_1 2^{-J\\alpha}}_{\\text{wavelet approximation}} \\;+\\; \\underbrace{C_2 \\|r_{\\text{Bedrosian}}\\|_{L^2}}_{\\text{spectral leakage}} \\;+\\; \\underbrace{C_3 \\frac{\\sigma_\\epsilon^2}{1 - \\|\\Phi\\|_1}}_{\\text{AR stability}},$$<br>where $r_{\\text{Bedrosian}}$ measures the violation of the spectral separation condition and $\\|\\Phi\\|_1$ is the $\\ell^1$ norm of the autoregressive coefficients, constrained by $\\sum_{i=1}^{p} |\\phi_i| < 1$ so that the characteristic roots lie inside the unit circle. Each term is attached to one hypothesis, so a degradation in accuracy can be assigned to a named structural cause.",
+        key_insight_whiar_title: "Empirical Behaviour and the Ablation Hierarchy",
+        key_insight_whiar_desc: "On the ETTh1 electricity transformer benchmark the architecture attains RMSE $0.1513$ at horizon $h=24$ and $0.3613$ at $h=96$, on par with the PatchTST baseline ($0.3778$ at $h=96$) and ahead of Informer, LSTM and ARIMA across the horizons $h \\in \\{24,48,96,192\\}$, while retaining $O(N)$ computational complexity against the $O(L^2)$ or $O(L\\log L)$ scaling of attention-based models. A detailed ablation reproduces the hierarchy predicted by Proposition 4: removing the autoregressive modelling of the scaling coefficients degrades RMSE by $+33.29\\%$, disabling the discrete wavelet decomposition by $+20.43\\%$, and omitting the Hilbert channel by $+12.54\\%$. The ordering matches the energetic weight of the corresponding term in the bound, which is the behaviour one would want from an error decomposition that is meant to be read rather than merely reported. Cross-domain runs on Beijing PM2.5 and Jena Climate — one highly non-stationary, one strongly seasonal — retain competitive accuracy without dataset-specific reparameterization.",
+        blog5_p6: "The scope of the guarantees should be stated plainly. What is established are error <em>bounds</em>, not exact recovery; the spectral separation condition is rarely satisfied in real-world series, and when the spectra of the trend and volatility components overlap, the residual $\\|r_{\\text{Bedrosian}}\\|_{L^2}$ inflates the approximation error in a manner the bound records but does not remove. Relaxing that constraint through adaptive basis pursuit, and extending the scalar construction to high-dimensional vector-valued series through Clifford analysis, are the directions this leaves open. The complete proofs, the architecture specification and the experimental configuration are published open-access in <em>Scientific Reports</em>: <a href='https://doi.org/10.1038/s41598-026-54363-w' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.1038/s41598-026-54363-w</a>",
         blog_filter_cat: "Category",
         blog_filter_topic: "Topic",
         blog_search_ph: "Search titles, theorems, keywords…",
@@ -2665,6 +2825,31 @@
         hero_desc_blog: "視覺化呈現 Heisenberg-Gabor-Wavelet 相空間時頻局域化界限與 Balian-Low 幾何阻礙之數學本質。",
         canvas_hint_blog: "移動游標可動態旋轉並形變測不準度橢圓",
         sec_blog_title: "最新數學研討札記與理論專題",
+        blog5_title: "《WHiAR-Net：將算子誤差界結構性嵌入多尺度預測架構——小波-希爾伯特特徵工程》",
+        blog5_p1: "面對非平穩時間序列的預測，慣常的做法是加大模型容量。基於 Transformer 的架構透過注意力機制逼近全域依賴，其實證準確度確實可觀，但它所實現的映射不具備泛函分析上的可讀性：中間表徵未被約束於任何可辨識的流形之上，亦無誤差分解與之對應。在這篇發表於 <em>Scientific Reports</em>（2026, 16, 23751）的工作中，我採取相反的安排。小波變換不再是餵給可學習黑箱的靜態前處理步驟，WHiAR-Net 將多解析度分析與希爾伯特譜分析嵌入架構<em>內部</em>，使預測誤差的每一個分量都由閉形式可得的量所界定。此一設計體現的是數學簡約性，而非大規模參數化：變換是固定的，算子範數是被追蹤的，僅有一個任務相關的融合節點需要學習。",
+        blog5_p2: "訊號被分離為兩條確定性受界的通道。由規則性主導的趨勢由尺度係數 $a_J \\in V_J$ 承載，並以自迴歸模型於該係數上進行預測；瞬態波動分量則由細節係數 $d_j \\in W_j$ 承載，經希爾伯特變換處理。第一條通道由 Hölder 尺度上的古典 Jackson 型估計所支配。",
+        thm_whiar_daub_title: "定理 2（Daubechies 基底之逼近階）",
+        thm_whiar_daub_body: "設趨勢函數 $f$ 屬於 Hölder 空間 $C^\\alpha(\\mathbb{R})$ 且 $\\alpha \\le N$，小波 $\\psi$ 具有 $N$ 個消失矩。則第 $J$ 層投影 $P_{V_J}$ 滿足<br>$$\\|f - P_{V_J} f\\|_{L^2} \\le C_\\psi\\, 2^{-J\\alpha} \\|f\\|_{C^\\alpha}.$$<br>此估計的推導方式為：將 $f - P_{V_J}f$ 展開於細節空間，援用 Parseval 恆等式，再透過消失矩性質控制單一係數——在 $\\psi_{j,k}$ 的支撐 $I_{j,k}$ 上作 Taylor 展開可消去多項式部分，留下 $|d_{j,k}| \\le C_1 2^{-j(\\alpha + 1/2)}$。於尺度 $j$ 上對 $\\asymp 2^j$ 個非零係數求和得 $\\sum_k |d_{j,k}|^2 \\asymp C_1^2 2^{-2j\\alpha}$，而對 $j \\ge J$ 的等比級數則貢獻因子 $(1 - 2^{-2\\alpha})^{-1}$。",
+        blog5_p3: "分解深度並非調參的選擇，而是一個受約束的極小化問題。以 $H(c_J)$ 記正規化係數的 Shannon 熵，容許集合由等效濾波器支撐的增長 $L_j = 1 + (L-1)(2^j - 1)$ 與條件 $L_J \\le N$ 所界定。",
+        thm_whiar_level_title: "引理 1（分解層數之選取）",
+        thm_whiar_level_body: "對離散訊號 $x \\in \\mathbb{R}^N$，經長度為 $L$ 的小波濾波器處理，分解層數由下式選取：<br>$$J^\\ast = \\arg\\min_J \\{ H(c_J) + \\lambda J \\}, \\qquad \\text{subject to } J < \\log_2\\!\\left(\\frac{N}{L-1} + 1\\right).$$<br>由於在緊緻單體上 $0 \\le H(c_J) \\le \\log N$，且容許集合 $\\mathcal{D} = \\{1,\\dots,J_{\\max}\\}$ 為有限非空，故全域極小值存在。此約束並非裝飾性的：過度分解會放大邊界效應與譜洩漏，分解不足則無法有效稀疏化訊號。",
+        blog5_p4: "波動通道則建立在一項譜分離性質之上。希爾伯特-黃變換廣泛用於瞬時頻率分析，然其經驗模態分解對於模態間的洩漏並未提供解析層次的控制。Bedrosian 條件恰好提供了這項控制，而在此處它是被驗證的，而非被假定的。",
+        thm_whiar_bedrosian_title: "定理 3（能量守恆與 Bedrosian 恆等式）",
+        thm_whiar_bedrosian_body: "設 $x \\in L^2(\\mathbb{R})$ 為實值函數，$z = x + i\\mathscr{H}x = A e^{i\\phi}$ 為其對應之解析訊號。則 $\\|A\\|_{L^2}^2 = 2\\|x\\|_{L^2}^2$。希爾伯特變換為 Fourier 乘子 $m(\\omega) = -i\\,\\mathrm{sgn}(\\omega)$，其模在 $\\omega \\neq 0$ 時為 1，故 $\\mathscr{H}$ 在 $L^2$ 上作為線性等距映射，守恆律由 Plancherel 定理得出。若進一步有 $x(t) = a(t)\\cos\\phi(t)$，且 $\\operatorname{supp}(\\hat{a}) \\subseteq [-B,B]$ 與 $\\operatorname{supp}(\\widehat{\\cos\\phi}) \\subseteq \\mathbb{R}\\setminus[-B,B]$，則支撐集的不交性使得符號函數得以原樣通過卷積積分，從而 $\\mathscr{H}\\{a(t)\\cos\\phi(t)\\} = a(t)\\sin\\phi(t)$，並給出精確包絡 $A(t) = |a(t)|$。",
+        ctrl_wh_decomp: "雙通道分解 $V_J \\oplus W_j$",
+        ctrl_wh_level: "層數選取 $H(c_J) + \\lambda J$",
+        ctrl_wh_bedrosian: "Bedrosian 譜分離與包絡",
+        ctrl_wh_budget: "誤差預算（命題 4）",
+        ctrl_wh_alpha: "Hölder 指標 $\\alpha$：",
+        ctrl_wh_level_n: "分解層 $J$：",
+        ctrl_wh_band: "帶寬 $B$：",
+        blog5_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互動圖示——<strong>拖曳</strong>可平移時間軸，<strong>滾輪</strong>可縮放，<strong>點擊</strong>尺度帶、分解層或預算項可讀取其數值。帶寬控制項會將 $(\\hat{a}, \\widehat{\\cos\\phi})$ 這一組譜支撐在不交與重疊之間移動，因此可直接觀察 Bedrosian 殘差 $\\|r_{\\text{Bedrosian}}\\|_{L^2}$ 如何隨分離假設的鬆弛而推高包絡誤差。",
+        blog5_p5: "這兩條通道最終匯聚為單一的可靠性陳述。該估計是確定性的而非分布性的：它並不宣稱誤差以高機率為小，而是以三個具名的量將其界定，每一項皆可追溯至一項結構性假設。",
+        thm_whiar_budget_title: "命題 4（誤差界之分解）",
+        thm_whiar_budget_body: "設輸入由規則性主導的趨勢與波動分量所構成。則總預測誤差容許如下的界：<br>$$\\mathcal{E}_{\\text{total}} \\;\\le\\; \\underbrace{C_1 2^{-J\\alpha}}_{\\text{小波逼近}} \\;+\\; \\underbrace{C_2 \\|r_{\\text{Bedrosian}}\\|_{L^2}}_{\\text{譜洩漏}} \\;+\\; \\underbrace{C_3 \\frac{\\sigma_\\epsilon^2}{1 - \\|\\Phi\\|_1}}_{\\text{AR 穩定性}},$$<br>其中 $r_{\\text{Bedrosian}}$ 量化譜分離條件的違反程度，$\\|\\Phi\\|_1$ 為自迴歸係數的 $\\ell^1$ 範數，受條件 $\\sum_{i=1}^{p} |\\phi_i| < 1$ 約束以確保特徵根落在單位圓內。每一項皆繫於一項假設，因此準確度的退化可以被歸因至具名的結構性成因。",
+        key_insight_whiar_title: "實證表現與消融層級",
+        key_insight_whiar_desc: "在 ETTh1 電力變壓器基準上，該架構於預測步長 $h=24$ 達到 RMSE $0.1513$，於 $h=96$ 達到 $0.3613$，與 PatchTST 基準（$h=96$ 時為 $0.3778$）相當，並在 $h \\in \\{24,48,96,192\\}$ 各步長上領先 Informer、LSTM 與 ARIMA；同時維持 $O(N)$ 的計算複雜度，相對於注意力模型的 $O(L^2)$ 或 $O(L\\log L)$ 尺度。一項詳盡的消融實驗重現了命題 4 所預測的層級關係：移除尺度係數的自迴歸建模使 RMSE 退化 $+33.29\\%$，停用離散小波分解退化 $+20.43\\%$，略去希爾伯特通道退化 $+12.54\\%$。此一排序與界中對應項的能量權重相符，這正是一個意在被閱讀而非僅被回報的誤差分解所應具備的行為。在北京 PM2.5 與 Jena 氣候兩組跨領域數據上——前者高度非平穩，後者強週期性——皆維持具競爭力的準確度，且無需針對資料集重新參數化。",
+        blog5_p6: "保證的適用範圍應當明白陳述。此處建立的是誤差<em>界</em>，而非精確重建；譜分離條件在真實世界的序列中鮮少成立，當趨勢與波動分量的頻譜重疊時，殘差 $\\|r_{\\text{Bedrosian}}\\|_{L^2}$ 會推高逼近誤差，此一現象為該界所記錄，但並未被消除。以自適應基追蹤鬆弛該約束，以及透過 Clifford 分析將此純量構造推廣至高維向量值序列，是本工作所留下的方向。完整證明、架構規格與實驗配置已開源發表於 <em>Scientific Reports</em>： <a href='https://doi.org/10.1038/s41598-026-54363-w' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.1038/s41598-026-54363-w</a>",
         blog_filter_cat: "文章類別",
         blog_filter_topic: "研究主題",
         blog_search_ph: "搜尋標題、定理、關鍵詞……",
@@ -2832,6 +3017,31 @@
         hero_desc_blog: "可视化呈现 Heisenberg-Gabor-Wavelet 相空间时频局域化界限与 Balian-Low 几何阻碍之数学本质。",
         canvas_hint_blog: "移动光标可动态旋转并形变测不准度椭圆",
         sec_blog_title: "最新数学研讨札记与理论专题",
+        blog5_title: "《WHiAR-Net：将算子误差界结构性嵌入多尺度预测架构——小波-希尔伯特特征工程》",
+        blog5_p1: "面对非平稳时间串行的预测，惯常的做法是加大模型容量。基于 Transformer 的架构通过注意力机制逼近全域依赖，其实证准确度确实可观，但它所实现的映射不具备泛函分析上的可读性：中间表征未被约束于任何可辨识的流形之上，亦无误差分解与之对应。在这篇发表于 <em>Scientific Reports</em>（2026, 16, 23751）的工作中，我采取相反的安排。小波变换不再是喂给可学习黑箱的静态前处理步骤，WHiAR-Net 将多分辨率分析与希尔伯特谱分析嵌入架构<em>内部</em>，使预测误差的每一个分量都由闭形式可得的量所界定。此一设计体现的是数学简约性，而非大规模参数化：变换是固定的，算子范数是被追踪的，仅有一个任务相关的融合节点需要学习。",
+        blog5_p2: "信号被分离为两条确定性受界的信道。由规则性主导的趋势由尺度系数 $a_J \\in V_J$ 承载，并以自回归模型于该系数上进行预测；瞬态波动分量则由细节系数 $d_j \\in W_j$ 承载，经希尔伯特变换处理。第一条信道由 Hölder 尺度上的古典 Jackson 型估计所支配。",
+        thm_whiar_daub_title: "定理 2（Daubechies 基底之逼近阶）",
+        thm_whiar_daub_body: "设趋势函数 $f$ 属于 Hölder 空间 $C^\\alpha(\\mathbb{R})$ 且 $\\alpha \\le N$，小波 $\\psi$ 具有 $N$ 个消失矩。则第 $J$ 层投影 $P_{V_J}$ 满足<br>$$\\|f - P_{V_J} f\\|_{L^2} \\le C_\\psi\\, 2^{-J\\alpha} \\|f\\|_{C^\\alpha}.$$<br>此估计的推导方式为：将 $f - P_{V_J}f$ 展开于细节空间，援用 Parseval 恒等式，再通过消失矩性质控制单一系数——在 $\\psi_{j,k}$ 的支撑 $I_{j,k}$ 上作 Taylor 展开可消去多项式部分，留下 $|d_{j,k}| \\le C_1 2^{-j(\\alpha + 1/2)}$。于尺度 $j$ 上对 $\\asymp 2^j$ 个非零系数求和得 $\\sum_k |d_{j,k}|^2 \\asymp C_1^2 2^{-2j\\alpha}$，而对 $j \\ge J$ 的等比级数则贡献因子 $(1 - 2^{-2\\alpha})^{-1}$。",
+        blog5_p3: "分解深度并非调参的选择，而是一个受约束的极小化问题。以 $H(c_J)$ 记范式系数的 Shannon 熵，容许集合由等效滤波器支撑的增长 $L_j = 1 + (L-1)(2^j - 1)$ 与条件 $L_J \\le N$ 所界定。",
+        thm_whiar_level_title: "引理 1（分解层数之选取）",
+        thm_whiar_level_body: "对离散信号 $x \\in \\mathbb{R}^N$，经长度为 $L$ 的小波滤波器处理，分解层数由下式选取：<br>$$J^\\ast = \\arg\\min_J \\{ H(c_J) + \\lambda J \\}, \\qquad \\text{subject to } J < \\log_2\\!\\left(\\frac{N}{L-1} + 1\\right).$$<br>由于在紧致单体上 $0 \\le H(c_J) \\le \\log N$，且容许集合 $\\mathcal{D} = \\{1,\\dots,J_{\\max}\\}$ 为有限非空，故全域极小值存在。此约束并非装饰性的：过度分解会放大边界效应与谱泄漏，分解不足则无法有效稀疏化信号。",
+        blog5_p4: "波动信道则创建在一项谱分离性质之上。希尔伯特-黄变换广泛用于瞬时频率分析，然其经验模态分解对于模态间的泄漏并未提供解析层次的控制。Bedrosian 条件恰好提供了这项控制，而在此处它是被验证的，而非被假定的。",
+        thm_whiar_bedrosian_title: "定理 3（能量守恒与 Bedrosian 恒等式）",
+        thm_whiar_bedrosian_body: "设 $x \\in L^2(\\mathbb{R})$ 为实值函数，$z = x + i\\mathscr{H}x = A e^{i\\phi}$ 为其对应之解析信号。则 $\\|A\\|_{L^2}^2 = 2\\|x\\|_{L^2}^2$。希尔伯特变换为 Fourier 乘子 $m(\\omega) = -i\\,\\mathrm{sgn}(\\omega)$，其模在 $\\omega \\neq 0$ 时为 1，故 $\\mathscr{H}$ 在 $L^2$ 上作为线性等距映射，守恒律由 Plancherel 定理得出。若进一步有 $x(t) = a(t)\\cos\\phi(t)$，且 $\\operatorname{supp}(\\hat{a}) \\subseteq [-B,B]$ 与 $\\operatorname{supp}(\\widehat{\\cos\\phi}) \\subseteq \\mathbb{R}\\setminus[-B,B]$，则支撑集的不交性使得符号函数得以原样通过卷积积分，从而 $\\mathscr{H}\\{a(t)\\cos\\phi(t)\\} = a(t)\\sin\\phi(t)$，并给出精确包络 $A(t) = |a(t)|$。",
+        ctrl_wh_decomp: "双信道分解 $V_J \\oplus W_j$",
+        ctrl_wh_level: "层数选取 $H(c_J) + \\lambda J$",
+        ctrl_wh_bedrosian: "Bedrosian 谱分离与包络",
+        ctrl_wh_budget: "误差预算（命题 4）",
+        ctrl_wh_alpha: "Hölder 指针 $\\alpha$：",
+        ctrl_wh_level_n: "分解层 $J$：",
+        ctrl_wh_band: "带宽 $B$：",
+        blog5_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 交互图标——<strong>拖曳</strong>可平移时间轴，<strong>滚轮</strong>可缩放，<strong>点击</strong>尺度带、分解层或预算项可读取其数值。带宽控制项会将 $(\\hat{a}, \\widehat{\\cos\\phi})$ 这一组谱支撑在不交与重叠之间移动，因此可直接观察 Bedrosian 残差 $\\|r_{\\text{Bedrosian}}\\|_{L^2}$ 如何随分离假设的松弛而推高包络误差。",
+        blog5_p5: "这两条信道最终汇聚为单一的可靠性陈述。该估计是确定性的而非分布性的：它并不宣称误差以高几率为小，而是以三个具名的量将其界定，每一项皆可追溯至一项结构性假设。",
+        thm_whiar_budget_title: "命题 4（误差界之分解）",
+        thm_whiar_budget_body: "设输入由规则性主导的趋势与波动分量所构成。则总预测误差容许如下的界：<br>$$\\mathcal{E}_{\\text{total}} \\;\\le\\; \\underbrace{C_1 2^{-J\\alpha}}_{\\text{小波逼近}} \\;+\\; \\underbrace{C_2 \\|r_{\\text{Bedrosian}}\\|_{L^2}}_{\\text{谱泄漏}} \\;+\\; \\underbrace{C_3 \\frac{\\sigma_\\epsilon^2}{1 - \\|\\Phi\\|_1}}_{\\text{AR 稳定性}},$$<br>其中 $r_{\\text{Bedrosian}}$ 量化谱分离条件的违反程度，$\\|\\Phi\\|_1$ 为自回归系数的 $\\ell^1$ 范数，受条件 $\\sum_{i=1}^{p} |\\phi_i| < 1$ 约束以确保特征根落在单位圆内。每一项皆系于一项假设，因此准确度的退化可以被归因至具名的结构性成因。",
+        key_insight_whiar_title: "实证表现与消融层级",
+        key_insight_whiar_desc: "在 ETTh1 电力变压器基准上，该架构于预测步长 $h=24$ 达到 RMSE $0.1513$，于 $h=96$ 达到 $0.3613$，与 PatchTST 基准（$h=96$ 时为 $0.3778$）相当，并在 $h \\in \\{24,48,96,192\\}$ 各步长上领先 Informer、LSTM 与 ARIMA；同时维持 $O(N)$ 的计算复杂度，相对于注意力模型的 $O(L^2)$ 或 $O(L\\log L)$ 尺度。一项详尽的消融实验重现了命题 4 所预测的层级关系：移除尺度系数的自回归建模使 RMSE 退化 $+33.29\\%$，停用离散小波分解退化 $+20.43\\%$，略去希尔伯特信道退化 $+12.54\\%$。此一排序与界中对应项的能量权重相符，这正是一个意在被阅读而非仅被回报的误差分解所应具备的行为。在北京 PM2.5 与 Jena 气候两组跨领域数据上——前者高度非平稳，后者强周期性——皆维持具竞争力的准确度，且无需针对数据集重新参数化。",
+        blog5_p6: "保证的适用范围应当明白陈述。此处创建的是误差<em>界</em>，而非精确重建；谱分离条件在真实世界的串行中鲜少成立，当趋势与波动分量的频谱重叠时，残差 $\\|r_{\\text{Bedrosian}}\\|_{L^2}$ 会推高逼近误差，此一现象为该界所记录，但并未被消除。以自适应基追踪松弛该约束，以及通过 Clifford 分析将此纯量构造推广至高维矢量值串行，是本工作所留下的方向。完整证明、架构规格与实验配置已开源发表于 <em>Scientific Reports</em>： <a href='https://doi.org/10.1038/s41598-026-54363-w' target='_blank' class='pub-btn pub-btn-doi' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-file-lines'></i> DOI: 10.1038/s41598-026-54363-w</a>",
         blog_filter_cat: "文章类别",
         blog_filter_topic: "研究主题",
         blog_search_ph: "搜索标题、定理、关键词……",
@@ -3690,6 +3900,18 @@
           canvasAnimationControllers['post_multilinear_fractional'] = runMultilinearFractionalCanvas(mfCanvas, mCtx, mWidth, mHeight);
         }
 
+        const whCanvas = document.getElementById('canvas-post-whiar');
+        if (whCanvas) {
+          const wRect = whCanvas.parentElement.getBoundingClientRect();
+          const wWidth = wRect.width > 0 ? wRect.width : (whCanvas.parentElement.clientWidth || 700);
+          const wHeight = wRect.height > 0 ? wRect.height : 320;
+          whCanvas.width = wWidth * window.devicePixelRatio;
+          whCanvas.height = wHeight * window.devicePixelRatio;
+          const wCtx = whCanvas.getContext('2d');
+          wCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['post_whiar'] = runWhiarCanvas(whCanvas, wCtx, wWidth, wHeight);
+        }
+
         const postCanvas = document.getElementById('canvas-post-uncertainty');
         if (postCanvas) {
           const pRect = postCanvas.parentElement.getBoundingClientRect();
@@ -3970,6 +4192,444 @@
        ========================================================================= */
     let currentSparseMode = 'sparse';
     let currentSparseAlpha = 0.35;
+
+    /* =========================================================================
+       INTERACTIVE FIGURE — WHiAR-Net
+       Four panels sharing one drag/zoom/pick camera:
+         decomp     : the dual-channel split, trend in V_J against details in W_j
+         level      : the constrained minimization of H(c_J) + lambda*J
+         bedrosian  : spectral separation and the recovered envelope
+         budget     : the three terms of the Proposition 4 error bound
+       Parameters: Hoelder alpha, decomposition level J, separation bandwidth B.
+       ========================================================================= */
+    let whiarMode = 'decomp';
+    let whiarAlpha = 1.0;
+    let whiarLevel = 5;
+    let whiarBand = 0.60;
+
+    function whiarBtnGroup(fnName, btn) {
+      if (!btn || !btn.parentElement) return;
+      btn.parentElement.querySelectorAll('button').forEach(b => {
+        const oc = b.getAttribute('onclick');
+        if (oc && oc.indexOf(fnName) !== -1) b.classList.remove('active');
+      });
+      btn.classList.add('active');
+    }
+    function setWhiarMode(m, btn)  { whiarMode = m;                 whiarBtnGroup('setWhiarMode', btn); }
+    function setWhiarAlpha(a, btn) { whiarAlpha = parseFloat(a);    whiarBtnGroup('setWhiarAlpha', btn); }
+    function setWhiarLevel(j, btn) { whiarLevel = parseInt(j, 10);  whiarBtnGroup('setWhiarLevel', btn); }
+    function setWhiarBand(b, btn)  { whiarBand = parseFloat(b);     whiarBtnGroup('setWhiarBand', btn); }
+
+    function runWhiarCanvas(canvas, ctx, width, height) {
+      let isRunning = true;
+      let animId = null;
+      let time = 0;
+
+      let panX = 0, zoom = 1;
+      let dragging = false, lastX = 0;
+      let mouseX = -1, mouseY = -1;
+      let hover = null, picked = null;
+
+      const ACCENT = '#881337';
+      const BLUE   = '#2563eb';
+      const GOLD   = '#b45309';
+      const TEAL   = '#0f766e';
+
+      function isDark() { return document.body.getAttribute('data-theme') === 'dark'; }
+      function ink(a) { return isDark() ? 'rgba(226,232,240,' + a + ')' : 'rgba(30,41,59,' + a + ')'; }
+
+      /* A deterministic non-stationary test signal: a smooth Hoelder-regular
+         trend carrying a chirped, amplitude-modulated transient. */
+      function trend(t) {
+        return 0.55 * Math.sin(t * 0.9) + 0.28 * Math.sin(t * 0.37 + 1.1) + 0.12 * t * 0.05;
+      }
+      function envelope(t) {
+        return 0.34 + 0.26 * Math.sin(t * whiarBand * 0.55 + 0.4);
+      }
+      function carrier(t) {
+        return Math.cos(t * (3.4 + whiarBand * 5.2));
+      }
+      function detail(t) { return envelope(t) * carrier(t); }
+
+      function onDown(e) {
+        dragging = true;
+        const r = canvas.getBoundingClientRect();
+        lastX = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+      }
+      function onUp() { dragging = false; }
+      function onMove(e) {
+        const r = canvas.getBoundingClientRect();
+        const cx = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+        mouseX = cx;
+        mouseY = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
+        if (dragging) { panX += cx - lastX; lastX = cx; }
+      }
+      function onWheel(e) {
+        e.preventDefault();
+        zoom = Math.max(0.5, Math.min(4, zoom * (e.deltaY < 0 ? 1.12 : 1 / 1.12)));
+      }
+      function onClick() { picked = hover; }
+      function onLeave() { mouseX = -1; mouseY = -1; dragging = false; }
+
+      canvas.addEventListener('mousedown', onDown);
+      window.addEventListener('mouseup', onUp);
+      canvas.addEventListener('mousemove', onMove);
+      canvas.addEventListener('mouseleave', onLeave);
+      canvas.addEventListener('wheel', onWheel, { passive: false });
+      canvas.addEventListener('click', onClick);
+      canvas.addEventListener('touchstart', onDown, { passive: true });
+      canvas.addEventListener('touchmove', onMove, { passive: true });
+      canvas.addEventListener('touchend', onUp);
+
+      function readout(lines) {
+        const wBox = 250, hBox = 12 + lines.length * 15;
+        const x = width - wBox - 12, y = 12;
+        ctx.fillStyle = isDark() ? 'rgba(15,23,42,0.85)' : 'rgba(255,255,255,0.88)';
+        ctx.strokeStyle = ink(0.18);
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.rect(x, y, wBox, hBox); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = ink(0.75);
+        ctx.font = '600 10.5px ui-monospace, monospace';
+        lines.forEach((L, i) => ctx.fillText(L, x + 10, y + 18 + i * 15));
+      }
+
+      function legend(rows) {
+        const x = 14, y0 = height - 12 - (rows.length - 1) * 16;
+        ctx.font = '600 10.5px ui-monospace, monospace';
+        rows.forEach((r, i) => {
+          const y = y0 + i * 16;
+          ctx.fillStyle = r[0];
+          ctx.fillRect(x, y - 8, 10, 10);
+          ctx.fillStyle = ink(0.68);
+          ctx.fillText(r[1], x + 16, y);
+        });
+      }
+
+      /* ---- Panel 1: the dual-channel decomposition ---- */
+      function drawDecomp() {
+        const padL = 46, padR = 16, padT = 18, padB = 42;
+        const w = width - padL - padR;
+        const rows = 3;
+        const rh = (height - padT - padB) / rows;
+        const span = 26 / zoom;
+        const t0 = -panX / (w / span);
+
+        const labels = ['x(t)  =  P_{V_J}f  +  Σ d_j', 'trend  P_{V_J}f  ∈ V_J', 'details  d_j  ∈ W_j'];
+        hover = null;
+
+        for (let r = 0; r < rows; r++) {
+          const yTop = padT + r * rh;
+          const yMid = yTop + rh / 2;
+
+          if (mouseX >= padL && mouseX <= padL + w && mouseY >= yTop && mouseY <= yTop + rh) hover = 'row' + r;
+
+          ctx.strokeStyle = ink(0.12);
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(padL, yMid); ctx.lineTo(padL + w, yMid); ctx.stroke();
+
+          ctx.fillStyle = (hover === 'row' + r || picked === 'row' + r) ? ink(0.85) : ink(0.55);
+          ctx.font = '700 10px ui-monospace, monospace';
+          ctx.fillText(labels[r], padL + 4, yTop + 12);
+
+          /* The detail row is drawn as a stack of scale bands so the
+             J-dependence of the split is visible. */
+          if (r === 2) {
+            for (let j = 1; j <= whiarLevel; j++) {
+              const amp = (rh * 0.30) * Math.pow(2, -(j - 1) * whiarAlpha * 0.55);
+              ctx.beginPath();
+              for (let i = 0; i <= 260; i++) {
+                const t = t0 + (i / 260) * span;
+                const v = envelope(t) * Math.cos(t * (3.4 + whiarBand * 5.2) * Math.pow(2, j - 3));
+                const X = padL + (i / 260) * w;
+                const Y = yMid - v * amp;
+                if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+              }
+              ctx.strokeStyle = 'rgba(180, 83, 9, ' + (0.85 - j * 0.11).toFixed(2) + ')';
+              ctx.lineWidth = 1.5;
+              ctx.stroke();
+            }
+            continue;
+          }
+
+          ctx.beginPath();
+          for (let i = 0; i <= 320; i++) {
+            const t = t0 + (i / 320) * span;
+            const v = (r === 0) ? trend(t) + detail(t) : trend(t);
+            const X = padL + (i / 320) * w;
+            const Y = yMid - v * rh * 0.30;
+            if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+          }
+          ctx.strokeStyle = (r === 0) ? ink(0.62) : BLUE;
+          ctx.lineWidth = (r === 0) ? 1.5 : 2.2;
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = ink(0.45);
+        ctx.font = '600 10px ui-monospace, monospace';
+        ctx.fillText('t', padL + w - 6, height - padB + 16);
+
+        legend([
+          [BLUE, 'trend channel  →  AR(p) on a_J'],
+          [GOLD, 'volatility channel  →  Hilbert / Bedrosian']
+        ]);
+        readout([
+          'J = ' + whiarLevel + ',   α = ' + whiarAlpha.toFixed(1),
+          'detail bands drawn: ' + whiarLevel,
+          'band decay ∝ 2^{-jα}',
+          'approx. error ≤ C₁·2^{-Jα} = ' + Math.pow(2, -whiarLevel * whiarAlpha).toFixed(5)
+        ]);
+      }
+
+      /* ---- Panel 2: the constrained level selection ---- */
+      function drawLevel() {
+        const padL = 54, padR = 22, padT = 26, padB = 62;
+        const w = width - padL - padR;
+        const h = height - padT - padB;
+        const Jmax = 8;
+
+        ctx.strokeStyle = ink(0.35);
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + h); ctx.lineTo(padL + w, padT + h); ctx.stroke();
+
+        /* Entropy falls then rises with J; the linear penalty lambda*J pushes
+           the minimizer left. The composite is convex on the admissible set. */
+        const lam = 0.10;
+        const H = J => 4.00 - 1.00 * J + 0.09 * J * J;
+        const cost = J => H(J) + lam * J;
+        const vals = [];
+        for (let J = 1; J <= Jmax; J++) vals.push({ J: J, H: H(J), c: cost(J) });
+        const cMin = Math.min.apply(null, vals.map(v => v.c));
+        const cMax = Math.max.apply(null, vals.map(v => v.c));
+        const Y = c => padT + h - ((c - cMin) / (cMax - cMin || 1)) * h * 0.86 - h * 0.07;
+        const X = J => padL + ((J - 1) / (Jmax - 1)) * w;
+
+        hover = null;
+        vals.forEach(v => {
+          if (Math.abs(mouseX - X(v.J)) < 16 && mouseY > padT && mouseY < padT + h) hover = v;
+        });
+
+        /* Feasible region delimited by J < log2(N/(L-1) + 1). */
+        const Jfeas = 6.6;
+        ctx.fillStyle = 'rgba(136, 19, 55, 0.06)';
+        ctx.fillRect(X(Jfeas), padT, padL + w - X(Jfeas), h);
+        ctx.strokeStyle = 'rgba(136, 19, 55, 0.45)';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(X(Jfeas), padT); ctx.lineTo(X(Jfeas), padT + h); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = ink(0.5);
+        ctx.font = '600 9.5px ui-monospace, monospace';
+        ctx.fillText('J < log₂(N/(L-1)+1)', X(Jfeas) + 6, padT + h - 8);
+
+        ctx.beginPath();
+        vals.forEach((v, i) => { if (i === 0) ctx.moveTo(X(v.J), Y(v.c)); else ctx.lineTo(X(v.J), Y(v.c)); });
+        ctx.strokeStyle = ACCENT; ctx.lineWidth = 2.6; ctx.stroke();
+
+        const best = vals.reduce((a, b) => (b.c < a.c ? b : a));
+        vals.forEach(v => {
+          const isSel = v.J === whiarLevel;
+          ctx.beginPath(); ctx.arc(X(v.J), Y(v.c), (hover === v || isSel) ? 6 : 4, 0, Math.PI * 2);
+          ctx.fillStyle = v === best ? TEAL : (isSel ? BLUE : ACCENT);
+          ctx.fill();
+          ctx.fillStyle = ink(0.5);
+          ctx.font = '600 10px ui-monospace, monospace';
+          ctx.fillText(String(v.J), X(v.J) - 3, padT + h + 16);
+        });
+
+        ctx.fillStyle = ink(0.6);
+        ctx.fillText('H(c_J) + λJ', 8, padT + 10);
+        ctx.fillText('J', padL + w + 8, padT + h + 20);
+
+        legend([[TEAL, 'global minimizer  J* = ' + best.J], [BLUE, 'selected  J = ' + whiarLevel]]);
+        const shown = hover || vals.find(v => v.J === whiarLevel);
+        readout([
+          'λ = ' + lam.toFixed(2),
+          'J = ' + shown.J,
+          'H(c_J) = ' + shown.H.toFixed(4),
+          'H(c_J) + λJ = ' + shown.c.toFixed(4)
+        ]);
+      }
+
+      /* ---- Panel 3: Bedrosian separation and the recovered envelope ---- */
+      function drawBedrosian() {
+        const padT = 16, padB = 62;
+        const topH = (height - padT - padB) * 0.55;
+        const botY = padT + topH + 30;
+        const botH = Math.max(34, height - botY - padB - 4);
+        const padL = 40, w = width - padL - 20;
+
+        /* Upper: the signal a(t)cos(phi) with its envelope +-|a(t)|. */
+        const span = 24 / zoom;
+        const t0 = -panX / (w / span);
+        const yMid = padT + topH / 2;
+
+        ctx.strokeStyle = ink(0.12);
+        ctx.beginPath(); ctx.moveTo(padL, yMid); ctx.lineTo(padL + w, yMid); ctx.stroke();
+
+        /* Leakage grows as the supports approach one another. */
+        const sep = Math.max(0, 0.95 - whiarBand);
+        const leak = Math.max(0, whiarBand - 0.70) * 1.9;
+
+        [1, -1].forEach(sgn => {
+          ctx.beginPath();
+          for (let i = 0; i <= 300; i++) {
+            const t = t0 + (i / 300) * span;
+            const X = padL + (i / 300) * w;
+            const Y = yMid - sgn * envelope(t) * topH * 0.40;
+            if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+          }
+          ctx.strokeStyle = 'rgba(37, 99, 235, 0.85)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        });
+
+        ctx.beginPath();
+        for (let i = 0; i <= 480; i++) {
+          const t = t0 + (i / 480) * span;
+          const X = padL + (i / 480) * w;
+          const contaminated = leak * 0.5 * Math.sin(t * 1.1 + time * 0.6);
+          const Y = yMid - (detail(t) + contaminated) * topH * 0.40;
+          if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+        }
+        ctx.strokeStyle = ink(0.6);
+        ctx.lineWidth = 1.3;
+        ctx.stroke();
+
+        /* Lower: the two spectral supports on the frequency axis. */
+        const bx = padL, bw = w;
+        ctx.strokeStyle = ink(0.3);
+        ctx.lineWidth = 1.1;
+        ctx.beginPath(); ctx.moveTo(bx, botY + botH); ctx.lineTo(bx + bw, botY + botH); ctx.stroke();
+        ctx.fillStyle = ink(0.5);
+        ctx.font = '600 10px ui-monospace, monospace';
+        ctx.fillText('ω', bx + bw - 6, botY + botH + 16);
+
+        const B = 0.16 + whiarBand * 0.20;
+        const cLo = 0.5, cHi = 0.5 + 0.30 * (1.05 - whiarBand);
+        const bar = (c, halfW, color, label) => {
+          const x1 = bx + (c - halfW) * bw, x2 = bx + (c + halfW) * bw;
+          ctx.fillStyle = color;
+          ctx.fillRect(x1, botY, x2 - x1, botH);
+          ctx.fillStyle = ink(0.72);
+          ctx.font = '700 10px ui-monospace, monospace';
+          ctx.fillText(label, (x1 + x2) / 2 - 16, botY - 6);
+        };
+        bar(cLo, B * 0.5, 'rgba(37, 99, 235, 0.30)', 'supp â');
+        bar(cHi + 0.18, B * 0.42, 'rgba(180, 83, 9, 0.32)', 'supp ĉos φ');
+
+        const overlaps = leak > 0;
+        ctx.fillStyle = overlaps ? ACCENT : TEAL;
+        ctx.font = '700 11px ui-monospace, monospace';
+        ctx.fillText(overlaps ? 'supports overlap  →  Bedrosian violated'
+                              : 'supports disjoint  →  ℋ{a cos φ} = a sin φ',
+                     width - 330, botY + botH + 30);
+
+        legend([
+          [BLUE, 'envelope  A(t) = |a(t)|'],
+          [ink(0.6), 'signal  a(t) cos φ(t)']
+        ]);
+        readout([
+          'B (separation) = ' + sep.toFixed(3),
+          '‖r_Bedrosian‖ ≈ ' + leak.toFixed(4),
+          '‖A‖²  = 2‖x‖²   (isometry)',
+          overlaps ? 'envelope recovery inexact' : 'envelope recovery exact'
+        ]);
+      }
+
+      /* ---- Panel 4: the three terms of the error bound ---- */
+      function drawBudget() {
+        const padL = 120, padR = 30, padT = 34, padB = 52;
+        const w = width - padL - padR;
+        const h = height - padT - padB;
+
+        const leak = Math.max(0, whiarBand - 0.70) * 1.9;
+        const phi1 = 0.62;
+        const terms = [
+          { key: 'approx', label: 'C₁ · 2^{-Jα}',        v: Math.pow(2, -whiarLevel * whiarAlpha) * 1.0, c: BLUE,
+            note: 'wavelet approximation  (Theorem 2)' },
+          { key: 'leak',   label: 'C₂ · ‖r_Bedrosian‖',  v: leak * 0.55, c: GOLD,
+            note: 'spectral leakage  (Theorem 3)' },
+          { key: 'ar',     label: 'C₃ · σ²/(1-‖Φ‖₁)',    v: 0.045 / (1 - phi1), c: TEAL,
+            note: 'AR stability  (Assumption 1)' }
+        ];
+        const total = terms.reduce((a, t) => a + t.v, 0);
+        const vMax = Math.max(total, 0.30);
+
+        hover = null;
+        const rh = h / terms.length;
+        terms.forEach((t, i) => {
+          const y = padT + i * rh + rh * 0.18;
+          const bh = rh * 0.46;
+          const bw = (t.v / vMax) * w;
+          if (mouseY >= y && mouseY <= y + bh && mouseX >= padL - 4) hover = t;
+
+          ctx.fillStyle = ink(0.68);
+          ctx.font = '600 10.5px ui-monospace, monospace';
+          ctx.fillText(t.label, 10, y + bh * 0.7);
+
+          ctx.fillStyle = ink(0.07);
+          ctx.fillRect(padL, y, w, bh);
+          ctx.fillStyle = t.c;
+          ctx.globalAlpha = (hover === t || picked === t) ? 1 : 0.78;
+          ctx.fillRect(padL, y, Math.max(2, bw), bh);
+          ctx.globalAlpha = 1;
+
+          ctx.fillStyle = ink(0.6);
+          ctx.font = '600 10px ui-monospace, monospace';
+          ctx.fillText(t.v.toFixed(5), padL + Math.max(2, bw) + 8, y + bh * 0.75);
+        });
+
+        /* The stacked total, drawn against the same scale. */
+        const yT = padT + h + 8;
+        let acc = 0;
+        terms.forEach(t => {
+          const seg = (t.v / vMax) * w;
+          ctx.fillStyle = t.c;
+          ctx.fillRect(padL + acc, yT, Math.max(1, seg), 12);
+          acc += seg;
+        });
+        ctx.fillStyle = ink(0.68);
+        ctx.font = '700 10.5px ui-monospace, monospace';
+        ctx.fillText('ℰ_total ≤', 10, yT + 10);
+        ctx.fillText(total.toFixed(5), padL + acc + 8, yT + 10);
+
+        const shown = hover || picked || terms[0];
+        readout([
+          'J = ' + whiarLevel + ',  α = ' + whiarAlpha.toFixed(1),
+          '‖Φ‖₁ = ' + phi1.toFixed(2) + '  (< 1 required)',
+          shown.note,
+          'share of bound: ' + ((shown.v / total) * 100).toFixed(1) + '%'
+        ]);
+      }
+
+      function draw() {
+        if (!isRunning) return;
+        time += 0.016;
+        ctx.clearRect(0, 0, width, height);
+        canvas.style.cursor = dragging ? 'grabbing' : (hover ? 'pointer' : 'grab');
+
+        if (whiarMode === 'level') drawLevel();
+        else if (whiarMode === 'bedrosian') drawBedrosian();
+        else if (whiarMode === 'budget') drawBudget();
+        else drawDecomp();
+
+        animId = requestAnimationFrame(draw);
+      }
+      draw();
+
+      return {
+        stop() {
+          isRunning = false;
+          if (animId) cancelAnimationFrame(animId);
+          canvas.removeEventListener('mousedown', onDown);
+          window.removeEventListener('mouseup', onUp);
+          canvas.removeEventListener('mousemove', onMove);
+          canvas.removeEventListener('mouseleave', onLeave);
+          canvas.removeEventListener('wheel', onWheel);
+          canvas.removeEventListener('click', onClick);
+        }
+      };
+    }
 
     function setSparseSimMode(mode, btn) {
       currentSparseMode = mode;
