@@ -17,8 +17,8 @@
   <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
-        displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
         processEscapes: true
       },
       svg: {
@@ -1750,11 +1750,11 @@
               <h4 class="pillar-title" data-i18n="pillar1_title">Wavelet Bases & Bi-Frame Decompositions</h4>
             </div>
             <p class="pillar-desc" data-i18n="pillar1_desc">
-              Investigation of pre-wavelet bases in Lebesgue spaces $L^p(\\mathbb{R}^n)$ and tight wavelet frames. Formulating sharp Jackson and Bernstein inequalities for non-orthogonal expansions.
+              Investigation of pre-wavelet bases in Lebesgue spaces $L^p(\mathbb{R}^n)$ and tight wavelet frames. Formulating Jackson and Bernstein inequalities with explicit constants for non-orthogonal expansions.
             </p>
           </div>
           <div class="pillar-formula-box">
-            $$\\|f - P_j f\\|_{L^p(w)} \\le C 2^{-j\\alpha} |f|_{B_{p,q}^{\\alpha}(w)}$$
+            $$\|f - P_j f\|_{L^p(w)} \le C 2^{-j\alpha} |f|_{B_{p,q}^{\alpha}(w)}$$
           </div>
         </div>
 
@@ -1769,7 +1769,7 @@
             </p>
           </div>
           <div class="pillar-formula-box">
-            $$\\inf_{f_N \\in \\mathcal{NN}_N} \\|f - f_N\\|_{L^2} \\le C N^{-\\frac{s}{d^*}} \\|f\\|_{B_{p,q}^s}$$
+            $$\inf_{f_N \in \mathcal{NN}_N} \|f - f_N\|_{L^2} \le C N^{-\frac{s}{d^*}} \|f\|_{B_{p,q}^s}$$
           </div>
         </div>
 
@@ -1784,7 +1784,7 @@
             </p>
           </div>
           <div class="pillar-formula-box">
-            $$\\|T_{\\Omega,\\alpha}(\\vec{f})\\|_{L^q(v_{\\vec{w}})} \\le C \\prod_{i=1}^m [w_i]_{A_{p_i}}^{\\max(1, \\frac{p_i'}{q})} \\|f_i\\|_{L^{p_i}(w_i)}$$
+            $$\|T_{\Omega,\alpha}(\vec{f})\|_{L^q(v_{\vec{w}})} \le C \prod_{i=1}^m [w_i]_{A_{p_i}}^{\max(1, \frac{p_i'}{q})} \|f_i\|_{L^{p_i}(w_i)}$$
           </div>
         </div>
 
@@ -1799,7 +1799,7 @@
             </p>
           </div>
           <div class="pillar-formula-box">
-            $$x(t) = \\sum_{j=1}^K c_j(t) \\cos\\left(\\int_0^t \\omega_j(\\tau)d\\tau\\right) + r_K(t)$$
+            $$x(t) = \sum_{j=1}^K c_j(t) \cos\left(\int_0^t \omega_j(\tau)d\tau\right) + r_K(t)$$
           </div>
         </div>
       </div>
@@ -1909,6 +1909,385 @@
       </div>
 
       <div class="blog-container" id="blogContainer">
+        <!-- BLOG POST (NEWEST FEATURED): Weighted Jackson inequality, arXiv:2609.35520 -->
+        <article class="blog-post-card" data-cat="paper" data-featured="true" data-series="approx"
+                 data-tags="N-term Approximation|Jackson Inequality|Muckenhoupt Weights|Weighted Besov Spaces|Band-limited Wavelets|Explicit Constants">
+          <div class="blog-meta-row">
+            <span class="blog-tag">N-term Approximation</span>
+            <span class="blog-tag">Muckenhoupt Weights</span>
+            <span class="blog-tag">Weighted Besov Spaces</span>
+            <span class="blog-tag">Explicit Constants</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> September 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 15 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blogJW_title">
+            Weighted Jackson Inequalities for N-Term Wavelet Approximation: Where the Muckenhoupt Characteristic Enters
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blogJW_p1">
+              Nonlinear $N$-term approximation asks how accurately a function can be represented by at most $N$ elements of a fixed wavelet system, the indices and the coefficients being allowed to depend on the function. For the target space $L^p(\mathbb{R}^n)$ the classical answer of DeVore, Jawerth and Popov identifies the rate $N^{-s/n}$ for the Besov class $B^s_\tau(L^\tau)$ on the critical line $1/\tau = s/n + 1/p$. This note concerns the other regime, in which the smoothness class and the target space share the exponent $p$ and a Muckenhoupt weight $w$ is admitted. The rate is then tied to the number of coefficients each scale carries, and the question that remains is quantitative: on which features of the weight does the constant depend, and in what power.
+            </p>
+
+            <p data-i18n="blogJW_p2">
+              The wavelet system is a pair of band-limited biorthogonal Riesz bases $\{\psi_{j,k}\}$, $\{\tilde\psi_{j,k}\}$ of $L^2(\mathbb{R}^n)$, normalized as $\psi_{j,k}(x) = 2^{jn/2}\psi(2^j x - k)$, whose generators have Fourier transforms in $C_c^\infty$ supported in an annulus $\{a \le |\xi| \le b\}$. The Meyer system is the model example; in dimension $n$ its tensor products supply $L = 2^n - 1$ generators. All weighted quantities are expressed through the cube measures $w(Q_{j,k})$ of the dyadic cubes $Q_{j,k} = 2^{-j}(k + [0,1)^n)$, never through pointwise values of $w$.
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-square-root-variable"></i>
+                <span data-i18n="def_jw_title">Definition (Muckenhoupt Characteristic, Weighted Besov Space, Localized Class)</span>
+              </div>
+              <p data-i18n="def_jw_body">
+                For $1 < p < \infty$ and cubes $Q$ with sides parallel to the axes,
+                $$[w]_{A_p} = \sup_{Q} \Big(\frac{1}{|Q|}\int_Q w\Big)\Big(\frac{1}{|Q|}\int_Q w^{-\frac{1}{p-1}}\Big)^{p-1}, \qquad \|f\|_{\dot B^s_{p,q}(w)} = \Big(\sum_{j \in \mathbb{Z}} 2^{jsq}\, \|\Delta_j f\|_{L^p_w}^q\Big)^{1/q},$$
+                where $\Delta_j$ are homogeneous Littlewood-Paley operators. The localized class $\dot B^s_{p,q}(w;Q_0)$ consists of those $f \in L^p_w \cap \dot B^s_{p,q}(w)$ that are recovered in $L^p_w$ from their wavelet expansion along the dyadic tree $\{(j,k) : j \ge 0,\ Q_{j,k} \subset Q_0\}$ of the unit cube $Q_0 = [0,1)^n$.
+              </p>
+            </div>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_jw_title">Theorem (Jackson-Type Inequality with Explicit Weight Dependence)</span>
+              </div>
+              <p data-i18n="thm_jw_body">
+                Let $s > 0$, $1 < p < \infty$, $0 < q < \infty$ and $w \in A_p$. For every $f \in \dot B^s_{p,q}(w;Q_0)$ and every integer $N \ge 1$,
+                $$E_N(f)_{L^p_w} \le C_0\, [w]_{A_p}^{2/p}\, N^{-s/n}\, \|f\|_{\dot B^s_{p,q}(w)}, \qquad C_0 = \frac{L\,(2L)^{s/n}}{1 - 2^{-s}}\, C_M\, K_U\, K_L .$$
+                Here $L$ is the number of generators, $C_M = \sum_{|i| \le M} 2^{is}$ records the finite-band index $M$ comparing the Littlewood-Paley annulus with the frequency annulus of the generators, and $K_U$, $K_L$ are explicit series in the decay envelopes of the synthesis and dual generators, bounded in closed form through the Riemann zeta function. The factor $C_0$ does not depend on $N$, $f$, $q$, $w$, or the Riesz bounds of the system. Since $2/p \le 2\theta(p)$ with $\theta(p) = \tfrac{1}{2}\max\{1, (p-1)^{-1}\}$, the bound also holds with $[w]_{A_p}^{2\theta(p)}$; the two powers coincide at $p = 2$, where the dependence on $[w]_{A_2}$ is linear.
+              </p>
+            </div>
+
+            <p data-i18n="blogJW_p3">
+              The power $2/p$ is the product of two factors $[w]_{A_p}^{1/p}$, and each is traceable to one application of two elementary inequalities for $A_p$ weights on a cube $Q$:
+              $$\int_Q |g| \le [w]_{A_p}^{1/p}\, |Q|\, w(Q)^{-1/p} \Big(\int_Q |g|^p w\Big)^{1/p}, \qquad w(Q) \le [w]_{A_p} \Big(\frac{|Q|}{|S|}\Big)^{p} w(S), \quad S \subset Q .$$
+              The first is Hölder's inequality applied to $|g| = |g|\,w^{1/p}\,w^{-1/p}$; the second is its specialization to $g = \mathbf{1}_S$, a quantitative form of the doubling property. No weighted maximal-function bound is invoked, and no equivalence constant inherited from a cited wavelet characterization enters $C_0$.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-layer-group"></i>
+                <span data-i18n="lem_jw_title">Lemma (Single-Scale Two-Sided Estimate)</span>
+              </div>
+              <p data-i18n="lem_jw_body">
+                For a single-scale sum $r = \sum_{k \in \Lambda} c_{j,k}\psi_{j,k}$ over a finite set $\Lambda$,
+                $$K_L^{-1}\, [w]_{A_p}^{-1/p}\, \mathcal{S}_\Lambda \;\le\; \|r\|_{L^p_w} \;\le\; K_U\, [w]_{A_p}^{1/p}\, \mathcal{S}_\Lambda, \qquad \mathcal{S}_\Lambda = 2^{jn/2}\Big(\sum_{k \in \Lambda} |c_{j,k}|^p\, w(Q_{j,k})\Big)^{1/p}.$$
+                The upper estimate proceeds cube by cube. After dilation to $j = 0$, on $Q_{0,k_0}$ the sum is dominated by the decay envelope $\beta_m$ of $\psi$ over the rings $|k - k_0|_\infty = m$; writing $\beta_m = \sum_{i \ge m}(\beta_i - \beta_{i+1})$ and exchanging the order of summation, the doubling inequality returns $w$ on the enlarged cube $k + [-m, m+1)^n$ to $w(Q_{0,k})$ at the cost $[w]_{A_p}(2m+1)^{np}$. The lower estimate follows from a weighted bound for the analysis coefficients combined with biorthogonality.
+              </p>
+            </div>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <button class="active" onclick="setJwMode('tree', this)" data-i18n="ctrl_jw_tree">Dyadic Tree and Truncation in Scale</button>
+                <button onclick="setJwMode('weight', this)" data-i18n="ctrl_jw_weight">$[w]_{A_p}$ and Its Powers</button>
+                <button onclick="setJwMode('rate', this)" data-i18n="ctrl_jw_rate">Rate $N^{-s/n}$</button>
+                <button onclick="setJwMode('extremal', this)" data-i18n="ctrl_jw_extremal">Extremal Family</button>
+                <button onclick="setJwMode('local', this)" data-i18n="ctrl_jw_local">Why Localization Is Needed</button>
+              </div>
+              <div class="interactive-ctrl-bar">
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);">$p$:</span>
+                <button onclick="setJwP(1.5, this)">1.5</button>
+                <button class="active" onclick="setJwP(2, this)">2</button>
+                <button onclick="setJwP(3, this)">3</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.6rem;" data-i18n="ctrl_jw_gamma">Weight $|x - \tfrac13|^\gamma$, $\gamma$:</span>
+                <button onclick="setJwGamma(-0.5, this)">−0.5</button>
+                <button onclick="setJwGamma(0, this)">0</button>
+                <button class="active" onclick="setJwGamma(0.4, this)">0.4</button>
+                <button onclick="setJwGamma(1.5, this)">1.5</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.6rem;">$s$:</span>
+                <button onclick="setJwS(0.5, this)">0.5</button>
+                <button class="active" onclick="setJwS(1, this)">1</button>
+                <button onclick="setJwS(2, this)">2</button>
+              </div>
+              <div class="blog-canvas-wrapper" style="height: 380px;">
+                <canvas id="canvas-post-jackson-weighted" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blogJW_canvas_caption">
+                <i class="fa-solid fa-hand-pointer"></i> Interactive figure for $n = 1$, $L = 1$, $Q_0 = [0,1)$ and the power weight $w(x) = |x - \tfrac13|^\gamma$, which lies in $A_p$ exactly when $-1 < \gamma < p - 1$. The cube masses $w(Q_{j,k})$ and the characteristic $[w]_{A_p}$ are computed from closed-form averages; the extremal panel evaluates the sums of the corollary for the chosen weight, and the last panel integrates the Meyer translates of the localization example numerically. <strong>Drag</strong> horizontally to change $N$ (or $m$), <strong>hover</strong> to read values, <strong>double-click</strong> to reset.
+              </div>
+            </div>
+
+            <p data-i18n="blogJW_p4">
+              The approximant is not chosen greedily. It is the truncation in scale along the dyadic tree: with $j_0$ the largest integer for which the first $j_0 + 1$ generations fit in the budget, $L(2^{(j_0+1)n} - 1)/(2^n - 1) \le N$, one keeps every coefficient of generation $j \le j_0$ inside $Q_0$. Maximality of $j_0$ gives $2^{-(j_0+1)s} < (2L)^{s/n} N^{-s/n}$. Each discarded generation $j > j_0$ contributes at most $L\, C_M K_U K_L\, [w]_{A_p}^{2/p}\, 2^{-js}\|f\|_{\dot B^s_{p,q}(w)}$, by the upper single-scale estimate followed by the coefficient bound $S_j(f) \le L^{1/p} C_M K_L\, [w]_{A_p}^{1/p}\, 2^{-js}\|f\|_{\dot B^s_{p,q}(w)}$, and the geometric series over $j > j_0$ closes the argument with the factor $(1 - 2^{-s})^{-1}$.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-arrows-down-to-line"></i>
+                <span data-i18n="cor_jw_title">Corollary (Lower Estimate via an Extremal Family)</span>
+              </div>
+              <p data-i18n="cor_jw_body">
+                For $N = 2^{mn}$ let $f_N^\ast = \sum_{k} a_k \psi_{m+1,k}$ run over the $2^n N$ cubes of generation $m+1$ in $Q_0$, with $a_k = 2^{-(m+1)(s + n/2)}\, w(Q_{m+1,k})^{-1/p}$. Then
+                $$c_\flat\, [w]_{A_p}^{-2/p} \;\le\; \frac{E_N(f_N^\ast)_{L^p_w}}{N^{-s/n}\, \|f_N^\ast\|_{\dot B^s_{p,q}(w)}} \;\le\; c_\sharp\, [w]_{A_p}^{2/p},$$
+                with $c_\flat$, $c_\sharp$ independent of $N$ and $w$. The normalization makes every term $|a_k|^p w(Q_{m+1,k})$ equal, so that discarding any $N$ of the $2^n N$ terms leaves the coefficient-level ratio $(1 - 2^{-n})^{1/p}\, 2^{-s}$. If $s/n$ could be replaced by $s'/n$ with $s' > s$, the lower bound would force $c_\flat [w]_{A_p}^{-2/p} \le C' N^{-(s'-s)/n}$ for every $N$, which fails as $N \to \infty$. The construction is deterministic; no claim is made that the power $2/p$ is matched in order from below.
+              </p>
+            </div>
+
+            <p data-i18n="blogJW_p5">
+              The restriction to the dyadic tree of $Q_0$ is not a technical convenience. On the whole of $\mathbb{R}^n$ a single scale of $\dot B^s_{p,q}$ admits arbitrarily many coefficients of comparable size: for $w \equiv 1$ the sums $f_N = \sum_{k=1}^{2N} \psi_{0,k}$, of generation $0$ and translated off the cube, satisfy $E_N(f_N)_{L^p} \ge c\, \|f_N\|_{\dot B^s_{p,q}}$ uniformly in $N$, so no inequality with a decaying factor $N^{-\kappa}$ can hold on $L^p \cap \dot B^s_{p,q}$. For $n = 1$, $p = q = 2$ and the orthonormal Meyer system the ratio is exactly $E_N(f_N)_{L^2} / \|f_N\|_{L^2} = 2^{-1/2}$, which the last panel of the figure recovers by quadrature. For band-limited generators, which have no compact support, localization at the level of coefficients takes the place that approximation on a cube occupies for compactly supported systems.
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-i18n="key_insight_jw_title">What an Explicit Constant Records</span>
+              </div>
+              <p data-i18n="key_insight_jw_desc">
+                An inequality $E_N(f) \le C N^{-s/n}\|f\|$ with an unspecified $C$ is a statement about the rate; the displayed factor $[w]_{A_p}^{2/p}$ is a statement about the mechanism. It separates the contribution of the weight from that of the wavelet system, shows that the Riesz bounds of the system do not enter, and identifies $p = 2$ as the exponent at which the refined and the coarser powers coincide. The scope is correspondingly delimited: the estimate concerns the homogeneous scale, the same-exponent regime $\dot B^s_{p,q}(w) \to L^p_w$ rather than the critical line $1/\tau = s/n + 1/p$, and the localized class. Whether $2/p$ is the smallest admissible power of $[w]_{A_p}$ is left open.
+              </p>
+            </div>
+
+            <p data-i18n="blogJW_p6">
+              The result refines two earlier works listed on this site: the unweighted Jackson-type inequality for wavelet bases decomposition, and the explicit direct and inverse estimates for linear biorthogonal multiresolution projections on the inhomogeneous weighted Besov scale, where the weight enters through the norm of the Hardy-Littlewood maximal operator on $L^p_w$ rather than through a displayed power of $[w]_{A_p}$. The complete proofs and the closed-form majorant of $C_0$ are available as a preprint: <a href='https://arxiv.org/abs/2609.35520' target='_blank' class='pub-btn pub-btn-arxiv' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-scroll'></i> arXiv:2609.35520</a>
+            </p>
+
+            <div class="blog-refs">
+              <div class="blog-refs-title"><i class="fa-solid fa-book"></i> <span data-i18n="refs_title">References</span></div>
+              <ol data-i18n="refs_jw">
+                <li>K.-C. Wang, <em>Jackson-type inequalities with explicit weight dependence for N-term wavelet approximation on localized weighted Besov classes</em>, arXiv:2609.35520 [math.CA], 2026.</li>
+                <li>R. A. DeVore, B. Jawerth and V. Popov, <em>Compression of wavelet decompositions</em>, Amer. J. Math. <strong>114</strong> (1992), 737-785.</li>
+                <li>R. A. DeVore and G. G. Lorentz, <em>Constructive Approximation</em>, Grundlehren der Mathematischen Wissenschaften <strong>303</strong>, Springer, 1993.</li>
+                <li>V. N. Temlyakov, <em>Greedy Approximation</em>, Cambridge University Press, 2011.</li>
+                <li>H.-Q. Bui, M. Paluszyński and M. H. Taibleson, <em>A maximal function characterization of weighted Besov-Lipschitz and Triebel-Lizorkin spaces</em>, Studia Math. <strong>119</strong> (1996), 219-246.</li>
+                <li>L. Grafakos, <em>Modern Fourier Analysis</em>, 2nd ed., Graduate Texts in Mathematics <strong>250</strong>, Springer, 2009.</li>
+                <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- BLOG POST: Band-limited functions -->
+        <article class="blog-post-card" data-cat="expo" data-series="wavelet"
+                 data-tags="Band-limited Functions|Paley-Wiener Space|Shannon Sampling|Bernstein Inequality|Aliasing|Band-limited Wavelets">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Band-limited Functions</span>
+            <span class="blog-tag">Paley-Wiener Space</span>
+            <span class="blog-tag">Shannon Sampling</span>
+            <span class="blog-tag">Bernstein Inequality</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> September 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 14 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blogBL_title">
+            Band-Limited Functions: Paley-Wiener Spaces, Shannon Sampling, and the Cost of a Compact Spectrum
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blogBL_p1">
+              A function is band-limited when its Fourier transform vanishes outside a bounded set. With $\hat f(\xi) = \int_{\mathbb{R}} f(t) e^{-2\pi i t\xi}\,dt$, frequency measured in cycles, the Paley-Wiener space $PW_b = \{f \in L^2(\mathbb{R}) : \operatorname{supp}\hat f \subset [-b, b]\}$ collects the square-integrable functions of bandwidth $b$. These are the functions from which the Shannon and Meyer wavelets are built, and whose Littlewood-Paley pieces define the Besov scale. Three facts organize the theory: a compact spectrum makes $f$ rigid, it makes $f$ recoverable from discrete samples, and it bounds every derivative of $f$ by $f$ itself.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_pw_title">Theorem (Paley-Wiener, 1934)</span>
+              </div>
+              <p data-i18n="thm_pw_body">
+                A function $f \in L^2(\mathbb{R})$ belongs to $PW_b$ if and only if it is the restriction to $\mathbb{R}$ of an entire function $F$ of exponential type at most $2\pi b$, that is, $|F(z)| \le C_\epsilon\, e^{(2\pi b + \epsilon)|z|}$ for every $\epsilon > 0$. In that case $F(z) = \int_{-b}^{b} \hat f(\xi) e^{2\pi i z\xi}\,d\xi$ and $|F(x + iy)| \le \sqrt{2b}\,\|f\|_{L^2}\, e^{2\pi b|y|}$.
+              </p>
+            </div>
+
+            <p data-i18n="blogBL_p2">
+              The rigidity is immediate from the theorem: an entire function vanishing on an interval vanishes identically, so a nonzero band-limited function cannot have compact support, and more generally $f$ and $\hat f$ cannot both be concentrated on sets of finite measure. This is the first cost of a compact spectrum. A band-limited wavelet, the Meyer wavelet included, is spread over the whole line, and any localization it enjoys is decay rather than support.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-wave-square"></i>
+                <span data-i18n="thm_shannon_title">Theorem (Whittaker-Kotelnikov-Shannon Sampling)</span>
+              </div>
+              <p data-i18n="thm_shannon_body">
+                If $f \in PW_{1/2}$, then
+                $$f(t) = \sum_{n \in \mathbb{Z}} f(n)\, \operatorname{sinc}(t - n), \qquad \operatorname{sinc}(x) = \frac{\sin \pi x}{\pi x},$$
+                with convergence in $L^2(\mathbb{R})$ and uniformly on $\mathbb{R}$, and $\|f\|_{L^2}^2 = \sum_n |f(n)|^2$. The translates $\{\operatorname{sinc}(\cdot - n)\}_{n}$ form an orthonormal basis of $PW_{1/2}$. The proof is one line of Poisson summation: the periodization $\sum_k \hat f(\xi + k)$ equals $\sum_n f(n) e^{-2\pi i n\xi}$, and multiplying by $\mathbf{1}_{[-1/2, 1/2]}$ returns $\hat f$ because the translates $\hat f(\cdot + k)$, $k \ne 0$, do not meet $[-\tfrac12, \tfrac12]$.
+              </p>
+            </div>
+
+            <p data-i18n="blogBL_p3">
+              The same computation explains aliasing. If $\hat f$ is not contained in $[-\tfrac12, \tfrac12]$, the samples only see the periodization $\sum_k \hat f(\xi + k)$, and a frequency $f_0$ is read as $f_a = |f_0 - \operatorname{round}(f_0)|$. The sampled sequence $\cos(2\pi f_0 n)$ is then indistinguishable from $\cos(2\pi f_a n)$, and the sinc series reconstructs the latter. The second panel of the figure lets $f_0$ be dragged across the Nyquist frequency $\tfrac12$ and shows the replicas entering the band.
+            </p>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <button class="active" onclick="setBlMode('recon', this)" data-i18n="ctrl_bl_recon">Shannon Reconstruction</button>
+                <button onclick="setBlMode('alias', this)" data-i18n="ctrl_bl_alias">Aliasing</button>
+                <button onclick="setBlMode('kernel', this)" data-i18n="ctrl_bl_kernel">Oversampling and Smooth Kernels</button>
+                <button onclick="setBlMode('bernstein', this)" data-i18n="ctrl_bl_bern">Bernstein Inequality</button>
+              </div>
+              <div class="interactive-ctrl-bar">
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);" data-i18n="ctrl_bl_K">Terms $|n| \le K$:</span>
+                <button onclick="setBlK(2, this)">2</button>
+                <button onclick="setBlK(5, this)">5</button>
+                <button class="active" onclick="setBlK(10, this)">10</button>
+                <button onclick="setBlK(20, this)">20</button>
+                <button onclick="setBlK(40, this)">40</button>
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-left: 0.6rem;" data-i18n="ctrl_bl_b">Bandwidth $b$:</span>
+                <button onclick="setBlB(0.25, this)">0.25</button>
+                <button class="active" onclick="setBlB(0.35, this)">0.35</button>
+                <button onclick="setBlB(0.45, this)">0.45</button>
+              </div>
+              <div class="blog-canvas-wrapper" style="height: 380px;">
+                <canvas id="canvas-post-bandlimited" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blogBL_canvas_caption">
+                <i class="fa-solid fa-hand-pointer"></i> Interactive figure — every curve is evaluated from its formula. The first panel sums the truncated sinc series of a test function in $PW_{1/2}$; the third computes the smooth kernel $g_b$ by quadrature of $\hat g_b$ and measures the truncation error of both series on $[0,1]$ for $f(t) = \operatorname{sinc}^2\big(b(t - 0.3)\big)$; the fourth evaluates $\|f'\|_\infty / (2\pi b\|f\|_\infty)$ for random elements of $PW_b$. <strong>Drag</strong> to pan (in the aliasing panel, to move $f_0$), <strong>scroll</strong> to zoom, <strong>click</strong> in the last panel for a new function, <strong>double-click</strong> to reset.
+              </div>
+            </div>
+
+            <p data-i18n="blogBL_p4">
+              The second cost of a compact spectrum is the slow decay of the reconstruction kernel. Since $\operatorname{sinc}$ decays only like $|t|^{-1}$ and is not integrable, the truncated series $S_K f(t) = \sum_{|n| \le K} f(n)\operatorname{sinc}(t - n)$ converges slowly, and the error is governed by the tail of the samples rather than by the smoothness of $f$. The remedy is oversampling. If $f \in PW_b$ with $b < \tfrac12$, then every kernel $g$ with $\hat g = 1$ on $[-b, b]$ and $\hat g = 0$ outside $[-(1-b), 1-b]$ also reproduces $f$ from its integer samples, because the replicas $\hat f(\cdot + k)$, $k \ne 0$, live in $|\xi| \ge 1 - b$. Choosing the transition of $\hat g$ on $[b, 1-b]$ smooth, with the same ramp as in the Meyer construction, makes $g$ decay faster than any power, and the truncation error falls accordingly. The price is a sampling rate $1$ above the Nyquist rate $2b$ by the factor $1/(2b)$, and the gain degrades as $b \to \tfrac12$ because the transition band narrows.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span data-i18n="thm_bern_title">Theorem (Bernstein Inequality)</span>
+              </div>
+              <p data-i18n="thm_bern_body">
+                If $f \in L^p(\mathbb{R})$, $1 \le p \le \infty$, and $\operatorname{supp}\hat f \subset [-b, b]$, then
+                $$\|f'\|_{L^p} \le 2\pi b\, \|f\|_{L^p}.$$
+                The constant is attained in $L^\infty$ by $\cos(2\pi b t)$. Combined with the direct (Jackson) estimate for approximation by entire functions of exponential type $\sigma$, $E_\sigma(f)_p \le C\sigma^{-s}|f|_{B^s_{p,\infty}}$, it yields the classical characterization of Besov spaces through approximation by band-limited functions: $f \in B^s_{p,q}$ if and only if $\big(\sum_j (2^{js} E_{2^j}(f)_p)^q\big)^{1/q} < \infty$.
+              </p>
+            </div>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-i18n="key_insight_bl_title">Why Band-Limited Wavelets Suit Quantitative Estimates</span>
+              </div>
+              <p data-i18n="key_insight_bl_desc">
+                A wavelet whose Fourier transform lives in a fixed annulus $\{a \le |\xi| \le b\}$ inherits all three facts. Every moment vanishes, so no smoothness ceiling appears in Jackson-type estimates. Each Littlewood-Paley block $\Delta_j f$ interacts with the wavelet scales $j - M, \dots, j + M$ only, where $M$ is fixed by the two annuli; this relation is exact rather than approximate, and it is what produces the finite constant $C_M$ in the weighted Jackson inequality of the approximation-theory series. The rigidity, however, forbids compact support, so any localization, for instance the restriction to the dyadic tree of a cube, must be imposed at the level of the coefficients rather than obtained from the support of the generators.
+              </p>
+            </div>
+
+            <p data-i18n="blogBL_p5">
+              Several directions lie outside this note. Sampling on non-uniform sets is governed by Landau's density conditions and, for perturbations of the integers, by Kadec's $\tfrac14$ theorem; in several variables the Paley-Wiener-Schwartz theorem ties the growth of the extension to the support function of a convex spectrum; and at the endpoints $p = 1$ and $p = \infty$ the sinc series may fail to converge without additional decay of the samples. The three panels above remain within the classical one-dimensional setting, where every statement can be checked numerically against its closed form.
+            </p>
+
+            <div class="blog-refs">
+              <div class="blog-refs-title"><i class="fa-solid fa-book"></i> <span data-i18n="refs_title">References</span></div>
+              <ol data-i18n="refs_bl">
+                <li>E. T. Whittaker, <em>On the functions which are represented by the expansions of the interpolation-theory</em>, Proc. Roy. Soc. Edinburgh <strong>35</strong> (1915), 181-194.</li>
+                <li>C. E. Shannon, <em>Communication in the presence of noise</em>, Proc. IRE <strong>37</strong> (1949), 10-21.</li>
+                <li>R. E. A. C. Paley and N. Wiener, <em>Fourier Transforms in the Complex Domain</em>, AMS Colloquium Publications <strong>19</strong>, 1934.</li>
+                <li>S. M. Nikol'skii, <em>Approximation of Functions of Several Variables and Imbedding Theorems</em>, Springer, 1975.</li>
+                <li>R. M. Young, <em>An Introduction to Nonharmonic Fourier Series</em>, Academic Press, 1980.</li>
+                <li>J. R. Higgins, <em>Sampling Theory in Fourier and Signal Analysis: Foundations</em>, Oxford University Press, 1996.</li>
+                <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- BLOG POST: The Meyer wavelet -->
+        <article class="blog-post-card" data-cat="expo" data-series="wavelet"
+                 data-tags="Meyer Wavelet|Multiresolution Analysis|Band-limited Wavelets|Partition of Unity|Orthonormal Bases|Decay and Smoothness">
+          <div class="blog-meta-row">
+            <span class="blog-tag">Meyer Wavelet</span>
+            <span class="blog-tag">Band-limited Wavelets</span>
+            <span class="blog-tag">Partition of Unity</span>
+            <span class="blog-tag">Decay and Smoothness</span>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> September 2026</span>
+            <span class="blog-date"><i class="fa-regular fa-clock"></i> 14 min read</span>
+          </div>
+
+          <h3 class="blog-title" data-i18n="blogMey_title">
+            The Meyer Wavelet: Orthonormality Built in the Frequency Domain
+          </h3>
+
+          <div class="blog-body">
+            <p data-i18n="blogMey_p1">
+              In 1985 Yves Meyer set out to show that no orthonormal basis of $L^2(\mathbb{R})$ of the form $\{2^{j/2}\psi(2^j t - k)\}_{j,k \in \mathbb{Z}}$ could consist of Schwartz functions, and constructed one instead. Strömberg had already produced an orthonormal wavelet basis of spline type in 1982, with finite smoothness and exponential decay, but Meyer's construction was the first with $\psi \in \mathcal{S}(\mathbb{R})$, and it is written entirely on the Fourier side. The construction is short enough to verify line by line, and it exposes the mechanism behind every orthonormal wavelet: a partition of unity in frequency whose pieces overlap in a controlled way.
+            </p>
+
+            <p data-i18n="blogMey_p2">
+              The only free ingredient is a ramp $\nu : \mathbb{R} \to [0,1]$ with $\nu(x) = 0$ for $x \le 0$, $\nu(x) = 1$ for $x \ge 1$, and the symmetry $\nu(x) + \nu(1-x) = 1$. The polynomial $\nu(x) = x^4(35 - 84x + 70x^2 - 20x^3)$ on $[0,1]$ is the standard choice and belongs to $C^3$; the cubic $x^2(3 - 2x)$ gives a $C^1$ ramp, and $\nu(x) = e^{-1/x}/(e^{-1/x} + e^{-1/(1-x)})$ gives a $C^\infty$ one. With angular frequency $\omega$ and $\hat f(\omega) = \int f(t) e^{-i\omega t}\,dt$, the scaling function and the wavelet are defined through their Fourier transforms.
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-square-root-variable"></i>
+                <span data-i18n="def_mey_title">Definition (Meyer Scaling Function and Wavelet)</span>
+              </div>
+              <p data-i18n="def_mey_body">
+                $$\hat\phi(\omega) = \begin{cases} 1, & |\omega| \le \tfrac{2\pi}{3}, \\ \cos\!\big(\tfrac{\pi}{2}\,\nu(\tfrac{3|\omega|}{2\pi} - 1)\big), & \tfrac{2\pi}{3} \le |\omega| \le \tfrac{4\pi}{3}, \\ 0, & \text{otherwise}, \end{cases} \qquad \hat\psi(\omega) = e^{i\omega/2} \begin{cases} \sin\!\big(\tfrac{\pi}{2}\,\nu(\tfrac{3|\omega|}{2\pi} - 1)\big), & \tfrac{2\pi}{3} \le |\omega| \le \tfrac{4\pi}{3}, \\ \cos\!\big(\tfrac{\pi}{2}\,\nu(\tfrac{3|\omega|}{4\pi} - 1)\big), & \tfrac{4\pi}{3} \le |\omega| \le \tfrac{8\pi}{3}, \\ 0, & \text{otherwise}. \end{cases}$$
+                The factor $e^{i\omega/2}$ makes $\psi$ real and symmetric about $t = -\tfrac12$, and $\psi(t) = \tfrac{1}{\pi}\int_{2\pi/3}^{8\pi/3} |\hat\psi(\omega)| \cos\big(\omega(t + \tfrac12)\big)\,d\omega$.
+              </p>
+            </div>
+
+            <p data-i18n="blogMey_p3">
+              Orthonormality of the integer translates of $\phi$ is equivalent to $\sum_{k} |\hat\phi(\omega + 2\pi k)|^2 = 1$. On $|\omega| \le \tfrac{2\pi}{3}$ only $k = 0$ contributes and the sum is $1$. On $\tfrac{2\pi}{3} \le \omega \le \tfrac{4\pi}{3}$ exactly two terms survive, $k = 0$ and $k = -1$, and with $x = \tfrac{3\omega}{2\pi} - 1 \in [0,1]$ one has $\tfrac{3|\omega - 2\pi|}{2\pi} - 1 = 1 - x$. The symmetry of $\nu$ then gives
+              $$|\hat\phi(\omega)|^2 + |\hat\phi(\omega - 2\pi)|^2 = \cos^2\!\big(\tfrac{\pi}{2}\nu(x)\big) + \cos^2\!\big(\tfrac{\pi}{2}(1 - \nu(x))\big) = \cos^2\!\big(\tfrac{\pi}{2}\nu(x)\big) + \sin^2\!\big(\tfrac{\pi}{2}\nu(x)\big) = 1 .$$
+              The same identity, read on the annulus, yields $|\hat\phi(\omega)|^2 + |\hat\psi(\omega)|^2 = |\hat\phi(\omega/2)|^2$ and hence the dyadic partition of unity $\sum_{j \in \mathbb{Z}} |\hat\psi(2^{-j}\omega)|^2 = 1$ for $\omega \ne 0$. The whole construction reduces to the single relation $\cos^2 + \sin^2 = 1$ placed at the right frequencies.
+            </p>
+
+            <div class="math-callout theorem">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-certificate"></i>
+                <span data-i18n="thm_mey_title">Theorem (Meyer, 1985; Lemarié-Meyer, 1986)</span>
+              </div>
+              <p data-i18n="thm_mey_body">
+                For every ramp $\nu$ as above, $\{\phi(\cdot - k)\}_{k}$ is an orthonormal basis of $V_0$, the spaces $V_j = \overline{\operatorname{span}}\{2^{j/2}\phi(2^j \cdot - k)\}$ form a multiresolution analysis of $L^2(\mathbb{R})$, and $\{\psi_{j,k}(t) = 2^{j/2}\psi(2^j t - k)\}_{j,k \in \mathbb{Z}}$ is an orthonormal basis of $L^2(\mathbb{R})$. Since $\hat\psi$ vanishes on $|\omega| < \tfrac{2\pi}{3}$, every moment of $\psi$ vanishes. If $\nu \in C^m$, then $\hat\psi \in C^m_c$ and $|\psi(t)| \le C_m (1 + |t|)^{-m}$; if $\nu \in C^\infty$, then $\psi \in \mathcal{S}(\mathbb{R})$. The two-scale symbol $m_0(\omega) = \sum_{k} \hat\phi(2\omega + 4\pi k)$ is $2\pi$-periodic and smooth but not a trigonometric polynomial, so the refinement filter $h[n]$ is infinite.
+              </p>
+            </div>
+
+            <!-- INLINE DYNAMIC CANVAS SIMULATOR FOR THIS POST -->
+            <div class="blog-canvas-container">
+              <div class="interactive-ctrl-bar">
+                <button class="active" onclick="setMeyerMode('freq', this)" data-i18n="ctrl_mey_freq">Frequency Side and Partition of Unity</button>
+                <button onclick="setMeyerMode('time', this)" data-i18n="ctrl_mey_time">$\phi$ and $\psi$ in Time</button>
+                <button onclick="setMeyerMode('decay', this)" data-i18n="ctrl_mey_decay">Decay vs. Smoothness of $\nu$</button>
+                <button onclick="setMeyerMode('orth', this)" data-i18n="ctrl_mey_orth">Orthonormality Check</button>
+              </div>
+              <div class="interactive-ctrl-bar">
+                <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);" data-i18n="ctrl_mey_nu">Ramp $\nu$:</span>
+                <button onclick="setMeyerNu('c1', this)">$C^1$ cubic</button>
+                <button class="active" onclick="setMeyerNu('c3', this)">$C^3$ degree 7</button>
+                <button onclick="setMeyerNu('inf', this)">$C^\infty$</button>
+              </div>
+              <div class="blog-canvas-wrapper" style="height: 380px;">
+                <canvas id="canvas-post-meyer" class="tab-hero-canvas"></canvas>
+              </div>
+              <div class="blog-canvas-caption" data-i18n="blogMey_canvas_caption">
+                <i class="fa-solid fa-hand-pointer"></i> Interactive figure — $\phi$ and $\psi$ are computed live from the definition by a cosine quadrature of $\hat\phi$ and $\hat\psi$; nothing is tabulated. The first panel sums $|\hat\phi|^2 + \sum_j |\hat\psi(2^{-j}\omega)|^2$ at the cursor, the third measures the envelope of $|\psi|$ on a log-log scale for all three ramps, and the fourth evaluates the Gram entries $\langle\psi, \psi(\cdot - k)\rangle$ and $\langle\psi, \psi_{1,k}\rangle$ by Parseval's identity. <strong>Drag</strong> to pan, <strong>scroll</strong> to zoom, <strong>hover</strong> to read values, <strong>double-click</strong> to reset.
+              </div>
+            </div>
+
+            <p data-i18n="blogMey_p4">
+              The decay of $\psi$ is dictated by the smoothness of $\hat\psi$, and that smoothness is dictated by $\nu$ at the four band edges $\pm\tfrac{2\pi}{3}$, $\pm\tfrac{8\pi}{3}$. With the cubic ramp, $\hat\psi$ is $C^1$ with a jump in its second derivative, and two integrations by parts give $|\psi(t)| \asymp |t|^{-3}$ along a sequence; the degree-seven ramp raises this to $|t|^{-5}$; the $C^\infty$ ramp gives decay faster than every power. The measured log-log slopes in the third panel are close to $-3$ and $-5$ for the polynomial ramps and steepen without bound for the $C^\infty$ ramp. Decay faster than every power is the limit: if $|\psi(t)| \le C e^{-\epsilon|t|}$, then $\hat\psi$ would extend analytically to the strip $|\operatorname{Im}\omega| < \epsilon$, which is incompatible with $\hat\psi$ vanishing on an interval unless $\psi \equiv 0$.
+            </p>
+
+            <div class="math-callout">
+              <div class="math-callout-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-i18n="key_insight_mey_title">Meyer and Daubechies: Two Sides of One Obstruction</span>
+              </div>
+              <p data-i18n="key_insight_mey_desc">
+                The Meyer and Daubechies constructions occupy opposite ends of the same trade-off. Meyer fixes a compact spectrum and obtains $C^\infty$ regularity, all vanishing moments and super-polynomial decay, but no compact support and an infinite filter. Daubechies fixes compact support and a finite filter, and pays with finite regularity and a finite number $N$ of vanishing moments. The consequence for approximation theory is direct. A Jackson-type estimate on the Besov scale $B^s_{p,q}$ with Daubechies wavelets requires $s < N$, whereas the Meyer system imposes no ceiling on $s$. In addition, because $\hat\psi$ lives in a fixed annulus, each Littlewood-Paley block of a function interacts with only a bounded number of wavelet scales. This finite-band property is the structural input behind the explicit constant $C_M$ in the weighted Jackson inequality discussed in the approximation-theory series of this blog.
+              </p>
+            </div>
+
+            <p data-i18n="blogMey_p5">
+              Two limitations should be stated. Since the filter $h[n]$ is infinite, the fast wavelet transform must be realized through the FFT on a periodized grid rather than through finite convolutions, and truncating $h$ destroys orthonormality to the order of the truncated tail. Moreover, the time localization, although super-polynomial, depends on the constants in the derivatives of $\nu$: the $C^\infty$ ramp above is asymptotically the fastest, yet on moderate windows the degree-seven ramp decays faster, and the third panel shows the $C^\infty$ envelope overtaking it only for $|t|$ of the order of $50$. The tensor-product extension to $\mathbb{R}^n$ supplies $2^n - 1$ band-limited generators with the same properties, and it is the system used as the model case of band-limited biorthogonal bases in weighted estimates.
+            </p>
+
+            <div class="blog-refs">
+              <div class="blog-refs-title"><i class="fa-solid fa-book"></i> <span data-i18n="refs_title">References</span></div>
+              <ol data-i18n="refs_mey">
+                <li>Y. Meyer, <em>Principe d'incertitude, bases hilbertiennes et algèbres d'opérateurs</em>, Séminaire Bourbaki, Vol. 1985/86, Exp. No. 662, Astérisque <strong>145-146</strong> (1987), 209-223.</li>
+                <li>P.-G. Lemarié and Y. Meyer, <em>Ondelettes et bases hilbertiennes</em>, Rev. Mat. Iberoamericana <strong>2</strong> (1986), 1-18.</li>
+                <li>J.-O. Strömberg, <em>A modified Franklin system and higher-order spline systems on R^n as unconditional bases for Hardy spaces</em>, Conference on Harmonic Analysis in Honor of A. Zygmund, Vol. II, Wadsworth, 1983, 475-494.</li>
+                <li>S. Mallat, <em>Multiresolution approximations and wavelet orthonormal bases of L^2(R)</em>, Trans. Amer. Math. Soc. <strong>315</strong> (1989), 69-87.</li>
+                <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>
+                <li>Y. Meyer, <em>Wavelets and Operators</em>, Cambridge Studies in Advanced Mathematics <strong>37</strong>, Cambridge University Press, 1992.</li>
+                <li>E. Hernández and G. Weiss, <em>A First Course on Wavelets</em>, CRC Press, 1996.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
 
         <!-- EXPOSITION: Effective Dimension -->
         <article class="blog-post-card" data-cat="expo" data-series="approx"
@@ -2273,7 +2652,7 @@
 
 
         <!-- CLASSICAL EXPOSITION: Daubechies Wavelets -->
-        <article class="blog-post-card" data-cat="expo" data-featured="true" data-series="wavelet"
+        <article class="blog-post-card" data-cat="expo" data-series="wavelet"
                  data-tags="Daubechies Wavelets|Multiresolution Analysis|Vanishing Moments|Refinement Equation|Orthonormal Bases|Compact Support">
           <div class="blog-meta-row">
             <span class="blog-tag">Daubechies Wavelets</span>
@@ -3098,13 +3477,16 @@
       },
       {
         id: "p5",
-        title: "Explicit constants in Jackson-type inequalities for n-term wavelet approximation in weighted Besov spaces",
+        title: "Jackson-type inequalities with explicit weight dependence for N-term wavelet approximation on localized weighted Besov classes",
         authors: ["Wang K C"],
-        journal: "Journal of Inequalities and Applications",
+        journal: "arXiv preprint",
         year: 2026,
-        status: "review",
+        status: "preprint",
+        arxiv: "2609.35520",
+        arxivUrl: "https://arxiv.org/abs/2609.35520",
+        arxivClass: "math.CA",
         topic: "approx",
-        abstract: "Derives explicit computable constants for Jackson-type non-linear n-term approximation inequalities in weighted Besov spaces."
+        abstract: "Proves a Jackson-type inequality for approximation by a prescribed number of terms of a band-limited biorthogonal wavelet system in homogeneous weighted Besov spaces with Muckenhoupt weights, on functions recovered from their wavelet expansion along the dyadic tree of the unit cube. For every f in the localized class and every N, E_N(f) in L^p_w is bounded by C_0 [w]_{A_p}^{2/p} N^{-s/n} times the weighted Besov norm, where C_0 has a closed-form majorant independent of N, f, q, w and the Riesz bounds. An extremal family of single-scale sums shows that the exponent s/n cannot be increased on the class, and an unweighted example shows that the localization cannot be removed."
       },
       {
         id: "p6",
@@ -3213,7 +3595,7 @@
         sec_research_pillars: "Theoretical Pillars & Focus Areas",
 
         pillar1_title: "Wavelet Bases & Bi-Frame Decompositions",
-        pillar1_desc: "Investigation of pre-wavelet bases in Lebesgue spaces $L^p(\\mathbb{R}^n)$ and tight wavelet frames. Formulating sharp Jackson and Bernstein inequalities for non-orthogonal expansions.",
+        pillar1_desc: "Investigation of pre-wavelet bases in Lebesgue spaces $L^p(\\mathbb{R}^n)$ and tight wavelet frames. Formulating Jackson and Bernstein inequalities with explicit constants for non-orthogonal expansions.",
         pillar2_title: "Deep Learning on Additive Besov Classes",
         pillar2_desc: "Overcoming the curse of dimensionality via additive Besov representations. Providing non-asymptotic error bounds for shallow and multi-scale architectures.",
         pillar3_title: "Quantitative Weighted Inequalities",
@@ -3240,6 +3622,72 @@
         hero_title_blog: "Phase-Space Uncertainty Simulator",
         hero_desc_blog: "Interactive visualization of Heisenberg-Gabor-Wavelet phase-space localization and the geometric obstruction of the Balian-Low theorem.",
         canvas_hint_blog: "Move cursor to deform uncertainty ellipse",
+        blogJW_title: "Weighted Jackson Inequalities for N-Term Wavelet Approximation: Where the Muckenhoupt Characteristic Enters",
+        blogJW_p1: "Nonlinear $N$-term approximation asks how accurately a function can be represented by at most $N$ elements of a fixed wavelet system, the indices and the coefficients being allowed to depend on the function. For the target space $L^p(\\mathbb{R}^n)$ the classical answer of DeVore, Jawerth and Popov identifies the rate $N^{-s/n}$ for the Besov class $B^s_\\tau(L^\\tau)$ on the critical line $1/\\tau = s/n + 1/p$. This note concerns the other regime, in which the smoothness class and the target space share the exponent $p$ and a Muckenhoupt weight $w$ is admitted. The rate is then tied to the number of coefficients each scale carries, and the question that remains is quantitative: on which features of the weight does the constant depend, and in what power.",
+        blogJW_p2: "The wavelet system is a pair of band-limited biorthogonal Riesz bases $\\{\\psi_{j,k}\\}$, $\\{\\tilde\\psi_{j,k}\\}$ of $L^2(\\mathbb{R}^n)$, normalized as $\\psi_{j,k}(x) = 2^{jn/2}\\psi(2^j x - k)$, whose generators have Fourier transforms in $C_c^\\infty$ supported in an annulus $\\{a \\le |\\xi| \\le b\\}$. The Meyer system is the model example; in dimension $n$ its tensor products supply $L = 2^n - 1$ generators. All weighted quantities are expressed through the cube measures $w(Q_{j,k})$ of the dyadic cubes $Q_{j,k} = 2^{-j}(k + [0,1)^n)$, never through pointwise values of $w$.",
+        def_jw_title: "Definition (Muckenhoupt Characteristic, Weighted Besov Space, Localized Class)",
+        def_jw_body: "For $1 &lt; p &lt; \\infty$ and cubes $Q$ with sides parallel to the axes,<br>$$[w]_{A_p} = \\sup_{Q} \\Big(\\frac{1}{|Q|}\\int_Q w\\Big)\\Big(\\frac{1}{|Q|}\\int_Q w^{-\\frac{1}{p-1}}\\Big)^{p-1}, \\qquad \\|f\\|_{\\dot B^s_{p,q}(w)} = \\Big(\\sum_{j \\in \\mathbb{Z}} 2^{jsq}\\, \\|\\Delta_j f\\|_{L^p_w}^q\\Big)^{1/q},$$<br>where $\\Delta_j$ are homogeneous Littlewood-Paley operators. The localized class $\\dot B^s_{p,q}(w;Q_0)$ consists of those $f \\in L^p_w \\cap \\dot B^s_{p,q}(w)$ that are recovered in $L^p_w$ from their wavelet expansion along the dyadic tree $\\{(j,k) : j \\ge 0,\\ Q_{j,k} \\subset Q_0\\}$ of the unit cube $Q_0 = [0,1)^n$.",
+        thm_jw_title: "Theorem (Jackson-Type Inequality with Explicit Weight Dependence)",
+        thm_jw_body: "Let $s &gt; 0$, $1 &lt; p &lt; \\infty$, $0 &lt; q &lt; \\infty$ and $w \\in A_p$. For every $f \\in \\dot B^s_{p,q}(w;Q_0)$ and every integer $N \\ge 1$,<br>$$E_N(f)_{L^p_w} \\le C_0\\, [w]_{A_p}^{2/p}\\, N^{-s/n}\\, \\|f\\|_{\\dot B^s_{p,q}(w)}, \\qquad C_0 = \\frac{L\\,(2L)^{s/n}}{1 - 2^{-s}}\\, C_M\\, K_U\\, K_L .$$<br>Here $L$ is the number of generators, $C_M = \\sum_{|i| \\le M} 2^{is}$ records the finite-band index $M$ comparing the Littlewood-Paley annulus with the frequency annulus of the generators, and $K_U$, $K_L$ are explicit series in the decay envelopes of the synthesis and dual generators, bounded in closed form through the Riemann zeta function. The factor $C_0$ does not depend on $N$, $f$, $q$, $w$, or the Riesz bounds of the system. Since $2/p \\le 2\\theta(p)$ with $\\theta(p) = \\tfrac{1}{2}\\max\\{1, (p-1)^{-1}\\}$, the bound also holds with $[w]_{A_p}^{2\\theta(p)}$; the two powers coincide at $p = 2$, where the dependence on $[w]_{A_2}$ is linear.",
+        blogJW_p3: "The power $2/p$ is the product of two factors $[w]_{A_p}^{1/p}$, and each is traceable to one application of two elementary inequalities for $A_p$ weights on a cube $Q$:<br>$$\\int_Q |g| \\le [w]_{A_p}^{1/p}\\, |Q|\\, w(Q)^{-1/p} \\Big(\\int_Q |g|^p w\\Big)^{1/p}, \\qquad w(Q) \\le [w]_{A_p} \\Big(\\frac{|Q|}{|S|}\\Big)^{p} w(S), \\quad S \\subset Q .$$<br>The first is Hölder's inequality applied to $|g| = |g|\\,w^{1/p}\\,w^{-1/p}$; the second is its specialization to $g = \\mathbf{1}_S$, a quantitative form of the doubling property. No weighted maximal-function bound is invoked, and no equivalence constant inherited from a cited wavelet characterization enters $C_0$.",
+        lem_jw_title: "Lemma (Single-Scale Two-Sided Estimate)",
+        lem_jw_body: "For a single-scale sum $r = \\sum_{k \\in \\Lambda} c_{j,k}\\psi_{j,k}$ over a finite set $\\Lambda$,<br>$$K_L^{-1}\\, [w]_{A_p}^{-1/p}\\, \\mathcal{S}_\\Lambda \\;\\le\\; \\|r\\|_{L^p_w} \\;\\le\\; K_U\\, [w]_{A_p}^{1/p}\\, \\mathcal{S}_\\Lambda, \\qquad \\mathcal{S}_\\Lambda = 2^{jn/2}\\Big(\\sum_{k \\in \\Lambda} |c_{j,k}|^p\\, w(Q_{j,k})\\Big)^{1/p}.$$<br>The upper estimate proceeds cube by cube. After dilation to $j = 0$, on $Q_{0,k_0}$ the sum is dominated by the decay envelope $\\beta_m$ of $\\psi$ over the rings $|k - k_0|_\\infty = m$; writing $\\beta_m = \\sum_{i \\ge m}(\\beta_i - \\beta_{i+1})$ and exchanging the order of summation, the doubling inequality returns $w$ on the enlarged cube $k + [-m, m+1)^n$ to $w(Q_{0,k})$ at the cost $[w]_{A_p}(2m+1)^{np}$. The lower estimate follows from a weighted bound for the analysis coefficients combined with biorthogonality.",
+        ctrl_jw_tree: "Dyadic Tree and Truncation in Scale",
+        ctrl_jw_weight: "$[w]_{A_p}$ and Its Powers",
+        ctrl_jw_rate: "Rate $N^{-s/n}$",
+        ctrl_jw_extremal: "Extremal Family",
+        ctrl_jw_local: "Why Localization Is Needed",
+        ctrl_jw_gamma: "Weight $|x - \\tfrac13|^\\gamma$, $\\gamma$:",
+        blogJW_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> Interactive figure for $n = 1$, $L = 1$, $Q_0 = [0,1)$ and the power weight $w(x) = |x - \\tfrac13|^\\gamma$, which lies in $A_p$ exactly when $-1 &lt; \\gamma &lt; p - 1$. The cube masses $w(Q_{j,k})$ and the characteristic $[w]_{A_p}$ are computed from closed-form averages; the extremal panel evaluates the sums of the corollary for the chosen weight, and the last panel integrates the Meyer translates of the localization example numerically. <strong>Drag</strong> horizontally to change $N$ (or $m$), <strong>hover</strong> to read values, <strong>double-click</strong> to reset.",
+        blogJW_p4: "The approximant is not chosen greedily. It is the truncation in scale along the dyadic tree: with $j_0$ the largest integer for which the first $j_0 + 1$ generations fit in the budget, $L(2^{(j_0+1)n} - 1)/(2^n - 1) \\le N$, one keeps every coefficient of generation $j \\le j_0$ inside $Q_0$. Maximality of $j_0$ gives $2^{-(j_0+1)s} &lt; (2L)^{s/n} N^{-s/n}$. Each discarded generation $j &gt; j_0$ contributes at most $L\\, C_M K_U K_L\\, [w]_{A_p}^{2/p}\\, 2^{-js}\\|f\\|_{\\dot B^s_{p,q}(w)}$, by the upper single-scale estimate followed by the coefficient bound $S_j(f) \\le L^{1/p} C_M K_L\\, [w]_{A_p}^{1/p}\\, 2^{-js}\\|f\\|_{\\dot B^s_{p,q}(w)}$, and the geometric series over $j &gt; j_0$ closes the argument with the factor $(1 - 2^{-s})^{-1}$.",
+        cor_jw_title: "Corollary (Lower Estimate via an Extremal Family)",
+        cor_jw_body: "For $N = 2^{mn}$ let $f_N^\\ast = \\sum_{k} a_k \\psi_{m+1,k}$ run over the $2^n N$ cubes of generation $m+1$ in $Q_0$, with $a_k = 2^{-(m+1)(s + n/2)}\\, w(Q_{m+1,k})^{-1/p}$. Then<br>$$c_\\flat\\, [w]_{A_p}^{-2/p} \\;\\le\\; \\frac{E_N(f_N^\\ast)_{L^p_w}}{N^{-s/n}\\, \\|f_N^\\ast\\|_{\\dot B^s_{p,q}(w)}} \\;\\le\\; c_\\sharp\\, [w]_{A_p}^{2/p},$$<br>with $c_\\flat$, $c_\\sharp$ independent of $N$ and $w$. The normalization makes every term $|a_k|^p w(Q_{m+1,k})$ equal, so that discarding any $N$ of the $2^n N$ terms leaves the coefficient-level ratio $(1 - 2^{-n})^{1/p}\\, 2^{-s}$. If $s/n$ could be replaced by $s'/n$ with $s' &gt; s$, the lower bound would force $c_\\flat [w]_{A_p}^{-2/p} \\le C' N^{-(s'-s)/n}$ for every $N$, which fails as $N \\to \\infty$. The construction is deterministic; no claim is made that the power $2/p$ is matched in order from below.",
+        blogJW_p5: "The restriction to the dyadic tree of $Q_0$ is not a technical convenience. On the whole of $\\mathbb{R}^n$ a single scale of $\\dot B^s_{p,q}$ admits arbitrarily many coefficients of comparable size: for $w \\equiv 1$ the sums $f_N = \\sum_{k=1}^{2N} \\psi_{0,k}$, of generation $0$ and translated off the cube, satisfy $E_N(f_N)_{L^p} \\ge c\\, \\|f_N\\|_{\\dot B^s_{p,q}}$ uniformly in $N$, so no inequality with a decaying factor $N^{-\\kappa}$ can hold on $L^p \\cap \\dot B^s_{p,q}$. For $n = 1$, $p = q = 2$ and the orthonormal Meyer system the ratio is exactly $E_N(f_N)_{L^2} / \\|f_N\\|_{L^2} = 2^{-1/2}$, which the last panel of the figure recovers by quadrature. For band-limited generators, which have no compact support, localization at the level of coefficients takes the place that approximation on a cube occupies for compactly supported systems.",
+        key_insight_jw_title: "What an Explicit Constant Records",
+        key_insight_jw_desc: "An inequality $E_N(f) \\le C N^{-s/n}\\|f\\|$ with an unspecified $C$ is a statement about the rate; the displayed factor $[w]_{A_p}^{2/p}$ is a statement about the mechanism. It separates the contribution of the weight from that of the wavelet system, shows that the Riesz bounds of the system do not enter, and identifies $p = 2$ as the exponent at which the refined and the coarser powers coincide. The scope is correspondingly delimited: the estimate concerns the homogeneous scale, the same-exponent regime $\\dot B^s_{p,q}(w) \\to L^p_w$ rather than the critical line $1/\\tau = s/n + 1/p$, and the localized class. Whether $2/p$ is the smallest admissible power of $[w]_{A_p}$ is left open.",
+        blogJW_p6: "The result refines two earlier works listed on this site: the unweighted Jackson-type inequality for wavelet bases decomposition, and the explicit direct and inverse estimates for linear biorthogonal multiresolution projections on the inhomogeneous weighted Besov scale, where the weight enters through the norm of the Hardy-Littlewood maximal operator on $L^p_w$ rather than through a displayed power of $[w]_{A_p}$. The complete proofs and the closed-form majorant of $C_0$ are available as a preprint: <a class='pub-btn pub-btn-arxiv' href='https://arxiv.org/abs/2609.35520' rel='noopener noreferrer' style='margin-left: 0.5rem;' target='_blank'><i class='fa-solid fa-scroll'></i> arXiv:2609.35520</a>",
+        refs_jw: "<li>K.-C. Wang, <em>Jackson-type inequalities with explicit weight dependence for N-term wavelet approximation on localized weighted Besov classes</em>, arXiv:2609.35520 [math.CA], 2026.</li> <li>R. A. DeVore, B. Jawerth and V. Popov, <em>Compression of wavelet decompositions</em>, Amer. J. Math. <strong>114</strong> (1992), 737-785.</li> <li>R. A. DeVore and G. G. Lorentz, <em>Constructive Approximation</em>, Grundlehren der Mathematischen Wissenschaften <strong>303</strong>, Springer, 1993.</li> <li>V. N. Temlyakov, <em>Greedy Approximation</em>, Cambridge University Press, 2011.</li> <li>H.-Q. Bui, M. Paluszyński and M. H. Taibleson, <em>A maximal function characterization of weighted Besov-Lipschitz and Triebel-Lizorkin spaces</em>, Studia Math. <strong>119</strong> (1996), 219-246.</li> <li>L. Grafakos, <em>Modern Fourier Analysis</em>, 2nd ed., Graduate Texts in Mathematics <strong>250</strong>, Springer, 2009.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>",
+        blogBL_title: "Band-Limited Functions: Paley-Wiener Spaces, Shannon Sampling, and the Cost of a Compact Spectrum",
+        blogBL_p1: "A function is band-limited when its Fourier transform vanishes outside a bounded set. With $\\hat f(\\xi) = \\int_{\\mathbb{R}} f(t) e^{-2\\pi i t\\xi}\\,dt$, frequency measured in cycles, the Paley-Wiener space $PW_b = \\{f \\in L^2(\\mathbb{R}) : \\operatorname{supp}\\hat f \\subset [-b, b]\\}$ collects the square-integrable functions of bandwidth $b$. These are the functions from which the Shannon and Meyer wavelets are built, and whose Littlewood-Paley pieces define the Besov scale. Three facts organize the theory: a compact spectrum makes $f$ rigid, it makes $f$ recoverable from discrete samples, and it bounds every derivative of $f$ by $f$ itself.",
+        thm_pw_title: "Theorem (Paley-Wiener, 1934)",
+        thm_pw_body: "A function $f \\in L^2(\\mathbb{R})$ belongs to $PW_b$ if and only if it is the restriction to $\\mathbb{R}$ of an entire function $F$ of exponential type at most $2\\pi b$, that is, $|F(z)| \\le C_\\epsilon\\, e^{(2\\pi b + \\epsilon)|z|}$ for every $\\epsilon &gt; 0$. In that case $F(z) = \\int_{-b}^{b} \\hat f(\\xi) e^{2\\pi i z\\xi}\\,d\\xi$ and $|F(x + iy)| \\le \\sqrt{2b}\\,\\|f\\|_{L^2}\\, e^{2\\pi b|y|}$.",
+        blogBL_p2: "The rigidity is immediate from the theorem: an entire function vanishing on an interval vanishes identically, so a nonzero band-limited function cannot have compact support, and more generally $f$ and $\\hat f$ cannot both be concentrated on sets of finite measure. This is the first cost of a compact spectrum. A band-limited wavelet, the Meyer wavelet included, is spread over the whole line, and any localization it enjoys is decay rather than support.",
+        thm_shannon_title: "Theorem (Whittaker-Kotelnikov-Shannon Sampling)",
+        thm_shannon_body: "If $f \\in PW_{1/2}$, then<br>$$f(t) = \\sum_{n \\in \\mathbb{Z}} f(n)\\, \\operatorname{sinc}(t - n), \\qquad \\operatorname{sinc}(x) = \\frac{\\sin \\pi x}{\\pi x},$$<br>with convergence in $L^2(\\mathbb{R})$ and uniformly on $\\mathbb{R}$, and $\\|f\\|_{L^2}^2 = \\sum_n |f(n)|^2$. The translates $\\{\\operatorname{sinc}(\\cdot - n)\\}_{n}$ form an orthonormal basis of $PW_{1/2}$. The proof is one line of Poisson summation: the periodization $\\sum_k \\hat f(\\xi + k)$ equals $\\sum_n f(n) e^{-2\\pi i n\\xi}$, and multiplying by $\\mathbf{1}_{[-1/2, 1/2]}$ returns $\\hat f$ because the translates $\\hat f(\\cdot + k)$, $k \\ne 0$, do not meet $[-\\tfrac12, \\tfrac12]$.",
+        blogBL_p3: "The same computation explains aliasing. If $\\hat f$ is not contained in $[-\\tfrac12, \\tfrac12]$, the samples only see the periodization $\\sum_k \\hat f(\\xi + k)$, and a frequency $f_0$ is read as $f_a = |f_0 - \\operatorname{round}(f_0)|$. The sampled sequence $\\cos(2\\pi f_0 n)$ is then indistinguishable from $\\cos(2\\pi f_a n)$, and the sinc series reconstructs the latter. The second panel of the figure lets $f_0$ be dragged across the Nyquist frequency $\\tfrac12$ and shows the replicas entering the band.",
+        ctrl_bl_recon: "Shannon Reconstruction",
+        ctrl_bl_alias: "Aliasing",
+        ctrl_bl_kernel: "Oversampling and Smooth Kernels",
+        ctrl_bl_bern: "Bernstein Inequality",
+        ctrl_bl_K: "Terms $|n| \\le K$:",
+        ctrl_bl_b: "Bandwidth $b$:",
+        blogBL_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> Interactive figure — every curve is evaluated from its formula. The first panel sums the truncated sinc series of a test function in $PW_{1/2}$; the third computes the smooth kernel $g_b$ by quadrature of $\\hat g_b$ and measures the truncation error of both series on $[0,1]$ for $f(t) = \\operatorname{sinc}^2\\big(b(t - 0.3)\\big)$; the fourth evaluates $\\|f'\\|_\\infty / (2\\pi b\\|f\\|_\\infty)$ for random elements of $PW_b$. <strong>Drag</strong> to pan (in the aliasing panel, to move $f_0$), <strong>scroll</strong> to zoom, <strong>click</strong> in the last panel for a new function, <strong>double-click</strong> to reset.",
+        blogBL_p4: "The second cost of a compact spectrum is the slow decay of the reconstruction kernel. Since $\\operatorname{sinc}$ decays only like $|t|^{-1}$ and is not integrable, the truncated series $S_K f(t) = \\sum_{|n| \\le K} f(n)\\operatorname{sinc}(t - n)$ converges slowly, and the error is governed by the tail of the samples rather than by the smoothness of $f$. The remedy is oversampling. If $f \\in PW_b$ with $b &lt; \\tfrac12$, then every kernel $g$ with $\\hat g = 1$ on $[-b, b]$ and $\\hat g = 0$ outside $[-(1-b), 1-b]$ also reproduces $f$ from its integer samples, because the replicas $\\hat f(\\cdot + k)$, $k \\ne 0$, live in $|\\xi| \\ge 1 - b$. Choosing the transition of $\\hat g$ on $[b, 1-b]$ smooth, with the same ramp as in the Meyer construction, makes $g$ decay faster than any power, and the truncation error falls accordingly. The price is a sampling rate $1$ above the Nyquist rate $2b$ by the factor $1/(2b)$, and the gain degrades as $b \\to \\tfrac12$ because the transition band narrows.",
+        thm_bern_title: "Theorem (Bernstein Inequality)",
+        thm_bern_body: "If $f \\in L^p(\\mathbb{R})$, $1 \\le p \\le \\infty$, and $\\operatorname{supp}\\hat f \\subset [-b, b]$, then<br>$$\\|f'\\|_{L^p} \\le 2\\pi b\\, \\|f\\|_{L^p}.$$<br>The constant is attained in $L^\\infty$ by $\\cos(2\\pi b t)$. Combined with the direct (Jackson) estimate for approximation by entire functions of exponential type $\\sigma$, $E_\\sigma(f)_p \\le C\\sigma^{-s}|f|_{B^s_{p,\\infty}}$, it yields the classical characterization of Besov spaces through approximation by band-limited functions: $f \\in B^s_{p,q}$ if and only if $\\big(\\sum_j (2^{js} E_{2^j}(f)_p)^q\\big)^{1/q} &lt; \\infty$.",
+        key_insight_bl_title: "Why Band-Limited Wavelets Suit Quantitative Estimates",
+        key_insight_bl_desc: "A wavelet whose Fourier transform lives in a fixed annulus $\\{a \\le |\\xi| \\le b\\}$ inherits all three facts. Every moment vanishes, so no smoothness ceiling appears in Jackson-type estimates. Each Littlewood-Paley block $\\Delta_j f$ interacts with the wavelet scales $j - M, \\dots, j + M$ only, where $M$ is fixed by the two annuli; this relation is exact rather than approximate, and it is what produces the finite constant $C_M$ in the weighted Jackson inequality of the approximation-theory series. The rigidity, however, forbids compact support, so any localization, for instance the restriction to the dyadic tree of a cube, must be imposed at the level of the coefficients rather than obtained from the support of the generators.",
+        blogBL_p5: "Several directions lie outside this note. Sampling on non-uniform sets is governed by Landau's density conditions and, for perturbations of the integers, by Kadec's $\\tfrac14$ theorem; in several variables the Paley-Wiener-Schwartz theorem ties the growth of the extension to the support function of a convex spectrum; and at the endpoints $p = 1$ and $p = \\infty$ the sinc series may fail to converge without additional decay of the samples. The three panels above remain within the classical one-dimensional setting, where every statement can be checked numerically against its closed form.",
+        refs_bl: "<li>E. T. Whittaker, <em>On the functions which are represented by the expansions of the interpolation-theory</em>, Proc. Roy. Soc. Edinburgh <strong>35</strong> (1915), 181-194.</li> <li>C. E. Shannon, <em>Communication in the presence of noise</em>, Proc. IRE <strong>37</strong> (1949), 10-21.</li> <li>R. E. A. C. Paley and N. Wiener, <em>Fourier Transforms in the Complex Domain</em>, AMS Colloquium Publications <strong>19</strong>, 1934.</li> <li>S. M. Nikol'skii, <em>Approximation of Functions of Several Variables and Imbedding Theorems</em>, Springer, 1975.</li> <li>R. M. Young, <em>An Introduction to Nonharmonic Fourier Series</em>, Academic Press, 1980.</li> <li>J. R. Higgins, <em>Sampling Theory in Fourier and Signal Analysis: Foundations</em>, Oxford University Press, 1996.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>",
+        blogMey_title: "The Meyer Wavelet: Orthonormality Built in the Frequency Domain",
+        blogMey_p1: "In 1985 Yves Meyer set out to show that no orthonormal basis of $L^2(\\mathbb{R})$ of the form $\\{2^{j/2}\\psi(2^j t - k)\\}_{j,k \\in \\mathbb{Z}}$ could consist of Schwartz functions, and constructed one instead. Strömberg had already produced an orthonormal wavelet basis of spline type in 1982, with finite smoothness and exponential decay, but Meyer's construction was the first with $\\psi \\in \\mathcal{S}(\\mathbb{R})$, and it is written entirely on the Fourier side. The construction is short enough to verify line by line, and it exposes the mechanism behind every orthonormal wavelet: a partition of unity in frequency whose pieces overlap in a controlled way.",
+        blogMey_p2: "The only free ingredient is a ramp $\\nu : \\mathbb{R} \\to [0,1]$ with $\\nu(x) = 0$ for $x \\le 0$, $\\nu(x) = 1$ for $x \\ge 1$, and the symmetry $\\nu(x) + \\nu(1-x) = 1$. The polynomial $\\nu(x) = x^4(35 - 84x + 70x^2 - 20x^3)$ on $[0,1]$ is the standard choice and belongs to $C^3$; the cubic $x^2(3 - 2x)$ gives a $C^1$ ramp, and $\\nu(x) = e^{-1/x}/(e^{-1/x} + e^{-1/(1-x)})$ gives a $C^\\infty$ one. With angular frequency $\\omega$ and $\\hat f(\\omega) = \\int f(t) e^{-i\\omega t}\\,dt$, the scaling function and the wavelet are defined through their Fourier transforms.",
+        def_mey_title: "Definition (Meyer Scaling Function and Wavelet)",
+        def_mey_body: "<br>$$\\hat\\phi(\\omega) = \\begin{cases} 1, &amp; |\\omega| \\le \\tfrac{2\\pi}{3}, \\\\ \\cos\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{2\\pi} - 1)\\big), &amp; \\tfrac{2\\pi}{3} \\le |\\omega| \\le \\tfrac{4\\pi}{3}, \\\\ 0, &amp; \\text{otherwise}, \\end{cases} \\qquad \\hat\\psi(\\omega) = e^{i\\omega/2} \\begin{cases} \\sin\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{2\\pi} - 1)\\big), &amp; \\tfrac{2\\pi}{3} \\le |\\omega| \\le \\tfrac{4\\pi}{3}, \\\\ \\cos\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{4\\pi} - 1)\\big), &amp; \\tfrac{4\\pi}{3} \\le |\\omega| \\le \\tfrac{8\\pi}{3}, \\\\ 0, &amp; \\text{otherwise}. \\end{cases}$$<br>The factor $e^{i\\omega/2}$ makes $\\psi$ real and symmetric about $t = -\\tfrac12$, and $\\psi(t) = \\tfrac{1}{\\pi}\\int_{2\\pi/3}^{8\\pi/3} |\\hat\\psi(\\omega)| \\cos\\big(\\omega(t + \\tfrac12)\\big)\\,d\\omega$.",
+        blogMey_p3: "Orthonormality of the integer translates of $\\phi$ is equivalent to $\\sum_{k} |\\hat\\phi(\\omega + 2\\pi k)|^2 = 1$. On $|\\omega| \\le \\tfrac{2\\pi}{3}$ only $k = 0$ contributes and the sum is $1$. On $\\tfrac{2\\pi}{3} \\le \\omega \\le \\tfrac{4\\pi}{3}$ exactly two terms survive, $k = 0$ and $k = -1$, and with $x = \\tfrac{3\\omega}{2\\pi} - 1 \\in [0,1]$ one has $\\tfrac{3|\\omega - 2\\pi|}{2\\pi} - 1 = 1 - x$. The symmetry of $\\nu$ then gives<br>$$|\\hat\\phi(\\omega)|^2 + |\\hat\\phi(\\omega - 2\\pi)|^2 = \\cos^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) + \\cos^2\\!\\big(\\tfrac{\\pi}{2}(1 - \\nu(x))\\big) = \\cos^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) + \\sin^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) = 1 .$$<br>The same identity, read on the annulus, yields $|\\hat\\phi(\\omega)|^2 + |\\hat\\psi(\\omega)|^2 = |\\hat\\phi(\\omega/2)|^2$ and hence the dyadic partition of unity $\\sum_{j \\in \\mathbb{Z}} |\\hat\\psi(2^{-j}\\omega)|^2 = 1$ for $\\omega \\ne 0$. The whole construction reduces to the single relation $\\cos^2 + \\sin^2 = 1$ placed at the right frequencies.",
+        thm_mey_title: "Theorem (Meyer, 1985; Lemarié-Meyer, 1986)",
+        thm_mey_body: "For every ramp $\\nu$ as above, $\\{\\phi(\\cdot - k)\\}_{k}$ is an orthonormal basis of $V_0$, the spaces $V_j = \\overline{\\operatorname{span}}\\{2^{j/2}\\phi(2^j \\cdot - k)\\}$ form a multiresolution analysis of $L^2(\\mathbb{R})$, and $\\{\\psi_{j,k}(t) = 2^{j/2}\\psi(2^j t - k)\\}_{j,k \\in \\mathbb{Z}}$ is an orthonormal basis of $L^2(\\mathbb{R})$. Since $\\hat\\psi$ vanishes on $|\\omega| &lt; \\tfrac{2\\pi}{3}$, every moment of $\\psi$ vanishes. If $\\nu \\in C^m$, then $\\hat\\psi \\in C^m_c$ and $|\\psi(t)| \\le C_m (1 + |t|)^{-m}$; if $\\nu \\in C^\\infty$, then $\\psi \\in \\mathcal{S}(\\mathbb{R})$. The two-scale symbol $m_0(\\omega) = \\sum_{k} \\hat\\phi(2\\omega + 4\\pi k)$ is $2\\pi$-periodic and smooth but not a trigonometric polynomial, so the refinement filter $h[n]$ is infinite.",
+        ctrl_mey_freq: "Frequency Side and Partition of Unity",
+        ctrl_mey_time: "$\\phi$ and $\\psi$ in Time",
+        ctrl_mey_decay: "Decay vs. Smoothness of $\\nu$",
+        ctrl_mey_orth: "Orthonormality Check",
+        ctrl_mey_nu: "Ramp $\\nu$:",
+        blogMey_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> Interactive figure — $\\phi$ and $\\psi$ are computed live from the definition by a cosine quadrature of $\\hat\\phi$ and $\\hat\\psi$; nothing is tabulated. The first panel sums $|\\hat\\phi|^2 + \\sum_j |\\hat\\psi(2^{-j}\\omega)|^2$ at the cursor, the third measures the envelope of $|\\psi|$ on a log-log scale for all three ramps, and the fourth evaluates the Gram entries $\\langle\\psi, \\psi(\\cdot - k)\\rangle$ and $\\langle\\psi, \\psi_{1,k}\\rangle$ by Parseval's identity. <strong>Drag</strong> to pan, <strong>scroll</strong> to zoom, <strong>hover</strong> to read values, <strong>double-click</strong> to reset.",
+        blogMey_p4: "The decay of $\\psi$ is dictated by the smoothness of $\\hat\\psi$, and that smoothness is dictated by $\\nu$ at the four band edges $\\pm\\tfrac{2\\pi}{3}$, $\\pm\\tfrac{8\\pi}{3}$. With the cubic ramp, $\\hat\\psi$ is $C^1$ with a jump in its second derivative, and two integrations by parts give $|\\psi(t)| \\asymp |t|^{-3}$ along a sequence; the degree-seven ramp raises this to $|t|^{-5}$; the $C^\\infty$ ramp gives decay faster than every power. The measured log-log slopes in the third panel are close to $-3$ and $-5$ for the polynomial ramps and steepen without bound for the $C^\\infty$ ramp. Decay faster than every power is the limit: if $|\\psi(t)| \\le C e^{-\\epsilon|t|}$, then $\\hat\\psi$ would extend analytically to the strip $|\\operatorname{Im}\\omega| &lt; \\epsilon$, which is incompatible with $\\hat\\psi$ vanishing on an interval unless $\\psi \\equiv 0$.",
+        key_insight_mey_title: "Meyer and Daubechies: Two Sides of One Obstruction",
+        key_insight_mey_desc: "The Meyer and Daubechies constructions occupy opposite ends of the same trade-off. Meyer fixes a compact spectrum and obtains $C^\\infty$ regularity, all vanishing moments and super-polynomial decay, but no compact support and an infinite filter. Daubechies fixes compact support and a finite filter, and pays with finite regularity and a finite number $N$ of vanishing moments. The consequence for approximation theory is direct. A Jackson-type estimate on the Besov scale $B^s_{p,q}$ with Daubechies wavelets requires $s &lt; N$, whereas the Meyer system imposes no ceiling on $s$. In addition, because $\\hat\\psi$ lives in a fixed annulus, each Littlewood-Paley block of a function interacts with only a bounded number of wavelet scales. This finite-band property is the structural input behind the explicit constant $C_M$ in the weighted Jackson inequality discussed in the approximation-theory series of this blog.",
+        blogMey_p5: "Two limitations should be stated. Since the filter $h[n]$ is infinite, the fast wavelet transform must be realized through the FFT on a periodized grid rather than through finite convolutions, and truncating $h$ destroys orthonormality to the order of the truncated tail. Moreover, the time localization, although super-polynomial, depends on the constants in the derivatives of $\\nu$: the $C^\\infty$ ramp above is asymptotically the fastest, yet on moderate windows the degree-seven ramp decays faster, and the third panel shows the $C^\\infty$ envelope overtaking it only for $|t|$ of the order of $50$. The tensor-product extension to $\\mathbb{R}^n$ supplies $2^n - 1$ band-limited generators with the same properties, and it is the system used as the model case of band-limited biorthogonal bases in weighted estimates.",
+        refs_mey: "<li>Y. Meyer, <em>Principe d'incertitude, bases hilbertiennes et algèbres d'opérateurs</em>, Séminaire Bourbaki, Vol. 1985/86, Exp. No. 662, Astérisque <strong>145-146</strong> (1987), 209-223.</li> <li>P.-G. Lemarié and Y. Meyer, <em>Ondelettes et bases hilbertiennes</em>, Rev. Mat. Iberoamericana <strong>2</strong> (1986), 1-18.</li> <li>J.-O. Strömberg, <em>A modified Franklin system and higher-order spline systems on R^n as unconditional bases for Hardy spaces</em>, Conference on Harmonic Analysis in Honor of A. Zygmund, Vol. II, Wadsworth, 1983, 475-494.</li> <li>S. Mallat, <em>Multiresolution approximations and wavelet orthonormal bases of L^2(R)</em>, Trans. Amer. Math. Soc. <strong>315</strong> (1989), 69-87.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li> <li>Y. Meyer, <em>Wavelets and Operators</em>, Cambridge Studies in Advanced Mathematics <strong>37</strong>, Cambridge University Press, 1992.</li> <li>E. Hernández and G. Weiss, <em>A First Course on Wavelets</em>, CRC Press, 1996.</li>",
         sec_blog_title: "Recent Research Notes & Mathematical Expositions",
         blogE_title: "Effective Dimension: Where the Ambient Dimension Goes When the Rate Improves",
         blogE_p1: "The entropy lower bound of the previous note is a statement about a ball in a smoothness space, and the only way past it is to work in a smaller class. Effective dimension is the name given to several distinct ways of specifying such a class, all sharing one feature: the exponent in the convergence rate is governed by a quantity $d_0$ that can be much smaller than the ambient dimension $d$, while $d$ itself does not vanish but withdraws into a prefactor. Making that prefactor explicit is what separates a usable statement from a slogan, because it is the prefactor that determines at which budget the improved exponent begins to pay.",
@@ -3504,7 +3952,7 @@
         sec_research_pillars: "理論支柱與前沿方向",
 
         pillar1_title: "小波基與雙框架分解",
-        pillar1_desc: "研究 Lebesgue 空間 $L^p(\\mathbb{R}^n)$ 中之 pre-wavelet 基底與緊小波框架，推導非正交分解體系之精確 Jackson/Bernstein 不等式。",
+        pillar1_desc: "研究 Lebesgue 空間 $L^p(\\mathbb{R}^n)$ 中之 pre-wavelet 基底與緊小波框架，推導非正交分解體系中具顯式常數之 Jackson/Bernstein 不等式。",
         pillar2_title: "可加 Besov 空間上的深度學習逼近",
         pillar2_desc: "基於可加 Besov 空間表徵，打破維度詛咒，為淺層與深層神經網絡提供顯式非漸近誤差界限。",
         pillar3_title: "定量加權不等式與算子理論",
@@ -3531,6 +3979,72 @@
         hero_title_blog: "相空間測不準原理與幾何橢圓模擬",
         hero_desc_blog: "視覺化呈現 Heisenberg-Gabor-Wavelet 相空間時頻局域化界限與 Balian-Low 幾何阻礙之數學本質。",
         canvas_hint_blog: "移動游標可動態旋轉並形變測不準度橢圓",
+        blogJW_title: "《N 項小波逼近的加權 Jackson 型不等式：Muckenhoupt 特徵量從何處進入》",
+        blogJW_p1: "非線性 $N$ 項逼近所問的是：以固定小波系統中至多 $N$ 個元素的線性組合表示一個函數，能達到怎樣的精度；其中指標的選取與係數都允許依賴於該函數。當目標空間為 $L^p(\\mathbb{R}^n)$ 時，DeVore、Jawerth 與 Popov 的經典結果指出，在臨界線 $1/\\tau = s/n + 1/p$ 上的 Besov 類 $B^s_\\tau(L^\\tau)$ 具有逼近階 $N^{-s/n}$。本文討論的是另一種情形：光滑類與目標空間共用同一指數 $p$，並容許 Muckenhoupt 權 $w$。此時逼近階由每一尺度所含係數的個數決定，剩下的是定量問題：常數依賴於權的哪些特徵，又以何種冪次依賴。",
+        blogJW_p2: "小波系統取為 $L^2(\\mathbb{R}^n)$ 的一對帶限雙正交 Riesz 基 $\\{\\psi_{j,k}\\}$、$\\{\\tilde\\psi_{j,k}\\}$，正規化為 $\\psi_{j,k}(x) = 2^{jn/2}\\psi(2^j x - k)$，其生成元的 Fourier 變換屬於 $C_c^\\infty$，且支撐於環域 $\\{a \\le |\\xi| \\le b\\}$。Meyer 系統是典型例子；在 $n$ 維中，其張量積提供 $L = 2^n - 1$ 個生成元。所有加權量都透過二進方體 $Q_{j,k} = 2^{-j}(k + [0,1)^n)$ 的方體測度 $w(Q_{j,k})$ 來表達，而從不使用 $w$ 的逐點值。",
+        def_jw_title: "定義（Muckenhoupt 特徵量、加權 Besov 空間、局部化類）",
+        def_jw_body: "對 $1 < p < \\infty$ 及各邊平行於座標軸的方體 $Q$，<br>$$[w]_{A_p} = \\sup_{Q} \\Big(\\frac{1}{|Q|}\\int_Q w\\Big)\\Big(\\frac{1}{|Q|}\\int_Q w^{-\\frac{1}{p-1}}\\Big)^{p-1}, \\qquad \\|f\\|_{\\dot B^s_{p,q}(w)} = \\Big(\\sum_{j \\in \\mathbb{Z}} 2^{jsq}\\, \\|\\Delta_j f\\|_{L^p_w}^q\\Big)^{1/q},$$<br>其中 $\\Delta_j$ 為齊次 Littlewood-Paley 算子。局部化類 $\\dot B^s_{p,q}(w;Q_0)$ 由滿足下列條件的 $f \\in L^p_w \\cap \\dot B^s_{p,q}(w)$ 組成：沿單位方體 $Q_0 = [0,1)^n$ 的二進樹 $\\{(j,k) : j \\ge 0,\\ Q_{j,k} \\subset Q_0\\}$ 展開的小波級數在 $L^p_w$ 中收斂回 $f$。",
+        thm_jw_title: "定理（具顯式權依賴的 Jackson 型不等式）",
+        thm_jw_body: "設 $s > 0$、$1 < p < \\infty$、$0 < q < \\infty$ 且 $w \\in A_p$。則對每個 $f \\in \\dot B^s_{p,q}(w;Q_0)$ 與每個整數 $N \\ge 1$，<br>$$E_N(f)_{L^p_w} \\le C_0\\, [w]_{A_p}^{2/p}\\, N^{-s/n}\\, \\|f\\|_{\\dot B^s_{p,q}(w)}, \\qquad C_0 = \\frac{L\\,(2L)^{s/n}}{1 - 2^{-s}}\\, C_M\\, K_U\\, K_L .$$<br>其中 $L$ 為生成元個數；$C_M = \\sum_{|i| \\le M} 2^{is}$ 記錄有限頻帶指標 $M$，用以比較 Littlewood-Paley 環域與生成元的頻率環域；$K_U$、$K_L$ 是由綜合生成元與對偶生成元之衰減包絡構成的顯式級數，並可透過 Riemann zeta 函數給出閉式上界。常數 $C_0$ 與 $N$、$f$、$q$、$w$ 以及系統的 Riesz 界皆無關。由於 $2/p \\le 2\\theta(p)$，其中 $\\theta(p) = \\tfrac{1}{2}\\max\\{1, (p-1)^{-1}\\}$，此界亦以 $[w]_{A_p}^{2\\theta(p)}$ 的形式成立；兩個冪次在 $p = 2$ 時一致，此時對 $[w]_{A_2}$ 的依賴是線性的。",
+        blogJW_p3: "冪次 $2/p$ 是兩個因子 $[w]_{A_p}^{1/p}$ 的乘積，每一個都可追溯到對方體 $Q$ 上 $A_p$ 權的兩個基本不等式的一次使用：<br>$$\\int_Q |g| \\le [w]_{A_p}^{1/p}\\, |Q|\\, w(Q)^{-1/p} \\Big(\\int_Q |g|^p w\\Big)^{1/p}, \\qquad w(Q) \\le [w]_{A_p} \\Big(\\frac{|Q|}{|S|}\\Big)^{p} w(S), \\quad S \\subset Q .$$<br>第一式是對 $|g| = |g|\\,w^{1/p}\\,w^{-1/p}$ 使用 Hölder 不等式；第二式是取 $g = \\mathbf{1}_S$ 的特例，也就是倍增性質的定量形式。證明中不使用任何加權極大函數估計，$C_0$ 中也不含任何從引用之小波刻畫繼承而來的等價常數。",
+        lem_jw_title: "引理（單一尺度的雙邊估計）",
+        lem_jw_body: "對有限集 $\\Lambda$ 上的單一尺度和 $r = \\sum_{k \\in \\Lambda} c_{j,k}\\psi_{j,k}$，<br>$$K_L^{-1}\\, [w]_{A_p}^{-1/p}\\, \\mathcal{S}_\\Lambda \\;\\le\\; \\|r\\|_{L^p_w} \\;\\le\\; K_U\\, [w]_{A_p}^{1/p}\\, \\mathcal{S}_\\Lambda, \\qquad \\mathcal{S}_\\Lambda = 2^{jn/2}\\Big(\\sum_{k \\in \\Lambda} |c_{j,k}|^p\\, w(Q_{j,k})\\Big)^{1/p}.$$<br>上界估計逐個方體進行。經伸縮化約至 $j = 0$ 後，在 $Q_{0,k_0}$ 上，此和被 $\\psi$ 在環 $|k - k_0|_\\infty = m$ 上的衰減包絡 $\\beta_m$ 所控制；將 $\\beta_m$ 寫成 $\\sum_{i \\ge m}(\\beta_i - \\beta_{i+1})$ 並交換求和次序後，倍增不等式以 $[w]_{A_p}(2m+1)^{np}$ 的代價，把擴大方體 $k + [-m, m+1)^n$ 上的 $w$ 還原為 $w(Q_{0,k})$。下界估計則由分析係數的加權界配合雙正交性得到。",
+        ctrl_jw_tree: "二進樹與按尺度截斷",
+        ctrl_jw_weight: "$[w]_{A_p}$ 及其冪次",
+        ctrl_jw_rate: "逼近階 $N^{-s/n}$",
+        ctrl_jw_extremal: "極值函數族",
+        ctrl_jw_local: "為何需要局部化",
+        ctrl_jw_gamma: "權 $|x - \\tfrac13|^\\gamma$，$\\gamma$：",
+        blogJW_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互動圖示，取 $n = 1$、$L = 1$、$Q_0 = [0,1)$ 與冪權 $w(x) = |x - \\tfrac13|^\\gamma$；此權屬於 $A_p$ 若且唯若 $-1 < \\gamma < p - 1$。方體測度 $w(Q_{j,k})$ 與特徵量 $[w]_{A_p}$ 由閉式平均值算出；極值面板對所選的權計算推論中的各項和，最後一個面板以數值積分處理局部化反例中的 Meyer 平移。<strong>水平拖曳</strong>可改變 $N$（或 $m$），<strong>懸停</strong>可讀取數值，<strong>雙擊</strong>可重設。",
+        blogJW_p4: "逼近元並非以貪婪方式選取，而是沿二進樹按尺度截斷：取 $j_0$ 為使前 $j_0 + 1$ 代能放入預算 $L(2^{(j_0+1)n} - 1)/(2^n - 1) \\le N$ 的最大整數，並保留 $Q_0$ 內所有第 $j \\le j_0$ 代的係數。由 $j_0$ 的極大性得 $2^{-(j_0+1)s} < (2L)^{s/n} N^{-s/n}$。每個被捨去的第 $j > j_0$ 代，先用單一尺度上界估計，再用係數界 $S_j(f) \\le L^{1/p} C_M K_L\\, [w]_{A_p}^{1/p}\\, 2^{-js}\\|f\\|_{\\dot B^s_{p,q}(w)}$，其貢獻至多為 $L\\, C_M K_U K_L\\, [w]_{A_p}^{2/p}\\, 2^{-js}\\|f\\|_{\\dot B^s_{p,q}(w)}$；對 $j > j_0$ 的幾何級數求和，得到因子 $(1 - 2^{-s})^{-1}$，論證即告完成。",
+        cor_jw_title: "推論（以極值函數族給出的下界估計）",
+        cor_jw_body: "對 $N = 2^{mn}$，令 $f_N^\\ast = \\sum_{k} a_k \\psi_{m+1,k}$ 遍歷 $Q_0$ 中第 $m+1$ 代的 $2^n N$ 個方體，其中 $a_k = 2^{-(m+1)(s + n/2)}\\, w(Q_{m+1,k})^{-1/p}$。則<br>$$c_\\flat\\, [w]_{A_p}^{-2/p} \\;\\le\\; \\frac{E_N(f_N^\\ast)_{L^p_w}}{N^{-s/n}\\, \\|f_N^\\ast\\|_{\\dot B^s_{p,q}(w)}} \\;\\le\\; c_\\sharp\\, [w]_{A_p}^{2/p},$$<br>其中 $c_\\flat$、$c_\\sharp$ 與 $N$、$w$ 無關。此正規化使每一項 $|a_k|^p w(Q_{m+1,k})$ 都相等，因此從 $2^n N$ 項中任意捨去 $N$ 項，係數層級的比值皆為 $(1 - 2^{-n})^{1/p}\\, 2^{-s}$。若 $s/n$ 能換成某個 $s'/n$，$s' > s$，則下界將迫使 $c_\\flat [w]_{A_p}^{-2/p} \\le C' N^{-(s'-s)/n}$ 對所有 $N$ 成立，這在 $N \\to \\infty$ 時不可能。此構造是確定性的；本文並未宣稱冪次 $2/p$ 在階的意義上能由下方達到。",
+        blogJW_p5: "限制在 $Q_0$ 的二進樹上並非技術上的便宜行事。在整個 $\\mathbb{R}^n$ 上，$\\dot B^s_{p,q}$ 的單一尺度可容納任意多個大小相當的係數：對 $w \\equiv 1$，第 $0$ 代且平移離開方體的和 $f_N = \\sum_{k=1}^{2N} \\psi_{0,k}$ 對所有 $N$ 一致地滿足 $E_N(f_N)_{L^p} \\ge c\\, \\|f_N\\|_{\\dot B^s_{p,q}}$，因此在 $L^p \\cap \\dot B^s_{p,q}$ 上不可能成立任何帶有衰減因子 $N^{-\\kappa}$ 的不等式。對 $n = 1$、$p = q = 2$ 與正交 Meyer 系統，此比值恰為 $E_N(f_N)_{L^2} / \\|f_N\\|_{L^2} = 2^{-1/2}$，圖示最後一個面板以數值積分重現了這個值。帶限生成元沒有緊支撐，因此對它們而言，係數層級的局部化所扮演的角色，正是緊支撐系統中「在方體上逼近」所扮演的角色。",
+        key_insight_jw_title: "顯式常數記錄了什麼",
+        key_insight_jw_desc: "不等式 $E_N(f) \\le C N^{-s/n}\\|f\\|$ 若不指明 $C$，所陳述的只是逼近階；顯式寫出的因子 $[w]_{A_p}^{2/p}$ 陳述的則是機制。它把權的貢獻與小波系統的貢獻分開，說明系統的 Riesz 界不會進入常數，並指出 $p = 2$ 是精細冪次與較粗冪次一致的指數。適用範圍也相應地劃定：此估計處理的是齊次尺度、同指數情形 $\\dot B^s_{p,q}(w) \\to L^p_w$（而非臨界線 $1/\\tau = s/n + 1/p$），以及局部化類。$2/p$ 是否為 $[w]_{A_p}$ 可容許的最小冪次，仍是開放問題。",
+        blogJW_p6: "此結果精化了本站著作列表中的兩項先前工作：小波基分解的非加權 Jackson 型不等式，以及非齊次加權 Besov 尺度上線性雙正交多解析度投影的顯式正、逆估計；在後者中，權是透過 Hardy-Littlewood 極大算子在 $L^p_w$ 上的範數進入，而非透過 $[w]_{A_p}$ 的顯式冪次。完整證明與 $C_0$ 的閉式上界已以預印本形式公開： <a href='https://arxiv.org/abs/2609.35520' target='_blank' class='pub-btn pub-btn-arxiv' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-scroll'></i> arXiv:2609.35520</a>",
+        refs_jw: "<li>K.-C. Wang, <em>Jackson-type inequalities with explicit weight dependence for N-term wavelet approximation on localized weighted Besov classes</em>, arXiv:2609.35520 [math.CA], 2026.</li> <li>R. A. DeVore, B. Jawerth and V. Popov, <em>Compression of wavelet decompositions</em>, Amer. J. Math. <strong>114</strong> (1992), 737-785.</li> <li>R. A. DeVore and G. G. Lorentz, <em>Constructive Approximation</em>, Grundlehren der Mathematischen Wissenschaften <strong>303</strong>, Springer, 1993.</li> <li>V. N. Temlyakov, <em>Greedy Approximation</em>, Cambridge University Press, 2011.</li> <li>H.-Q. Bui, M. Paluszyński and M. H. Taibleson, <em>A maximal function characterization of weighted Besov-Lipschitz and Triebel-Lizorkin spaces</em>, Studia Math. <strong>119</strong> (1996), 219-246.</li> <li>L. Grafakos, <em>Modern Fourier Analysis</em>, 2nd ed., Graduate Texts in Mathematics <strong>250</strong>, Springer, 2009.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>",
+        blogBL_title: "《帶限函數：Paley-Wiener 空間、Shannon 取樣，以及緊頻譜的代價》",
+        blogBL_p1: "若一個函數的 Fourier 變換在某有界集之外為零，則稱它是帶限的。取 $\\hat f(\\xi) = \\int_{\\mathbb{R}} f(t) e^{-2\\pi i t\\xi}\\,dt$（頻率以週數計），Paley-Wiener 空間 $PW_b = \\{f \\in L^2(\\mathbb{R}) : \\operatorname{supp}\\hat f \\subset [-b, b]\\}$ 收集了頻寬為 $b$ 的平方可積函數。Shannon 小波與 Meyer 小波正是由這類函數構成，Besov 尺度也由它們的 Littlewood-Paley 分塊所定義。整個理論由三個事實組織起來：緊頻譜使 $f$ 具有剛性，使 $f$ 能由離散樣本重建，並使 $f$ 的每一階導數都受 $f$ 本身控制。",
+        thm_pw_title: "定理（Paley-Wiener，1934）",
+        thm_pw_body: "函數 $f \\in L^2(\\mathbb{R})$ 屬於 $PW_b$，若且唯若它是某個指數型不超過 $2\\pi b$ 的整函數 $F$ 在 $\\mathbb{R}$ 上的限制，亦即對每個 $\\epsilon > 0$ 有 $|F(z)| \\le C_\\epsilon\\, e^{(2\\pi b + \\epsilon)|z|}$。此時 $F(z) = \\int_{-b}^{b} \\hat f(\\xi) e^{2\\pi i z\\xi}\\,d\\xi$，且 $|F(x + iy)| \\le \\sqrt{2b}\\,\\|f\\|_{L^2}\\, e^{2\\pi b|y|}$。",
+        blogBL_p2: "剛性可由此定理直接得出：在一個區間上為零的整函數必恆為零，因此非零的帶限函數不可能具有緊支撐；更一般地，$f$ 與 $\\hat f$ 不能同時集中在有限測度的集合上。這是緊頻譜的第一個代價。帶限小波（包括 Meyer 小波）散布在整條實數線上，它所具有的任何局部性都來自衰減，而非支撐。",
+        thm_shannon_title: "定理（Whittaker-Kotelnikov-Shannon 取樣定理）",
+        thm_shannon_body: "若 $f \\in PW_{1/2}$，則<br>$$f(t) = \\sum_{n \\in \\mathbb{Z}} f(n)\\, \\operatorname{sinc}(t - n), \\qquad \\operatorname{sinc}(x) = \\frac{\\sin \\pi x}{\\pi x},$$<br>此級數在 $L^2(\\mathbb{R})$ 中收斂，且在 $\\mathbb{R}$ 上一致收斂，並有 $\\|f\\|_{L^2}^2 = \\sum_n |f(n)|^2$。平移族 $\\{\\operatorname{sinc}(\\cdot - n)\\}_{n}$ 構成 $PW_{1/2}$ 的一組標準正交基。證明只需一行 Poisson 求和：週期化 $\\sum_k \\hat f(\\xi + k)$ 等於 $\\sum_n f(n) e^{-2\\pi i n\\xi}$，再乘以 $\\mathbf{1}_{[-1/2, 1/2]}$ 即還原 $\\hat f$，因為 $k \\ne 0$ 的平移 $\\hat f(\\cdot + k)$ 與 $[-\\tfrac12, \\tfrac12]$ 不相交。",
+        blogBL_p3: "同一計算也解釋了混疊現象。若 $\\hat f$ 不包含於 $[-\\tfrac12, \\tfrac12]$，樣本只能看到週期化 $\\sum_k \\hat f(\\xi + k)$，頻率 $f_0$ 會被讀成 $f_a = |f_0 - \\operatorname{round}(f_0)|$。此時取樣序列 $\\cos(2\\pi f_0 n)$ 與 $\\cos(2\\pi f_a n)$ 無法區分，而 sinc 級數重建出的是後者。圖示的第二個面板讓 $f_0$ 可被拖曳越過 Nyquist 頻率 $\\tfrac12$，並顯示頻譜副本如何進入頻帶。",
+        ctrl_bl_recon: "Shannon 重建",
+        ctrl_bl_alias: "混疊",
+        ctrl_bl_kernel: "過取樣與光滑核",
+        ctrl_bl_bern: "Bernstein 不等式",
+        ctrl_bl_K: "項數 $|n| \\le K$：",
+        ctrl_bl_b: "頻寬 $b$：",
+        blogBL_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互動圖示——每條曲線都由其公式直接計算。第一個面板對 $PW_{1/2}$ 中一個測試函數求截斷 sinc 級數；第三個面板以 $\\hat g_b$ 的數值積分算出光滑核 $g_b$，並對 $f(t) = \\operatorname{sinc}^2\\big(b(t - 0.3)\\big)$ 在 $[0,1]$ 上量測兩種級數的截斷誤差；第四個面板對 $PW_b$ 中的隨機元素計算 $\\|f'\\|_\\infty / (2\\pi b\\|f\\|_\\infty)$。<strong>拖曳</strong>可平移（在混疊面板中則移動 $f_0$），<strong>滾輪</strong>可縮放，在最後一個面板中<strong>點擊</strong>可產生新函數，<strong>雙擊</strong>可重設。",
+        blogBL_p4: "緊頻譜的第二個代價是重建核衰減緩慢。由於 $\\operatorname{sinc}$ 只以 $|t|^{-1}$ 衰減且不可積，截斷級數 $S_K f(t) = \\sum_{|n| \\le K} f(n)\\operatorname{sinc}(t - n)$ 收斂緩慢，其誤差由樣本的尾部而非 $f$ 的光滑性所決定。補救之道是過取樣。若 $f \\in PW_b$ 且 $b < \\tfrac12$，則任何滿足「在 $[-b, b]$ 上 $\\hat g = 1$、在 $[-(1-b), 1-b]$ 之外 $\\hat g = 0$」的核 $g$ 都能由整數點樣本重建 $f$，因為 $k \\ne 0$ 的副本 $\\hat f(\\cdot + k)$ 位於 $|\\xi| \\ge 1 - b$。若讓 $\\hat g$ 在 $[b, 1-b]$ 上的過渡是光滑的（採用與 Meyer 構造相同的斜坡函數），則 $g$ 的衰減快於任何冪次，截斷誤差也隨之迅速下降。代價是取樣率 $1$ 比 Nyquist 率 $2b$ 高出 $1/(2b)$ 倍；並且當 $b \\to \\tfrac12$ 時，過渡帶變窄，此一優勢也隨之減弱。",
+        thm_bern_title: "定理（Bernstein 不等式）",
+        thm_bern_body: "若 $f \\in L^p(\\mathbb{R})$，$1 \\le p \\le \\infty$，且 $\\operatorname{supp}\\hat f \\subset [-b, b]$，則<br>$$\\|f'\\|_{L^p} \\le 2\\pi b\\, \\|f\\|_{L^p}.$$<br>此常數在 $L^\\infty$ 中由 $\\cos(2\\pi b t)$ 達到。配合以 $\\sigma$ 型整函數逼近的正向（Jackson）估計 $E_\\sigma(f)_p \\le C\\sigma^{-s}|f|_{B^s_{p,\\infty}}$，便得到以帶限函數逼近刻畫 Besov 空間的經典結果：$f \\in B^s_{p,q}$ 若且唯若 $\\big(\\sum_j (2^{js} E_{2^j}(f)_p)^q\\big)^{1/q} < \\infty$。",
+        key_insight_bl_title: "為何帶限小波適合定量估計",
+        key_insight_bl_desc: "Fourier 變換位於固定環域 $\\{a \\le |\\xi| \\le b\\}$ 的小波繼承了上述三個事實。它的各階矩全部為零，因此 Jackson 型估計中不會出現光滑性上限。每個 Littlewood-Paley 分塊 $\\Delta_j f$ 只與小波尺度 $j - M, \\dots, j + M$ 發生作用，其中 $M$ 由兩個環域決定；此關係是精確的而非近似的，而它正是本部落格逼近論專區中加權 Jackson 不等式裡有限常數 $C_M$ 的來源。然而剛性排除了緊支撐，因此任何局部化（例如限制在某方體的二進樹上）都必須在係數層級加以規定，而無法由生成元的支撐得到。",
+        blogBL_p5: "有幾個方向不在本文範圍之內。非均勻集上的取樣由 Landau 密度條件所支配，對整數點的擾動則有 Kadec 的 $\\tfrac14$ 定理；在多變數情形，Paley-Wiener-Schwartz 定理把延拓的增長與凸頻譜的支撐函數聯繫起來；而在端點 $p = 1$ 與 $p = \\infty$，若樣本沒有額外的衰減，sinc 級數可能不收斂。上面的面板都停留在經典的一維情形，其中每個命題都可以用數值與其閉式相互核對。",
+        refs_bl: "<li>E. T. Whittaker, <em>On the functions which are represented by the expansions of the interpolation-theory</em>, Proc. Roy. Soc. Edinburgh <strong>35</strong> (1915), 181-194.</li> <li>C. E. Shannon, <em>Communication in the presence of noise</em>, Proc. IRE <strong>37</strong> (1949), 10-21.</li> <li>R. E. A. C. Paley and N. Wiener, <em>Fourier Transforms in the Complex Domain</em>, AMS Colloquium Publications <strong>19</strong>, 1934.</li> <li>S. M. Nikol'skii, <em>Approximation of Functions of Several Variables and Imbedding Theorems</em>, Springer, 1975.</li> <li>R. M. Young, <em>An Introduction to Nonharmonic Fourier Series</em>, Academic Press, 1980.</li> <li>J. R. Higgins, <em>Sampling Theory in Fourier and Signal Analysis: Foundations</em>, Oxford University Press, 1996.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>",
+        blogMey_title: "《Meyer 小波：在頻率域中構造正交性》",
+        blogMey_p1: "1985 年，Yves Meyer 原本想證明：$L^2(\\mathbb{R})$ 中不存在形如 $\\{2^{j/2}\\psi(2^j t - k)\\}_{j,k \\in \\mathbb{Z}}$ 且由 Schwartz 函數組成的標準正交基，結果反而構造出了一個。Strömberg 在 1982 年已構造出樣條型的正交小波基，具有有限光滑性與指數衰減；但 Meyer 的構造是第一個滿足 $\\psi \\in \\mathcal{S}(\\mathbb{R})$ 的，並且完全在 Fourier 端寫出。這個構造短到可以逐行驗證，並揭示了每個正交小波背後的機制：一個頻率上的單位分解，其各片以受控的方式重疊。",
+        blogMey_p2: "唯一可自由選取的成分是一個斜坡函數 $\\nu : \\mathbb{R} \\to [0,1]$，滿足：$x \\le 0$ 時 $\\nu(x) = 0$，$x \\ge 1$ 時 $\\nu(x) = 1$，以及對稱性 $\\nu(x) + \\nu(1-x) = 1$。在 $[0,1]$ 上的多項式 $\\nu(x) = x^4(35 - 84x + 70x^2 - 20x^3)$ 是標準選擇，屬於 $C^3$；三次式 $x^2(3 - 2x)$ 給出 $C^1$ 斜坡，而 $\\nu(x) = e^{-1/x}/(e^{-1/x} + e^{-1/(1-x)})$ 給出 $C^\\infty$ 斜坡。取角頻率 $\\omega$ 與 $\\hat f(\\omega) = \\int f(t) e^{-i\\omega t}\\,dt$，尺度函數與小波透過其 Fourier 變換來定義。",
+        def_mey_title: "定義（Meyer 尺度函數與小波）",
+        def_mey_body: "<br>$$\\hat\\phi(\\omega) = \\begin{cases} 1, & |\\omega| \\le \\tfrac{2\\pi}{3}, \\\\ \\cos\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{2\\pi} - 1)\\big), & \\tfrac{2\\pi}{3} \\le |\\omega| \\le \\tfrac{4\\pi}{3}, \\\\ 0, & \\text{otherwise}, \\end{cases} \\qquad \\hat\\psi(\\omega) = e^{i\\omega/2} \\begin{cases} \\sin\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{2\\pi} - 1)\\big), & \\tfrac{2\\pi}{3} \\le |\\omega| \\le \\tfrac{4\\pi}{3}, \\\\ \\cos\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{4\\pi} - 1)\\big), & \\tfrac{4\\pi}{3} \\le |\\omega| \\le \\tfrac{8\\pi}{3}, \\\\ 0, & \\text{otherwise}. \\end{cases}$$<br>因子 $e^{i\\omega/2}$ 使 $\\psi$ 為實值且關於 $t = -\\tfrac12$ 對稱，並有 $\\psi(t) = \\tfrac{1}{\\pi}\\int_{2\\pi/3}^{8\\pi/3} |\\hat\\psi(\\omega)| \\cos\\big(\\omega(t + \\tfrac12)\\big)\\,d\\omega$。",
+        blogMey_p3: "$\\phi$ 的整數平移為標準正交，等價於 $\\sum_{k} |\\hat\\phi(\\omega + 2\\pi k)|^2 = 1$。在 $|\\omega| \\le \\tfrac{2\\pi}{3}$ 上只有 $k = 0$ 有貢獻，和為 $1$。在 $\\tfrac{2\\pi}{3} \\le \\omega \\le \\tfrac{4\\pi}{3}$ 上恰有兩項留下，即 $k = 0$ 與 $k = -1$；令 $x = \\tfrac{3\\omega}{2\\pi} - 1 \\in [0,1]$，則 $\\tfrac{3|\\omega - 2\\pi|}{2\\pi} - 1 = 1 - x$。於是 $\\nu$ 的對稱性給出<br>$$|\\hat\\phi(\\omega)|^2 + |\\hat\\phi(\\omega - 2\\pi)|^2 = \\cos^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) + \\cos^2\\!\\big(\\tfrac{\\pi}{2}(1 - \\nu(x))\\big) = \\cos^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) + \\sin^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) = 1 .$$<br>同一恆等式在環域上讀出，即得 $|\\hat\\phi(\\omega)|^2 + |\\hat\\psi(\\omega)|^2 = |\\hat\\phi(\\omega/2)|^2$，從而對 $\\omega \\ne 0$ 有二進單位分解 $\\sum_{j \\in \\mathbb{Z}} |\\hat\\psi(2^{-j}\\omega)|^2 = 1$。整個構造化約為一個關係式 $\\cos^2 + \\sin^2 = 1$，被放置在恰當的頻率上。",
+        thm_mey_title: "定理（Meyer，1985；Lemarié-Meyer，1986）",
+        thm_mey_body: "對上述任一斜坡函數 $\\nu$，$\\{\\phi(\\cdot - k)\\}_{k}$ 是 $V_0$ 的標準正交基，空間 $V_j = \\overline{\\operatorname{span}}\\{2^{j/2}\\phi(2^j \\cdot - k)\\}$ 構成 $L^2(\\mathbb{R})$ 的多解析度分析，且 $\\{\\psi_{j,k}(t) = 2^{j/2}\\psi(2^j t - k)\\}_{j,k \\in \\mathbb{Z}}$ 是 $L^2(\\mathbb{R})$ 的標準正交基。由於 $\\hat\\psi$ 在 $|\\omega| < \\tfrac{2\\pi}{3}$ 上為零，$\\psi$ 的各階矩全部為零。若 $\\nu \\in C^m$，則 $\\hat\\psi \\in C^m_c$ 且 $|\\psi(t)| \\le C_m (1 + |t|)^{-m}$；若 $\\nu \\in C^\\infty$，則 $\\psi \\in \\mathcal{S}(\\mathbb{R})$。雙尺度符號 $m_0(\\omega) = \\sum_{k} \\hat\\phi(2\\omega + 4\\pi k)$ 是 $2\\pi$ 週期的光滑函數，但不是三角多項式，因此細化濾波器 $h[n]$ 是無限長的。",
+        ctrl_mey_freq: "頻率端與單位分解",
+        ctrl_mey_time: "時域中的 $\\phi$ 與 $\\psi$",
+        ctrl_mey_decay: "衰減與 $\\nu$ 的光滑性",
+        ctrl_mey_orth: "正交性檢驗",
+        ctrl_mey_nu: "斜坡函數 $\\nu$：",
+        blogMey_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互動圖示——$\\phi$ 與 $\\psi$ 依定義對 $\\hat\\phi$、$\\hat\\psi$ 做餘弦數值積分即時算出，沒有任何預先製表。第一個面板在游標處計算 $|\\hat\\phi|^2 + \\sum_j |\\hat\\psi(2^{-j}\\omega)|^2$；第三個面板在雙對數座標下量測三種斜坡函數的 $|\\psi|$ 包絡；第四個面板以 Parseval 恆等式計算 Gram 矩陣元 $\\langle\\psi, \\psi(\\cdot - k)\\rangle$ 與 $\\langle\\psi, \\psi_{1,k}\\rangle$。<strong>拖曳</strong>可平移，<strong>滾輪</strong>可縮放，<strong>懸停</strong>可讀取數值，<strong>雙擊</strong>可重設。",
+        blogMey_p4: "$\\psi$ 的衰減由 $\\hat\\psi$ 的光滑性決定，而後者又由 $\\nu$ 在四個頻帶端點 $\\pm\\tfrac{2\\pi}{3}$、$\\pm\\tfrac{8\\pi}{3}$ 處的行為決定。採用三次斜坡時，$\\hat\\psi$ 屬於 $C^1$ 而其二階導數有跳躍，兩次分部積分給出沿某個序列的 $|\\psi(t)| \\asymp |t|^{-3}$；七次斜坡將此提升到 $|t|^{-5}$；$C^\\infty$ 斜坡則給出快於任何冪次的衰減。第三個面板所量得的雙對數斜率，對兩個多項式斜坡分別接近 $-3$ 與 $-5$，對 $C^\\infty$ 斜坡則無界地變陡。快於任何冪次的衰減已是極限：若 $|\\psi(t)| \\le C e^{-\\epsilon|t|}$，則 $\\hat\\psi$ 可解析延拓到帶域 $|\\operatorname{Im}\\omega| < \\epsilon$，這與 $\\hat\\psi$ 在某區間上為零互相矛盾，除非 $\\psi \\equiv 0$。",
+        key_insight_mey_title: "Meyer 與 Daubechies：同一障礙的兩面",
+        key_insight_mey_desc: "Meyer 與 Daubechies 的構造位於同一取捨的兩端。Meyer 固定緊頻譜，得到 $C^\\infty$ 正則性、全部消失矩與超多項式衰減，但沒有緊支撐，濾波器也是無限長的。Daubechies 固定緊支撐與有限濾波器，代價是有限的正則性與有限個數 $N$ 的消失矩。這對逼近論的影響是直接的：以 Daubechies 小波在 Besov 尺度 $B^s_{p,q}$ 上建立 Jackson 型估計需要 $s < N$，而 Meyer 系統對 $s$ 不設上限。此外，由於 $\\hat\\psi$ 位於固定環域，函數的每個 Littlewood-Paley 分塊只與有界個數的小波尺度發生作用。這個有限頻帶性質，正是本部落格逼近論專區中加權 Jackson 不等式裡顯式常數 $C_M$ 背後的結構性來源。",
+        blogMey_p5: "有兩點限制應當說明。由於濾波器 $h[n]$ 是無限長的，快速小波變換必須在週期化網格上透過 FFT 實現，而非以有限卷積實現；截斷 $h$ 會使正交性受到與截斷尾部同階的破壞。其次，時間局部性雖然是超多項式的，卻依賴於 $\\nu$ 各階導數中的常數：上述 $C^\\infty$ 斜坡在漸近意義下最快，但在中等尺度的視窗內，七次斜坡衰減得更快，第三個面板顯示 $C^\\infty$ 包絡要到 $|t|$ 約為 $50$ 的量級才超越它。在 $\\mathbb{R}^n$ 上的張量積推廣提供 $2^n - 1$ 個具有相同性質的帶限生成元，而這正是加權估計中作為帶限雙正交基之典型情形所使用的系統。",
+        refs_mey: "<li>Y. Meyer, <em>Principe d'incertitude, bases hilbertiennes et algèbres d'opérateurs</em>, Séminaire Bourbaki, Vol. 1985/86, Exp. No. 662, Astérisque <strong>145-146</strong> (1987), 209-223.</li> <li>P.-G. Lemarié and Y. Meyer, <em>Ondelettes et bases hilbertiennes</em>, Rev. Mat. Iberoamericana <strong>2</strong> (1986), 1-18.</li> <li>J.-O. Strömberg, <em>A modified Franklin system and higher-order spline systems on R^n as unconditional bases for Hardy spaces</em>, Conference on Harmonic Analysis in Honor of A. Zygmund, Vol. II, Wadsworth, 1983, 475-494.</li> <li>S. Mallat, <em>Multiresolution approximations and wavelet orthonormal bases of L^2(R)</em>, Trans. Amer. Math. Soc. <strong>315</strong> (1989), 69-87.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li> <li>Y. Meyer, <em>Wavelets and Operators</em>, Cambridge Studies in Advanced Mathematics <strong>37</strong>, Cambridge University Press, 1992.</li> <li>E. Hernández and G. Weiss, <em>A First Course on Wavelets</em>, CRC Press, 1996.</li>",
         sec_blog_title: "最新數學研討札記與理論專題",
         blogE_title: "《有效維度：當收斂階改善時，環境維度跑到哪裡去了》",
         blogE_p1: "前一篇札記中的熵下界是一項關於光滑性空間中某個球的陳述，而繞過它的唯一途徑是在一個更小的函數類中工作。有效維度是若干種指定此類子類之方式的共同名稱，它們皆共有一項特徵：收斂階中的指標由一個可能遠小於環境維度 $d$ 的量 $d_0$ 所支配，而 $d$ 本身並未消失，只是退入了前置常數之中。將該前置常數顯式寫出，正是區分一項可用的陳述與一句口號的關鍵——因為決定改良後的指標從哪一個預算開始發揮作用的，正是這個前置常數。",
@@ -3795,7 +4309,7 @@
         sec_research_pillars: "理论支柱与前沿方向",
 
         pillar1_title: "小波基与双框架分解",
-        pillar1_desc: "研究 Lebesgue 空间 $L^p(\\mathbb{R}^n)$ 中之 pre-wavelet 基底与紧小波框架，推导非正交分解体系之精确 Jackson/Bernstein 不等式。",
+        pillar1_desc: "研究 Lebesgue 空间 $L^p(\\mathbb{R}^n)$ 中之 pre-wavelet 基底与紧小波框架，推导非正交分解体系中具显式常数之 Jackson/Bernstein 不等式。",
         pillar2_title: "可加 Besov 空间上的深度学习逼近",
         pillar2_desc: "基于可加 Besov 空间表征，打破维度诅咒，为浅层与深层神经网络提供显式非渐近误差界限。",
         pillar3_title: "定量加权不等式与算子理论",
@@ -3822,6 +4336,72 @@
         hero_title_blog: "相空间测不准原理与几何椭圆模拟",
         hero_desc_blog: "可视化呈现 Heisenberg-Gabor-Wavelet 相空间时频局域化界限与 Balian-Low 几何阻碍之数学本质。",
         canvas_hint_blog: "移动光标可动态旋转并形变测不准度椭圆",
+        blogJW_title: "《N 项小波逼近的加权 Jackson 型不等式：Muckenhoupt 特征量从何处进入》",
+        blogJW_p1: "非线性 $N$ 项逼近所问的是：以固定小波系统中至多 $N$ 个元素的线性组合表示一个函数，能达到怎样的精度；其中指标的选取与系数都允许依赖于该函数。当目标空间为 $L^p(\\mathbb{R}^n)$ 时，DeVore、Jawerth 与 Popov 的经典结果指出，在临界线 $1/\\tau = s/n + 1/p$ 上的 Besov 类 $B^s_\\tau(L^\\tau)$ 具有逼近阶 $N^{-s/n}$。本文讨论的是另一种情形：光滑类与目标空间共用同一指数 $p$，并容许 Muckenhoupt 权 $w$。此时逼近阶由每一尺度所含系数的个数决定，剩下的是定量问题：常数依赖于权的哪些特征，又以何种幂次依赖。",
+        blogJW_p2: "小波系统取为 $L^2(\\mathbb{R}^n)$ 的一对带限双正交 Riesz 基 $\\{\\psi_{j,k}\\}$、$\\{\\tilde\\psi_{j,k}\\}$，正规化为 $\\psi_{j,k}(x) = 2^{jn/2}\\psi(2^j x - k)$，其生成元的 Fourier 变换属于 $C_c^\\infty$，且支撑于环域 $\\{a \\le |\\xi| \\le b\\}$。Meyer 系统是典型例子；在 $n$ 维中，其张量积提供 $L = 2^n - 1$ 个生成元。所有加权量都透过二进方体 $Q_{j,k} = 2^{-j}(k + [0,1)^n)$ 的方体测度 $w(Q_{j,k})$ 来表达，而从不使用 $w$ 的逐点值。",
+        def_jw_title: "定义（Muckenhoupt 特征量、加权 Besov 空间、局部化类）",
+        def_jw_body: "对 $1 < p < \\infty$ 及各边平行于座标轴的方体 $Q$，<br>$$[w]_{A_p} = \\sup_{Q} \\Big(\\frac{1}{|Q|}\\int_Q w\\Big)\\Big(\\frac{1}{|Q|}\\int_Q w^{-\\frac{1}{p-1}}\\Big)^{p-1}, \\qquad \\|f\\|_{\\dot B^s_{p,q}(w)} = \\Big(\\sum_{j \\in \\mathbb{Z}} 2^{jsq}\\, \\|\\Delta_j f\\|_{L^p_w}^q\\Big)^{1/q},$$<br>其中 $\\Delta_j$ 为齐次 Littlewood-Paley 算子。局部化类 $\\dot B^s_{p,q}(w;Q_0)$ 由满足下列条件的 $f \\in L^p_w \\cap \\dot B^s_{p,q}(w)$ 组成：沿单位方体 $Q_0 = [0,1)^n$ 的二进树 $\\{(j,k) : j \\ge 0,\\ Q_{j,k} \\subset Q_0\\}$ 展开的小波级数在 $L^p_w$ 中收敛回 $f$。",
+        thm_jw_title: "定理（具显式权依赖的 Jackson 型不等式）",
+        thm_jw_body: "设 $s > 0$、$1 < p < \\infty$、$0 < q < \\infty$ 且 $w \\in A_p$。则对每个 $f \\in \\dot B^s_{p,q}(w;Q_0)$ 与每个整数 $N \\ge 1$，<br>$$E_N(f)_{L^p_w} \\le C_0\\, [w]_{A_p}^{2/p}\\, N^{-s/n}\\, \\|f\\|_{\\dot B^s_{p,q}(w)}, \\qquad C_0 = \\frac{L\\,(2L)^{s/n}}{1 - 2^{-s}}\\, C_M\\, K_U\\, K_L .$$<br>其中 $L$ 为生成元个数；$C_M = \\sum_{|i| \\le M} 2^{is}$ 记录有限频带指标 $M$，用以比较 Littlewood-Paley 环域与生成元的频率环域；$K_U$、$K_L$ 是由综合生成元与对偶生成元之衰减包络构成的显式级数，并可透过 Riemann zeta 函数给出闭式上界。常数 $C_0$ 与 $N$、$f$、$q$、$w$ 以及系统的 Riesz 界皆无关。由于 $2/p \\le 2\\theta(p)$，其中 $\\theta(p) = \\tfrac{1}{2}\\max\\{1, (p-1)^{-1}\\}$，此界亦以 $[w]_{A_p}^{2\\theta(p)}$ 的形式成立；两个幂次在 $p = 2$ 时一致，此时对 $[w]_{A_2}$ 的依赖是线性的。",
+        blogJW_p3: "幂次 $2/p$ 是两个因子 $[w]_{A_p}^{1/p}$ 的乘积，每一个都可追溯到对方体 $Q$ 上 $A_p$ 权的两个基本不等式的一次使用：<br>$$\\int_Q |g| \\le [w]_{A_p}^{1/p}\\, |Q|\\, w(Q)^{-1/p} \\Big(\\int_Q |g|^p w\\Big)^{1/p}, \\qquad w(Q) \\le [w]_{A_p} \\Big(\\frac{|Q|}{|S|}\\Big)^{p} w(S), \\quad S \\subset Q .$$<br>第一式是对 $|g| = |g|\\,w^{1/p}\\,w^{-1/p}$ 使用 Hölder 不等式；第二式是取 $g = \\mathbf{1}_S$ 的特例，也就是倍增性质的定量形式。证明中不使用任何加权极大函数估计，$C_0$ 中也不含任何从引用之小波刻画继承而来的等价常数。",
+        lem_jw_title: "引理（单一尺度的双边估计）",
+        lem_jw_body: "对有限集 $\\Lambda$ 上的单一尺度和 $r = \\sum_{k \\in \\Lambda} c_{j,k}\\psi_{j,k}$，<br>$$K_L^{-1}\\, [w]_{A_p}^{-1/p}\\, \\mathcal{S}_\\Lambda \\;\\le\\; \\|r\\|_{L^p_w} \\;\\le\\; K_U\\, [w]_{A_p}^{1/p}\\, \\mathcal{S}_\\Lambda, \\qquad \\mathcal{S}_\\Lambda = 2^{jn/2}\\Big(\\sum_{k \\in \\Lambda} |c_{j,k}|^p\\, w(Q_{j,k})\\Big)^{1/p}.$$<br>上界估计逐个方体进行。经伸缩化约至 $j = 0$ 后，在 $Q_{0,k_0}$ 上，此和被 $\\psi$ 在环 $|k - k_0|_\\infty = m$ 上的衰减包络 $\\beta_m$ 所控制；将 $\\beta_m$ 写成 $\\sum_{i \\ge m}(\\beta_i - \\beta_{i+1})$ 并交换求和次序后，倍增不等式以 $[w]_{A_p}(2m+1)^{np}$ 的代价，把扩大方体 $k + [-m, m+1)^n$ 上的 $w$ 还原为 $w(Q_{0,k})$。下界估计则由分析系数的加权界配合双正交性得到。",
+        ctrl_jw_tree: "二进树与按尺度截断",
+        ctrl_jw_weight: "$[w]_{A_p}$ 及其幂次",
+        ctrl_jw_rate: "逼近阶 $N^{-s/n}$",
+        ctrl_jw_extremal: "极值函数族",
+        ctrl_jw_local: "为何需要局部化",
+        ctrl_jw_gamma: "权 $|x - \\tfrac13|^\\gamma$，$\\gamma$：",
+        blogJW_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互动图示，取 $n = 1$、$L = 1$、$Q_0 = [0,1)$ 与幂权 $w(x) = |x - \\tfrac13|^\\gamma$；此权属于 $A_p$ 若且唯若 $-1 < \\gamma < p - 1$。方体测度 $w(Q_{j,k})$ 与特征量 $[w]_{A_p}$ 由闭式平均值算出；极值面板对所选的权计算推论中的各项和，最后一个面板以数值积分处理局部化反例中的 Meyer 平移。<strong>水平拖曳</strong>可改变 $N$（或 $m$），<strong>悬停</strong>可读取数值，<strong>双击</strong>可重设。",
+        blogJW_p4: "逼近元并非以贪婪方式选取，而是沿二进树按尺度截断：取 $j_0$ 为使前 $j_0 + 1$ 代能放入预算 $L(2^{(j_0+1)n} - 1)/(2^n - 1) \\le N$ 的最大整数，并保留 $Q_0$ 内所有第 $j \\le j_0$ 代的系数。由 $j_0$ 的极大性得 $2^{-(j_0+1)s} < (2L)^{s/n} N^{-s/n}$。每个被舍去的第 $j > j_0$ 代，先用单一尺度上界估计，再用系数界 $S_j(f) \\le L^{1/p} C_M K_L\\, [w]_{A_p}^{1/p}\\, 2^{-js}\\|f\\|_{\\dot B^s_{p,q}(w)}$，其贡献至多为 $L\\, C_M K_U K_L\\, [w]_{A_p}^{2/p}\\, 2^{-js}\\|f\\|_{\\dot B^s_{p,q}(w)}$；对 $j > j_0$ 的几何级数求和，得到因子 $(1 - 2^{-s})^{-1}$，论证即告完成。",
+        cor_jw_title: "推论（以极值函数族给出的下界估计）",
+        cor_jw_body: "对 $N = 2^{mn}$，令 $f_N^\\ast = \\sum_{k} a_k \\psi_{m+1,k}$ 遍历 $Q_0$ 中第 $m+1$ 代的 $2^n N$ 个方体，其中 $a_k = 2^{-(m+1)(s + n/2)}\\, w(Q_{m+1,k})^{-1/p}$。则<br>$$c_\\flat\\, [w]_{A_p}^{-2/p} \\;\\le\\; \\frac{E_N(f_N^\\ast)_{L^p_w}}{N^{-s/n}\\, \\|f_N^\\ast\\|_{\\dot B^s_{p,q}(w)}} \\;\\le\\; c_\\sharp\\, [w]_{A_p}^{2/p},$$<br>其中 $c_\\flat$、$c_\\sharp$ 与 $N$、$w$ 无关。此正规化使每一项 $|a_k|^p w(Q_{m+1,k})$ 都相等，因此从 $2^n N$ 项中任意舍去 $N$ 项，系数层级的比值皆为 $(1 - 2^{-n})^{1/p}\\, 2^{-s}$。若 $s/n$ 能换成某个 $s'/n$，$s' > s$，则下界将迫使 $c_\\flat [w]_{A_p}^{-2/p} \\le C' N^{-(s'-s)/n}$ 对所有 $N$ 成立，这在 $N \\to \\infty$ 时不可能。此构造是确定性的；本文并未宣称幂次 $2/p$ 在阶的意义上能由下方达到。",
+        blogJW_p5: "限制在 $Q_0$ 的二进树上并非技术上的便宜行事。在整个 $\\mathbb{R}^n$ 上，$\\dot B^s_{p,q}$ 的单一尺度可容纳任意多个大小相当的系数：对 $w \\equiv 1$，第 $0$ 代且平移离开方体的和 $f_N = \\sum_{k=1}^{2N} \\psi_{0,k}$ 对所有 $N$ 一致地满足 $E_N(f_N)_{L^p} \\ge c\\, \\|f_N\\|_{\\dot B^s_{p,q}}$，因此在 $L^p \\cap \\dot B^s_{p,q}$ 上不可能成立任何带有衰减因子 $N^{-\\kappa}$ 的不等式。对 $n = 1$、$p = q = 2$ 与正交 Meyer 系统，此比值恰为 $E_N(f_N)_{L^2} / \\|f_N\\|_{L^2} = 2^{-1/2}$，图示最后一个面板以数值积分重现了这个值。带限生成元没有紧支撑，因此对它们而言，系数层级的局部化所扮演的角色，正是紧支撑系统中「在方体上逼近」所扮演的角色。",
+        key_insight_jw_title: "显式常数记录了什么",
+        key_insight_jw_desc: "不等式 $E_N(f) \\le C N^{-s/n}\\|f\\|$ 若不指明 $C$，所陈述的只是逼近阶；显式写出的因子 $[w]_{A_p}^{2/p}$ 陈述的则是机制。它把权的贡献与小波系统的贡献分开，说明系统的 Riesz 界不会进入常数，并指出 $p = 2$ 是精细幂次与较粗幂次一致的指数。适用范围也相应地划定：此估计处理的是齐次尺度、同指数情形 $\\dot B^s_{p,q}(w) \\to L^p_w$（而非临界线 $1/\\tau = s/n + 1/p$），以及局部化类。$2/p$ 是否为 $[w]_{A_p}$ 可容许的最小幂次，仍是开放问题。",
+        blogJW_p6: "此结果精化了本站著作列表中的两项先前工作：小波基分解的非加权 Jackson 型不等式，以及非齐次加权 Besov 尺度上线性双正交多解析度投影的显式正、逆估计；在后者中，权是透过 Hardy-Littlewood 极大算子在 $L^p_w$ 上的范数进入，而非透过 $[w]_{A_p}$ 的显式幂次。完整证明与 $C_0$ 的闭式上界已以预印本形式公开： <a href='https://arxiv.org/abs/2609.35520' target='_blank' class='pub-btn pub-btn-arxiv' style='margin-left: 0.5rem;' rel='noopener noreferrer'><i class='fa-solid fa-scroll'></i> arXiv:2609.35520</a>",
+        refs_jw: "<li>K.-C. Wang, <em>Jackson-type inequalities with explicit weight dependence for N-term wavelet approximation on localized weighted Besov classes</em>, arXiv:2609.35520 [math.CA], 2026.</li> <li>R. A. DeVore, B. Jawerth and V. Popov, <em>Compression of wavelet decompositions</em>, Amer. J. Math. <strong>114</strong> (1992), 737-785.</li> <li>R. A. DeVore and G. G. Lorentz, <em>Constructive Approximation</em>, Grundlehren der Mathematischen Wissenschaften <strong>303</strong>, Springer, 1993.</li> <li>V. N. Temlyakov, <em>Greedy Approximation</em>, Cambridge University Press, 2011.</li> <li>H.-Q. Bui, M. Paluszyński and M. H. Taibleson, <em>A maximal function characterization of weighted Besov-Lipschitz and Triebel-Lizorkin spaces</em>, Studia Math. <strong>119</strong> (1996), 219-246.</li> <li>L. Grafakos, <em>Modern Fourier Analysis</em>, 2nd ed., Graduate Texts in Mathematics <strong>250</strong>, Springer, 2009.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>",
+        blogBL_title: "《带限函数：Paley-Wiener 空间、Shannon 取样，以及紧频谱的代价》",
+        blogBL_p1: "若一个函数的 Fourier 变换在某有界集之外为零，则称它是带限的。取 $\\hat f(\\xi) = \\int_{\\mathbb{R}} f(t) e^{-2\\pi i t\\xi}\\,dt$（频率以周数计），Paley-Wiener 空间 $PW_b = \\{f \\in L^2(\\mathbb{R}) : \\operatorname{supp}\\hat f \\subset [-b, b]\\}$ 收集了频宽为 $b$ 的平方可积函数。Shannon 小波与 Meyer 小波正是由这类函数构成，Besov 尺度也由它们的 Littlewood-Paley 分块所定义。整个理论由三个事实组织起来：紧频谱使 $f$ 具有刚性，使 $f$ 能由离散样本重建，并使 $f$ 的每一阶导数都受 $f$ 本身控制。",
+        thm_pw_title: "定理（Paley-Wiener，1934）",
+        thm_pw_body: "函数 $f \\in L^2(\\mathbb{R})$ 属于 $PW_b$，若且唯若它是某个指数型不超过 $2\\pi b$ 的整函数 $F$ 在 $\\mathbb{R}$ 上的限制，亦即对每个 $\\epsilon > 0$ 有 $|F(z)| \\le C_\\epsilon\\, e^{(2\\pi b + \\epsilon)|z|}$。此时 $F(z) = \\int_{-b}^{b} \\hat f(\\xi) e^{2\\pi i z\\xi}\\,d\\xi$，且 $|F(x + iy)| \\le \\sqrt{2b}\\,\\|f\\|_{L^2}\\, e^{2\\pi b|y|}$。",
+        blogBL_p2: "刚性可由此定理直接得出：在一个区间上为零的整函数必恒为零，因此非零的带限函数不可能具有紧支撑；更一般地，$f$ 与 $\\hat f$ 不能同时集中在有限测度的集合上。这是紧频谱的第一个代价。带限小波（包括 Meyer 小波）散布在整条实数线上，它所具有的任何局部性都来自衰减，而非支撑。",
+        thm_shannon_title: "定理（Whittaker-Kotelnikov-Shannon 取样定理）",
+        thm_shannon_body: "若 $f \\in PW_{1/2}$，则<br>$$f(t) = \\sum_{n \\in \\mathbb{Z}} f(n)\\, \\operatorname{sinc}(t - n), \\qquad \\operatorname{sinc}(x) = \\frac{\\sin \\pi x}{\\pi x},$$<br>此级数在 $L^2(\\mathbb{R})$ 中收敛，且在 $\\mathbb{R}$ 上一致收敛，并有 $\\|f\\|_{L^2}^2 = \\sum_n |f(n)|^2$。平移族 $\\{\\operatorname{sinc}(\\cdot - n)\\}_{n}$ 构成 $PW_{1/2}$ 的一组标准正交基。证明只需一行 Poisson 求和：周期化 $\\sum_k \\hat f(\\xi + k)$ 等于 $\\sum_n f(n) e^{-2\\pi i n\\xi}$，再乘以 $\\mathbf{1}_{[-1/2, 1/2]}$ 即还原 $\\hat f$，因为 $k \\ne 0$ 的平移 $\\hat f(\\cdot + k)$ 与 $[-\\tfrac12, \\tfrac12]$ 不相交。",
+        blogBL_p3: "同一计算也解释了混叠现象。若 $\\hat f$ 不包含于 $[-\\tfrac12, \\tfrac12]$，样本只能看到周期化 $\\sum_k \\hat f(\\xi + k)$，频率 $f_0$ 会被读成 $f_a = |f_0 - \\operatorname{round}(f_0)|$。此时取样序列 $\\cos(2\\pi f_0 n)$ 与 $\\cos(2\\pi f_a n)$ 无法区分，而 sinc 级数重建出的是后者。图示的第二个面板让 $f_0$ 可被拖曳越过 Nyquist 频率 $\\tfrac12$，并显示频谱副本如何进入频带。",
+        ctrl_bl_recon: "Shannon 重建",
+        ctrl_bl_alias: "混叠",
+        ctrl_bl_kernel: "过取样与光滑核",
+        ctrl_bl_bern: "Bernstein 不等式",
+        ctrl_bl_K: "项数 $|n| \\le K$：",
+        ctrl_bl_b: "频宽 $b$：",
+        blogBL_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互动图示——每条曲线都由其公式直接计算。第一个面板对 $PW_{1/2}$ 中一个测试函数求截断 sinc 级数；第三个面板以 $\\hat g_b$ 的数值积分算出光滑核 $g_b$，并对 $f(t) = \\operatorname{sinc}^2\\big(b(t - 0.3)\\big)$ 在 $[0,1]$ 上量测两种级数的截断误差；第四个面板对 $PW_b$ 中的随机元素计算 $\\|f'\\|_\\infty / (2\\pi b\\|f\\|_\\infty)$。<strong>拖曳</strong>可平移（在混叠面板中则移动 $f_0$），<strong>滚轮</strong>可缩放，在最后一个面板中<strong>点击</strong>可产生新函数，<strong>双击</strong>可重设。",
+        blogBL_p4: "紧频谱的第二个代价是重建核衰减缓慢。由于 $\\operatorname{sinc}$ 只以 $|t|^{-1}$ 衰减且不可积，截断级数 $S_K f(t) = \\sum_{|n| \\le K} f(n)\\operatorname{sinc}(t - n)$ 收敛缓慢，其误差由样本的尾部而非 $f$ 的光滑性所决定。补救之道是过取样。若 $f \\in PW_b$ 且 $b < \\tfrac12$，则任何满足「在 $[-b, b]$ 上 $\\hat g = 1$、在 $[-(1-b), 1-b]$ 之外 $\\hat g = 0$」的核 $g$ 都能由整数点样本重建 $f$，因为 $k \\ne 0$ 的副本 $\\hat f(\\cdot + k)$ 位于 $|\\xi| \\ge 1 - b$。若让 $\\hat g$ 在 $[b, 1-b]$ 上的过渡是光滑的（采用与 Meyer 构造相同的斜坡函数），则 $g$ 的衰减快于任何幂次，截断误差也随之迅速下降。代价是取样率 $1$ 比 Nyquist 率 $2b$ 高出 $1/(2b)$ 倍；并且当 $b \\to \\tfrac12$ 时，过渡带变窄，此一优势也随之减弱。",
+        thm_bern_title: "定理（Bernstein 不等式）",
+        thm_bern_body: "若 $f \\in L^p(\\mathbb{R})$，$1 \\le p \\le \\infty$，且 $\\operatorname{supp}\\hat f \\subset [-b, b]$，则<br>$$\\|f'\\|_{L^p} \\le 2\\pi b\\, \\|f\\|_{L^p}.$$<br>此常数在 $L^\\infty$ 中由 $\\cos(2\\pi b t)$ 达到。配合以 $\\sigma$ 型整函数逼近的正向（Jackson）估计 $E_\\sigma(f)_p \\le C\\sigma^{-s}|f|_{B^s_{p,\\infty}}$，便得到以带限函数逼近刻画 Besov 空间的经典结果：$f \\in B^s_{p,q}$ 若且唯若 $\\big(\\sum_j (2^{js} E_{2^j}(f)_p)^q\\big)^{1/q} < \\infty$。",
+        key_insight_bl_title: "为何带限小波适合定量估计",
+        key_insight_bl_desc: "Fourier 变换位于固定环域 $\\{a \\le |\\xi| \\le b\\}$ 的小波继承了上述三个事实。它的各阶矩全部为零，因此 Jackson 型估计中不会出现光滑性上限。每个 Littlewood-Paley 分块 $\\Delta_j f$ 只与小波尺度 $j - M, \\dots, j + M$ 发生作用，其中 $M$ 由两个环域决定；此关系是精确的而非近似的，而它正是本部落格逼近论专区中加权 Jackson 不等式里有限常数 $C_M$ 的来源。然而刚性排除了紧支撑，因此任何局部化（例如限制在某方体的二进树上）都必须在系数层级加以规定，而无法由生成元的支撑得到。",
+        blogBL_p5: "有几个方向不在本文范围之内。非均匀集上的取样由 Landau 密度条件所支配，对整数点的扰动则有 Kadec 的 $\\tfrac14$ 定理；在多变数情形，Paley-Wiener-Schwartz 定理把延拓的增长与凸频谱的支撑函数联系起来；而在端点 $p = 1$ 与 $p = \\infty$，若样本没有额外的衰减，sinc 级数可能不收敛。上面的面板都停留在经典的一维情形，其中每个命题都可以用数值与其闭式相互核对。",
+        refs_bl: "<li>E. T. Whittaker, <em>On the functions which are represented by the expansions of the interpolation-theory</em>, Proc. Roy. Soc. Edinburgh <strong>35</strong> (1915), 181-194.</li> <li>C. E. Shannon, <em>Communication in the presence of noise</em>, Proc. IRE <strong>37</strong> (1949), 10-21.</li> <li>R. E. A. C. Paley and N. Wiener, <em>Fourier Transforms in the Complex Domain</em>, AMS Colloquium Publications <strong>19</strong>, 1934.</li> <li>S. M. Nikol'skii, <em>Approximation of Functions of Several Variables and Imbedding Theorems</em>, Springer, 1975.</li> <li>R. M. Young, <em>An Introduction to Nonharmonic Fourier Series</em>, Academic Press, 1980.</li> <li>J. R. Higgins, <em>Sampling Theory in Fourier and Signal Analysis: Foundations</em>, Oxford University Press, 1996.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li>",
+        blogMey_title: "《Meyer 小波：在频率域中构造正交性》",
+        blogMey_p1: "1985 年，Yves Meyer 原本想证明：$L^2(\\mathbb{R})$ 中不存在形如 $\\{2^{j/2}\\psi(2^j t - k)\\}_{j,k \\in \\mathbb{Z}}$ 且由 Schwartz 函数组成的标准正交基，结果反而构造出了一个。Strömberg 在 1982 年已构造出样条型的正交小波基，具有有限光滑性与指数衰减；但 Meyer 的构造是第一个满足 $\\psi \\in \\mathcal{S}(\\mathbb{R})$ 的，并且完全在 Fourier 端写出。这个构造短到可以逐行验证，并揭示了每个正交小波背后的机制：一个频率上的单位分解，其各片以受控的方式重叠。",
+        blogMey_p2: "唯一可自由选取的成分是一个斜坡函数 $\\nu : \\mathbb{R} \\to [0,1]$，满足：$x \\le 0$ 时 $\\nu(x) = 0$，$x \\ge 1$ 时 $\\nu(x) = 1$，以及对称性 $\\nu(x) + \\nu(1-x) = 1$。在 $[0,1]$ 上的多项式 $\\nu(x) = x^4(35 - 84x + 70x^2 - 20x^3)$ 是标准选择，属于 $C^3$；三次式 $x^2(3 - 2x)$ 给出 $C^1$ 斜坡，而 $\\nu(x) = e^{-1/x}/(e^{-1/x} + e^{-1/(1-x)})$ 给出 $C^\\infty$ 斜坡。取角频率 $\\omega$ 与 $\\hat f(\\omega) = \\int f(t) e^{-i\\omega t}\\,dt$，尺度函数与小波透过其 Fourier 变换来定义。",
+        def_mey_title: "定义（Meyer 尺度函数与小波）",
+        def_mey_body: "<br>$$\\hat\\phi(\\omega) = \\begin{cases} 1, & |\\omega| \\le \\tfrac{2\\pi}{3}, \\\\ \\cos\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{2\\pi} - 1)\\big), & \\tfrac{2\\pi}{3} \\le |\\omega| \\le \\tfrac{4\\pi}{3}, \\\\ 0, & \\text{otherwise}, \\end{cases} \\qquad \\hat\\psi(\\omega) = e^{i\\omega/2} \\begin{cases} \\sin\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{2\\pi} - 1)\\big), & \\tfrac{2\\pi}{3} \\le |\\omega| \\le \\tfrac{4\\pi}{3}, \\\\ \\cos\\!\\big(\\tfrac{\\pi}{2}\\,\\nu(\\tfrac{3|\\omega|}{4\\pi} - 1)\\big), & \\tfrac{4\\pi}{3} \\le |\\omega| \\le \\tfrac{8\\pi}{3}, \\\\ 0, & \\text{otherwise}. \\end{cases}$$<br>因子 $e^{i\\omega/2}$ 使 $\\psi$ 为实值且关于 $t = -\\tfrac12$ 对称，并有 $\\psi(t) = \\tfrac{1}{\\pi}\\int_{2\\pi/3}^{8\\pi/3} |\\hat\\psi(\\omega)| \\cos\\big(\\omega(t + \\tfrac12)\\big)\\,d\\omega$。",
+        blogMey_p3: "$\\phi$ 的整数平移为标准正交，等价于 $\\sum_{k} |\\hat\\phi(\\omega + 2\\pi k)|^2 = 1$。在 $|\\omega| \\le \\tfrac{2\\pi}{3}$ 上只有 $k = 0$ 有贡献，和为 $1$。在 $\\tfrac{2\\pi}{3} \\le \\omega \\le \\tfrac{4\\pi}{3}$ 上恰有两项留下，即 $k = 0$ 与 $k = -1$；令 $x = \\tfrac{3\\omega}{2\\pi} - 1 \\in [0,1]$，则 $\\tfrac{3|\\omega - 2\\pi|}{2\\pi} - 1 = 1 - x$。于是 $\\nu$ 的对称性给出<br>$$|\\hat\\phi(\\omega)|^2 + |\\hat\\phi(\\omega - 2\\pi)|^2 = \\cos^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) + \\cos^2\\!\\big(\\tfrac{\\pi}{2}(1 - \\nu(x))\\big) = \\cos^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) + \\sin^2\\!\\big(\\tfrac{\\pi}{2}\\nu(x)\\big) = 1 .$$<br>同一恒等式在环域上读出，即得 $|\\hat\\phi(\\omega)|^2 + |\\hat\\psi(\\omega)|^2 = |\\hat\\phi(\\omega/2)|^2$，从而对 $\\omega \\ne 0$ 有二进单位分解 $\\sum_{j \\in \\mathbb{Z}} |\\hat\\psi(2^{-j}\\omega)|^2 = 1$。整个构造化约为一个关系式 $\\cos^2 + \\sin^2 = 1$，被放置在恰当的频率上。",
+        thm_mey_title: "定理（Meyer，1985；Lemarié-Meyer，1986）",
+        thm_mey_body: "对上述任一斜坡函数 $\\nu$，$\\{\\phi(\\cdot - k)\\}_{k}$ 是 $V_0$ 的标准正交基，空间 $V_j = \\overline{\\operatorname{span}}\\{2^{j/2}\\phi(2^j \\cdot - k)\\}$ 构成 $L^2(\\mathbb{R})$ 的多解析度分析，且 $\\{\\psi_{j,k}(t) = 2^{j/2}\\psi(2^j t - k)\\}_{j,k \\in \\mathbb{Z}}$ 是 $L^2(\\mathbb{R})$ 的标准正交基。由于 $\\hat\\psi$ 在 $|\\omega| < \\tfrac{2\\pi}{3}$ 上为零，$\\psi$ 的各阶矩全部为零。若 $\\nu \\in C^m$，则 $\\hat\\psi \\in C^m_c$ 且 $|\\psi(t)| \\le C_m (1 + |t|)^{-m}$；若 $\\nu \\in C^\\infty$，则 $\\psi \\in \\mathcal{S}(\\mathbb{R})$。双尺度符号 $m_0(\\omega) = \\sum_{k} \\hat\\phi(2\\omega + 4\\pi k)$ 是 $2\\pi$ 周期的光滑函数，但不是三角多项式，因此细化滤波器 $h[n]$ 是无限长的。",
+        ctrl_mey_freq: "频率端与单位分解",
+        ctrl_mey_time: "时域中的 $\\phi$ 与 $\\psi$",
+        ctrl_mey_decay: "衰减与 $\\nu$ 的光滑性",
+        ctrl_mey_orth: "正交性检验",
+        ctrl_mey_nu: "斜坡函数 $\\nu$：",
+        blogMey_canvas_caption: "<i class='fa-solid fa-hand-pointer'></i> 互动图示——$\\phi$ 与 $\\psi$ 依定义对 $\\hat\\phi$、$\\hat\\psi$ 做余弦数值积分即时算出，没有任何预先制表。第一个面板在游标处计算 $|\\hat\\phi|^2 + \\sum_j |\\hat\\psi(2^{-j}\\omega)|^2$；第三个面板在双对数座标下量测三种斜坡函数的 $|\\psi|$ 包络；第四个面板以 Parseval 恒等式计算 Gram 矩阵元 $\\langle\\psi, \\psi(\\cdot - k)\\rangle$ 与 $\\langle\\psi, \\psi_{1,k}\\rangle$。<strong>拖曳</strong>可平移，<strong>滚轮</strong>可缩放，<strong>悬停</strong>可读取数值，<strong>双击</strong>可重设。",
+        blogMey_p4: "$\\psi$ 的衰减由 $\\hat\\psi$ 的光滑性决定，而后者又由 $\\nu$ 在四个频带端点 $\\pm\\tfrac{2\\pi}{3}$、$\\pm\\tfrac{8\\pi}{3}$ 处的行为决定。采用三次斜坡时，$\\hat\\psi$ 属于 $C^1$ 而其二阶导数有跳跃，两次分部积分给出沿某个序列的 $|\\psi(t)| \\asymp |t|^{-3}$；七次斜坡将此提升到 $|t|^{-5}$；$C^\\infty$ 斜坡则给出快于任何幂次的衰减。第三个面板所量得的双对数斜率，对两个多项式斜坡分别接近 $-3$ 与 $-5$，对 $C^\\infty$ 斜坡则无界地变陡。快于任何幂次的衰减已是极限：若 $|\\psi(t)| \\le C e^{-\\epsilon|t|}$，则 $\\hat\\psi$ 可解析延拓到带域 $|\\operatorname{Im}\\omega| < \\epsilon$，这与 $\\hat\\psi$ 在某区间上为零互相矛盾，除非 $\\psi \\equiv 0$。",
+        key_insight_mey_title: "Meyer 与 Daubechies：同一障碍的两面",
+        key_insight_mey_desc: "Meyer 与 Daubechies 的构造位于同一取舍的两端。Meyer 固定紧频谱，得到 $C^\\infty$ 正则性、全部消失矩与超多项式衰减，但没有紧支撑，滤波器也是无限长的。Daubechies 固定紧支撑与有限滤波器，代价是有限的正则性与有限个数 $N$ 的消失矩。这对逼近论的影响是直接的：以 Daubechies 小波在 Besov 尺度 $B^s_{p,q}$ 上建立 Jackson 型估计需要 $s < N$，而 Meyer 系统对 $s$ 不设上限。此外，由于 $\\hat\\psi$ 位于固定环域，函数的每个 Littlewood-Paley 分块只与有界个数的小波尺度发生作用。这个有限频带性质，正是本部落格逼近论专区中加权 Jackson 不等式里显式常数 $C_M$ 背后的结构性来源。",
+        blogMey_p5: "有两点限制应当说明。由于滤波器 $h[n]$ 是无限长的，快速小波变换必须在周期化网格上透过 FFT 实现，而非以有限卷积实现；截断 $h$ 会使正交性受到与截断尾部同阶的破坏。其次，时间局部性虽然是超多项式的，却依赖于 $\\nu$ 各阶导数中的常数：上述 $C^\\infty$ 斜坡在渐近意义下最快，但在中等尺度的视窗内，七次斜坡衰减得更快，第三个面板显示 $C^\\infty$ 包络要到 $|t|$ 约为 $50$ 的量级才超越它。在 $\\mathbb{R}^n$ 上的张量积推广提供 $2^n - 1$ 个具有相同性质的带限生成元，而这正是加权估计中作为带限双正交基之典型情形所使用的系统。",
+        refs_mey: "<li>Y. Meyer, <em>Principe d'incertitude, bases hilbertiennes et algèbres d'opérateurs</em>, Séminaire Bourbaki, Vol. 1985/86, Exp. No. 662, Astérisque <strong>145-146</strong> (1987), 209-223.</li> <li>P.-G. Lemarié and Y. Meyer, <em>Ondelettes et bases hilbertiennes</em>, Rev. Mat. Iberoamericana <strong>2</strong> (1986), 1-18.</li> <li>J.-O. Strömberg, <em>A modified Franklin system and higher-order spline systems on R^n as unconditional bases for Hardy spaces</em>, Conference on Harmonic Analysis in Honor of A. Zygmund, Vol. II, Wadsworth, 1983, 475-494.</li> <li>S. Mallat, <em>Multiresolution approximations and wavelet orthonormal bases of L^2(R)</em>, Trans. Amer. Math. Soc. <strong>315</strong> (1989), 69-87.</li> <li>I. Daubechies, <em>Ten Lectures on Wavelets</em>, CBMS-NSF Regional Conference Series in Applied Mathematics <strong>61</strong>, SIAM, 1992.</li> <li>Y. Meyer, <em>Wavelets and Operators</em>, Cambridge Studies in Advanced Mathematics <strong>37</strong>, Cambridge University Press, 1992.</li> <li>E. Hernández and G. Weiss, <em>A First Course on Wavelets</em>, CRC Press, 1996.</li>",
         sec_blog_title: "最新数学研讨札记与理论专题",
         blogE_title: "《有效维度：当收敛阶改善时，环境维度跑到哪里去了》",
         blogE_p1: "前一篇札记中的熵下界是一项关于光滑性空间中某个球的陈述，而绕过它的唯一途径是在一个更小的函数类中工作。有效维度是若干种指定此类子类之方式的共同名称，它们皆共有一项特征：收敛阶中的指针由一个可能远小于环境维度 $d$ 的量 $d_0$ 所支配，而 $d$ 本身并未消失，只是退入了前置常数之中。将该前置常数显式写出，正是区分一项可用的陈述与一句口号的关键——因为决定改良后的指针从哪一个预算开始发挥作用的，正是这个前置常数。",
@@ -4687,7 +5267,7 @@
 
       const filtered = publications.filter(pub => {
         if (currentFilter === 'review') {
-          if (pub.status !== 'review') return false;
+          if (pub.status !== 'review' && pub.status !== 'preprint') return false;
         } else if (currentFilter !== 'all') {
           if (pub.topic !== currentFilter) return false;
         }
@@ -4715,6 +5295,7 @@
 
       container.innerHTML = filtered.map((pub) => {
         const isReview = pub.status === 'review';
+        const isPreprint = pub.status === 'preprint';
         const formattedAuthors = pub.authors.map(a => {
           if (a.includes("Wang K C") || a.includes("Wang, K. C.") || a === "Wang K C") {
             return `<span class="pub-author-me">Wang K.C.</span>`;
@@ -4726,18 +5307,18 @@
         const arxivLink = pub.arxivUrl || (pub.arxiv ? `https://arxiv.org/abs/${pub.arxiv}` : null);
 
         return `
-          <div class="pub-item ${isReview ? 'under-review' : ''}">
+          <div class="pub-item ${(isReview || isPreprint) ? 'under-review' : ''}">
             <div class="pub-header">
               <div class="pub-title">${pub.title}</div>
               <div class="pub-badge-group">
                 <span class="pub-badge pub-badge-year">${pub.year}</span>
-                ${isReview ? `<span class="pub-badge pub-badge-review">${currentLang === 'en' ? 'Under Review' : (currentLang === 'tc' ? '在審中' : '在审中')}</span>` : `<span class="pub-badge pub-badge-sci">SCI Indexed</span>`}
+                ${isPreprint ? `<span class="pub-badge pub-badge-review">${currentLang === 'en' ? 'Preprint' : (currentLang === 'tc' ? '預印本' : '预印本')}</span>` : (isReview ? `<span class="pub-badge pub-badge-review">${currentLang === 'en' ? 'Under Review' : (currentLang === 'tc' ? '在審中' : '在审中')}</span>` : `<span class="pub-badge pub-badge-sci">SCI Indexed</span>`)}
                 ${pub.arxiv ? `<a href="${arxivLink}" target="_blank" class="pub-badge pub-badge-arxiv" style="text-decoration:none;" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> arXiv:${pub.arxiv}</a>` : ''}
               </div>
             </div>
             <div class="pub-authors">${formattedAuthors}</div>
             <div class="pub-journal">
-              ${pub.journal}${pub.volume ? `, ${pub.year}, ${pub.volume}: ${pub.pages}` : (isReview ? ` (${currentLang === 'en' ? 'Under Peer Review' : '期刊在審'})` : `, ${pub.year}`)}
+              ${isPreprint ? `arXiv:${pub.arxiv} [${pub.arxivClass || 'math'}], ${pub.year}` : `${pub.journal}${pub.volume ? `, ${pub.year}, ${pub.volume}: ${pub.pages}` : (isReview ? ` (${currentLang === 'en' ? 'Under Peer Review' : '期刊在審'})` : `, ${pub.year}`)}`}
             </div>
             
             <div class="pub-actions">
@@ -4792,7 +5373,15 @@
       if (!pub) return;
 
       const key = `wang${pub.year}_${pub.id}`;
-      const bibtex = `@article{${key},
+      const bibtex = pub.status === 'preprint' ? `@misc{${key},
+  author        = {${pub.authors.join(" and ")}},
+  title         = {${pub.title}},
+  year          = {${pub.year}},
+  eprint        = {${pub.arxiv}},
+  archivePrefix = {arXiv},
+  primaryClass  = {${pub.arxivClass || 'math'}},
+  url           = {https://arxiv.org/abs/${pub.arxiv}}
+}` : `@article{${key},
   author    = {${pub.authors.join(" and ")}},
   title     = {${pub.title}},
   journal   = {${pub.journal}},
@@ -4959,6 +5548,42 @@
           const c_canvas_post_effdim = canvas_post_effdim.getContext('2d');
           c_canvas_post_effdim.scale(window.devicePixelRatio, window.devicePixelRatio);
           canvasAnimationControllers['canvas_post_effdim'] = runEffDimCanvas(canvas_post_effdim, c_canvas_post_effdim, w_canvas_post_effdim, h_canvas_post_effdim);
+        }
+
+        const canvas_post_jackson_weighted = document.getElementById('canvas-post-jackson-weighted');
+        if (canvas_post_jackson_weighted) {
+          const r_canvas_post_jackson_weighted = canvas_post_jackson_weighted.parentElement.getBoundingClientRect();
+          const w_canvas_post_jackson_weighted = r_canvas_post_jackson_weighted.width > 0 ? r_canvas_post_jackson_weighted.width : (canvas_post_jackson_weighted.parentElement.clientWidth || 700);
+          const h_canvas_post_jackson_weighted = r_canvas_post_jackson_weighted.height > 0 ? r_canvas_post_jackson_weighted.height : 380;
+          canvas_post_jackson_weighted.width = w_canvas_post_jackson_weighted * window.devicePixelRatio;
+          canvas_post_jackson_weighted.height = h_canvas_post_jackson_weighted * window.devicePixelRatio;
+          const c_canvas_post_jackson_weighted = canvas_post_jackson_weighted.getContext('2d');
+          c_canvas_post_jackson_weighted.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['canvas_post_jackson_weighted'] = runJacksonWeightedCanvas(canvas_post_jackson_weighted, c_canvas_post_jackson_weighted, w_canvas_post_jackson_weighted, h_canvas_post_jackson_weighted);
+        }
+
+        const canvas_post_meyer = document.getElementById('canvas-post-meyer');
+        if (canvas_post_meyer) {
+          const r_canvas_post_meyer = canvas_post_meyer.parentElement.getBoundingClientRect();
+          const w_canvas_post_meyer = r_canvas_post_meyer.width > 0 ? r_canvas_post_meyer.width : (canvas_post_meyer.parentElement.clientWidth || 700);
+          const h_canvas_post_meyer = r_canvas_post_meyer.height > 0 ? r_canvas_post_meyer.height : 380;
+          canvas_post_meyer.width = w_canvas_post_meyer * window.devicePixelRatio;
+          canvas_post_meyer.height = h_canvas_post_meyer * window.devicePixelRatio;
+          const c_canvas_post_meyer = canvas_post_meyer.getContext('2d');
+          c_canvas_post_meyer.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['canvas_post_meyer'] = runMeyerCanvas(canvas_post_meyer, c_canvas_post_meyer, w_canvas_post_meyer, h_canvas_post_meyer);
+        }
+
+        const canvas_post_bandlimited = document.getElementById('canvas-post-bandlimited');
+        if (canvas_post_bandlimited) {
+          const r_canvas_post_bandlimited = canvas_post_bandlimited.parentElement.getBoundingClientRect();
+          const w_canvas_post_bandlimited = r_canvas_post_bandlimited.width > 0 ? r_canvas_post_bandlimited.width : (canvas_post_bandlimited.parentElement.clientWidth || 700);
+          const h_canvas_post_bandlimited = r_canvas_post_bandlimited.height > 0 ? r_canvas_post_bandlimited.height : 380;
+          canvas_post_bandlimited.width = w_canvas_post_bandlimited * window.devicePixelRatio;
+          canvas_post_bandlimited.height = h_canvas_post_bandlimited * window.devicePixelRatio;
+          const c_canvas_post_bandlimited = canvas_post_bandlimited.getContext('2d');
+          c_canvas_post_bandlimited.scale(window.devicePixelRatio, window.devicePixelRatio);
+          canvasAnimationControllers['canvas_post_bandlimited'] = runBandlimitedCanvas(canvas_post_bandlimited, c_canvas_post_bandlimited, w_canvas_post_bandlimited, h_canvas_post_bandlimited);
         }
 
         const postCanvas = document.getElementById('canvas-post-uncertainty');
@@ -6214,6 +6839,1000 @@
           canvas.removeEventListener('mouseleave', onLeave);
           canvas.removeEventListener('wheel', onWheel);
           canvas.removeEventListener('click', onClick);
+        }
+      };
+    }
+
+    /* =========================================================================
+       SHARED KIT FOR INLINE FIGURES (Meyer / band-limited / weighted Jackson)
+       Pan (drag), zoom (wheel), reset (double-click), pick (click), readout
+       panel top-right, legend bottom-left.
+       ========================================================================= */
+    function wkcKit(canvas, ctx, width, height) {
+      const K = { panX: 0, zoom: 1, dragging: false, lastX: 0, moved: 0,
+                  mouseX: -1, mouseY: -1, onDrag: null, onClick: null };
+      K.C = { ACCENT: '#881337', BLUE: '#2563eb', GOLD: '#b45309', BROWN: '#78350f', TEAL: '#0f766e' };
+      K.isDark = () => document.body.getAttribute('data-theme') === 'dark';
+      K.ink = a => K.isDark() ? 'rgba(226,232,240,' + a + ')' : 'rgba(30,41,59,' + a + ')';
+      function pos(e) {
+        const r = canvas.getBoundingClientRect();
+        const s = (e.touches && e.touches[0]) ? e.touches[0] : e;
+        return [s.clientX - r.left, s.clientY - r.top];
+      }
+      function onDown(e) { K.dragging = true; K.moved = 0; K.lastX = pos(e)[0]; }
+      function onUp() { K.dragging = false; }
+      function onMove(e) {
+        const p = pos(e);
+        K.mouseX = p[0]; K.mouseY = p[1];
+        if (K.dragging) {
+          const dx = p[0] - K.lastX;
+          K.moved += Math.abs(dx); K.lastX = p[0];
+          if (K.onDrag) K.onDrag(dx, p[0], p[1]); else K.panX += dx;
+        }
+      }
+      function onWheel(e) {
+        e.preventDefault();
+        K.zoom = Math.max(0.5, Math.min(8, K.zoom * (e.deltaY < 0 ? 1.12 : 1 / 1.12)));
+      }
+      function onClick(e) { if (K.moved > 4) return; const p = pos(e); if (K.onClick) K.onClick(p[0], p[1]); }
+      function onDbl() { K.panX = 0; K.zoom = 1; }
+      function onLeave() { K.mouseX = -1; K.mouseY = -1; K.dragging = false; }
+      canvas.addEventListener('mousedown', onDown);
+      window.addEventListener('mouseup', onUp);
+      canvas.addEventListener('mousemove', onMove);
+      canvas.addEventListener('mouseleave', onLeave);
+      canvas.addEventListener('wheel', onWheel, { passive: false });
+      canvas.addEventListener('click', onClick);
+      canvas.addEventListener('dblclick', onDbl);
+      canvas.addEventListener('touchstart', onDown, { passive: true });
+      canvas.addEventListener('touchmove', onMove, { passive: true });
+      canvas.addEventListener('touchend', onUp);
+      K.detach = function () {
+        canvas.removeEventListener('mousedown', onDown);
+        window.removeEventListener('mouseup', onUp);
+        canvas.removeEventListener('mousemove', onMove);
+        canvas.removeEventListener('mouseleave', onLeave);
+        canvas.removeEventListener('wheel', onWheel);
+        canvas.removeEventListener('click', onClick);
+        canvas.removeEventListener('dblclick', onDbl);
+        canvas.removeEventListener('touchstart', onDown);
+        canvas.removeEventListener('touchmove', onMove);
+        canvas.removeEventListener('touchend', onUp);
+      };
+      K.readout = function (lines) {
+        const wBox = 252, hBox = 12 + lines.length * 15;
+        const x = width - wBox - 12, y = 12;
+        ctx.fillStyle = K.isDark() ? 'rgba(15,23,42,0.86)' : 'rgba(255,255,255,0.92)';
+        ctx.strokeStyle = K.ink(0.18); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.rect(x, y, wBox, hBox); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = K.ink(0.78);
+        ctx.font = '600 10.5px ui-monospace, monospace';
+        lines.forEach((L, i) => ctx.fillText(L, x + 10, y + 18 + i * 15));
+      };
+      K.legend = function (rows) {
+        const x = 14, y0 = height - 12 - (rows.length - 1) * 16;
+        ctx.font = '600 10.5px ui-monospace, monospace';
+        rows.forEach((r, i) => {
+          const y = y0 + i * 16;
+          ctx.fillStyle = r[0]; ctx.fillRect(x, y - 8, 10, 10);
+          ctx.fillStyle = K.ink(0.7); ctx.fillText(r[1], x + 16, y);
+        });
+      };
+      K.title = function (txt, x, y) {
+        ctx.fillStyle = K.ink(0.62); ctx.font = '600 11px ui-monospace, monospace';
+        ctx.fillText(txt, x, y);
+      };
+      /* A plotting box. padT keeps curves clear of the readout, padB of the legend. */
+      K.box = function (padL, padR, padT, padB) {
+        return { x0: padL, y0: padT, w: width - padL - padR, h: height - padT - padB };
+      };
+      /* Map a data interval [u0,u1] onto the box, honouring pan and zoom. */
+      K.xmap = function (B, u0, u1, noPan) {
+        const z = noPan ? 1 : K.zoom, p = noPan ? 0 : K.panX;
+        const c = B.x0 + B.w / 2;
+        const f = u => c + ((u - u0) / (u1 - u0) * B.w - B.w / 2) * z + p;
+        f.inv = X => u0 + (((X - p - c) / z) + B.w / 2) / B.w * (u1 - u0);
+        return f;
+      };
+      K.ymap = (B, v0, v1) => v => B.y0 + B.h - (v - v0) / (v1 - v0) * B.h;
+      K.clip = function (B) { ctx.save(); ctx.beginPath(); ctx.rect(B.x0, B.y0 - 2, B.w, B.h + 4); ctx.clip(); };
+      K.unclip = () => ctx.restore();
+      K.hline = function (B, Y, a) {
+        ctx.strokeStyle = K.ink(a || 0.15); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(B.x0, Y); ctx.lineTo(B.x0 + B.w, Y); ctx.stroke();
+      };
+      K.frame = function (B) {
+        ctx.strokeStyle = K.ink(0.22); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(B.x0, B.y0); ctx.lineTo(B.x0, B.y0 + B.h); ctx.lineTo(B.x0 + B.w, B.y0 + B.h); ctx.stroke();
+      };
+      K.tick = function (X, Y, label, below) {
+        ctx.fillStyle = K.ink(0.52); ctx.font = '600 10px ui-monospace, monospace';
+        const w = ctx.measureText(label).width;
+        if (below) ctx.fillText(label, X - w / 2, Y + 14); else ctx.fillText(label, X - w - 6, Y + 3);
+      };
+      K.poly = function (xs, ys, color, lw, dash) {
+        ctx.beginPath();
+        for (let i = 0; i < xs.length; i++) { if (i === 0) ctx.moveTo(xs[i], ys[i]); else ctx.lineTo(xs[i], ys[i]); }
+        ctx.strokeStyle = color; ctx.lineWidth = lw || 2;
+        ctx.setLineDash(dash || []); ctx.stroke(); ctx.setLineDash([]);
+      };
+      K.dot = function (X, Y, r, color) { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(X, Y, r, 0, 2 * Math.PI); ctx.fill(); };
+      K.cursor = function (hover) { canvas.style.cursor = K.dragging ? 'grabbing' : (hover ? 'pointer' : 'grab'); };
+      return K;
+    }
+
+    function wkcBtnGroup(fnName, btn) {
+      if (!btn || !btn.parentElement) return;
+      btn.parentElement.querySelectorAll('button').forEach(b => {
+        const oc = b.getAttribute('onclick');
+        if (oc && oc.indexOf(fnName + '(') !== -1) b.classList.remove('active');
+      });
+      btn.classList.add('active');
+    }
+
+    /* =========================================================================
+       MEYER WAVELET — frequency-domain construction, evaluated live.
+       Angular frequency w. With nu a ramp (nu=0 on (-inf,0], nu=1 on [1,inf),
+       nu(x)+nu(1-x)=1):
+         |psihat(w)| = sin(pi/2 nu(3|w|/2pi - 1))  on 2pi/3 <= |w| <= 4pi/3
+                     = cos(pi/2 nu(3|w|/4pi - 1))  on 4pi/3 <= |w| <= 8pi/3
+         psihat(w) = e^{iw/2} |psihat(w)|,  phihat(w) = 1 on |w| <= 2pi/3,
+                     cos(pi/2 nu(3|w|/2pi - 1)) on 2pi/3 <= |w| <= 4pi/3.
+       Hence psi(t) = (1/pi) int_{2pi/3}^{8pi/3} |psihat(w)| cos(w(t+1/2)) dw,
+             phi(t) = (1/pi) int_0^{4pi/3} phihat(w) cos(wt) dw.
+       ========================================================================= */
+    const MEYER_NU = {
+      c1:  x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); },
+      c3:  x => { x = Math.min(1, Math.max(0, x)); return x * x * x * x * (35 - 84 * x + 70 * x * x - 20 * x * x * x); },
+      inf: x => {
+        x = Math.min(1, Math.max(0, x));
+        const s = u => (u > 0 ? Math.exp(-1 / u) : 0);
+        const a = s(x), b = s(1 - x);
+        return a / (a + b);
+      }
+    };
+    function meyerPsiAmp(w, nu) {
+      w = Math.abs(w);
+      if (w >= 2 * Math.PI / 3 && w <= 4 * Math.PI / 3) return Math.sin(Math.PI / 2 * nu(3 * w / (2 * Math.PI) - 1));
+      if (w > 4 * Math.PI / 3 && w <= 8 * Math.PI / 3) return Math.cos(Math.PI / 2 * nu(3 * w / (4 * Math.PI) - 1));
+      return 0;
+    }
+    function meyerPhiAmp(w, nu) {
+      w = Math.abs(w);
+      if (w <= 2 * Math.PI / 3) return 1;
+      if (w <= 4 * Math.PI / 3) return Math.cos(Math.PI / 2 * nu(3 * w / (2 * Math.PI) - 1));
+      return 0;
+    }
+    /* Trapezoidal cosine-transform table on [a,b]; the integrands vanish with
+       their derivatives at the ends, so the rule converges fast. */
+    function meyerCosTable(amp, a, b, m) {
+      const W = new Float64Array(m + 1), WA = new Float64Array(m + 1), h = (b - a) / m;
+      for (let i = 0; i <= m; i++) { W[i] = a + i * h; WA[i] = amp(W[i]) * h * ((i === 0 || i === m) ? 0.5 : 1); }
+      return { W: W, WA: WA };
+    }
+    function meyerCosEval(tab, x) {
+      let s = 0;
+      const W = tab.W, WA = tab.WA;
+      for (let i = 0; i < W.length; i++) s += WA[i] * Math.cos(W[i] * x);
+      return s / Math.PI;
+    }
+    const MEYER_CACHE = {};
+    function meyerTables(nuKey) {
+      if (!MEYER_CACHE[nuKey]) {
+        const nu = MEYER_NU[nuKey];
+        MEYER_CACHE[nuKey] = {
+          psi: meyerCosTable(w => meyerPsiAmp(w, nu), 2 * Math.PI / 3, 8 * Math.PI / 3, 3000),
+          phi: meyerCosTable(w => meyerPhiAmp(w, nu), 0, 4 * Math.PI / 3, 2000),
+          psiFine: null, env: null
+        };
+      }
+      return MEYER_CACHE[nuKey];
+    }
+    function meyerPsi(nuKey, t) { return meyerCosEval(meyerTables(nuKey).psi, t + 0.5); }
+    function meyerPhi(nuKey, t) { return meyerCosEval(meyerTables(nuKey).phi, t); }
+    /* Envelope max|psi| over windows [T, 1.25T], T = 2 ... 128 (log-spaced). */
+    function meyerEnvelope(nuKey) {
+      const T = meyerTables(nuKey);
+      if (T.env) return T.env;
+      const nu = MEYER_NU[nuKey];
+      if (!T.psiFine) T.psiFine = meyerCosTable(w => meyerPsiAmp(w, nu), 2 * Math.PI / 3, 8 * Math.PI / 3, 12000);
+      const out = [];
+      for (let q = 0; q <= 30; q++) {
+        const t0 = 2 * Math.pow(2, q / 5);
+        let mx = 0;
+        for (let r = 0; r < 18; r++) {
+          const t = t0 * (1 + 0.25 * r / 17);
+          const v = Math.abs(meyerCosEval(T.psiFine, t + 0.5));
+          if (v > mx) mx = v;
+        }
+        out.push([t0, mx]);
+      }
+      T.env = out;
+      return out;
+    }
+
+    let meyerMode = 'freq';
+    let meyerNu = 'c3';
+    function setMeyerMode(m, btn) { meyerMode = m; wkcBtnGroup('setMeyerMode', btn); }
+    function setMeyerNu(k, btn) { meyerNu = k; wkcBtnGroup('setMeyerNu', btn); }
+
+    function runMeyerCanvas(canvas, ctx, width, height) {
+      let isRunning = true, animId = null;
+      const K = wkcKit(canvas, ctx, width, height);
+      const { ACCENT, BLUE, GOLD, TEAL } = K.C;
+      const NU_LABEL = { c1: 'C^1 cubic', c3: 'C^3 degree 7', inf: 'C^inf (exp)' };
+      let picked = null;
+      K.onClick = (x, y) => { picked = { x: x, y: y, mode: meyerMode }; };
+
+      /* Time-domain samples cached per nu. */
+      const timeCache = {};
+      function timeSamples() {
+        if (!timeCache[meyerNu]) {
+          const n = 721, t0 = -9, t1 = 9, ts = [], ps = [], fs = [];
+          let e2 = 0;
+          for (let i = 0; i < n; i++) {
+            const t = t0 + (t1 - t0) * i / (n - 1);
+            const p = meyerPsi(meyerNu, t), f = meyerPhi(meyerNu, t);
+            ts.push(t); ps.push(p); fs.push(f); e2 += p * p;
+          }
+          timeCache[meyerNu] = { ts: ts, ps: ps, fs: fs, norm: Math.sqrt(e2 * (t1 - t0) / (n - 1)) };
+        }
+        return timeCache[meyerNu];
+      }
+
+      /* Gram entries by Parseval, integrated over w in [0, 8pi/3]. */
+      const gramCache = {};
+      function gram() {
+        if (gramCache[meyerNu]) return gramCache[meyerNu];
+        const nu = MEYER_NU[meyerNu], m = 8000, a = 0, b = 8 * Math.PI / 3, h = (b - a) / m;
+        const same = [], cross = [];
+        for (let k = -4; k <= 4; k++) {
+          let s = 0, c = 0;
+          for (let i = 0; i <= m; i++) {
+            const w = a + i * h, wt = (i === 0 || i === m) ? 0.5 : 1;
+            const A = meyerPsiAmp(w, nu);
+            s += wt * A * A * Math.cos(w * k);
+            c += wt * A * meyerPsiAmp(w / 2, nu) * Math.cos(w * (0.25 + k / 2));
+          }
+          /* (1/2pi) int_R = (1/pi) int_0^inf for even integrands */
+          same.push([k, s * h / Math.PI]);
+          cross.push([k, c * h / Math.PI / Math.SQRT2]);
+        }
+        gramCache[meyerNu] = { same: same, cross: cross };
+        return gramCache[meyerNu];
+      }
+
+      function drawFreq() {
+        const nu = MEYER_NU[meyerNu];
+        const B = K.box(54, 20, 96, 104);
+        const X = K.xmap(B, 0, 6 * Math.PI);
+        const Y = K.ymap(B, -0.05, 1.12);
+        K.frame(B);
+        for (let k = 0; k <= 6; k++) {
+          const Xk = X(k * Math.PI);
+          if (Xk >= B.x0 - 1 && Xk <= B.x0 + B.w + 1) K.tick(Xk, B.y0 + B.h, k === 0 ? '0' : (k === 1 ? 'π' : k + 'π'), true);
+        }
+        [0, 0.5, 1].forEach(v => { K.hline(B, Y(v), v === 1 ? 0.25 : 0.1); K.tick(B.x0, Y(v), v.toFixed(1)); });
+        K.clip(B);
+        [2 / 3, 4 / 3, 8 / 3, 16 / 3].forEach(c => {
+          const Xc = X(c * Math.PI);
+          ctx.strokeStyle = K.ink(0.12); ctx.setLineDash([3, 4]);
+          ctx.beginPath(); ctx.moveTo(Xc, B.y0); ctx.lineTo(Xc, B.y0 + B.h); ctx.stroke(); ctx.setLineDash([]);
+        });
+        const n = 900, xs = [], y1 = [], y2 = [], y3 = [], ys = [];
+        for (let i = 0; i <= n; i++) {
+          const w = 6 * Math.PI * i / n;
+          const a0 = meyerPhiAmp(w, nu), a1 = meyerPsiAmp(w, nu), a2 = meyerPsiAmp(w / 2, nu), a3 = meyerPsiAmp(w / 4, nu);
+          xs.push(X(w)); y1.push(Y(a0)); y2.push(Y(a1)); y3.push(Y(a2));
+          ys.push(Y(a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3));
+        }
+        K.poly(xs, ys, K.ink(0.45), 1.5, [5, 4]);
+        K.poly(xs, y1, TEAL, 2.2);
+        K.poly(xs, y2, ACCENT, 2.4);
+        K.poly(xs, y3, BLUE, 2);
+        K.unclip();
+        let hv = null;
+        if (K.mouseX >= B.x0 && K.mouseX <= B.x0 + B.w && K.mouseY >= B.y0 && K.mouseY <= B.y0 + B.h) {
+          const w = X.inv(K.mouseX);
+          if (w >= 0) {
+            hv = w;
+            ctx.strokeStyle = K.ink(0.35); ctx.beginPath(); ctx.moveTo(K.mouseX, B.y0); ctx.lineTo(K.mouseX, B.y0 + B.h); ctx.stroke();
+          }
+        }
+        const w = hv !== null ? hv : 1.2 * Math.PI;
+        const a0 = meyerPhiAmp(w, nu), a1 = meyerPsiAmp(w, nu), a2 = meyerPsiAmp(w / 2, nu), a3 = meyerPsiAmp(w / 4, nu);
+        const S = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
+        K.legend([[TEAL, '|φ̂(ω)|'], [ACCENT, '|ψ̂(ω)|'], [BLUE, '|ψ̂(ω/2)|'], [K.ink(0.45), '|φ̂|²+Σ_{j≤2}|ψ̂(2^{-j}ω)|²']]);
+        K.readout([
+          'ν = ' + NU_LABEL[meyerNu] + '   ω = ' + (w / Math.PI).toFixed(3) + 'π',
+          '|φ̂| = ' + a0.toFixed(4) + '   |ψ̂| = ' + a1.toFixed(4),
+          'Σ squares = ' + S.toFixed(12),
+          (w <= 16 * Math.PI / 3 ? 'partition of unity holds' : 'beyond 16π/3: add j = 3')
+        ]);
+        return false;
+      }
+
+      function drawTime() {
+        const d = timeSamples();
+        const B = K.box(54, 20, 96, 88);
+        const X = K.xmap(B, -9, 9);
+        const Y = K.ymap(B, -1.0, 1.45);
+        K.frame(B);
+        for (let k = -8; k <= 8; k += 2) { const Xk = X(k); if (Xk >= B.x0 && Xk <= B.x0 + B.w) K.tick(Xk, B.y0 + B.h, String(k), true); }
+        [-1, 0, 1].forEach(v => { K.hline(B, Y(v), v === 0 ? 0.25 : 0.08); K.tick(B.x0, Y(v), String(v)); });
+        K.clip(B);
+        K.poly(d.ts.map(X), d.fs.map(Y), TEAL, 2);
+        K.poly(d.ts.map(X), d.ps.map(Y), ACCENT, 2.4);
+        const Xc = X(-0.5);
+        ctx.strokeStyle = K.ink(0.2); ctx.setLineDash([3, 4]);
+        ctx.beginPath(); ctx.moveTo(Xc, B.y0); ctx.lineTo(Xc, B.y0 + B.h); ctx.stroke(); ctx.setLineDash([]);
+        K.unclip();
+        let t = -0.5, hover = false;
+        if (K.mouseX >= B.x0 && K.mouseX <= B.x0 + B.w && K.mouseY >= B.y0 && K.mouseY <= B.y0 + B.h) { t = X.inv(K.mouseX); hover = true; }
+        if (picked && picked.mode === 'time') t = X.inv(picked.x);
+        const pv = meyerPsi(meyerNu, t), fv = meyerPhi(meyerNu, t);
+        K.dot(X(t), Y(pv), 4, ACCENT); K.dot(X(t), Y(fv), 3.5, TEAL);
+        K.legend([[TEAL, 'φ(t)  scaling function'], [ACCENT, 'ψ(t)  symmetric about t = -1/2']]);
+        K.readout([
+          'ν = ' + NU_LABEL[meyerNu] + '   t = ' + t.toFixed(3),
+          'ψ(t) = ' + pv.toExponential(4),
+          'φ(t) = ' + fv.toExponential(4),
+          '‖ψ‖₂ on [-9,9] = ' + d.norm.toFixed(6)
+        ]);
+        return hover;
+      }
+
+      function drawDecay() {
+        const B = K.box(60, 20, 96, 88);
+        const lx0 = Math.log10(2), lx1 = Math.log10(160), ly0 = -13, ly1 = 0;
+        const X = K.xmap(B, lx0, lx1, true), Y = K.ymap(B, ly0, ly1);
+        K.frame(B);
+        [2, 4, 8, 16, 32, 64, 128].forEach(v => K.tick(X(Math.log10(v)), B.y0 + B.h, String(v), true));
+        for (let e = ly0; e <= ly1; e += 3) { K.hline(B, Y(e), 0.07); K.tick(B.x0, Y(e), '1e' + e); }
+        K.clip(B);
+        const cols = { c1: BLUE, c3: GOLD, inf: ACCENT };
+        const slopes = {};
+        ['c1', 'c3', 'inf'].forEach(key => {
+          const env = meyerEnvelope(key);
+          const xs = env.map(p => X(Math.log10(p[0]))), ys = env.map(p => Y(Math.log10(Math.max(p[1], 1e-16))));
+          K.poly(xs, ys, cols[key], key === meyerNu ? 2.8 : 1.3, key === meyerNu ? [] : [4, 3]);
+          env.forEach((p, i) => { if (key === meyerNu) K.dot(xs[i], ys[i], 2.2, cols[key]); });
+          const a = env[env.length - 6], b = env[env.length - 1];
+          slopes[key] = Math.log(b[1] / a[1]) / Math.log(b[0] / a[0]);
+        });
+        K.unclip();
+        let hoverTxt = 'hover a node for its value';
+        const env = meyerEnvelope(meyerNu);
+        env.forEach(p => {
+          const px = X(Math.log10(p[0])), py = Y(Math.log10(Math.max(p[1], 1e-16)));
+          if (Math.abs(px - K.mouseX) < 6 && Math.abs(py - K.mouseY) < 8) hoverTxt = 'T=' + p[0].toFixed(1) + ' max|ψ|=' + p[1].toExponential(2);
+        });
+        K.legend([[BLUE, 'ν ∈ C¹ : slope ' + slopes.c1.toFixed(2)], [GOLD, 'ν ∈ C³ : slope ' + slopes.c3.toFixed(2)], [ACCENT, 'ν ∈ C^∞ : slope ' + slopes.inf.toFixed(2)]]);
+        K.readout([
+          'max|ψ| on [T, 1.25T], log-log',
+          'local slope, T∈[45,128]:',
+          '  ' + NU_LABEL[meyerNu] + ' → ' + slopes[meyerNu].toFixed(2),
+          hoverTxt
+        ]);
+        return false;
+      }
+
+      function drawOrth() {
+        const G = gram();
+        const B = K.box(60, 20, 96, 88);
+        const half = B.w / 2 - 14;
+        const Y = K.ymap(B, -17, 1);
+        K.frame(B);
+        for (let e = -16; e <= 0; e += 4) { K.hline(B, Y(e), 0.07); K.tick(B.x0, Y(e), '1e' + e); }
+        let hover = null;
+        [[G.same, B.x0 + 6, '⟨ψ, ψ(·−k)⟩', ACCENT], [G.cross, B.x0 + half + 28, '⟨ψ, ψ_{1,k}⟩ (cross-scale)', BLUE]].forEach(([arr, x0, lab, col]) => {
+          const bw = half / arr.length;
+          K.title(lab, x0, B.y0 - 8);
+          arr.forEach((kv, i) => {
+            const v = Math.max(Math.abs(kv[1]), 1e-17);
+            const X0 = x0 + i * bw + 3, top = Y(Math.log10(v));
+            ctx.fillStyle = col; ctx.globalAlpha = 0.8;
+            ctx.fillRect(X0, top, bw - 6, B.y0 + B.h - top);
+            ctx.globalAlpha = 1;
+            K.tick(X0 + (bw - 6) / 2, B.y0 + B.h, String(kv[0]), true);
+            if (K.mouseX >= X0 && K.mouseX <= X0 + bw - 6 && K.mouseY >= B.y0 && K.mouseY <= B.y0 + B.h) hover = [lab, kv];
+          });
+        });
+        const d0 = G.same[4][1];
+        let offMax = 0; G.same.forEach(kv => { if (kv[0] !== 0) offMax = Math.max(offMax, Math.abs(kv[1])); });
+        let crossMax = 0; G.cross.forEach(kv => { crossMax = Math.max(crossMax, Math.abs(kv[1])); });
+        K.legend([[ACCENT, 'same scale, k = -4..4'], [BLUE, 'scale 0 vs scale 1']]);
+        K.readout([
+          'Parseval quadrature, ν = ' + NU_LABEL[meyerNu],
+          '‖ψ‖² = ' + d0.toFixed(12),
+          'max off-diag   = ' + offMax.toExponential(2),
+          hover ? ('k=' + hover[1][0] + ': ' + hover[1][1].toExponential(3)) : ('max cross-scale = ' + crossMax.toExponential(2))
+        ]);
+        return !!hover;
+      }
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+        let hv = false;
+        if (meyerMode === 'time') hv = drawTime();
+        else if (meyerMode === 'decay') hv = drawDecay();
+        else if (meyerMode === 'orth') hv = drawOrth();
+        else hv = drawFreq();
+        K.cursor(hv);
+        animId = requestAnimationFrame(draw);
+      }
+      draw();
+      return {
+        stop() {
+          isRunning = false;
+          if (animId) cancelAnimationFrame(animId);
+          K.detach();
+        }
+      };
+    }
+
+    /* =========================================================================
+       BAND-LIMITED FUNCTIONS — Shannon sampling, aliasing, smooth kernels,
+       Bernstein's inequality. Frequency in cycles: fhat supported in [-b, b].
+       sinc(x) = sin(pi x)/(pi x); sampling at the integers is critical for b = 1/2.
+       ========================================================================= */
+    let blMode = 'recon';
+    let blK = 10;
+    let blB = 0.35;
+    let blF0 = 0.3;
+    function setBlMode(m, btn) { blMode = m; wkcBtnGroup('setBlMode', btn); }
+    function setBlK(k, btn) { blK = parseInt(k, 10); wkcBtnGroup('setBlK', btn); }
+    function setBlB(b, btn) { blB = parseFloat(b); wkcBtnGroup('setBlB', btn); }
+
+    function blSinc(x) { if (Math.abs(x) < 1e-12) return 1; const a = Math.PI * x; return Math.sin(a) / a; }
+    function blSincD(x) {
+      if (Math.abs(x) < 1e-6) return -Math.PI * Math.PI * x / 3;
+      const a = Math.PI * x; return (a * Math.cos(a) - Math.sin(a)) / (a * x);
+    }
+
+    function runBandlimitedCanvas(canvas, ctx, width, height) {
+      let isRunning = true, animId = null;
+      const K = wkcKit(canvas, ctx, width, height);
+      const { ACCENT, BLUE, GOLD, TEAL } = K.C;
+      let picked = null;
+      let seed = 7;
+      function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+
+      /* Test signal for reconstruction: finite sum of shifted sincs, band [-1/2,1/2]. */
+      const T_I = [-2.3, 0.4, 1.7, 3.1, -4.6], A_I = [0.8, 1.0, -0.6, 0.5, -0.4];
+      const fRec = t => { let s = 0; for (let i = 0; i < T_I.length; i++) s += A_I[i] * blSinc(t - T_I[i]); return s; };
+
+      /* Smooth kernel g_b: ghat = 1 on [-b,b], Meyer-type roll-off on [b, 1-b], 0 beyond.
+         g(t) = 2 int_0^{1-b} ghat(xi) cos(2 pi xi t) d xi (trapezoid, 1500 panels). */
+      const kerCache = {};
+      function kernelTable(b) {
+        if (kerCache[b]) return kerCache[b];
+        const nu = MEYER_NU.c3, m = 1500, a = 0, e = 1 - b, h = (e - a) / m;
+        const X = new Float64Array(m + 1), WA = new Float64Array(m + 1);
+        for (let i = 0; i <= m; i++) {
+          const xi = a + i * h;
+          const gh = xi <= b ? 1 : Math.cos(Math.PI / 2 * nu((xi - b) / (1 - 2 * b)));
+          X[i] = 2 * Math.PI * xi; WA[i] = 2 * gh * h * ((i === 0 || i === m) ? 0.5 : 1);
+        }
+        const tab = { X: X, WA: WA, vals: {} };
+        tab.g = function (t) {
+          const key = Math.round(t * 64);
+          if (Math.abs(t * 64 - key) < 1e-9 && tab.vals[key] !== undefined) return tab.vals[key];
+          let s = 0; for (let i = 0; i < X.length; i++) s += WA[i] * Math.cos(X[i] * t);
+          if (Math.abs(t * 64 - key) < 1e-9) tab.vals[key] = s;
+          return s;
+        };
+        kerCache[b] = tab;
+        return tab;
+      }
+
+      /* Truncation error E(K) = max_{t in [0,1]} |f(t) - sum_{|n|<=K} f(n) k(t-n)|,
+         with f(t) = sinc(b(t - 0.3))^2, |fhat| a triangle on [-b, b]. */
+      const errCache = {};
+      function truncErrors(b) {
+        if (errCache[b]) return errCache[b];
+        const tab = kernelTable(b);
+        const f = t => { const s = blSinc(b * (t - 0.3)); return s * s; };
+        const ts = []; for (let i = 0; i <= 32; i++) ts.push(i / 32);
+        const Ks = [], eS = [], eG = [];
+        for (let Kk = 1; Kk <= 64; Kk = Kk < 8 ? Kk + 1 : Math.round(Kk * 1.25)) {
+          let mS = 0, mG = 0;
+          ts.forEach(t => {
+            let sS = 0, sG = 0;
+            for (let n = -Kk; n <= Kk; n++) { const fn = f(n); sS += fn * blSinc(t - n); sG += fn * tab.g(t - n); }
+            mS = Math.max(mS, Math.abs(f(t) - sS)); mG = Math.max(mG, Math.abs(f(t) - sG));
+          });
+          Ks.push(Kk); eS.push(mS); eG.push(mG);
+        }
+        errCache[b] = { Ks: Ks, eS: eS, eG: eG };
+        return errCache[b];
+      }
+
+      /* Bernstein: random band-limited f = sum c_i sinc(2b(t - t_i)). */
+      let bern = null;
+      function newBern() {
+        const cs = [], tts = [];
+        for (let i = 0; i < 7; i++) { cs.push(2 * rnd() - 1); tts.push(-10 + 20 * rnd()); }
+        bern = { cs: cs, tts: tts, b: null };
+      }
+      newBern();
+      function bernEval(t) {
+        const b = blB; let f = 0, d = 0;
+        for (let i = 0; i < bern.cs.length; i++) {
+          const x = 2 * b * (t - bern.tts[i]);
+          f += bern.cs[i] * blSinc(x); d += bern.cs[i] * 2 * b * blSincD(x);
+        }
+        return [f, d];
+      }
+
+      K.onClick = (x, y) => {
+        if (blMode === 'bernstein') { newBern(); return; }
+        picked = { x: x, y: y, mode: blMode };
+      };
+      K.onDrag = (dx, x) => {
+        if (blMode === 'alias') { blF0 = Math.max(0.02, Math.min(1.48, blF0 + dx / 400)); }
+        else if (blMode === 'kernel') { /* log axes: no pan */ }
+        else K.panX += dx;
+      };
+
+      function drawRecon() {
+        const B = K.box(50, 20, 96, 88);
+        const X = K.xmap(B, -10, 10), Y = K.ymap(B, -1.1, 1.5);
+        K.frame(B);
+        for (let k = -10; k <= 10; k += 2) { const Xk = X(k); if (Xk >= B.x0 && Xk <= B.x0 + B.w) K.tick(Xk, B.y0 + B.h, String(k), true); }
+        [-1, 0, 1].forEach(v => { K.hline(B, Y(v), v === 0 ? 0.25 : 0.08); K.tick(B.x0, Y(v), String(v)); });
+        K.clip(B);
+        const xs = [], yf = [], ys = [];
+        let maxErr = 0;
+        for (let i = 0; i <= 800; i++) {
+          const t = -10 + 20 * i / 800, f = fRec(t);
+          let s = 0; for (let n = -blK; n <= blK; n++) s += fRec(n) * blSinc(t - n);
+          xs.push(X(t)); yf.push(Y(f)); ys.push(Y(s));
+          if (Math.abs(t) <= 4) maxErr = Math.max(maxErr, Math.abs(f - s));
+        }
+        K.poly(xs, yf, K.ink(0.5), 3);
+        K.poly(xs, ys, ACCENT, 2);
+        for (let n = -10; n <= 10; n++) {
+          const on = Math.abs(n) <= blK;
+          ctx.strokeStyle = on ? BLUE : K.ink(0.2); ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(X(n), Y(0)); ctx.lineTo(X(n), Y(fRec(n))); ctx.stroke();
+          K.dot(X(n), Y(fRec(n)), on ? 3.5 : 2.5, on ? BLUE : K.ink(0.3));
+        }
+        K.unclip();
+        let t = 0.5, hover = false;
+        if (K.mouseX >= B.x0 && K.mouseX <= B.x0 + B.w && K.mouseY >= B.y0 && K.mouseY <= B.y0 + B.h) { t = X.inv(K.mouseX); hover = true; }
+        let s = 0; for (let n = -blK; n <= blK; n++) s += fRec(n) * blSinc(t - n);
+        K.legend([[K.ink(0.5), 'f(t) = Σ a_i sinc(t − t_i)'], [BLUE, 'samples f(n), |n| ≤ K'], [ACCENT, 'S_K f(t) = Σ_{|n|≤K} f(n) sinc(t−n)']]);
+        K.readout([
+          'K = ' + blK + '   t = ' + t.toFixed(3),
+          'f(t) = ' + fRec(t).toFixed(6),
+          'S_K f(t) = ' + s.toFixed(6),
+          'max |f − S_K f| on [-4,4] = ' + maxErr.toExponential(2)
+        ]);
+        return hover;
+      }
+
+      function drawAlias() {
+        const B = K.box(50, 20, 110, 88);
+        const Bs = { x0: B.x0, y0: 60, w: B.w * 0.5, h: 34 };
+        const X = K.xmap(B, -4, 4, true), Y = K.ymap(B, -1.25, 1.25);
+        const fa = Math.abs(blF0 - Math.round(blF0));
+        K.frame(B);
+        for (let k = -4; k <= 4; k++) K.tick(X(k), B.y0 + B.h, String(k), true);
+        [-1, 0, 1].forEach(v => { K.hline(B, Y(v), v === 0 ? 0.25 : 0.08); K.tick(B.x0, Y(v), String(v)); });
+        K.clip(B);
+        const xs = [], y1 = [], y2 = [];
+        for (let i = 0; i <= 800; i++) {
+          const t = -4 + 8 * i / 800;
+          xs.push(X(t)); y1.push(Y(Math.cos(2 * Math.PI * blF0 * t))); y2.push(Y(Math.cos(2 * Math.PI * fa * t)));
+        }
+        K.poly(xs, y1, K.ink(0.5), 2.2);
+        K.poly(xs, y2, ACCENT, 2.2, blF0 > 0.5 ? [] : [6, 4]);
+        for (let n = -4; n <= 4; n++) K.dot(X(n), Y(Math.cos(2 * Math.PI * blF0 * n)), 4, BLUE);
+        K.unclip();
+        /* spectrum strip: band [-1/2,1/2] and the replicas +-f0 + k */
+        const Sx = u => Bs.x0 + (u + 2) / 4 * Bs.w;
+        ctx.fillStyle = K.isDark() ? 'rgba(15,118,110,0.22)' : 'rgba(15,118,110,0.14)';
+        ctx.fillRect(Sx(-0.5), Bs.y0, Sx(0.5) - Sx(-0.5), Bs.h);
+        ctx.strokeStyle = K.ink(0.3); ctx.beginPath(); ctx.moveTo(Bs.x0, Bs.y0 + Bs.h); ctx.lineTo(Bs.x0 + Bs.w, Bs.y0 + Bs.h); ctx.stroke();
+        [-2, -1, 0, 1, 2].forEach(u => K.tick(Sx(u), Bs.y0 + Bs.h - 2, String(u), true));
+        for (let k = -3; k <= 3; k++) {
+          [blF0 + k, -blF0 + k].forEach((u, j) => {
+            if (u < -2 || u > 2) return;
+            const inside = Math.abs(u) <= 0.5;
+            ctx.strokeStyle = (k === 0) ? K.ink(0.7) : (inside ? ACCENT : K.ink(0.25));
+            ctx.lineWidth = inside ? 2.4 : 1.4;
+            ctx.beginPath(); ctx.moveTo(Sx(u), Bs.y0 + Bs.h); ctx.lineTo(Sx(u), Bs.y0 + 4); ctx.stroke();
+          });
+        }
+        K.title('spectrum of the samples (ξ in cycles)', Bs.x0, Bs.y0 - 6);
+        K.legend([[K.ink(0.5), 'cos(2π f₀ t)'], [BLUE, 'samples at t = n'], [ACCENT, 'sinc reconstruction = cos(2π f_a t)']]);
+        K.readout([
+          'drag horizontally to move f₀',
+          'f₀ = ' + blF0.toFixed(3) + '   Nyquist = 0.5',
+          'alias f_a = |f₀ − round f₀| = ' + fa.toFixed(3),
+          blF0 <= 0.5 ? 'f₀ ≤ 1/2: recovered' : 'f₀ > 1/2: aliased'
+        ]);
+        return true;
+      }
+
+      function drawKernel() {
+        const E = truncErrors(blB);
+        const B = K.box(60, 20, 96, 88);
+        const lx0 = 0, lx1 = Math.log10(64), ly0 = -12, ly1 = 0;
+        const X = K.xmap(B, lx0, lx1, true), Y = K.ymap(B, ly0, ly1);
+        K.frame(B);
+        [1, 2, 4, 8, 16, 32, 64].forEach(v => K.tick(X(Math.log10(v)), B.y0 + B.h, String(v), true));
+        for (let e = ly0; e <= ly1; e += 3) { K.hline(B, Y(e), 0.07); K.tick(B.x0, Y(e), '1e' + e); }
+        K.clip(B);
+        const xs = E.Ks.map(k => X(Math.log10(k)));
+        const yS = E.eS.map(v => Y(Math.log10(Math.max(v, 1e-15))));
+        const yG = E.eG.map(v => Y(Math.log10(Math.max(v, 1e-15))));
+        K.poly(xs, yS, BLUE, 2.2); K.poly(xs, yG, ACCENT, 2.4);
+        xs.forEach((x, i) => { K.dot(x, yS[i], 2.4, BLUE); K.dot(x, yG[i], 2.4, ACCENT); });
+        K.unclip();
+        let hv = null;
+        xs.forEach((x, i) => { if (Math.abs(x - K.mouseX) < 6 && K.mouseY > B.y0) hv = i; });
+        const i = hv === null ? E.Ks.length - 1 : hv;
+        let sx = 0, sy = 0, sxx = 0, sxy = 0, cnt = 0;
+        E.Ks.forEach((k, q) => { if (k >= 8) { const x = Math.log(k), y = Math.log(E.eS[q]); sx += x; sy += y; sxx += x * x; sxy += x * y; cnt++; } });
+        const sl = (cnt * sxy - sx * sy) / (cnt * sxx - sx * sx);
+        K.legend([[BLUE, 'sinc kernel (critical sampling)'], [ACCENT, 'smooth kernel ĝ = 1 on [−b, b], 0 off [−(1−b), 1−b]']]);
+        K.readout([
+          'f = sinc²(b(t−0.3)), b = ' + blB,
+          'K = ' + E.Ks[i] + ': sinc ' + E.eS[i].toExponential(2),
+          '        smooth ' + E.eG[i].toExponential(2),
+          'sinc fit slope (K ≥ 8) ≈ ' + sl.toFixed(2)
+        ]);
+        return hv !== null;
+      }
+
+      function drawBernstein() {
+        const B = K.box(50, 20, 96, 88);
+        const X = K.xmap(B, -16, 16), Y = K.ymap(B, -1, 1);
+        let mf = 0, md = 0;
+        const xs = [], yf = [], yd = [], pts = [];
+        for (let i = 0; i <= 1600; i++) {
+          const t = -20 + 40 * i / 1600, v = bernEval(t);
+          pts.push([t, v[0], v[1]]);
+          mf = Math.max(mf, Math.abs(v[0])); md = Math.max(md, Math.abs(v[1]));
+        }
+        const sc = 1 / (1.1 * Math.max(mf, md / (2 * Math.PI * blB)));
+        pts.forEach(p => { xs.push(X(p[0])); yf.push(Y(p[1] * sc)); yd.push(Y(p[2] * sc / (2 * Math.PI * blB))); });
+        K.frame(B);
+        for (let k = -16; k <= 16; k += 4) { const Xk = X(k); if (Xk >= B.x0 && Xk <= B.x0 + B.w) K.tick(Xk, B.y0 + B.h, String(k), true); }
+        K.hline(B, Y(0), 0.25);
+        K.clip(B);
+        [mf * sc, -mf * sc].forEach(v => { ctx.strokeStyle = K.ink(0.3); ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(B.x0, Y(v)); ctx.lineTo(B.x0 + B.w, Y(v)); ctx.stroke(); ctx.setLineDash([]); });
+        K.poly(xs, yf, TEAL, 2.4);
+        K.poly(xs, yd, GOLD, 2);
+        K.unclip();
+        const ratio = md / (2 * Math.PI * blB * mf);
+        K.legend([[TEAL, 'f,  f̂ ⊂ [−b, b]'], [GOLD, "f' / (2πb)"], [K.ink(0.3), '±‖f‖∞ (click: new f)']]);
+        K.readout([
+          'b = ' + blB + '   window t ∈ [-20, 20]',
+          "‖f'‖∞ = " + md.toFixed(4) + '  ‖f‖∞ = ' + mf.toFixed(4),
+          "‖f'‖∞ / (2πb‖f‖∞) = " + ratio.toFixed(4),
+          ratio <= 1 + 1e-9 ? 'Bernstein bound holds' : 'bound violated'
+        ]);
+        return true;
+      }
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+        let hv = false;
+        if (blMode === 'alias') hv = drawAlias();
+        else if (blMode === 'kernel') hv = drawKernel();
+        else if (blMode === 'bernstein') hv = drawBernstein();
+        else hv = drawRecon();
+        K.cursor(hv);
+        animId = requestAnimationFrame(draw);
+      }
+      draw();
+      return {
+        stop() {
+          isRunning = false;
+          if (animId) cancelAnimationFrame(animId);
+          K.detach();
+        }
+      };
+    }
+
+    /* =========================================================================
+       WEIGHTED JACKSON INEQUALITY FOR N-TERM WAVELET APPROXIMATION
+       (arXiv:2609.35520). Shown for n = 1, L = 1, Q0 = [0,1), power weight
+       w(x) = |x - 1/3|^gamma, which lies in A_p iff -1 < gamma < p - 1.
+       [w]_{A_p} is computed from the closed-form averages on [-t, 1], t in [0,1]
+       (dilation and translation invariance reduce all intervals to this family).
+       ========================================================================= */
+    let jwMode = 'tree';
+    let jwP = 2;
+    let jwGamma = 0.4;
+    let jwS = 1;
+    let jwN = 10;
+    let jwM = 3;
+    let jwNloc = 3;
+    function setJwMode(m, btn) { jwMode = m; wkcBtnGroup('setJwMode', btn); }
+    function setJwP(p, btn) { jwP = parseFloat(p); wkcBtnGroup('setJwP', btn); }
+    function setJwGamma(g, btn) { jwGamma = parseFloat(g); wkcBtnGroup('setJwGamma', btn); }
+    function setJwS(s, btn) { jwS = parseFloat(s); wkcBtnGroup('setJwS', btn); }
+
+    function jwApChar(g, p) {
+      if (!(g > -1 && g < p - 1)) return Infinity;
+      const b = -g / (p - 1);
+      let mx = 1;
+      for (let i = 0; i <= 2000; i++) {
+        const t = i / 2000;
+        const A = (1 + Math.pow(t, g + 1)) / ((g + 1) * (1 + t));
+        const Bv = (1 + Math.pow(t, b + 1)) / ((b + 1) * (1 + t));
+        const v = A * Math.pow(Bv, p - 1);
+        if (v > mx) mx = v;
+      }
+      return mx;
+    }
+    function jwTheta(p) { return 0.5 * Math.max(1, 1 / (p - 1)); }
+    /* w(Q) for Q = [a, b), w(x) = |x - x0|^gamma */
+    function jwMass(a, b, g) {
+      const x0 = 1 / 3, F = u => Math.sign(u) * Math.pow(Math.abs(u), g + 1) / (g + 1);
+      return F(b - x0) - F(a - x0);
+    }
+    /* j0 of (40) for n = 1, L = 1: largest j >= -1 with 2^{j+1} - 1 <= N */
+    function jwJ0(N) { let j = -1; while (Math.pow(2, j + 2) - 1 <= N) j++; return j; }
+
+    function runJacksonWeightedCanvas(canvas, ctx, width, height) {
+      let isRunning = true, animId = null;
+      const K = wkcKit(canvas, ctx, width, height);
+      const { ACCENT, BLUE, GOLD, TEAL, BROWN } = K.C;
+      let acc = 0;
+      K.onDrag = (dx) => {
+        if (jwMode === 'tree' || jwMode === 'rate') {
+          acc += dx; while (Math.abs(acc) > 14) { jwN = Math.max(1, Math.min(jwMode === 'tree' ? 127 : 4000, Math.round(jwN * (acc > 0 ? 1.15 : 1 / 1.15) + (acc > 0 ? 1 : -1)))); acc -= Math.sign(acc) * 14; }
+        } else if (jwMode === 'extremal') {
+          acc += dx; if (Math.abs(acc) > 40) { jwM = Math.max(0, Math.min(5, jwM + Math.sign(acc))); acc = 0; }
+        } else if (jwMode === 'local') {
+          acc += dx; if (Math.abs(acc) > 40) { jwNloc = Math.max(1, Math.min(8, jwNloc + Math.sign(acc))); acc = 0; }
+        } else K.panX += dx;
+      };
+      K.onClick = () => {};
+
+      const apCache = {};
+      function apCurve(p) {
+        if (apCache[p]) return apCache[p];
+        const g0 = -0.95, g1 = p - 1 - 0.03, pts = [];
+        for (let i = 0; i <= 160; i++) { const g = g0 + (g1 - g0) * i / 160; pts.push([g, jwApChar(g, p)]); }
+        apCache[p] = pts; return pts;
+      }
+      function inAp() { return jwGamma > -1 && jwGamma < jwP - 1; }
+      function notAp(lines) {
+        lines.push('γ = ' + jwGamma + ' ∉ (−1, p−1): w ∉ A_' + jwP);
+        return lines;
+      }
+
+      function drawTree() {
+        const B = K.box(50, 20, 96, 70);
+        const J = 6, rows = J + 1, strip = 26;
+        const rowH = (B.h - strip - 6) / rows;
+        const j0 = jwJ0(jwN), used = Math.pow(2, j0 + 1) - 1;
+        const X = u => B.x0 + u * B.w;
+        /* weight profile strip */
+        if (inAp()) {
+          const xs = [], ys = [];
+          let mx = 0; const vals = [];
+          for (let i = 0; i <= 400; i++) { const x = (i + 0.5) / 401; const v = Math.pow(Math.abs(x - 1 / 3), jwGamma); vals.push(v); if (v > mx) mx = v; }
+          const cap = Math.min(mx, jwGamma < 0 ? 6 : mx);
+          vals.forEach((v, i) => { xs.push(X((i + 0.5) / 401)); ys.push(B.y0 + strip - Math.min(v, cap) / cap * (strip - 2)); });
+          K.poly(xs, ys, BROWN, 1.6);
+        }
+        K.title('w(x) = |x − 1/3|^γ on Q₀ = [0,1)', B.x0, B.y0 - 6);
+        let hover = null;
+        for (let j = 0; j <= J; j++) {
+          const n = 1 << j, y = B.y0 + strip + 6 + j * rowH;
+          const masses = [];
+          for (let k = 0; k < n; k++) masses.push(inAp() ? jwMass(k / n, (k + 1) / n, jwGamma) * n : 1);
+          const lm = masses.map(v => Math.log(v)), lo = Math.min(...lm), hi = Math.max(...lm);
+          for (let k = 0; k < n; k++) {
+            const x = X(k / n), w = B.w / n;
+            const kept = j <= j0;
+            const tone = hi > lo ? (lm[k] - lo) / (hi - lo) : 0.5;
+            ctx.fillStyle = kept ? 'rgba(136,19,55,' + (0.25 + 0.6 * tone) + ')' : (K.isDark() ? 'rgba(148,163,184,' + (0.08 + 0.3 * tone) + ')' : 'rgba(71,85,105,' + (0.06 + 0.3 * tone) + ')');
+            ctx.fillRect(x + 0.5, y + 1, Math.max(w - 1, 0.5), rowH - 2);
+            if (K.mouseX >= x && K.mouseX < x + w && K.mouseY >= y && K.mouseY < y + rowH) hover = [j, k, masses[k] / n];
+          }
+          K.tick(B.x0, y + rowH / 2, 'j=' + j);
+        }
+        ctx.strokeStyle = ACCENT; ctx.lineWidth = 1.5;
+        if (j0 >= 0) { const yb = B.y0 + strip + 6 + (j0 + 1) * rowH; ctx.beginPath(); ctx.moveTo(B.x0, yb); ctx.lineTo(B.x0 + B.w, yb); ctx.stroke(); }
+        const lhs = Math.pow(2, -(j0 + 1) * jwS), rhs = Math.pow(2, jwS) * Math.pow(jwN, -jwS);
+        K.legend([[ACCENT, 'kept by truncation in scale: j ≤ j₀'], [K.ink(0.4), 'shade ∝ log w(Q_{j,k})/|Q_{j,k}|  (drag: N)']]);
+        const L = [
+          'N = ' + jwN + '   j₀ = ' + j0 + '   terms used = ' + used,
+          '2^{-(j₀+1)s} = ' + lhs.toExponential(3),
+          '(2L)^s N^{-s} = ' + rhs.toExponential(3) + (lhs < rhs ? '  ✓(41)' : ''),
+          hover ? ('w(Q_{' + hover[0] + ',' + hover[1] + '}) = ' + hover[2].toExponential(3)) : 'hover a cube for w(Q_{j,k})'
+        ];
+        K.readout(inAp() ? L : notAp(L.slice(0, 3)));
+        return !!hover;
+      }
+
+      function drawWeight() {
+        const p = jwP, th = jwTheta(p), pts = apCurve(p);
+        const B = K.box(56, 20, 96, 88);
+        const g0 = -1, g1 = p - 1;
+        const X = K.xmap(B, g0, g1, true), Y = K.ymap(B, 0, 1.6);
+        K.frame(B);
+        for (let g = -1; g <= p - 1 + 1e-9; g += 0.5) K.tick(X(g), B.y0 + B.h, g.toFixed(1), true);
+        [0, 0.5, 1, 1.5].forEach(e => { K.hline(B, Y(e), 0.08); K.tick(B.x0, Y(e), '1e' + e); });
+        K.clip(B);
+        const xs = pts.map(q => X(q[0]));
+        const c1 = pts.map(q => Y(Math.log10(q[1])));
+        const c2 = pts.map(q => Y(Math.log10(Math.pow(q[1], 2 / p))));
+        const c3 = pts.map(q => Y(Math.log10(Math.pow(q[1], 2 * th))));
+        K.poly(xs, c3, GOLD, 1.8, [5, 4]);
+        K.poly(xs, c2, ACCENT, 2.6);
+        K.poly(xs, c1, BLUE, 2);
+        K.unclip();
+        let g = jwGamma, hover = false;
+        if (K.mouseX >= B.x0 && K.mouseX <= B.x0 + B.w && K.mouseY >= B.y0 && K.mouseY <= B.y0 + B.h) { g = X.inv(K.mouseX); hover = true; }
+        const ap = jwApChar(g, p);
+        if (isFinite(ap)) {
+          K.dot(X(g), Y(Math.log10(ap)), 4, BLUE);
+          K.dot(X(g), Y(Math.log10(Math.pow(ap, 2 / p))), 4, ACCENT);
+        }
+        K.legend([[BLUE, '[w]_{A_p}'], [ACCENT, '[w]^{2/p}  (Theorem 1)'], [GOLD, '[w]^{2θ(p)}  (coarser form)']]);
+        K.readout([
+          'p = ' + p + '   θ(p) = ' + th.toFixed(3) + '   γ = ' + g.toFixed(3),
+          isFinite(ap) ? ('[w]_{A_p} = ' + ap.toFixed(4)) : ('w ∉ A_' + p),
+          isFinite(ap) ? ('[w]^{2/p} = ' + Math.pow(ap, 2 / p).toFixed(4)) : '',
+          isFinite(ap) ? ('[w]^{2θ(p)} = ' + Math.pow(ap, 2 * th).toFixed(4)) : ''
+        ]);
+        return hover;
+      }
+
+      function drawRate() {
+        const B = K.box(60, 20, 96, 88);
+        const s = jwS, lx0 = 0, lx1 = Math.log10(4096);
+        const ly1 = 0.5, ly0 = -Math.ceil(s * 3.7 + 0.6);
+        const X = K.xmap(B, lx0, lx1, true), Y = K.ymap(B, ly0, ly1);
+        K.frame(B);
+        [1, 4, 16, 64, 256, 1024, 4096].forEach(v => K.tick(X(Math.log10(v)), B.y0 + B.h, String(v), true));
+        for (let e = Math.ceil(ly0); e <= 0; e += (s >= 2 ? 2 : 1)) { K.hline(B, Y(e), 0.07); K.tick(B.x0, Y(e), '1e' + e); }
+        K.clip(B);
+        const xs = [], stair = [], env = [], ext = [];
+        for (let i = 0; i <= 600; i++) {
+          const N = Math.pow(10, lx1 * i / 600);
+          const j0 = jwJ0(Math.floor(N));
+          xs.push(X(Math.log10(N)));
+          stair.push(Y(-(j0 + 1) * s * Math.LOG10E * Math.LN2));
+          env.push(Y(Math.log10(Math.pow(2, s) * Math.pow(N, -s))));
+          ext.push(Y(Math.log10(Math.pow(0.5, 1 / jwP) * Math.pow(2, -s) * Math.pow(N, -s))));
+        }
+        K.poly(xs, env, BLUE, 2, [6, 4]);
+        K.poly(xs, stair, ACCENT, 2.4);
+        K.poly(xs, ext, TEAL, 1.8);
+        const Xn = X(Math.log10(jwN));
+        ctx.strokeStyle = K.ink(0.3); ctx.beginPath(); ctx.moveTo(Xn, B.y0); ctx.lineTo(Xn, B.y0 + B.h); ctx.stroke();
+        K.unclip();
+        const j0 = jwJ0(jwN);
+        const a = Math.pow(2, -(j0 + 1) * s), b = Math.pow(2, s) * Math.pow(jwN, -s);
+        K.legend([[ACCENT, 'truncation factor 2^{-(j₀(N)+1)s}'], [BLUE, 'majorant (2L)^{s/n} N^{-s/n}, (41)'], [TEAL, 'extremal ratio (1−2^{-n})^{1/p}2^{-s}N^{-s/n}']]);
+        K.readout([
+          'n = 1, L = 1, s = ' + s + '   (drag: N)',
+          'N = ' + jwN + '   j₀ = ' + j0,
+          'factor = ' + a.toExponential(3),
+          'majorant = ' + b.toExponential(3) + '  ratio ' + (a / b).toFixed(3)
+        ]);
+        return false;
+      }
+
+      function drawExtremal() {
+        const B = K.box(60, 20, 96, 88);
+        const m = jwM, N = 1 << m, ell = m + 1, n2 = 2 * N;
+        const p = jwP, s = jwS;
+        if (!inAp()) { K.readout(notAp(['extremal family (46), N = ' + N])); return false; }
+        const a = [], wq = [];
+        for (let k = 0; k < n2; k++) {
+          const w = jwMass(k / n2, (k + 1) / n2, jwGamma);
+          wq.push(w); a.push(Math.pow(2, -ell * (s + 0.5)) * Math.pow(w, -1 / p));
+        }
+        const la = a.map(Math.log10), lo = Math.min(...la) - 0.3, hi = Math.max(...la) + 0.3;
+        const Y = K.ymap(B, lo, hi);
+        K.frame(B);
+        [lo, (lo + hi) / 2, hi].forEach(v => K.tick(B.x0, Y(v), '1e' + v.toFixed(1)));
+        const bw = B.w / n2;
+        let hover = null;
+        /* keep the N largest coefficients (any N-subset gives the same residual size) */
+        const order = a.map((v, i) => [v, i]).sort((x, y) => y[0] - x[0]);
+        const keep = new Set(order.slice(0, N).map(q => q[1]));
+        for (let k = 0; k < n2; k++) {
+          const X0 = B.x0 + k * bw, top = Y(la[k]);
+          ctx.fillStyle = keep.has(k) ? BLUE : ACCENT; ctx.globalAlpha = 0.8;
+          ctx.fillRect(X0 + 1, top, Math.max(bw - 2, 1), B.y0 + B.h - top);
+          ctx.globalAlpha = 1;
+          if (K.mouseX >= X0 && K.mouseX < X0 + bw && K.mouseY >= B.y0 && K.mouseY <= B.y0 + B.h) hover = k;
+        }
+        [0, 0.5, 1].forEach(u => K.tick(B.x0 + u * B.w, B.y0 + B.h, u === 0.5 ? '1/2' : String(u), true));
+        /* coefficient-level quantities of (47), computed from the sums */
+        let tot = 0, res = 0;
+        for (let k = 0; k < n2; k++) { const q = Math.pow(a[k], p) * wq[k]; tot += q; if (!keep.has(k)) res += q; }
+        const Qtot = Math.pow(2, ell / 2) * Math.pow(tot, 1 / p);
+        const Qres = Math.pow(2, ell / 2) * Math.pow(res, 1 / p);
+        const ratio = Qres / (Math.pow(N, -s) * Math.pow(2, ell * s) * Qtot);
+        const closed = Math.pow(0.5, 1 / p) * Math.pow(2, -s);
+        K.legend([[BLUE, 'N kept (any N-subset)'], [ACCENT, 'N left: residual (drag: m)']]);
+        K.readout([
+          'N = 2^m = ' + N + ', generation ℓ = ' + ell + ', #K = ' + n2,
+          'ratio (51), from sums = ' + ratio.toFixed(6),
+          '(1−2^{-n})^{1/p}2^{-s}  = ' + closed.toFixed(6),
+          hover !== null ? ('a_' + hover + ' = ' + a[hover].toExponential(3)) : 'independent of N and of w'
+        ]);
+        return hover !== null;
+      }
+
+      /* Remark 3: 2N translates at generation 0, outside the tree of Q0. */
+      let locCache = null;
+      function locPsi() {
+        if (!locCache) {
+          const h = 1 / 16, t0 = -14, n = 28 * 16;
+          const v = new Float64Array(n + 1);
+          for (let i = 0; i <= n; i++) v[i] = meyerPsi('c3', t0 + i * h);
+          locCache = { h: h, t0: t0, v: v, n: n };
+        }
+        return locCache;
+      }
+      function drawLocal() {
+        const P = locPsi(), N = jwNloc;
+        const B = K.box(50, 20, 96, 88);
+        const u0 = -6, u1 = 2 * N + 7;
+        const X = K.xmap(B, u0, u1), Y = K.ymap(B, -2.2, 2.4);
+        K.frame(B);
+        for (let k = Math.ceil(u0 / 2) * 2; k <= u1; k += 2) { const Xk = X(k); if (Xk >= B.x0 && Xk <= B.x0 + B.w) K.tick(Xk, B.y0 + B.h, String(k), true); }
+        K.hline(B, Y(0), 0.25);
+        const psiAt = t => { const x = (t - P.t0) / P.h; const i = Math.round(x); return (i < 0 || i > P.n) ? 0 : P.v[i]; };
+        const xs = [], yf = [], yr = [];
+        let nf = 0, nr = 0;
+        const h = P.h;
+        for (let t = u0 - 8; t <= u1 + 8; t += h) {
+          let f = 0, r = 0;
+          for (let k = 1; k <= 2 * N; k++) { const v = psiAt(t - k); f += v; if (k > N) r += v; }
+          nf += f * f * h; nr += r * r * h;
+          if (t >= u0 && t <= u1) { xs.push(X(t)); yf.push(Y(f)); yr.push(Y(r)); }
+        }
+        K.clip(B);
+        ctx.fillStyle = K.isDark() ? 'rgba(15,118,110,0.22)' : 'rgba(15,118,110,0.15)';
+        ctx.fillRect(X(0), B.y0, X(1) - X(0), B.h);
+        K.poly(xs, yf, K.ink(0.5), 2.2);
+        K.poly(xs, yr, ACCENT, 2.2);
+        K.unclip();
+        K.legend([[K.ink(0.5), 'f_N = Σ_{k=1}^{2N} ψ(· − k)'], [ACCENT, 'f_N − g, g an N-term minimiser'], [TEAL, 'Q₀ = [0,1)  (drag: N)']]);
+        K.readout([
+          'Meyer, w ≡ 1, p = q = 2, N = ' + N,
+          '‖f_N‖₂ = ' + Math.sqrt(nf).toFixed(5) + '  (√2N = ' + Math.sqrt(2 * N).toFixed(5) + ')',
+          'E_N/‖f_N‖ = ' + Math.sqrt(nr / nf).toFixed(6),
+          '2^{-1/2}  = ' + Math.SQRT1_2.toFixed(6)
+        ]);
+        return false;
+      }
+
+      function draw() {
+        if (!isRunning) return;
+        ctx.clearRect(0, 0, width, height);
+        let hv = false;
+        if (jwMode === 'weight') hv = drawWeight();
+        else if (jwMode === 'rate') hv = drawRate();
+        else if (jwMode === 'extremal') hv = drawExtremal();
+        else if (jwMode === 'local') hv = drawLocal();
+        else hv = drawTree();
+        K.cursor(hv);
+        animId = requestAnimationFrame(draw);
+      }
+      draw();
+      return {
+        stop() {
+          isRunning = false;
+          if (animId) cancelAnimationFrame(animId);
+          K.detach();
         }
       };
     }
