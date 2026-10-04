@@ -5,28 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prof. Kai-Cheng Wang (王凱城) | Department of Mathematics and Applied Mathematics</title>
   
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <!-- MathJax Configuration -->
+  <!-- Self-hosted fonts (Latin subsets); CJK text uses the system serif/sans stacks -->
+  <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+
+  <!-- FontAwesome Icons (self-hosted, 6.4.0) -->
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
+
+  <!-- Lazy MathJax typesetting: formulas are typeset when their block approaches the viewport -->
   <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
-      svg: {
-        fontCache: 'global'
+    (function () {
+      var gen = 0, io = null, pend = new Set();
+      function ready() { return window.MathJax && window.MathJax.typesetPromise && window.MathJax.startup && window.MathJax.startup.document; }
+      function flush() {
+        if (!ready() || !pend.size) return;
+        var list = [];
+        pend.forEach(function (el) { if (el.isConnected && el.__mj !== gen) { el.__mj = gen; list.push(el); } });
+        pend.clear();
+        if (list.length) window.MathJax.typesetPromise(list).catch(function (e) { console.warn('typeset', e); });
       }
-    };
+      function units(el, out) {
+        for (var c = el.firstElementChild; c; c = c.nextElementSibling) {
+          if (c.classList.contains('blog-body')) { for (var d = c.firstElementChild; d; d = d.nextElementSibling) out.push(d); }
+          else if (c.querySelector('.blog-body')) units(c, out);
+          else out.push(c);
+        }
+        return out;
+      }
+      window.wkcTypeset = function () {
+        if (!('IntersectionObserver' in window)) { pend.add(document.body); flush(); return; }
+        if (!io) io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); pend.add(e.target); } });
+          flush();
+        }, { rootMargin: '600px 0px' });
+        var pages = document.querySelectorAll('.tab-page'), out = [];
+        for (var i = 0; i < pages.length; i++) units(pages[i], out);
+        out.forEach(function (el) { if (el.__mj !== gen) io.observe(el); });
+        flush();
+      };
+      window.wkcTypesetReset = function () { gen++; window.wkcTypeset(); };
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+        startup: {
+          typeset: false,
+          ready: function () {
+            window.MathJax.startup.defaultReady();
+            window.MathJax.startup.promise.then(function () { window.wkcTypeset(); });
+          }
+        }
+      };
+    })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  <script src="vendor/mathjax/tex-chtml.js" async></script>
 
   <style>
     :root {
@@ -45,7 +74,7 @@
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
       --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.04);
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-serif: 'Noto Serif TC', 'Noto Serif SC', Georgia, serif;
+      --font-serif: Georgia, 'Songti TC', 'Songti SC', 'Noto Serif CJK TC', 'Source Han Serif TC', 'PMingLiU', 'MingLiU', 'Noto Serif CJK SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif;
       --font-academic: 'Cinzel', serif;
       --font-mono: 'JetBrains Mono', monospace;
       --radius: 12px;
@@ -13760,9 +13789,7 @@
       document.getElementById("navMenu").classList.remove("open");
       updateAllWatermarks(tabId);
 
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise();
-      }
+      if (window.wkcTypeset) window.wkcTypeset();
 
       initCanvasForTab(tabId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -13796,9 +13823,7 @@
       renderBlogControls();
       renderCourseControls();
 
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise();
-      }
+      if (window.wkcTypesetReset) window.wkcTypesetReset();
     }
 
     /* =========================================================================
