@@ -1593,6 +1593,145 @@
         justify-content: flex-start;
       }
     }
+  
+    /* =========================================================================
+       EXPLORE LAYER: curated topics, topic panel, search hits, palette, home feed
+       ========================================================================= */
+    .wkc-topics { display: flex; flex-direction: column; gap: 0.6rem; }
+    .wkc-topic-head { display: flex; align-items: center; gap: 0.8rem; min-height: 1.6rem; }
+    .wkc-clear {
+      background: transparent; border: 1px solid var(--border-color); color: var(--text-muted);
+      font: inherit; font-size: 0.74rem; font-weight: 700; padding: 0.15rem 0.65rem; border-radius: 20px; cursor: pointer;
+      transition: var(--transition);
+    }
+    .wkc-clear:hover { border-color: var(--accent); color: var(--accent); }
+    .wkc-topic-row { display: flex; align-items: flex-start; gap: 0.7rem; }
+    .wkc-grp {
+      flex: 0 0 6.6rem; padding-top: 0.34rem; font-size: 0.74rem; font-weight: 700;
+      letter-spacing: 0.03em; color: var(--text-muted); line-height: 1.3;
+    }
+    .wkc-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; flex: 1; min-width: 0; }
+    .wkc-chip.dim { opacity: 0.36; cursor: default; }
+    .wkc-chip.dim:hover { border-color: var(--border-color); color: var(--text-muted); }
+    .wkc-chip:focus-visible, .wkc-more:focus-visible, .wkc-clear:focus-visible, .wkc-hit:focus-visible,
+    .wkc-latest:focus-visible, .wkc-home-search:focus-visible, .bio-toggle:focus-visible, .blog-tag.wkc-tag-link:focus-visible {
+      outline: 2px solid var(--primary-light); outline-offset: 2px;
+    }
+    .wkc-more {
+      align-self: flex-start; background: transparent; border: none; color: var(--primary-light);
+      font: inherit; font-size: 0.78rem; font-weight: 700; cursor: pointer; padding: 0.1rem 0;
+    }
+    .wkc-more:hover { text-decoration: underline; }
+    .wkc-topic-info {
+      border-left: 4px solid var(--primary-light); background: rgba(37, 99, 235, 0.06);
+      border-radius: 8px; padding: 0.75rem 1rem; animation: wkcFade 0.25s ease;
+    }
+    .wkc-topic-info[hidden] { display: none; }
+    .wkc-ti-desc { font-size: 0.88rem; line-height: 1.65; margin: 0 0 0.45rem; color: var(--text-main); }
+    .wkc-ti-rel { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: 0.76rem; color: var(--text-muted); }
+    .wkc-ti-rel > span { margin-right: 0.2rem; font-weight: 700; }
+    @keyframes wkcFade { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+    .blog-search-row input[type="text"] { min-width: 0; }
+    .wkc-hits { display: flex; flex-direction: column; gap: 0.4rem; margin: -0.6rem 0 1.1rem; }
+    .wkc-hit {
+      text-align: left; font: inherit; font-size: 0.84rem; line-height: 1.55; color: var(--text-main); cursor: pointer;
+      background: rgba(250, 204, 21, 0.10); border: 1px solid rgba(202, 138, 4, 0.30); border-radius: 8px; padding: 0.45rem 0.75rem;
+      transition: var(--transition);
+    }
+    .wkc-hit:hover { background: rgba(250, 204, 21, 0.2); }
+    .wkc-hit i { color: var(--accent-gold); margin-right: 0.5rem; font-size: 0.75rem; }
+    .wkc-hit mark, .wkc-pal-s mark { background: rgba(250, 204, 21, 0.55); color: inherit; border-radius: 2px; padding: 0 1px; }
+    ::highlight(wkc-hit-blog), ::highlight(wkc-hit-course) { background-color: rgba(250, 204, 21, 0.5); color: inherit; }
+    @keyframes wkcFlash { 0% { box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.6); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+    .wkc-flash { animation: wkcFlash 1.7s ease-out; }
+    .blog-tag.wkc-tag-link { cursor: pointer; transition: var(--transition); }
+    .blog-tag.wkc-tag-link:hover { background: var(--primary); color: #ffffff; }
+
+    /* Ctrl+K palette */
+    body.wkc-pal-open { overflow: hidden; }
+    .wkc-pal {
+      position: fixed; inset: 0; z-index: 3000; background: rgba(2, 6, 23, 0.55);
+      display: flex; justify-content: center; align-items: flex-start; padding: 9vh 4vw 4vh;
+      backdrop-filter: blur(3px);
+    }
+    .wkc-pal[hidden] { display: none; }
+    .wkc-pal-box {
+      width: min(740px, 100%); max-height: 80vh; display: flex; flex-direction: column;
+      background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 14px; box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .wkc-pal-bar { display: flex; align-items: center; gap: 0.7rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border-color); }
+    .wkc-pal-bar i { color: var(--text-muted); }
+    .wkc-pal-bar input {
+      flex: 1; min-width: 0; background: transparent; border: none; outline: none; font: inherit; font-size: 1.02rem; color: var(--text-main);
+    }
+    .wkc-pal kbd, .wkc-home-search kbd {
+      font: inherit; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); border: 1px solid var(--border-color);
+      border-radius: 5px; padding: 0.05rem 0.4rem; background: var(--bg-card);
+    }
+    .wkc-pal-body { overflow-y: auto; padding: 0.4rem 0.5rem 0.7rem; }
+    .wkc-pal-gh { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); padding: 0.7rem 0.6rem 0.3rem; }
+    .wkc-pal-gh span { opacity: 0.7; font-weight: 600; }
+    .wkc-pal-sug { padding: 0.2rem 0.4rem 0.4rem; }
+    .wkc-pal-item {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 0.12rem; width: 100%; text-align: left;
+      background: transparent; border: 1px solid transparent; border-radius: 9px; padding: 0.55rem 0.7rem; cursor: pointer; font: inherit; color: var(--text-main);
+    }
+    .wkc-pal-item.sel, .wkc-pal-item:hover { background: rgba(37, 99, 235, 0.09); border-color: rgba(37, 99, 235, 0.3); }
+    .wkc-pal-t { font-weight: 700; font-size: 0.92rem; line-height: 1.4; }
+    .wkc-pal-m { font-size: 0.74rem; color: var(--text-muted); }
+    .wkc-pal-s { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+    .wkc-pal-all { background: transparent; border: none; color: var(--primary-light); font: inherit; font-size: 0.8rem; font-weight: 700; padding: 0.4rem 0.7rem; cursor: pointer; }
+    .wkc-pal-all:hover { text-decoration: underline; }
+    .wkc-pal-none { padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+    .wkc-pal-foot { border-top: 1px solid var(--border-color); padding: 0.5rem 1.1rem; font-size: 0.72rem; color: var(--text-muted); }
+    .theme-toggle-btn.wkc-search-btn { margin-right: 0.35rem; }
+
+    /* Home feed */
+    .wkc-home { margin: 0 0 2.4rem; }
+    .wkc-home-search {
+      display: flex; align-items: center; gap: 0.8rem; width: 100%; text-align: left; cursor: pointer; font: inherit;
+      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0.85rem 1.1rem;
+      color: var(--text-muted); box-shadow: var(--shadow-sm); transition: var(--transition); margin-bottom: 1.3rem;
+    }
+    .wkc-home-search:hover { border-color: var(--primary-light); box-shadow: var(--shadow-md); }
+    .wkc-home-search span { flex: 1; font-size: 0.95rem; }
+    .wkc-home-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.6rem; }
+    .wkc-home-h { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.7rem; }
+    .wkc-latest-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .wkc-latest {
+      display: grid; grid-template-columns: auto 1fr; column-gap: 0.7rem; row-gap: 0.1rem; align-items: baseline; text-align: left; width: 100%;
+      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.6rem 0.85rem; cursor: pointer; font: inherit;
+      color: var(--text-main); transition: var(--transition);
+    }
+    .wkc-latest:hover { border-color: var(--primary-light); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .wkc-zone { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 20px; }
+    .wkc-zone-blog { background: rgba(37, 99, 235, 0.12); color: var(--primary-light); }
+    .wkc-zone-course { background: rgba(136, 19, 55, 0.12); color: var(--accent); }
+    .wkc-latest-t { font-size: 0.9rem; font-weight: 700; line-height: 1.4; }
+    .wkc-latest-m { grid-column: 2; font-size: 0.74rem; color: var(--text-muted); }
+    @media (max-width: 820px) {
+      .wkc-home-grid { grid-template-columns: 1fr; }
+      .wkc-topic-row { flex-direction: column; gap: 0.25rem; }
+      .wkc-grp { flex: none; padding-top: 0; }
+    }
+
+    /* Biographical sketch toggle */
+    .bio-sketch-head { border-bottom: none; padding-bottom: 0; margin-bottom: 0.9rem; }
+    .bio-toggle {
+      display: inline-flex; align-items: center; gap: 0.6rem; font: inherit; font-size: 1.02rem; font-weight: 700; cursor: pointer;
+      color: var(--text-main); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 999px;
+      padding: 0.5rem 1.15rem; box-shadow: var(--shadow-sm); transition: var(--transition);
+    }
+    .bio-toggle:hover { border-color: var(--primary-light); box-shadow: var(--shadow-md); }
+    .bio-toggle i { color: var(--primary-light); }
+    .bio-toggle .bio-chev { font-size: 0.75rem; transition: transform 0.25s ease; }
+    .bio-toggle.is-open .bio-chev { transform: rotate(180deg); }
+    .bio-sketch[hidden] { display: none; }
+
+    .blog-post-card, .blog-toolbar, .blog-title, .blog-body p, .blog-body h4, .blog-body li, .blog-body .math-callout, .blog-body .blog-canvas-container { scroll-margin-top: 110px; }
+
+    @media (max-width: 900px) { .theme-toggle-btn.wkc-search-btn { display: none; } }
   </style>
 </head>
 <body data-theme="light">
@@ -1669,6 +1808,7 @@
           <button class="lang-btn" onclick="setLanguage('tc')">繁中</button>
           <button class="lang-btn" onclick="setLanguage('sc')">简中</button>
         </div>
+        <button class="theme-toggle-btn wkc-search-btn" id="wkcSearchBtn" title="Search (Ctrl K)" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme">
           <i class="fa-solid fa-moon"></i>
         </button>
@@ -1733,15 +1873,20 @@
 
       <div class="section-header bio-sketch-head">
         <h3 class="section-title">
-          <i class="fa-solid fa-user-graduate"></i>
-          <span data-i18n="sec_bio">Biographical Sketch</span>
+          <button type="button" class="bio-toggle" id="bioToggle" aria-expanded="false" aria-controls="bioSketchCard">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span data-i18n="sec_bio">Biographical Sketch</span>
+            <i class="fa-solid fa-chevron-down bio-chev"></i>
+          </button>
         </h3>
       </div>
-      <div class="card bio-sketch">
+      <div class="card bio-sketch" id="bioSketchCard" hidden>
         <p data-i18n="bio_p1">Kai-Cheng Wang is a Professor in the School of Information Engineering at Sanming University, Fujian, China, and a Chair Professor at Fujian Agriculture and Forestry University. He received his Ph.D. from Feng Chia University in Taichung in 2014 and served on the faculty of its Department of Applied Mathematics from 2014 to 2019.</p>
         <p data-i18n="bio_p2">His research lies in harmonic analysis, wavelet analysis, and approximation theory. A central theme is the completeness of wavelet bases and frames and the boundedness of the associated analysis, synthesis, and frame operators on Lebesgue, Hardy, Besov, and Triebel&ndash;Lizorkin spaces, together with their weighted (Muckenhoupt A<sub>p</sub>) and anisotropic variants generated by expansive dilation matrices. Methodologically, he employs the Calder&oacute;n&ndash;Zygmund decomposition as a unifying framework for operator estimates in these settings, and he has also studied weighted multilinear fractional integral operators. A connected line of his research develops explicit Jackson-, Bernstein-, Nikol'skii-, and Ul'yanov-type inequalities for wavelet approximation, characterizing approximation rates through smoothness while tracking every constant that enters the estimates. Related topics include pre-wavelet bases, wavelet bi-frame decompositions, approximate duals, and structural obstructions to the construction of anisotropic wavelet frames.</p>
         <p data-i18n="bio_p3">On the applied side, he investigates the approximation-theoretic foundations of interpretable multiscale learning: neural network operators, approximation rates of shallow networks over Besov-type classes, and wavelet-based forecasting of time series with structural breaks. This work seeks transparent, mathematically principled models with explicit error control, as a counterpart to black-box architectures that rely on massive parameterization. He serves as a reviewer for international journals in analysis and applied mathematics.</p>
       </div>
+
+      <section class="wkc-home" id="wkcHome" aria-label="Explore"></section>
 
       <div class="section-header">
         <h3 class="section-title">
@@ -1956,12 +2101,10 @@
           <span class="blog-filter-label" data-i18n="blog_filter_cat">Category</span>
           <div class="blog-filter-row" id="blogCatChips" style="padding:0;"></div>
         </div>
-        <div class="blog-filter-row">
-          <span class="blog-filter-label" data-i18n="blog_filter_topic">Topic</span>
-          <div class="blog-filter-row" id="blogTagChips" style="padding:0;"></div>
-        </div>
+        <div class="wkc-topics" id="blogTopics"></div>
+        <div class="wkc-topic-info" id="blogTopicInfo" hidden></div>
         <div class="blog-search-row">
-          <input type="text" id="blogSearchInput" data-i18n-ph="blog_search_ph" placeholder="Search titles, theorems, keywords…" />
+          <input type="text" id="blogSearchInput" data-i18n-ph="wkc_search_ph_blog" placeholder="Search titles, passages, authors, theorems… (English or Chinese)" autocomplete="off" />
           <span class="blog-result-count" id="blogResultCount"></span>
         </div>
       </div>
@@ -6072,6 +6215,15 @@ and the quotient $c_\sharp/c_\flat=K_UK_L^{2}K_\eta C_MC_M'$ involves only the d
       </div>
 
       <div class="blog-series-nav" id="courseNav"></div>
+
+      <div class="blog-toolbar" id="courseToolbar">
+        <div class="wkc-topics" id="courseTopics"></div>
+        <div class="wkc-topic-info" id="courseTopicInfo" hidden></div>
+        <div class="blog-search-row">
+          <input type="text" id="courseSearchInput" data-i18n-ph="wkc_search_ph_course" placeholder="Search the lectures: topics, theorems, algorithms… (English or Chinese)" autocomplete="off" />
+          <span class="blog-result-count" id="courseResultCount"></span>
+        </div>
+      </div>
 
       <div class="blog-container" id="courseContainer">
 <article class="blog-post-card" data-cat="demo" data-course="num" data-featured="true" data-tags="Euler Method|Initial Value Problems|Local Truncation Error|Absolute Stability|Gronwall Inequality">
@@ -10680,6 +10832,32 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
         course5_term: "Undergraduate Core Course",
         course5_desc: "Linear systems and matrix factorizations, vector spaces and linear maps, determinants, eigenvalues and diagonalization, inner product spaces and orthogonality, and the singular value decomposition, presented with geometric interactive demonstrations.",
         btn_open_notes: "Open the lecture notes",
+        wkc_topics: "Topics",
+        wkc_grp_obj: "Objects",
+        wkc_grp_thm: "Theorems & phenomena",
+        wkc_grp_tool: "Tools & methods",
+        wkc_more: "More topics",
+        wkc_fewer: "Fewer topics",
+        wkc_clear: "Clear",
+        wkc_related: "Often appears with",
+        wkc_hit_title: "Jump to this passage",
+        wkc_search_ph_blog: "Search titles, passages, authors, theorems… (English or Chinese)",
+        wkc_search_ph_course: "Search the lectures: topics, theorems, algorithms… (English or Chinese)",
+        wkc_btn_search: "Search (Ctrl K)",
+        wkc_pal_ph: "Search every note and lecture…",
+        wkc_pal_blog: "Math Notes & Blog",
+        wkc_pal_course: "Lecture Notes",
+        wkc_pal_hint: "↑ ↓ to move · Enter to open · Esc to close",
+        wkc_pal_topics: "Try a topic",
+        wkc_pal_none: "No match. Try a keyword, a theorem name or an author.",
+        wkc_pal_all: "See all {n} in this section",
+        wkc_home_title: "Start Exploring",
+        wkc_home_search: "Search every note and lecture",
+        wkc_home_latest: "Latest additions",
+        wkc_home_topics: "Browse by topic",
+        wkc_no_match_course: "No lecture matches the current topic or search query.",
+        wkc_zone_blog: "Note",
+        wkc_zone_course: "Lecture",
         blogBD2_p1: "A real signal written as $x(t) = a(t)\\cos\\theta(t)$ with $a \\ge 0$ is said to carry the amplitude $a$ and the instantaneous frequency $\\theta'/2\\pi$. The pair $(a, \\theta)$ is not determined by $x$ alone, so a convention must select one. Gabor's convention is the analytic signal $z = x + i\\,\\mathscr H x$, which retains only the positive frequencies of $x$, doubled: $\\hat z(\\xi) = 2\\hat x(\\xi)\\mathbf 1_{\\{\\xi &gt; 0\\}}$. One then reads $a_z = |z|$ and $\\theta_z = \\arg z$. The question of this note is when $(a_z, \\theta_z)$ is the pair one had in mind, which is the same as asking when $\\mathscr H[a\\cos\\theta] = a\\sin\\theta$. For a pure carrier $\\theta = \\omega_0 t$ the answer is Bedrosian's theorem; for a frequency-modulated carrier the answer is an explicit series, and the figure below evaluates it next to the measured error.",
         blogBD2_t1_title: "Theorem 1 (Bedrosian, 1963)",
         blogBD2_t1_body: "Let $f, g \\in L^2(\\mathbb R)$ with $\\operatorname{supp}\\hat f \\subset [-B, B]$ and $\\operatorname{supp}\\hat g \\subset \\{|\\xi| \\ge B\\}$. Then $\\mathscr H(fg) = f\\,\\mathscr H g$. In particular, if $a$ has spectrum in $[-B, B]$ and $\\omega_0 &gt; 2\\pi B$, then $\\mathscr H[a(t)\\cos\\omega_0 t] = a(t)\\sin\\omega_0 t$ and the analytic signal of $a\\cos\\omega_0 t$ is exactly $a\\,e^{i\\omega_0 t}$, so that $|z| = a$ and the instantaneous frequency equals $\\omega_0/2\\pi$.",
@@ -13797,6 +13975,32 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
         course5_term: "大學部核心課程",
         course5_desc: "線性方程組與矩陣分解、向量空間與線性映射、行列式、特徵值與對角化、內積空間與正交性，以及奇異值分解，並以幾何化的互動演示呈現。",
         btn_open_notes: "開啟課程講義",
+        wkc_topics: "主題",
+        wkc_grp_obj: "研究對象",
+        wkc_grp_thm: "定理與現象",
+        wkc_grp_tool: "工具與方法",
+        wkc_more: "更多主題",
+        wkc_fewer: "收合主題",
+        wkc_clear: "清除",
+        wkc_related: "常一起出現的主題",
+        wkc_hit_title: "跳到這段文字",
+        wkc_search_ph_blog: "搜尋標題、段落、作者、定理…（中英文皆可）",
+        wkc_search_ph_course: "搜尋講義：主題、定理、算法…（中英文皆可）",
+        wkc_btn_search: "搜尋（Ctrl K）",
+        wkc_pal_ph: "搜尋所有札記與講義…",
+        wkc_pal_blog: "數學札記與網誌",
+        wkc_pal_course: "課程講義",
+        wkc_pal_hint: "↑ ↓ 移動 · Enter 開啟 · Esc 關閉",
+        wkc_pal_topics: "試試這些主題",
+        wkc_pal_none: "沒有符合的內容。可試試關鍵字、定理名稱或作者。",
+        wkc_pal_all: "在此分區查看全部 {n} 篇",
+        wkc_home_title: "開始探索",
+        wkc_home_search: "搜尋全站札記與講義",
+        wkc_home_latest: "最新內容",
+        wkc_home_topics: "依主題瀏覽",
+        wkc_no_match_course: "沒有符合目前主題或搜尋條件的講義。",
+        wkc_zone_blog: "札記",
+        wkc_zone_course: "講義",
         blogBD2_p1: "把實信號寫成 $x(t) = a(t)\\cos\\theta(t)$（$a \\ge 0$），就是說它帶有振幅 $a$ 與瞬時頻率 $\\theta'/2\\pi$。僅由 $x$ 並不能決定數對 $(a, \\theta)$，因此必須由某種約定來挑選。Gabor 的約定是解析信號 $z = x + i\\,\\mathscr H x$，它只保留 $x$ 的正頻率部分並加倍：$\\hat z(\\xi) = 2\\hat x(\\xi)\\mathbf 1_{\\{\\xi &gt; 0\\}}$；再讀出 $a_z = |z|$ 與 $\\theta_z = \\arg z$。本篇要問的是，$(a_z, \\theta_z)$ 何時就是原先設想的那一對，這等同於問 $\\mathscr H[a\\cos\\theta] = a\\sin\\theta$ 何時成立。對純載波 $\\theta = \\omega_0 t$，答案是 Bedrosian 定理；對調頻載波，答案是一個明確的級數，下方圖形把它與實測誤差並列計算。",
         blogBD2_t1_title: "定理 1（Bedrosian，1963）",
         blogBD2_t1_body: "設 $f, g \\in L^2(\\mathbb R)$，$\\operatorname{supp}\\hat f \\subset [-B, B]$ 且 $\\operatorname{supp}\\hat g \\subset \\{|\\xi| \\ge B\\}$，則 $\\mathscr H(fg) = f\\,\\mathscr H g$。特別地，若 $a$ 的頻譜含於 $[-B, B]$ 且 $\\omega_0 &gt; 2\\pi B$，則 $\\mathscr H[a(t)\\cos\\omega_0 t] = a(t)\\sin\\omega_0 t$，而 $a\\cos\\omega_0 t$ 的解析信號恰為 $a\\,e^{i\\omega_0 t}$，因此 $|z| = a$，瞬時頻率等於 $\\omega_0/2\\pi$。",
@@ -16914,6 +17118,32 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
         course5_term: "大学部核心课程",
         course5_desc: "线性方程组与矩阵分解、向量空间与线性映射、行列式、特征值与对角化、内积空间与正交性，以及奇异值分解，并以几何化的互动演示呈现。",
         btn_open_notes: "开启课程讲义",
+        wkc_topics: "主题",
+        wkc_grp_obj: "研究对象",
+        wkc_grp_thm: "定理与现象",
+        wkc_grp_tool: "工具与方法",
+        wkc_more: "更多主题",
+        wkc_fewer: "收合主题",
+        wkc_clear: "清除",
+        wkc_related: "常一起出现的主题",
+        wkc_hit_title: "跳到这段文字",
+        wkc_search_ph_blog: "搜寻标题、段落、作者、定理…（中英文皆可）",
+        wkc_search_ph_course: "搜寻讲义：主题、定理、算法…（中英文皆可）",
+        wkc_btn_search: "搜寻（Ctrl K）",
+        wkc_pal_ph: "搜寻所有札记与讲义…",
+        wkc_pal_blog: "数学札记与网志",
+        wkc_pal_course: "课程讲义",
+        wkc_pal_hint: "↑ ↓ 移动 · Enter 开启 · Esc 关闭",
+        wkc_pal_topics: "试试这些主题",
+        wkc_pal_none: "没有符合的内容。可试试关键字、定理名称或作者。",
+        wkc_pal_all: "在此分区查看全部 {n} 篇",
+        wkc_home_title: "开始探索",
+        wkc_home_search: "搜寻全站札记与讲义",
+        wkc_home_latest: "最新内容",
+        wkc_home_topics: "依主题浏览",
+        wkc_no_match_course: "没有符合目前主题或搜寻条件的讲义。",
+        wkc_zone_blog: "札记",
+        wkc_zone_course: "讲义",
         blogBD2_p1: "把实信号写成 $x(t) = a(t)\\cos\\theta(t)$（$a \\ge 0$），就是说它带有振幅 $a$ 与瞬时频率 $\\theta'/2\\pi$。仅由 $x$ 并不能决定数对 $(a, \\theta)$，因此必须由某种约定来挑选。Gabor 的约定是解析信号 $z = x + i\\,\\mathscr H x$，它只保留 $x$ 的正频率部分并加倍：$\\hat z(\\xi) = 2\\hat x(\\xi)\\mathbf 1_{\\{\\xi &gt; 0\\}}$；再读出 $a_z = |z|$ 与 $\\theta_z = \\arg z$。本篇要问的是，$(a_z, \\theta_z)$ 何时就是原先设想的那一对，这等同于问 $\\mathscr H[a\\cos\\theta] = a\\sin\\theta$ 何时成立。对纯载波 $\\theta = \\omega_0 t$，答案是 Bedrosian 定理；对调频载波，答案是一个明确的级数，下方图形把它与实测误差并列计算。",
         blogBD2_t1_title: "定理 1（Bedrosian，1963）",
         blogBD2_t1_body: "设 $f, g \\in L^2(\\mathbb R)$，$\\operatorname{supp}\\hat f \\subset [-B, B]$ 且 $\\operatorname{supp}\\hat g \\subset \\{|\\xi| \\ge B\\}$，则 $\\mathscr H(fg) = f\\,\\mathscr H g$。特别地，若 $a$ 的频谱含于 $[-B, B]$ 且 $\\omega_0 &gt; 2\\pi B$，则 $\\mathscr H[a(t)\\cos\\omega_0 t] = a(t)\\sin\\omega_0 t$，而 $a\\cos\\omega_0 t$ 的解析信号恰为 $a\\,e^{i\\omega_0 t}$，因此 $|z| = a$，瞬时频率等于 $\\omega_0/2\\pi$。",
@@ -20225,6 +20455,7 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
       renderPublications();
       renderBlogControls();
       renderCourseControls();
+      wkcRenderHome();
 
       if (window.wkcTypesetReset) window.wkcTypesetReset();
     }
@@ -20256,8 +20487,6 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
     ];
     let blogSeriesFilter = 'all';
     let blogCatFilter = 'all';
-    let blogTagFilter = 'all';
-    let blogTagsExpanded = false;
 
     function blogT(key, fallback) {
       const dict = i18n[currentLang] || i18n.en;
@@ -20392,21 +20621,18 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
 
     function renderBlogControls() {
       const catBox = document.getElementById('blogCatChips');
-      const tagBox = document.getElementById('blogTagChips');
-      if (!catBox || !tagBox) return;
+      if (!catBox) return;
 
+      wkcRecordOrder();
       decorateBlogCards();
       groupBlogBySeries();
       renderBlogSeriesNav();
 
       const cards = blogPostCards();
       const catCounts = {};
-      const tagCounts = {};
       cards.forEach(c => {
         const k = c.getAttribute('data-cat') || 'expo';
         catCounts[k] = (catCounts[k] || 0) + 1;
-        (c.getAttribute('data-tags') || '').split('|').map(t => t.trim()).filter(Boolean)
-          .forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
       });
 
       const chip = (label, value, active, count) =>
@@ -20421,94 +20647,12 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
       });
       catBox.innerHTML = catHtml;
 
-      /* Tags accumulate as notes are added, so the row is capped by default
-         and ordered by frequency; the remainder is revealed on request. */
-      const TAG_CAP = 12;
-      const sortedTags = Object.keys(tagCounts).sort((a, b) => (tagCounts[b] - tagCounts[a]) || a.localeCompare(b));
-      const visibleTags = blogTagsExpanded ? sortedTags : sortedTags.slice(0, TAG_CAP);
-
-      let tagHtml = chip(blogT('blog_all', 'All'), 'all', blogTagFilter === 'all', 0);
-      visibleTags.forEach(t => { tagHtml += chip(t, t, blogTagFilter === t, tagCounts[t]); });
-      if (blogTagFilter !== 'all' && visibleTags.indexOf(blogTagFilter) === -1) {
-        tagHtml += chip(blogTagFilter, blogTagFilter, true, tagCounts[blogTagFilter]);
-      }
-      if (sortedTags.length > TAG_CAP) {
-        tagHtml += '<button type="button" class="blog-chip" data-more="1">' +
-          (blogTagsExpanded ? blogT('blog_tags_less', 'Fewer topics')
-                            : blogT('blog_tags_more', 'More topics') + ' (' + (sortedTags.length - TAG_CAP) + ')') +
-          '</button>';
-      }
-      tagBox.innerHTML = tagHtml;
-
       catBox.querySelectorAll('.blog-chip').forEach(b => b.addEventListener('click', () => {
         blogCatFilter = b.getAttribute('data-value');
         renderBlogControls();
       }));
-      tagBox.querySelectorAll('.blog-chip').forEach(b => b.addEventListener('click', () => {
-        if (b.hasAttribute('data-more')) {
-          blogTagsExpanded = !blogTagsExpanded;
-        } else {
-          blogTagFilter = b.getAttribute('data-value');
-        }
-        renderBlogControls();
-      }));
 
-      applyBlogFilter();
-    }
-
-    function applyBlogFilter() {
-      const input = document.getElementById('blogSearchInput');
-      const term = input ? input.value.trim().toLowerCase() : '';
-      const cards = blogPostCards();
-      let shown = 0;
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-cat') || 'expo';
-        const ser = card.getAttribute('data-series') || 'harmonic';
-        const tags = (card.getAttribute('data-tags') || '');
-        let ok = true;
-        if (blogSeriesFilter !== 'all' && ser !== blogSeriesFilter) ok = false;
-        if (ok && blogCatFilter !== 'all' && cat !== blogCatFilter) ok = false;
-        if (ok && blogTagFilter !== 'all' && tags.split('|').indexOf(blogTagFilter) === -1) ok = false;
-        if (ok && term) {
-          const hay = (card.textContent + ' ' + tags).toLowerCase();
-          if (hay.indexOf(term) === -1) ok = false;
-        }
-        card.classList.toggle('is-hidden', !ok);
-        if (ok) shown++;
-      });
-
-      /* A series heading is shown only when at least one of its notes survives
-         the current filter. */
-      document.querySelectorAll('[data-series-head]').forEach(head => {
-        const key = head.getAttribute('data-series-head');
-        const any = cards.some(c => (c.getAttribute('data-series') || 'harmonic') === key &&
-                                    !c.classList.contains('is-hidden'));
-        head.classList.toggle('is-hidden', !any);
-      });
-
-      const counter = document.getElementById('blogResultCount');
-      if (counter) {
-        counter.textContent = shown + ' ' + blogT(shown === 1 ? 'blog_count_one' : 'blog_count_many', 'notes shown');
-      }
-
-      let empty = document.getElementById('blogEmptyState');
-      const container = document.getElementById('blogContainer');
-      if (shown === 0) {
-        if (!empty && container) {
-          empty = document.createElement('div');
-          empty.id = 'blogEmptyState';
-          empty.className = 'blog-empty';
-          container.appendChild(empty);
-        }
-        if (empty) {
-          empty.innerHTML = '<i class="fa-solid fa-file-circle-xmark" style="font-size:2rem;margin-bottom:0.8rem;"></i>' +
-                            '<p>' + blogT('blog_no_match', 'No research note matches the current filter or search query.') + '</p>';
-          empty.style.display = '';
-        }
-      } else if (empty) {
-        empty.style.display = 'none';
-      }
+      wkcRefresh('blog');
     }
 
     function renderPublications() {
@@ -44243,21 +44387,1674 @@ so the line $\{p+td\}$ lies in $\{F=0\}$ if and only if $F(p)=0$, $\nabla F(p)\c
       }));
     }
 
-    function applyCourseFilter() {
-      const cards = coursePostCards(); let shown = 0;
-      cards.forEach(card => {
-        const ok = courseFilter === 'all' || (card.getAttribute('data-course') || 'num') === courseFilter;
-        card.classList.toggle('is-hidden', !ok);
-        if (ok) shown++;
-      });
-      const empty = document.getElementById('courseEmpty');
-      if (empty) empty.style.display = shown === 0 ? '' : 'none';
-    }
-
     function renderCourseControls() {
+      wkcRecordOrder();
       decorateCourseCards();
       renderCourseNav();
-      applyCourseFilter();
+      wkcRefresh('course');
+    }
+
+    /* =========================================================================
+       EXPLORE LAYER: curated topics, full-text search, Ctrl+K palette, home feed.
+       Both content zones (Math Notes & Blog, Lecture Notes) share this engine but
+       keep separate containers, state and filters.
+       ========================================================================= */
+    const WKC_TOPICS = [
+ {
+  "k": "haar",
+  "g": "obj",
+  "n": {
+   "en": "Haar Wavelet",
+   "tc": "Haar 小波",
+   "sc": "Haar 小波"
+  },
+  "d": {
+   "en": "The simplest wavelet system: averages and differences on dyadic intervals, used throughout as an explicitly computable test case.",
+   "tc": "最簡單的小波系統：二進區間上的平均與差分，常作為可顯式計算的檢驗範例。",
+   "sc": "最简单的小波系统：二进区间上的平均与差分，常作为可显式计算的检验范例。"
+  },
+  "a": [
+   "haar"
+  ],
+  "z": [
+   "哈爾",
+   "哈尔"
+  ]
+ },
+ {
+  "k": "daub",
+  "g": "obj",
+  "n": {
+   "en": "Daubechies Wavelets",
+   "tc": "Daubechies 小波",
+   "sc": "Daubechies 小波"
+  },
+  "d": {
+   "en": "Compactly supported orthonormal wavelets with prescribed vanishing moments, constructed from an explicit spectral factorisation.",
+   "tc": "具指定消失矩的緊支撐正交小波，由顯式的譜分解構造。",
+   "sc": "具指定消失矩的紧支撑正交小波，由显式的谱分解构造。"
+  },
+  "a": [
+   "daubechies wavelet",
+   "daubechies multiresolution"
+  ],
+  "z": [
+   "多貝西",
+   "杜貝西",
+   "多贝西",
+   "杜贝西"
+  ]
+ },
+ {
+  "k": "meyer",
+  "g": "obj",
+  "n": {
+   "en": "Meyer Wavelets",
+   "tc": "Meyer 小波",
+   "sc": "Meyer 小波"
+  },
+  "d": {
+   "en": "Band-limited orthonormal wavelets built in the frequency domain, with smoothness set by the choice of window.",
+   "tc": "在頻域中構造的帶限正交小波，光滑性由頻率窗的選取決定。",
+   "sc": "在频域中构造的带限正交小波，光滑性由频率窗的选取决定。"
+  },
+  "a": [
+   "meyer"
+  ],
+  "z": [
+   "邁耶",
+   "迈耶"
+  ]
+ },
+ {
+  "k": "biorth",
+  "g": "obj",
+  "n": {
+   "en": "Biorthogonal Wavelets",
+   "tc": "雙正交小波",
+   "sc": "双正交小波"
+  },
+  "d": {
+   "en": "Dual pairs of wavelet systems that give up orthogonality in exchange for symmetry and linear phase, as used in image coding.",
+   "tc": "以正交性換取對稱與線性相位的對偶小波系統，影像編碼中常用。",
+   "sc": "以正交性换取对称与线性相位的对偶小波系统，影像编码中常用。"
+  },
+  "a": [
+   "biorthogonal",
+   "lifting scheme",
+   "jpeg 2000",
+   " cdf ",
+   "perfect reconstruction"
+  ],
+  "z": [
+   "雙正交",
+   "双正交"
+  ]
+ },
+ {
+  "k": "gaussw",
+  "g": "obj",
+  "n": {
+   "en": "Gaussian Wavelets",
+   "tc": "高斯小波",
+   "sc": "高斯小波"
+  },
+  "d": {
+   "en": "The family obtained by differentiating the Gaussian N times: explicit formulas and exactly N vanishing moments.",
+   "tc": "對高斯函數取 N 階導數所得的小波族，公式明確，恰有 N 個消失矩。",
+   "sc": "对高斯函数取 N 阶导数所得的小波族，公式明确，恰有 N 个消失矩。"
+  },
+  "a": [
+   "gaussian wavelet"
+  ],
+  "z": [
+   "高斯",
+   "高斯"
+  ]
+ },
+ {
+  "k": "hilbert",
+  "g": "obj",
+  "n": {
+   "en": "Hilbert Transform",
+   "tc": "希爾伯特變換",
+   "sc": "希尔伯特变换"
+  },
+  "d": {
+   "en": "The conjugation operator on the line and its relatives: boundedness on L^p, discrete versions, higher-dimensional analogues and endpoint behaviour.",
+   "tc": "直線上的共軛算子及其親族：在 L^p 上的有界性、離散版本、高維類比與端點行為。",
+   "sc": "直线上的共轭算子及其亲族：在 L^p 上的有界性、离散版本、高维类比与端点行为。"
+  },
+  "a": [
+   "hilbert transform",
+   "hilbert pair",
+   "hilbert inequality",
+   "hilbert matrix",
+   "riesz transform",
+   "wavelet hilbert"
+  ],
+  "z": [
+   "希爾伯特",
+   "希尔伯特",
+   "希尔伯特",
+   "希尔伯特"
+  ]
+ },
+ {
+  "k": "bedrosian",
+  "g": "obj",
+  "n": {
+   "en": "Bedrosian & Analytic Signals",
+   "tc": "Bedrosian 恆等式與解析信號",
+   "sc": "Bedrosian 恒等式与解析信号"
+  },
+  "d": {
+   "en": "When the Hilbert transform of a product factors, and what the analytic signal does and does not recover in AM-FM models.",
+   "tc": "乘積的希爾伯特變換何時可以分解，以及解析信號在 AM-FM 模型中能還原與不能還原的內容。",
+   "sc": "乘积的希尔伯特变换何时可以分解，以及解析信号在 AM-FM 模型中能还原与不能还原的内容。"
+  },
+  "a": [
+   "bedrosian",
+   "analytic signal",
+   "instantaneous frequency",
+   "am fm",
+   "monogenic"
+  ],
+  "z": [
+   "解析信號",
+   "瞬時頻率",
+   "解析信号",
+   "瞬时频率"
+  ]
+ },
+ {
+  "k": "bandlim",
+  "g": "obj",
+  "n": {
+   "en": "Band-Limited Functions",
+   "tc": "帶限函數",
+   "sc": "带限函数"
+  },
+  "d": {
+   "en": "Functions with compactly supported spectrum: Paley–Wiener spaces, sampling, and time–frequency concentration.",
+   "tc": "頻譜緊支撐的函數：Paley–Wiener 空間、取樣定理與時頻集中。",
+   "sc": "频谱紧支撑的函数：Paley–Wiener 空间、取样定理与时频集中。"
+  },
+  "a": [
+   "band limited",
+   "paley wiener",
+   "prolate",
+   "shannon sampling"
+  ],
+  "z": [
+   "帶限",
+   "頻帶受限",
+   "香農",
+   "取樣定理",
+   "带限",
+   "频带受限",
+   "香农",
+   "取样定理"
+  ]
+ },
+ {
+  "k": "weights",
+  "g": "obj",
+  "n": {
+   "en": "Muckenhoupt Weights",
+   "tc": "Muckenhoupt 權重",
+   "sc": "Muckenhoupt 权重"
+  },
+  "d": {
+   "en": "Muckenhoupt A_p weights, and the explicit dependence of constants in approximation estimates on the characteristic [w]_{A_p}.",
+   "tc": "Muckenhoupt A_p 權重，以及逼近估計中常數對權重特徵量 [w]_{A_p} 的顯式依賴。",
+   "sc": "Muckenhoupt A_p 权重，以及逼近估计中常数对权重特征量 [w]_{A_p} 的显式依赖。"
+  },
+  "a": [
+   "muckenhoupt",
+   "a p characteristic",
+   "weighted besov",
+   "weighted jackson"
+  ],
+  "z": [
+   "權重",
+   "加權",
+   "权重",
+   "加权"
+  ]
+ },
+ {
+  "k": "besov",
+  "g": "obj",
+  "n": {
+   "en": "Besov & Function Spaces",
+   "tc": "Besov 與函數空間",
+   "sc": "Besov 与函数空间"
+  },
+  "d": {
+   "en": "Besov, Hölder and Hardy-type spaces, with Littlewood–Paley blocks as the tool for reading smoothness.",
+   "tc": "Besov、Hölder 與 Hardy 型函數空間，以及用 Littlewood–Paley 區塊讀取光滑性的方法。",
+   "sc": "Besov、Hölder 与 Hardy 型函数空间，以及用 Littlewood–Paley 区块读取光滑性的方法。"
+  },
+  "a": [
+   "besov",
+   "holder space",
+   "hardy space",
+   " bmo",
+   "littlewood paley"
+  ],
+  "z": [
+   "函數空間",
+   "函数空间"
+  ]
+ },
+ {
+  "k": "mra",
+  "g": "obj",
+  "n": {
+   "en": "Multiresolution Analysis",
+   "tc": "多解析度分析",
+   "sc": "多解析度分析"
+  },
+  "d": {
+   "en": "The multiresolution framework: nested spaces, the scaling function, two-scale relations and their regularity.",
+   "tc": "多解析度架構：巢狀空間、尺度函數、雙尺度關係及其正則性。",
+   "sc": "多解析度架构：巢状空间、尺度函数、双尺度关系及其正则性。"
+  },
+  "a": [
+   "multiresolution",
+   "scaling function",
+   "refinement equation",
+   "two scale",
+   "cascade",
+   "transition operator",
+   "strang fix"
+  ],
+  "z": [
+   "多解析度",
+   "多分辨率",
+   "尺度函數",
+   "多解析度",
+   "多分辨率",
+   "尺度函数"
+  ]
+ },
+ {
+  "k": "cheb",
+  "g": "obj",
+  "n": {
+   "en": "Chebyshev Polynomials",
+   "tc": "Chebyshev 多項式",
+   "sc": "Chebyshev 多项式"
+  },
+  "d": {
+   "en": "Chebyshev polynomials and points: the minimax property, coefficient decay and spectral methods.",
+   "tc": "Chebyshev 多項式與節點：極小化極大性質、係數衰減與譜方法。",
+   "sc": "Chebyshev 多项式与节点：极小化极大性质、系数衰减与谱方法。"
+  },
+  "a": [
+   "chebyshev"
+  ],
+  "z": [
+   "切比雪夫",
+   "切比雪夫"
+  ]
+ },
+ {
+  "k": "legendre",
+  "g": "obj",
+  "n": {
+   "en": "Legendre Polynomials",
+   "tc": "Legendre 多項式",
+   "sc": "Legendre 多项式"
+  },
+  "d": {
+   "en": "Legendre polynomials, L² projection, and Gauss quadrature computed through the Jacobi matrix.",
+   "tc": "Legendre 多項式、L² 投影，以及經由 Jacobi 矩陣計算的 Gauss 求積。",
+   "sc": "Legendre 多项式、L² 投影，以及经由 Jacobi 矩阵计算的 Gauss 求积。"
+  },
+  "a": [
+   "legendre",
+   "golub welsch"
+  ],
+  "z": [
+   "勒讓德",
+   "勒让德"
+  ]
+ },
+ {
+  "k": "interp",
+  "g": "obj",
+  "n": {
+   "en": "Polynomial Interpolation",
+   "tc": "多項式插值",
+   "sc": "多项式插值"
+  },
+  "d": {
+   "en": "Polynomial interpolation: Lagrange, Newton and Hermite forms, node choice and the error formula.",
+   "tc": "多項式插值：Lagrange、Newton 與 Hermite 形式、節點選取與誤差公式。",
+   "sc": "多项式插值：Lagrange、Newton 与 Hermite 形式、节点选取与误差公式。"
+  },
+  "a": [
+   "interpolation",
+   "lagrange",
+   "barycentric",
+   "divided difference"
+  ],
+  "z": [
+   "插值",
+   "內插",
+   "拉格朗日",
+   "插值",
+   "内插",
+   "拉格朗日"
+  ]
+ },
+ {
+  "k": "eig",
+  "g": "obj",
+  "n": {
+   "en": "Eigenvalues & Krylov Methods",
+   "tc": "特徵值與 Krylov 方法",
+   "sc": "特征值与 Krylov 方法"
+  },
+  "d": {
+   "en": "Eigenvalue computation and Krylov methods: power iteration, the QR algorithm, conjugate gradients and variational characterisations.",
+   "tc": "特徵值計算與 Krylov 方法：冪法迭代、QR 算法、共軛梯度與變分刻畫。",
+   "sc": "特征值计算与 Krylov 方法：幂法迭代、QR 算法、共轭梯度与变分刻画。"
+  },
+  "a": [
+   "eigenvalue",
+   "power iteration",
+   "qr algorithm",
+   "rayleigh",
+   "krylov",
+   "conjugate gradient",
+   "gershgorin",
+   "courant fischer"
+  ],
+  "z": [
+   "特徵值",
+   "共軛梯度",
+   "特征值",
+   "共轭梯度"
+  ]
+ },
+ {
+  "k": "matrix",
+  "g": "obj",
+  "n": {
+   "en": "Matrices & Linear Systems",
+   "tc": "矩陣與線性方程組",
+   "sc": "矩阵与线性方程组"
+  },
+  "d": {
+   "en": "Matrix factorisations and their numerical behaviour: SVD, least squares, LU, Cholesky, Markov chains and the matrix exponential.",
+   "tc": "矩陣分解及其數值性質：SVD、最小平方、LU、Cholesky、Markov 鏈與矩陣指數。",
+   "sc": "矩阵分解及其数值性质：SVD、最小平方、LU、Cholesky、Markov 链与矩阵指数。"
+  },
+  "a": [
+   "singular value",
+   "least squares",
+   "lu factor",
+   "gaussian elimination",
+   "cholesky",
+   "positive definite",
+   "markov chain",
+   "pagerank",
+   "matrix exponential",
+   "stochastic matri"
+  ],
+  "z": [
+   "奇異值",
+   "最小平方",
+   "最小二乘",
+   "矩陣",
+   "奇异值",
+   "最小平方",
+   "最小二乘",
+   "矩阵"
+  ]
+ },
+ {
+  "k": "vc",
+  "g": "obj",
+  "n": {
+   "en": "Vector Calculus",
+   "tc": "向量分析",
+   "sc": "向量分析"
+  },
+  "d": {
+   "en": "Line, surface and volume integrals and the theorems that connect them: Green, Stokes and Gauss.",
+   "tc": "線積分、面積分、體積分，以及連結它們的 Green、Stokes、Gauss 定理。",
+   "sc": "线积分、面积分、体积分，以及连结它们的 Green、Stokes、Gauss 定理。"
+  },
+  "a": [
+   " green",
+   "stokes",
+   "divergence theorem",
+   "gradient theorem",
+   "line integral",
+   "conservative",
+   "helmholtz",
+   "gauss law",
+   " curl",
+   "fundamental theorem for line"
+  ],
+  "z": [
+   "格林",
+   "斯托克斯",
+   "散度",
+   "旋度",
+   "保守場",
+   "線積分",
+   "格林",
+   "斯托克斯",
+   "散度",
+   "旋度",
+   "保守场",
+   "线积分"
+  ]
+ },
+ {
+  "k": "geom3d",
+  "g": "obj",
+  "n": {
+   "en": "3D Analytic Geometry",
+   "tc": "空間解析幾何",
+   "sc": "空间解析几何"
+  },
+  "d": {
+   "en": "Analytic geometry in space: lines, planes, quadrics, space curves, surfaces of revolution and rotations.",
+   "tc": "空間解析幾何：直線、平面、二次曲面、空間曲線、旋轉曲面與空間旋轉。",
+   "sc": "空间解析几何：直线、平面、二次曲面、空间曲线、旋转曲面与空间旋转。"
+  },
+  "a": [
+   "3d analytic geometry",
+   "quadric",
+   "space curve",
+   "surfaces of revolution",
+   "rotations",
+   "viviani"
+  ],
+  "z": [
+   "二次曲面",
+   "空間曲線",
+   "二次曲面",
+   "空间曲线"
+  ]
+ },
+ {
+  "k": "ode",
+  "g": "obj",
+  "n": {
+   "en": "ODE Solvers",
+   "tc": "常微分方程數值解",
+   "sc": "常微分方程数值解"
+  },
+  "d": {
+   "en": "Numerical methods for ordinary differential equations, from Euler's method to implicit and structure-preserving variants.",
+   "tc": "常微分方程的數值方法，從 Euler 法到隱式與保結構的變體。",
+   "sc": "常微分方程的数值方法，从 Euler 法到隐式与保结构的变体。"
+  },
+  "a": [
+   "euler method",
+   "backward euler",
+   "symplectic",
+   "stiff",
+   "hamiltonian",
+   "initial value",
+   "dahlquist"
+  ],
+  "z": [
+   "歐拉",
+   "常微分方程",
+   "剛性",
+   "欧拉",
+   "常微分方程",
+   "刚性"
+  ]
+ },
+ {
+  "k": "nn",
+  "g": "obj",
+  "n": {
+   "en": "Learning & Networks",
+   "tc": "學習與神經網路",
+   "sc": "学习与神经网路"
+  },
+  "d": {
+   "en": "Approximation theory applied to learning: shallow networks, nonparametric regression, kernels and forecasting models.",
+   "tc": "逼近論在學習問題上的應用：淺層網路、非參數迴歸、核方法與預測模型。",
+   "sc": "逼近论在学习问题上的应用：浅层网路、非参数回归、核方法与预测模型。"
+  },
+  "a": [
+   "neural network",
+   "interpretable machine",
+   "time series forecasting",
+   "kernel ridge",
+   "nonparametric regression"
+  ],
+  "z": [
+   "神經網路",
+   "機器學習",
+   "迴歸",
+   "神经网路",
+   "机器学习",
+   "回归"
+  ]
+ },
+ {
+  "k": "dim",
+  "g": "obj",
+  "n": {
+   "en": "High-Dimensional Approximation",
+   "tc": "高維逼近與維度",
+   "sc": "高维逼近与维度"
+  },
+  "d": {
+   "en": "How the dimension enters approximation rates and when it can be reduced: the curse of dimensionality, effective and intrinsic dimension.",
+   "tc": "維度如何進入逼近階，以及何時可以降低：維度災難、有效維度與內蘊維度。",
+   "sc": "维度如何进入逼近阶，以及何时可以降低：维度灾难、有效维度与内蕴维度。"
+  },
+  "a": [
+   "curse of dimensionality",
+   "effective dimension",
+   "intrinsic dimension",
+   "tractability",
+   "sobol",
+   "functional anova",
+   "superposition dimension",
+   "truncation dimension",
+   "correlation dimension",
+   "participation ratio",
+   "additive besov",
+   "additive models",
+   "ridge functions",
+   "active subspace"
+  ],
+  "z": [
+   "維度災難",
+   "有效維度",
+   "維數",
+   "维度灾难",
+   "有效维度",
+   "维数"
+  ]
+ },
+ {
+  "k": "gibbs",
+  "g": "thm",
+  "n": {
+   "en": "Gibbs Phenomenon",
+   "tc": "吉布斯現象",
+   "sc": "吉布斯现象"
+  },
+  "d": {
+   "en": "The overshoot of partial sums near a jump, and how the choice of kernel changes it.",
+   "tc": "部分和在跳躍點附近的過衝，以及核的選取如何改變它。",
+   "sc": "部分和在跳跃点附近的过冲，以及核的选取如何改变它。"
+  },
+  "a": [
+   "gibbs"
+  ],
+  "z": [
+   "吉布斯",
+   "吉布斯"
+  ]
+ },
+ {
+  "k": "runge",
+  "g": "thm",
+  "n": {
+   "en": "Runge Phenomenon",
+   "tc": "龍格現象",
+   "sc": "龙格现象"
+  },
+  "d": {
+   "en": "Divergence of high-degree polynomial interpolation at equispaced nodes, and which node choices repair it.",
+   "tc": "等距節點上高次多項式插值為何發散，以及哪些節點選取可以修正。",
+   "sc": "等距节点上高次多项式插值为何发散，以及哪些节点选取可以修正。"
+  },
+  "a": [
+   "runge"
+  ],
+  "z": [
+   "龍格",
+   "隆格",
+   "龙格",
+   "隆格"
+  ]
+ },
+ {
+  "k": "jb",
+  "g": "thm",
+  "n": {
+   "en": "Jackson & Bernstein",
+   "tc": "Jackson 與 Bernstein 不等式",
+   "sc": "Jackson 与 Bernstein 不等式"
+  },
+  "d": {
+   "en": "Direct (Jackson) and inverse (Bernstein) estimates: how fast a function can be approximated, and what smoothness that rate forces.",
+   "tc": "正向（Jackson）與逆向（Bernstein）估計：函數能以多快的速率被逼近，以及該速率反推出多少光滑性。",
+   "sc": "正向（Jackson）与逆向（Bernstein）估计：函数能以多快的速率被逼近，以及该速率反推出多少光滑性。"
+  },
+  "a": [
+   "jackson",
+   "bernstein inequality",
+   "approximation spaces",
+   "strang fix"
+  ],
+  "z": [
+   "逼近階",
+   "逼近阶"
+  ]
+ },
+ {
+  "k": "cz",
+  "g": "thm",
+  "n": {
+   "en": "Calderón–Zygmund",
+   "tc": "Calderón–Zygmund 理論",
+   "sc": "Calderón–Zygmund 理论"
+  },
+  "d": {
+   "en": "Calderón–Zygmund decomposition, weak-type estimates, and martingale and Haar methods for singular integrals.",
+   "tc": "Calderón–Zygmund 分解、弱型估計，以及處理奇異積分的鞅與 Haar 方法。",
+   "sc": "Calderón–Zygmund 分解、弱型估计，以及处理奇异积分的鞅与 Haar 方法。"
+  },
+  "a": [
+   "calderon zygmund",
+   "weak type",
+   "singular integral",
+   "dyadic maximal",
+   "square function",
+   "burkholder",
+   "martingale",
+   "pichorides",
+   "unconditional basis"
+  ],
+  "z": [
+   "奇異積分",
+   "鞅",
+   "奇异积分",
+   "鞅"
+  ]
+ },
+ {
+  "k": "tf",
+  "g": "thm",
+  "n": {
+   "en": "Time–Frequency",
+   "tc": "時頻分析與不確定性",
+   "sc": "时频分析与不确定性"
+  },
+  "d": {
+   "en": "Time–frequency localisation: uncertainty principles, phase space, wavelet frames and Balian–Low-type obstructions.",
+   "tc": "時頻局部化：不確定性原理、相空間、小波框架與 Balian–Low 型障礙。",
+   "sc": "时频局部化：不确定性原理、相空间、小波框架与 Balian–Low 型障碍。"
+  },
+  "a": [
+   "time frequency",
+   "uncertainty",
+   "heisenberg",
+   "balian low",
+   "phase space",
+   "wavelet frame",
+   "landau pollak",
+   "q factor"
+  ],
+  "z": [
+   "時頻",
+   "不確定",
+   "測不準",
+   "框架",
+   "时频",
+   "不确定",
+   "测不准",
+   "框架"
+  ]
+ },
+ {
+  "k": "smooth",
+  "g": "thm",
+  "n": {
+   "en": "Vanishing Moments & Smoothness",
+   "tc": "消失矩與光滑性",
+   "sc": "消失矩与光滑性"
+  },
+  "d": {
+   "en": "Vanishing moments, coefficient decay and Hölder regularity: reading smoothness and singularities off the coefficients.",
+   "tc": "消失矩、係數衰減與 Hölder 正則性：由係數讀出光滑性與奇異性。",
+   "sc": "消失矩、系数衰减与 Hölder 正则性：由系数读出光滑性与奇异性。"
+  },
+  "a": [
+   "vanishing moment",
+   "decay and smoothness",
+   "holder exponent",
+   "saturation",
+   "sobolev regularity",
+   "singularit",
+   "takagi"
+  ],
+  "z": [
+   "消失矩",
+   "光滑",
+   "平滑",
+   "正則",
+   "消失矩",
+   "光滑",
+   "平滑",
+   "正则"
+  ]
+ },
+ {
+  "k": "stab",
+  "g": "thm",
+  "n": {
+   "en": "Stability & Conditioning",
+   "tc": "穩定性與條件數",
+   "sc": "稳定性与条件数"
+  },
+  "d": {
+   "en": "Conditioning and stability: Lebesgue constants, A-stability, growth factors and rounding error.",
+   "tc": "條件數與穩定性：Lebesgue 常數、A-穩定性、增長因子與捨入誤差。",
+   "sc": "条件数与稳定性：Lebesgue 常数、A-稳定性、增长因子与舍入误差。"
+  },
+  "a": [
+   "stability",
+   "lebesgue constant",
+   "condition number",
+   "backward error",
+   " rounding",
+   "floating point",
+   "growth factor",
+   "round off",
+   "conditioning",
+   "node potential"
+  ],
+  "z": [
+   "穩定",
+   "條件數",
+   "捨入",
+   "稳定",
+   "条件数",
+   "舍入"
+  ]
+ },
+ {
+  "k": "samp",
+  "g": "thm",
+  "n": {
+   "en": "Sampling & Aliasing",
+   "tc": "取樣與混疊",
+   "sc": "取样与混叠"
+  },
+  "d": {
+   "en": "Sampling, aliasing and spectral leakage: what discrete data can and cannot determine.",
+   "tc": "取樣、混疊與頻譜洩漏：離散資料能決定與不能決定的內容。",
+   "sc": "取样、混叠与频谱泄漏：离散资料能决定与不能决定的内容。"
+  },
+  "a": [
+   "aliasing",
+   "shannon sampling",
+   "spectral leakage",
+   "nyquist"
+  ],
+  "z": [
+   "混疊",
+   "取樣",
+   "洩漏",
+   "混叠",
+   "取样",
+   "泄漏"
+  ]
+ },
+ {
+  "k": "nterm",
+  "g": "thm",
+  "n": {
+   "en": "N-Term Approximation",
+   "tc": "N 項逼近",
+   "sc": "N 项逼近"
+  },
+  "d": {
+   "en": "Nonlinear approximation by the N largest terms, with thresholding and cycle spinning.",
+   "tc": "取 N 個最大項的非線性逼近，以及閾值化與循環平移。",
+   "sc": "取 N 个最大项的非线性逼近，以及阈值化与循环平移。"
+  },
+  "a": [
+   "n term",
+   "nonlinear approximation",
+   "nonlinear widths",
+   "thresholding",
+   "cycle spinning"
+  ],
+  "z": [
+   "非線性逼近",
+   "閾值",
+   "閥值",
+   "非线性逼近",
+   "阈值",
+   "阀值"
+  ]
+ },
+ {
+  "k": "err",
+  "g": "tool",
+  "n": {
+   "en": "Error Analysis & Extrapolation",
+   "tc": "誤差分析與外推",
+   "sc": "误差分析与外推"
+  },
+  "d": {
+   "en": "Error expansions and extrapolation: truncation error, Peano kernels, Richardson and Romberg.",
+   "tc": "誤差展開與外推：截斷誤差、Peano 核、Richardson 與 Romberg。",
+   "sc": "误差展开与外推：截断误差、Peano 核、Richardson 与 Romberg。"
+  },
+  "a": [
+   "richardson",
+   "romberg",
+   "asymptotic error",
+   "euler maclaurin",
+   "step size control",
+   "local truncation",
+   "peano kernel",
+   "error constant",
+   "convergence order"
+  ],
+  "z": [
+   "誤差",
+   "外推",
+   "截斷",
+   "误差",
+   "外推",
+   "截断"
+  ]
+ },
+ {
+  "k": "quad",
+  "g": "tool",
+  "n": {
+   "en": "Numerical Integration",
+   "tc": "數值積分",
+   "sc": "数值积分"
+  },
+  "d": {
+   "en": "Numerical integration: Newton–Cotes, composite and Gauss rules, with explicit error constants.",
+   "tc": "數值積分：Newton–Cotes、複合公式與 Gauss 公式，並附顯式誤差常數。",
+   "sc": "数值积分：Newton–Cotes、复合公式与 Gauss 公式，并附显式误差常数。"
+  },
+  "a": [
+   "quadrature",
+   "newton cotes",
+   "trapezoid",
+   "numerical integration",
+   "composite rule",
+   "clenshaw"
+  ],
+  "z": [
+   "求積",
+   "數值積分",
+   "辛普森",
+   "求积",
+   "数值积分",
+   "辛普森"
+  ]
+ },
+ {
+  "k": "fft",
+  "g": "tool",
+  "n": {
+   "en": "Fourier Methods & FFT",
+   "tc": "傅立葉方法與 FFT",
+   "sc": "傅立叶方法与 FFT"
+  },
+  "d": {
+   "en": "Fourier-side tools: FFT and DCT, multipliers, partial sums and Parseval-type identities.",
+   "tc": "傅立葉側的工具：FFT 與 DCT、乘子、部分和與 Parseval 型恆等式。",
+   "sc": "傅立叶侧的工具：FFT 与 DCT、乘子、部分和与 Parseval 型恒等式。"
+  },
+  "a": [
+   "fft",
+   "fourier",
+   " dct",
+   "parseval"
+  ],
+  "z": [
+   "傅立葉",
+   "傅里葉",
+   "傅利葉",
+   "快速傅",
+   "傅立叶",
+   "傅里叶",
+   "傅利叶",
+   "快速傅"
+  ]
+ },
+ {
+  "k": "mc",
+  "g": "tool",
+  "n": {
+   "en": "Monte Carlo",
+   "tc": "蒙地卡羅",
+   "sc": "蒙地卡罗"
+  },
+  "d": {
+   "en": "Monte Carlo and quasi-Monte Carlo integration: dimension-free rates and where the hidden constants sit.",
+   "tc": "蒙地卡羅與擬蒙地卡羅積分：與維度無關的速率，以及隱藏常數所在之處。",
+   "sc": "蒙地卡罗与拟蒙地卡罗积分：与维度无关的速率，以及隐藏常数所在之处。"
+  },
+  "a": [
+   "monte carlo",
+   "quasi monte",
+   "discrepancy"
+  ],
+  "z": [
+   "蒙特卡羅",
+   "蒙特卡洛",
+   "蒙地卡羅",
+   "蒙特卡罗",
+   "蒙特卡洛",
+   "蒙地卡罗"
+  ]
+ },
+ {
+  "k": "cwt",
+  "g": "tool",
+  "n": {
+   "en": "Continuous Wavelet Transform",
+   "tc": "連續小波變換",
+   "sc": "连续小波变换"
+  },
+  "d": {
+   "en": "The continuous wavelet transform: admissibility, scalograms, modulus maxima and analytic wavelets.",
+   "tc": "連續小波變換：容許條件、尺度圖、模極大值與解析小波。",
+   "sc": "连续小波变换：容许条件、尺度图、模极大值与解析小波。"
+  },
+  "a": [
+   "continuous wavelet",
+   "cwt",
+   "scalogram",
+   "admissibility",
+   "modulus maxima",
+   "dual tree",
+   "analytic wavelet"
+  ],
+  "z": [
+   "連續小波",
+   "容許",
+   "连续小波",
+   "容许"
+  ]
+ },
+ {
+  "k": "fwt",
+  "g": "tool",
+  "n": {
+   "en": "Fast Transforms & Image Coding",
+   "tc": "快速變換與影像編碼",
+   "sc": "快速变换与影像编码"
+  },
+  "d": {
+   "en": "Fast and lifting-based wavelet transforms, integer-to-integer versions and their use in image coding.",
+   "tc": "快速與提升式小波變換、整數到整數的版本，以及在影像編碼中的用途。",
+   "sc": "快速与提升式小波变换、整数到整数的版本，以及在影像编码中的用途。"
+  },
+  "a": [
+   "fast wavelet transform",
+   "integer wavelet",
+   "lifting",
+   "jpeg 2000",
+   "image compression",
+   "polyphase",
+   "mallat",
+   "perfect reconstruction"
+  ],
+  "z": [
+   "提升",
+   "影像壓縮",
+   "快速小波",
+   "提升",
+   "影像压缩",
+   "快速小波"
+  ]
+ }
+];
+    const WKC_GROUPS = [
+      { k: 'obj',  i: 'wkc_grp_obj'  },
+      { k: 'thm',  i: 'wkc_grp_thm'  },
+      { k: 'tool', i: 'wkc_grp_tool' }
+    ];
+    const WKC_TOPIC_BY = {};
+    WKC_TOPICS.forEach(t => { WKC_TOPIC_BY[t.k] = t; });
+
+    function wkcLang() { return (typeof currentLang === 'string' && currentLang) || 'en'; }
+    function wkcTr(o) { return o[wkcLang()] || o.en; }
+    function wkcEsc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    /* Case-, accent- and punctuation-insensitive form used for all matching. */
+    function wkcNorm(s) {
+      return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/['’]s?(?![a-z])/g, '')
+        .replace(/[\-‐-―_\/·,:;()\[\]{}|]+/g, ' ')
+        .replace(/\s+/g, ' ').trim();
+    }
+    /* Length-preserving fold, so offsets found in the folded text are valid in the original. */
+    function wkcFold(s) {
+      let o = '';
+      for (const ch of String(s)) {
+        const b = ch.normalize('NFD').charAt(0).toLowerCase();
+        o += (b.length === ch.length ? b : ch);
+      }
+      return o;
+    }
+    /* Text of a dictionary string with markup and TeX removed (for indexing and snippets). */
+    function wkcPlain(html) {
+      return String(html)
+        .replace(/\$\$[\s\S]*?\$\$/g, ' ').replace(/\$[^$]*\$/g, ' ')
+        .replace(/\\\([\s\S]*?\\\)/g, ' ').replace(/\\\[[\s\S]*?\\\]/g, ' ')
+        .replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, ' ')
+        .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+        .replace(/\s+/g, ' ').trim();
+    }
+    /* Titles keep their symbols in readable form, e.g. $L^p$ becomes L^p. */
+    const WKC_GREEK = {
+      pi: 'π', alpha: 'α', beta: 'β', gamma: 'γ', delta: 'δ', epsilon: 'ε', varepsilon: 'ε',
+      lambda: 'λ', mu: 'μ', nu: 'ν', xi: 'ξ', rho: 'ρ', sigma: 'σ', tau: 'τ', phi: 'φ',
+      psi: 'ψ', omega: 'ω', theta: 'θ', eta: 'η', kappa: 'κ', ell: 'ℓ', infty: '∞',
+      sum: 'Σ', int: '∫', partial: '∂', le: '≤', leq: '≤', ge: '≥', geq: '≥', ne: '≠',
+      neq: '≠', cdot: '·', times: '×', to: '→', in: '∈', ldots: '…', cdots: '…'
+    };
+    function wkcTitlePlain(s) {
+      return String(s).replace(/<[^>]*>/g, ' ')
+        .replace(/\$\$?([^$]*)\$\$?/g, (m, a) => ' ' + a
+          .replace(/\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, '($1)/($2)')
+          .replace(/\\(?:operatorname|mathrm|mathbb|mathcal|mathscr|mathbf|text)\s*\{([^}]*)\}/g, ' $1 ')
+          .replace(/\\([a-zA-Z]+)/g, (mm, n) => WKC_GREEK[n] || '')
+          .replace(/\\[,;:! ]/g, ' ')
+          .replace(/[{}]/g, '') + ' ')
+        .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+    }
+    /* Passage text for snippets: markup removed, math kept in a readable form. */
+    function wkcMathText(html) {
+      return wkcTitlePlain(String(html).replace(/\\\(([\s\S]*?)\\\)/g, '$$$1$$').replace(/\\\[([\s\S]*?)\\\]/g, '$$$1$$'));
+    }
+    function wkcTitleText(card, lang) {
+      const te = card.querySelector('.blog-title');
+      if (!te) return '';
+      lang = lang || wkcLang();
+      const key = te.getAttribute('data-i18n');
+      const raw = key && i18n[lang] && i18n[lang][key];
+      return wkcTitlePlain(raw != null ? raw : te.textContent);
+    }
+    function wkcTokens(q) {
+      const seen = {}, out = [];
+      wkcNorm(q).split(' ').forEach(t => { if (t && !seen[t]) { seen[t] = 1; out.push(t); } });
+      return out;
+    }
+    function wkcRawTokens(q) {
+      const seen = {}, out = [];
+      String(q).trim().split(/[\s\-‐-―]+/).forEach(t => {
+        const f = wkcFold(t);
+        if (!f || seen[f]) return;
+        if (f.length < 2 && !/[㐀-鿿]/.test(f)) return;
+        seen[f] = 1; out.push(f);
+      });
+      return out;
+    }
+
+    const WKC_ZONES = {
+      blog: {
+        tab: 'blog', cards: () => blogPostCards(),
+        base: c => !(blogSeriesFilter !== 'all' && (c.getAttribute('data-series') || 'harmonic') !== blogSeriesFilter) &&
+                   !(blogCatFilter !== 'all' && (c.getAttribute('data-cat') || 'expo') !== blogCatFilter),
+        nameKey: 'nav_blog', badge: c => { const b = c.querySelector('.blog-cat'); return b ? b.textContent : ''; }
+      },
+      course: {
+        tab: 'courses', cards: () => coursePostCards(),
+        base: c => courseFilter === 'all' || (c.getAttribute('data-course') || 'num') === courseFilter,
+        nameKey: 'nav_courses', badge: c => { const b = c.querySelector('.blog-cat'); return b ? b.textContent : ''; }
+      }
+    };
+    const wkcState = {
+      blog:   { topics: [], q: '', more: false, totals: null },
+      course: { topics: [], q: '', more: false, totals: null }
+    };
+
+    /* Document order, recorded once before the blog is regrouped by series. */
+    function wkcRecordOrder() {
+      ['blog', 'course'].forEach(z => WKC_ZONES[z].cards().forEach((c, i) => {
+        if (c.__wkcOrder === undefined) c.__wkcOrder = i;
+      }));
+    }
+
+    /* Topics of a card: an explicit data-topics list if present, otherwise derived from
+       its data-tags and English title by the alias table. */
+    function wkcCardTopics(card) {
+      if (card.__wkcT) return card.__wkcT;
+      let res;
+      const ex = card.getAttribute('data-topics');
+      if (ex) {
+        res = ex.split('|').map(s => s.trim()).filter(k => WKC_TOPIC_BY[k]);
+      } else {
+        const hay = ' ' + wkcNorm((card.getAttribute('data-tags') || '') + ' | ' + wkcTitleText(card, 'en')) + ' ';
+        res = WKC_TOPICS.filter(t => t.a.some(a => hay.indexOf(a) !== -1)).map(t => t.k);
+      }
+      card.__wkcT = res;
+      return res;
+    }
+    function wkcZoneTotals(zone) {
+      const st = wkcState[zone];
+      if (st.totals) return st.totals;
+      const tot = {};
+      WKC_ZONES[zone].cards().forEach(c => wkcCardTopics(c).forEach(k => { tot[k] = (tot[k] || 0) + 1; }));
+      st.totals = tot;
+      return tot;
+    }
+    /* The small tags in a card's meta row become links to the matching topic. */
+    function wkcDecorateTags(card) {
+      if (card.__wkcTagsDone) return;
+      card.__wkcTagsDone = true;
+      const own = wkcCardTopics(card);
+      card.querySelectorAll('.blog-tag').forEach(tag => {
+        const hay = ' ' + wkcNorm(tag.textContent) + ' ';
+        const hits = WKC_TOPICS.filter(t => t.a.some(a => hay.indexOf(a) !== -1)).map(t => t.k);
+        const k = hits.filter(x => own.indexOf(x) !== -1)[0] || null;
+        if (k) { tag.__wkcK = k; tag.classList.add('wkc-tag-link'); tag.setAttribute('role', 'button'); tag.setAttribute('tabindex', '0'); }
+      });
+    }
+
+    /* ---- Full-text index (built on first use): every data-i18n element of every card in
+       all three languages, so Chinese and English queries find the same notes. ---- */
+    let wkcIdx = null;
+    function wkcBuildIndex() {
+      if (wkcIdx) return wkcIdx;
+      wkcIdx = { blog: new Map(), course: new Map() };
+      const langs = ['en', 'tc', 'sc'];
+      ['blog', 'course'].forEach(zone => {
+        WKC_ZONES[zone].cards().forEach(card => {
+          const elems = [], parts = [];
+          const titleEl = card.querySelector('.blog-title');
+          let titleN = '';
+          card.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const n = {};
+            langs.forEach(l => {
+              const raw = i18n[l] && i18n[l][key];
+              const txt = raw != null ? wkcPlain(raw) : (l === wkcLang() ? wkcPlain(el.textContent) : '');
+              n[l] = wkcNorm(txt);
+              parts.push(n[l]);
+            });
+            elems.push({ el, key, n });
+            if (el === titleEl) titleN = langs.map(l => n[l]).join(' ');
+          });
+          let meta = wkcNorm((card.getAttribute('data-tags') || '').replace(/\|/g, ' '));
+          wkcCardTopics(card).forEach(k => {
+            const t = WKC_TOPIC_BY[k];
+            meta += ' ' + wkcNorm(t.n.en + ' ' + t.n.tc + ' ' + t.n.sc + ' ' + (t.z || []).join(' '));
+          });
+          parts.push(meta);
+          wkcIdx[zone].set(card, { card, zone, elems, titleEl, titleN, meta, hay: parts.join(' \u0001 ') });
+        });
+      });
+      return wkcIdx;
+    }
+    function wkcMatch(e, tokens) { return tokens.every(t => e.hay.indexOf(t) !== -1); }
+
+    /* The passages of a card that best match the query (at most n). */
+    function wkcBestElems(e, tokens, n) {
+      const order = [wkcLang()].concat(['en', 'tc', 'sc'].filter(l => l !== wkcLang()));
+      const scored = [];
+      e.elems.forEach((x, i) => {
+        if (x.el === e.titleEl) return;
+        let best = 0, bl = null;
+        order.forEach(l => {
+          const s = tokens.reduce((a, t) => a + (x.n[l].indexOf(t) !== -1 ? 1 : 0), 0);
+          if (s > best) { best = s; bl = l; }
+        });
+        if (best) scored.push({ x, i, best, bl });
+      });
+      scored.sort((a, b) => b.best - a.best || a.i - b.i);
+      return scored.slice(0, n).sort((a, b) => a.i - b.i);
+    }
+    function wkcSnip(p, rawToks) {
+      const raw = i18n[p.bl] && i18n[p.bl][p.x.key];
+      const text = raw != null ? wkcMathText(raw) : wkcPlain(p.x.el.textContent);
+      const f = wkcFold(text);
+      let pos = -1;
+      rawToks.forEach(t => { const q = f.indexOf(t); if (q !== -1 && (pos === -1 || q < pos)) pos = q; });
+      const start = Math.max(0, (pos === -1 ? 0 : pos) - 55), end = Math.min(text.length, start + 170);
+      const seg = text.slice(start, end), fs = f.slice(start, end), marks = [];
+      rawToks.forEach(t => { let q = 0; while ((q = fs.indexOf(t, q)) !== -1) { marks.push([q, q + t.length]); q += t.length; } });
+      marks.sort((a, b) => a[0] - b[0]);
+      let out = '', cur = 0;
+      marks.forEach(m => { if (m[0] < cur) return; out += wkcEsc(seg.slice(cur, m[0])) + '<mark>' + wkcEsc(seg.slice(m[0], m[1])) + '</mark>'; cur = m[1]; });
+      out += wkcEsc(seg.slice(cur));
+      return (start > 0 ? '…' : '') + out + (end < text.length ? '…' : '');
+    }
+
+    function wkcOpenCard(card) {
+      const body = card.querySelector('.blog-body');
+      if (body && body.classList.contains('is-collapsed')) {
+        const tg = card.querySelector('.blog-toggle');
+        if (tg) tg.click();
+      }
+    }
+    function wkcFlash(el) {
+      el.classList.remove('wkc-flash'); void el.offsetWidth; el.classList.add('wkc-flash');
+      setTimeout(() => el.classList.remove('wkc-flash'), 1900);
+    }
+
+    /* ---- Highlighting without touching the DOM (CSS Custom Highlight API). ---- */
+    function wkcHighlight(zone, cards, toks) {
+      if (!(window.CSS && CSS.highlights && typeof Highlight !== 'undefined')) return;
+      const name = 'wkc-hit-' + zone;
+      CSS.highlights.delete(name);
+      if (!toks.length) return;
+      const ranges = [], CAP = 800;
+      outer: for (const card of cards) {
+        const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT, {
+          acceptNode: n => (n.parentElement && n.parentElement.closest('mjx-container, script, style, canvas, button, .wkc-hits'))
+            ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+        });
+        let node;
+        while ((node = walker.nextNode())) {
+          const f = wkcFold(node.data);
+          for (const t of toks) {
+            let p = 0;
+            while ((p = f.indexOf(t, p)) !== -1) {
+              const r = new Range(); r.setStart(node, p); r.setEnd(node, p + t.length);
+              ranges.push(r); p += t.length;
+              if (ranges.length >= CAP) break outer;
+            }
+          }
+        }
+      }
+      if (ranges.length) CSS.highlights.set(name, new Highlight(...ranges));
+    }
+
+    /* ---- Zone refresh: applies series/category/topics/search, redraws chips and panels. ---- */
+    function wkcRefresh(zone, opts) {
+      opts = opts || {};
+      const Z = WKC_ZONES[zone], st = wkcState[zone];
+      const cards = Z.cards();
+      const tokens = wkcTokens(st.q), raw = wkcRawTokens(st.q);
+      const idx = tokens.length ? wkcBuildIndex()[zone] : null;
+      const has = (c, k) => wkcCardTopics(c).indexOf(k) !== -1;
+      const base = cards.filter(c => Z.base(c));
+      const afterQ = base.filter(c => !tokens.length || wkcMatch(idx.get(c), tokens));
+      const shown = afterQ.filter(c => st.topics.every(k => has(c, k)));
+      const shownSet = new Set(shown);
+      cards.forEach(c => { wkcDecorateTags(c); c.classList.toggle('is-hidden', !shownSet.has(c)); });
+
+      if (zone === 'blog') {
+        document.querySelectorAll('[data-series-head]').forEach(head => {
+          const key = head.getAttribute('data-series-head');
+          const any = cards.some(c => (c.getAttribute('data-series') || 'harmonic') === key && shownSet.has(c));
+          head.classList.toggle('is-hidden', !any);
+        });
+      }
+
+      wkcRenderTopics(zone, afterQ, shown);
+      wkcRenderInfo(zone, shown);
+
+      document.querySelectorAll('#' + (zone === 'blog' ? 'blogContainer' : 'courseContainer') + ' .wkc-hits').forEach(n => n.remove());
+      if (tokens.length) {
+        shown.forEach(card => {
+          const e = idx.get(card);
+          const picks = wkcBestElems(e, tokens, 2);
+          if (!picks.length || !e.titleEl) return;
+          const wrap = document.createElement('div');
+          wrap.className = 'wkc-hits';
+          picks.forEach(p => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'wkc-hit';
+            b.title = blogT('wkc_hit_title', 'Jump to this passage');
+            b.innerHTML = '<i class="fa-solid fa-arrow-turn-down"></i>' + wkcSnip(p, raw);
+            b.addEventListener('click', () => { wkcOpenCard(card); setTimeout(() => { p.x.el.scrollIntoView({ behavior: 'smooth', block: 'center' }); wkcFlash(p.x.el); }, 260); });
+            wrap.appendChild(b);
+          });
+          e.titleEl.insertAdjacentElement('afterend', wrap);
+        });
+      }
+      wkcHighlight(zone, shown, raw);
+
+      const counter = document.getElementById(zone + 'ResultCount');
+      if (counter) counter.textContent = shown.length + ' ' + blogT(shown.length === 1 ? 'blog_count_one' : 'blog_count_many', 'notes');
+
+      const container = document.getElementById(zone === 'blog' ? 'blogContainer' : 'courseContainer');
+      const filtering = tokens.length || st.topics.length;
+      let nm = document.getElementById(zone + 'NoMatch');
+      const courseEmpty = zone === 'course' ? document.getElementById('courseEmpty') : null;
+      if (courseEmpty) courseEmpty.style.display = (shown.length === 0 && !filtering) ? '' : 'none';
+      if (shown.length === 0 && (zone === 'blog' || filtering)) {
+        if (!nm && container) {
+          nm = document.createElement('div'); nm.id = zone + 'NoMatch'; nm.className = 'blog-empty';
+          container.appendChild(nm);
+        }
+        if (nm) {
+          nm.innerHTML = '<i class="fa-solid fa-file-circle-xmark" style="font-size:2rem;margin-bottom:0.8rem;"></i><p>' +
+            blogT(zone === 'blog' ? 'blog_no_match' : 'wkc_no_match_course', 'No note matches the current filter or search query.') + '</p>';
+          nm.style.display = '';
+        }
+      } else if (nm) nm.style.display = 'none';
+
+      if (opts.user && shown.length === 1 && filtering) wkcOpenCard(shown[0]);
+      return shown;
+    }
+
+    function wkcRenderTopics(zone, afterQ, shown) {
+      const box = document.getElementById(zone + 'Topics');
+      if (!box) return;
+      const st = wkcState[zone], tot = wkcZoneTotals(zone);
+      const has = (c, k) => wkcCardTopics(c).indexOf(k) !== -1;
+      const sel = st.topics;
+      const countFor = k => sel.indexOf(k) !== -1 ? shown.length
+        : afterQ.filter(c => sel.every(x => has(c, x)) && has(c, k)).length;
+      const chip = t => {
+        const n = countFor(t.k), on = sel.indexOf(t.k) !== -1, dim = !on && !n;
+        return '<button type="button" class="blog-chip wkc-chip' + (on ? ' active' : '') + (dim ? ' dim' : '') +
+          '" data-topic="' + t.k + '" aria-pressed="' + on + '"' + (dim ? ' disabled' : '') + '>' +
+          wkcEsc(wkcTr(t.n)) + '<span class="chip-count">' + n + '</span></button>';
+      };
+      const order = {}; WKC_TOPICS.forEach((t, i) => { order[t.k] = i; });
+      let html = '<div class="wkc-topic-head"><span class="blog-filter-label">' + blogT('wkc_topics', 'Topics') + '</span>' +
+        (sel.length ? '<button type="button" class="wkc-clear" data-clear="1"><i class="fa-solid fa-xmark"></i> ' + blogT('wkc_clear', 'Clear') + '</button>' : '') +
+        '</div>';
+      let moreCount = 0;
+      WKC_GROUPS.forEach(g => {
+        const all = WKC_TOPICS.filter(t => t.g === g.k && tot[t.k]);
+        const main = all.filter(t => tot[t.k] >= 2 || sel.indexOf(t.k) !== -1);
+        moreCount += all.length - main.length;
+        const list = (st.more ? all : main).slice().sort((a, b) => (tot[b.k] - tot[a.k]) || (order[a.k] - order[b.k]));
+        if (!list.length) return;
+        html += '<div class="wkc-topic-row"><span class="wkc-grp">' + blogT(g.i, g.k) + '</span><div class="wkc-chips">' +
+          list.map(chip).join('') + '</div></div>';
+      });
+      if (moreCount) html += '<button type="button" class="wkc-more" data-more="1">' +
+        (st.more ? blogT('wkc_fewer', 'Fewer topics') : blogT('wkc_more', 'More topics') + ' (' + moreCount + ')') + '</button>';
+      box.innerHTML = html;
+    }
+
+    function wkcRenderInfo(zone, shown) {
+      const box = document.getElementById(zone + 'TopicInfo');
+      if (!box) return;
+      const st = wkcState[zone];
+      if (!st.topics.length) { box.hidden = true; box.innerHTML = ''; return; }
+      let html = st.topics.map(k => {
+        const t = WKC_TOPIC_BY[k];
+        return '<p class="wkc-ti-desc"><strong>' + wkcEsc(wkcTr(t.n)) + '</strong> — ' + wkcEsc(wkcTr(t.d)) + '</p>';
+      }).join('');
+      const co = {};
+      shown.forEach(c => wkcCardTopics(c).forEach(k => { if (st.topics.indexOf(k) === -1) co[k] = (co[k] || 0) + 1; }));
+      const order = {}; WKC_TOPICS.forEach((t, i) => { order[t.k] = i; });
+      const rel = Object.keys(co).sort((a, b) => (co[b] - co[a]) || (order[a] - order[b])).slice(0, 6);
+      if (rel.length) {
+        html += '<div class="wkc-ti-rel"><span>' + blogT('wkc_related', 'Often appears with') + '</span>' +
+          rel.map(k => '<button type="button" class="blog-chip wkc-chip" data-topic="' + k + '">' + wkcEsc(wkcTr(WKC_TOPIC_BY[k].n)) +
+            '<span class="chip-count">' + co[k] + '</span></button>').join('') + '</div>';
+      }
+      box.innerHTML = html;
+      box.hidden = false;
+    }
+
+    /* ---- Navigation helpers shared by the home feed and the palette. ---- */
+    function wkcOpenZone(zone, mut) {
+      const st = wkcState[zone];
+      st.topics = []; st.q = ''; st.more = false;
+      const inp = document.getElementById(zone + 'SearchInput');
+      if (inp) inp.value = '';
+      if (zone === 'blog') { blogSeriesFilter = 'all'; blogCatFilter = 'all'; } else { courseFilter = 'all'; }
+      if (mut) mut(st, inp);
+      switchTab(WKC_ZONES[zone].tab);
+      if (zone === 'blog') renderBlogControls(); else renderCourseControls();
+    }
+    function wkcGoto(zone, card, el) {
+      wkcOpenZone(zone);
+      wkcOpenCard(card);
+      setTimeout(() => {
+        const target = (el && el.isConnected) ? el : card;
+        target.scrollIntoView({ behavior: 'smooth', block: el ? 'center' : 'start' });
+        wkcFlash(target);
+      }, 480);
+    }
+    function wkcGotoTopic(zone, k) {
+      wkcOpenZone(zone, st => { st.topics = [k]; });
+      setTimeout(() => { const tb = document.getElementById(zone + 'Toolbar'); if (tb) tb.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 420);
+    }
+    function wkcGotoQuery(zone, q) {
+      wkcOpenZone(zone, (st, inp) => { st.q = q; if (inp) inp.value = q; });
+      setTimeout(() => { const tb = document.getElementById(zone + 'Toolbar'); if (tb) tb.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 420);
+    }
+
+    /* ---- Toolbar events (topic chips, related chips, clear, more) ---- */
+    function wkcBindToolbar(zone) {
+      const tb = document.getElementById(zone + 'Toolbar');
+      if (!tb || tb.__wkcBound) return;
+      tb.__wkcBound = true;
+      tb.addEventListener('click', ev => {
+        const st = wkcState[zone];
+        const chip = ev.target.closest('[data-topic]');
+        if (chip && tb.contains(chip) && !chip.disabled) {
+          const k = chip.getAttribute('data-topic'), i = st.topics.indexOf(k);
+          if (i === -1) st.topics.push(k); else st.topics.splice(i, 1);
+          const shown = wkcRefresh(zone, { user: true });
+          const again = tb.querySelector('.wkc-topics [data-topic="' + k + '"]');
+          if (again && !again.disabled) again.focus({ preventScroll: true });
+          const info = document.getElementById(zone + 'TopicInfo');
+          if (info && !info.hidden) info.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          if (i === -1) shown.slice(0, 4).forEach(wkcFlash);
+          return;
+        }
+        if (ev.target.closest('[data-clear]')) { st.topics = []; wkcRefresh(zone, { user: true }); return; }
+        if (ev.target.closest('[data-more]')) { st.more = !st.more; wkcRefresh(zone); }
+      });
+      const inp = document.getElementById(zone + 'SearchInput');
+      if (inp) {
+        inp.addEventListener('input', () => { wkcState[zone].q = inp.value; wkcRefresh(zone, { user: true }); });
+        inp.addEventListener('keydown', ev => {
+          if (ev.key === 'Escape' && inp.value) { inp.value = ''; wkcState[zone].q = ''; wkcRefresh(zone); }
+        });
+      }
+      const cont = document.getElementById(zone === 'blog' ? 'blogContainer' : 'courseContainer');
+      if (cont) {
+        const act = ev => {
+          const tag = ev.target.closest('.wkc-tag-link');
+          if (!tag || !cont.contains(tag)) return;
+          if (ev.type === 'keydown' && ev.key !== 'Enter' && ev.key !== ' ') return;
+          ev.preventDefault();
+          const st = wkcState[zone];
+          if (st.topics.indexOf(tag.__wkcK) === -1) st.topics.push(tag.__wkcK);
+          wkcRefresh(zone, { user: true });
+          tb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        cont.addEventListener('click', act);
+        cont.addEventListener('keydown', act);
+      }
+    }
+    function applyBlogFilter() { wkcState.blog.q = (document.getElementById('blogSearchInput') || {}).value || ''; wkcRefresh('blog', { user: true }); }
+    function applyCourseFilter() { wkcRefresh('course'); }
+
+    /* ---- Ctrl+K palette ---- */
+    let wkcPalSel = 0, wkcPalFocusBack = null;
+    function wkcPalBuild() {
+      if (document.getElementById('wkcPalette')) return;
+      const el = document.createElement('div');
+      el.id = 'wkcPalette'; el.className = 'wkc-pal'; el.hidden = true;
+      el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
+      el.innerHTML = '<div class="wkc-pal-box"><div class="wkc-pal-bar"><i class="fa-solid fa-magnifying-glass"></i>' +
+        '<input id="wkcPalInput" type="text" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></div>' +
+        '<div class="wkc-pal-body" id="wkcPalBody"></div><div class="wkc-pal-foot" id="wkcPalFoot"></div></div>';
+      document.body.appendChild(el);
+      el.addEventListener('mousedown', ev => { if (ev.target === el) wkcPalClose(); });
+      const inp = document.getElementById('wkcPalInput');
+      inp.addEventListener('input', () => { wkcPalSel = 0; wkcPalRender(); });
+      inp.addEventListener('keydown', ev => {
+        const items = Array.from(el.querySelectorAll('.wkc-pal-item'));
+        if (ev.key === 'ArrowDown') { ev.preventDefault(); wkcPalSel = Math.min(items.length - 1, wkcPalSel + 1); wkcPalMark(items); }
+        else if (ev.key === 'ArrowUp') { ev.preventDefault(); wkcPalSel = Math.max(0, wkcPalSel - 1); wkcPalMark(items); }
+        else if (ev.key === 'Enter') { ev.preventDefault(); if (items[wkcPalSel]) items[wkcPalSel].click(); }
+        else if (ev.key === 'Escape') { ev.preventDefault(); wkcPalClose(); }
+      });
+      el.addEventListener('click', ev => {
+        const it = ev.target.closest('.wkc-pal-item');
+        if (it) { wkcPalPick(it); return; }
+        const all = ev.target.closest('[data-pal-all]');
+        if (all) { const q = inp.value; wkcPalClose(); wkcGotoQuery(all.getAttribute('data-pal-all'), q); return; }
+        const sg = ev.target.closest('[data-pal-q]');
+        if (sg) { inp.value = sg.getAttribute('data-pal-q'); wkcPalSel = 0; wkcPalRender(); inp.focus(); }
+      });
+    }
+    function wkcPalMark(items) {
+      items.forEach((it, i) => it.classList.toggle('sel', i === wkcPalSel));
+      if (items[wkcPalSel]) items[wkcPalSel].scrollIntoView({ block: 'nearest' });
+    }
+    let wkcPalResults = [];
+    function wkcPalPick(it) {
+      const r = wkcPalResults[parseInt(it.getAttribute('data-i'), 10)];
+      if (!r) return;
+      wkcPalClose();
+      wkcGoto(r.zone, r.e.card, r.pick ? r.pick.x.el : null);
+    }
+    function wkcPalOpen(prefill) {
+      wkcPalBuild();
+      const el = document.getElementById('wkcPalette'), inp = document.getElementById('wkcPalInput');
+      wkcPalFocusBack = document.activeElement;
+      inp.placeholder = blogT('wkc_pal_ph', 'Search every note and lecture…');
+      document.getElementById('wkcPalFoot').textContent = blogT('wkc_pal_hint', '↑ ↓ to move · Enter to open · Esc to close');
+      el.hidden = false; document.body.classList.add('wkc-pal-open');
+      inp.value = prefill || ''; wkcPalSel = 0; wkcPalRender();
+      inp.focus();
+    }
+    function wkcPalClose() {
+      const el = document.getElementById('wkcPalette');
+      if (!el || el.hidden) return;
+      el.hidden = true; document.body.classList.remove('wkc-pal-open');
+      if (wkcPalFocusBack && wkcPalFocusBack.focus) { try { wkcPalFocusBack.focus({ preventScroll: true }); } catch (e) {} }
+    }
+    function wkcPalRender() {
+      const inp = document.getElementById('wkcPalInput'), body = document.getElementById('wkcPalBody');
+      const q = inp.value, tokens = wkcTokens(q), raw = wkcRawTokens(q);
+      wkcPalResults = [];
+      if (!tokens.length) {
+        const tot = { blog: wkcZoneTotals('blog'), course: wkcZoneTotals('course') };
+        const top = WKC_TOPICS.map(t => ({ t, n: (tot.blog[t.k] || 0) + (tot.course[t.k] || 0) })).filter(x => x.n >= 2)
+          .sort((a, b) => b.n - a.n).slice(0, 18);
+        body.innerHTML = '<div class="wkc-pal-sug"><div class="wkc-pal-gh">' + blogT('wkc_pal_topics', 'Try a topic') + '</div><div class="wkc-chips">' +
+          top.map(x => '<button type="button" class="blog-chip" data-pal-q="' + wkcEsc(wkcTr(x.t.n)) + '">' + wkcEsc(wkcTr(x.t.n)) +
+            '<span class="chip-count">' + x.n + '</span></button>').join('') + '</div></div>';
+        return;
+      }
+      const idx = wkcBuildIndex();
+      const groups = { blog: [], course: [] };
+      ['blog', 'course'].forEach(zone => {
+        WKC_ZONES[zone].cards().forEach(c => {
+          const e = idx[zone].get(c);
+          if (!wkcMatch(e, tokens)) return;
+          let score = 1;
+          if (tokens.every(t => e.titleN.indexOf(t) !== -1)) score = 10;
+          else if (tokens.every(t => e.meta.indexOf(t) !== -1)) score = 5;
+          groups[zone].push({ zone, e, score, order: c.__wkcOrder || 0 });
+        });
+        groups[zone].sort((a, b) => b.score - a.score || a.order - b.order);
+      });
+      let html = '', total = 0;
+      const LIMIT = 8;
+      ['blog', 'course'].forEach(zone => {
+        const g = groups[zone];
+        if (!g.length) return;
+        html += '<div class="wkc-pal-gh">' + blogT(zone === 'blog' ? 'wkc_pal_blog' : 'wkc_pal_course', zone) + ' <span>' + g.length + '</span></div>';
+        g.slice(0, LIMIT).forEach(r => {
+          r.pick = wkcBestElems(r.e, tokens, 1)[0] || null;
+          const i = wkcPalResults.push(r) - 1;
+          const topics = wkcCardTopics(r.e.card).slice(0, 3).map(k => wkcEsc(wkcTr(WKC_TOPIC_BY[k].n))).join(' · ');
+          html += '<button type="button" class="wkc-pal-item" data-i="' + i + '"><span class="wkc-pal-t">' + wkcEsc(wkcTitleText(r.e.card)) + '</span>' +
+            '<span class="wkc-pal-m">' + wkcEsc(WKC_ZONES[zone].badge(r.e.card)) + (topics ? ' · ' + topics : '') + '</span>' +
+            (r.pick ? '<span class="wkc-pal-s">' + wkcSnip(r.pick, raw) + '</span>' : '') + '</button>';
+          total++;
+        });
+        if (g.length > LIMIT) html += '<button type="button" class="wkc-pal-all" data-pal-all="' + zone + '">' +
+          blogT('wkc_pal_all', 'See all {n} in this section').replace('{n}', g.length) + '</button>';
+      });
+      body.innerHTML = total ? html : '<div class="wkc-pal-none">' + blogT('wkc_pal_none', 'No match. Try a keyword, a theorem name or an author.') + '</div>';
+      wkcPalMark(Array.from(body.querySelectorAll('.wkc-pal-item')));
+    }
+
+    /* ---- Home feed: search entry, latest additions, topics to browse ---- */
+    function wkcMonthValue(card) {
+      const d = card.querySelector('.blog-date');
+      const m = d && d.textContent.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/);
+      if (!m) return 0;
+      return parseInt(m[2], 10) * 12 + ['January','February','March','April','May','June','July','August','September','October','November','December'].indexOf(m[1]);
+    }
+    function wkcRenderHome() {
+      const sbtn = document.getElementById('wkcSearchBtn');
+      if (sbtn) sbtn.title = blogT('wkc_btn_search', 'Search (Ctrl K)');
+      const root = document.getElementById('wkcHome');
+      if (!root) return;
+      wkcRecordOrder();
+      const latest = (zone, n) => WKC_ZONES[zone].cards().slice()
+        .sort((a, b) => (zone === 'blog' ? (wkcMonthValue(b) - wkcMonthValue(a)) : 0) || (b.__wkcOrder - a.__wkcOrder)).slice(0, n);
+      const items = latest('blog', 3).map(c => ({ zone: 'blog', c })).concat(latest('course', 3).map(c => ({ zone: 'course', c })));
+      const dates = c => { const d = c.querySelectorAll('.blog-date'); return Array.from(d).map(x => x.textContent.trim()).join(' · '); };
+      const li = items.map((it, i) => '<button type="button" class="wkc-latest" data-i="' + i + '"><span class="wkc-zone wkc-zone-' + it.zone + '">' +
+        blogT(it.zone === 'blog' ? 'wkc_zone_blog' : 'wkc_zone_course', it.zone) + '</span><span class="wkc-latest-t">' + wkcEsc(wkcTitleText(it.c)) +
+        '</span><span class="wkc-latest-m">' + wkcEsc(dates(it.c)) + '</span></button>').join('');
+      const tb = wkcZoneTotals('blog'), tc = wkcZoneTotals('course');
+      const tops = WKC_TOPICS.map(t => ({ t, b: tb[t.k] || 0, c: tc[t.k] || 0 })).map(x => Object.assign(x, { n: x.b + x.c }))
+        .filter(x => x.n >= 3).sort((a, b) => b.n - a.n).slice(0, 16);
+      root.innerHTML =
+        '<div class="section-header"><h3 class="section-title"><i class="fa-solid fa-compass"></i><span>' + blogT('wkc_home_title', 'Start Exploring') + '</span></h3></div>' +
+        '<button type="button" class="wkc-home-search" id="wkcHomeSearch"><i class="fa-solid fa-magnifying-glass"></i><span>' +
+        blogT('wkc_home_search', 'Search every note and lecture') + '</span><kbd>Ctrl K</kbd></button>' +
+        '<div class="wkc-home-grid"><div><div class="wkc-home-h">' + blogT('wkc_home_latest', 'Latest additions') + '</div><div class="wkc-latest-list">' + li + '</div></div>' +
+        '<div><div class="wkc-home-h">' + blogT('wkc_home_topics', 'Browse by topic') + '</div><div class="wkc-chips">' +
+        tops.map(x => '<button type="button" class="blog-chip" data-home-topic="' + x.t.k + '" data-zone="' + (x.c > x.b ? 'course' : 'blog') + '">' +
+          wkcEsc(wkcTr(x.t.n)) + '<span class="chip-count">' + x.n + '</span></button>').join('') + '</div></div></div>';
+      root.__items = items;
+    }
+    function wkcBindHome() {
+      const root = document.getElementById('wkcHome');
+      if (!root || root.__wkcBound) return;
+      root.__wkcBound = true;
+      root.addEventListener('click', ev => {
+        if (ev.target.closest('#wkcHomeSearch')) { wkcPalOpen(); return; }
+        const lt = ev.target.closest('.wkc-latest');
+        if (lt) { const it = root.__items[parseInt(lt.getAttribute('data-i'), 10)]; if (it) wkcGoto(it.zone, it.c); return; }
+        const tp = ev.target.closest('[data-home-topic]');
+        if (tp) wkcGotoTopic(tp.getAttribute('data-zone'), tp.getAttribute('data-home-topic'));
+      });
+    }
+
+    /* ---- Biographical sketch: collapsed until asked for ---- */
+    function wkcBindBio() {
+      const btn = document.getElementById('bioToggle'), card = document.getElementById('bioSketchCard');
+      if (!btn || !card || btn.__wkcBound) return;
+      btn.__wkcBound = true;
+      btn.addEventListener('click', () => {
+        const open = card.hidden;
+        card.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+        btn.classList.toggle('is-open', open);
+      });
+    }
+
+    function wkcInit() {
+      wkcBindToolbar('blog'); wkcBindToolbar('course'); wkcBindHome(); wkcBindBio();
+      const sb = document.getElementById('wkcSearchBtn');
+      if (sb) sb.addEventListener('click', () => wkcPalOpen());
+      document.addEventListener('keydown', ev => {
+        const k = (ev.key || '').toLowerCase();
+        const pal = document.getElementById('wkcPalette');
+        if ((ev.ctrlKey || ev.metaKey) && k === 'k') { ev.preventDefault(); if (pal && !pal.hidden) wkcPalClose(); else wkcPalOpen(); return; }
+        if (k === '/' && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !(pal && !pal.hidden)) {
+          const t = ev.target, tag = t && t.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable)) return;
+          ev.preventDefault(); wkcPalOpen();
+        }
+      });
     }
 
 
@@ -56976,8 +58773,7 @@ function jbpFixS() { jbpS[0] = jbpClip(jbpS[0], jbpQ[0], jbpQ[1] - 0.01); jbpS[1
         });
       }
 
-      const blogSearch = document.getElementById("blogSearchInput");
-      if (blogSearch) blogSearch.addEventListener("input", applyBlogFilter);
+      wkcInit();
 
       renderPublications();
       renderBlogControls();
